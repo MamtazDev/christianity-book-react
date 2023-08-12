@@ -1,8 +1,7 @@
 import React from "react";
 import "./SideBanner.css";
-import image from "../../assets/images/image1.png";
 
-const SideBanner = () => {
+const SideBanner = ({ image }) => {
   return (
     <div className="col-6 p-0">
       <div className="h-100" style={{ padding: "20px" }}>
