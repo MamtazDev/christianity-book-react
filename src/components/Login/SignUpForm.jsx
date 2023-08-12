@@ -7,12 +7,14 @@ import facebook from "../../assets/icons/facebook.png";
 import google from "../../assets/icons/google.png";
 import apple from "../../assets/icons/apple.png";
 import user from "../../assets/icons/user.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [focusInput, setFocusInput] = useState(null);
   const [look, setLook] = useState(false);
   const [lookConfirm, setLookConfirm] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleFoucsInput = (value, action) => {
     if (action === "focus") {
@@ -24,6 +26,8 @@ const SignUpForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    navigate("/");
   };
   return (
     <div className="col-6 logInContainer">

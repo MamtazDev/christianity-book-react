@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import message from "../../assets/icons/message.png";
 import lock from "../../assets/icons/padlock.png";
 import eye from "../../assets/icons/eye.png";
@@ -12,6 +12,7 @@ import apple from "../../assets/icons/apple.png";
 const LoginForm = () => {
   const [focusInput, setFocusInput] = useState(null);
   const [look, setLook] = useState(false);
+  const navigate = useNavigate();
 
   const handleFoucsInput = (value, action) => {
     if (action === "focus") {
@@ -23,6 +24,7 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/");
   };
   return (
     <div className="col-6 logInContainer">

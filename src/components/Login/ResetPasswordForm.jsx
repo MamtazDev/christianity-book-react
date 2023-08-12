@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import message from "../../assets/icons/message.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ResetPasswordForm = () => {
   const [focusInput, setFocusInput] = useState(null);
+  const navigate = useNavigate();
+
   const handleFoucsInput = (value, action) => {
     if (action === "focus") {
       setFocusInput(value);
@@ -14,6 +16,8 @@ const ResetPasswordForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    navigate("/reset-verification");
   };
   return (
     <div className="col-6 logInContainer">

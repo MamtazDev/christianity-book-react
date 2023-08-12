@@ -4,6 +4,7 @@ import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUp";
 import ResetPassword from "../pages/ResetPassword";
 import ResetVerification from "../pages/ResetVerification";
+import ChangePassword from "../pages/ChangePassword";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -19,5 +20,9 @@ export const router = createBrowserRouter([
   {
     path: "/reset-verification",
     element: <ResetVerification />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePassword />,
   },
 ]);

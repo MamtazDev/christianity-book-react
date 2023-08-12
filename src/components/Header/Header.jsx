@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -37,12 +38,12 @@ const Header = () => {
               </li>
             </ul>
             <div class="d-flex gap-3">
-              <a class="dark_btn" href="">
+              <Link class="dark_btn" to="/signup">
                 Sign Up
-              </a>
-              <a class="light_btn" href="">
+              </Link>
+              <Link class="light_btn" to="/login">
                 Sign In
-              </a>
+              </Link>
             </div>
           </div>
         </div>

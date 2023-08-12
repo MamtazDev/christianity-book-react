@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ResetVerificationForm.css";
 
 const ResetVerificationForm = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
+
+  const navigate = useNavigate();
 
   const inputRefs = useRef([]);
   const handleChange = async (index, value) => {
@@ -29,6 +31,7 @@ const ResetVerificationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/change-password");
   };
   return (
     <div className="col-6 logInContainer">
