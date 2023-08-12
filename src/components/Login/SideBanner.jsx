@@ -3,7 +3,7 @@ import "./SideBanner.css";
 
 const SideBanner = ({ image }) => {
   return (
-    <div className="col-6 p-0">
+    <div className="col-6 p-0 d-none d-lg-block">
       <div className="h-100" style={{ padding: "20px" }}>
         <div
           className="bannerContainer"

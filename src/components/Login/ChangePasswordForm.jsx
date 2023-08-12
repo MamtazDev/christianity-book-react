@@ -17,7 +17,7 @@ const ChangePasswordForm = () => {
     navigate("/");
   };
   return (
-    <div className="col-6 logInContainer">
+    <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox" style={{ height: "80%" }}>
         <h5>
           <Link to="/">Your Logo</Link>

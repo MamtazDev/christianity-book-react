@@ -30,7 +30,7 @@ const SignUpForm = () => {
     navigate("/");
   };
   return (
-    <div className="col-6 logInContainer">
+    <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox">
         <h5>
           <Link to="/">Your Logo</Link>

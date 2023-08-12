@@ -155,3 +155,23 @@
   gap: 20px;
   justify-content: center;
 }
+
+@media only screen and (max-width: 688px) {
+  .logInContainer {
+    padding: 20px;
+  }
+
+  .logInBox {
+    max-width: unset;
+  }
+}
+
+@media only screen and (min-width: 689px) and (max-width: 992px) {
+  .logInContainer {
+    padding: 50px;
+  }
+
+  .logInBox {
+    max-width: unset;
+  }
+}
