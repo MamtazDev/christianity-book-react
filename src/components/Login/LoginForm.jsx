@@ -88,7 +88,7 @@ const LoginForm = () => {
               <input type="checkbox" name="" id="" />
               <p>Remember me</p>
             </div>
-            <Link to="/">Forgot Password?</Link>
+            <Link to="/reset-password">Forgot Password?</Link>
           </div>
 
           <div className="logInActionContainer">

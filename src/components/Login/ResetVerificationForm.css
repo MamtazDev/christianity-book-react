@@ -1,0 +1,19 @@
+.otpForm input {
+  outline: unset !important;
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  width: 88px;
+  height: 65px;
+
+  border: 1px solid #c2c9d1;
+  border-radius: 6px;
+  padding: 32px;
+  font-size: 35px;
+  font-weight: 800;
+}
+
+.otpForm input::-webkit-inner-spin-button,
+.otpForm input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
