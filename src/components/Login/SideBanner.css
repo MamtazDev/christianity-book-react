@@ -1,0 +1,23 @@
+.bannerContainer {
+  height: 100%;
+
+  border-radius: 15px;
+
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.bannerContainer h1 {
+  color: #fff;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.44px;
+  max-width: 670px;
+  height: 100%;
+  display: flex;
+  align-items: end;
+  padding-left: 37px;
+  padding-bottom: 56px;
+}
