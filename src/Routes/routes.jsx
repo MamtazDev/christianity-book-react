@@ -5,6 +5,7 @@ import SignUp from "../pages/SignUp";
 import ResetPassword from "../pages/ResetPassword";
 import ResetVerification from "../pages/ResetVerification";
 import ChangePassword from "../pages/ChangePassword";
+import CompleteProfile from "../pages/CompleteProfile";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -24,5 +25,9 @@ export const router = createBrowserRouter([
   {
     path: "/change-password",
     element: <ChangePassword />,
+  },
+  {
+    path: "/complete-profile",
+    element: <CompleteProfile />,
   },
 ]);

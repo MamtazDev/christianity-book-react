@@ -1,0 +1,11 @@
+.completeProfileContainer {
+  padding: 31px 50px;
+}
+
+.completeProfileContainer a {
+  color: #313131;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
