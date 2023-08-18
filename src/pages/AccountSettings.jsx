@@ -7,37 +7,31 @@ import Notification from "../components/AccountSettings/Notification";
 import ActivityGraph from "../components/AccountSettings/ActivityGraph";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import PageHeading from "../components/Utils/PageHeading";
 
 const AccountSettings = () => {
   return (
     <div>
       <Header />
       <div className="container">
-        <div className="forPosition mb_100">
-          <div className="d-flex justify-content-start align-items-center mb-4 mb-lg-5 gap-2">
-            <a href="index.html">Home</a>
-            <img src={nextArrow} alt="Arrow" />
-            <a href="" className="activePage">
-              Account Settings
-            </a>
-          </div>
+        <PageHeading> Account Settings</PageHeading>
 
-          <div className="account">
-            <AccountSetting />
+        <div className="account">
+          <AccountSetting />
 
-            {/* <!-- Profile Settings Start --> */}
-            <ProfileSetting />
-            {/* <!-- Profile Settings End --> */}
+          {/* <!-- Profile Settings Start --> */}
+          <ProfileSetting />
+          {/* <!-- Profile Settings End --> */}
 
-            {/* <!-- Subscription Settings Start --> */}
-            <Subscription />
-            {/* <!-- Subscription Settings End --> */}
+          {/* <!-- Subscription Settings Start --> */}
+          <Subscription />
+          {/* <!-- Subscription Settings End --> */}
 
-            {/* <!-- Notification Seetings Start --> */}
-            <Notification />
-            {/* <!-- Notification Seetings End --> */}
-          </div>
+          {/* <!-- Notification Seetings Start --> */}
+          <Notification />
+          {/* <!-- Notification Seetings End --> */}
         </div>
+
         <ActivityGraph />
       </div>
       <Footer />

@@ -71,18 +71,18 @@ button {
 }
 
 h2 {
-    color: var(--black, #313131);
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 56px;
+    color: var(--black, #313131) !important;
+    font-size: 40px !important;
+    font-weight: 600 !important;
+    line-height: 56px !important;
 }
 
 h2 span {
-    color: var(--secondry-color, #FFB230);
-    text-transform: uppercase;
+    color: var(--secondry-color, #FFB230) !important;
+    text-transform: uppercase !important;
     margin-left: 10px;
     margin-right: 10px;
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 .txt_curve {
@@ -634,3 +634,152 @@ select::-ms-expand {
 }
 
 /* Chat with Author Page End */
+
+
+/* Bookmark Page Start */
+
+.bookmarkInner {
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
+    padding: 23px 18px;
+}
+
+.bookmarkInner span {
+    color: var(--black, #313131);
+    font-size: 24px;
+    font-weight: 500;
+    display: block;
+}
+
+.bookmarkInner article span {
+    color: var(--primary-color, #423C6A);
+    font-size: 24px;
+    font-weight: 700;
+    display: block;
+}
+
+.bookmarkInner article p {
+    color: var(--black, #313131);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+/* Bookmark Page End */
+
+/* Preview Book Page Start */
+
+.bookName {
+    color: var(--black, #313131);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 56px;
+}
+
+
+
+.bookIndex {
+    border-radius: 20px;
+    background: #fffbf5;
+    box-shadow: 7px -3px 14px 0px rgba(0, 0, 0, 0.15);
+    padding: 66px;
+    gap: 35px;
+}
+
+.detalisPage {
+    border-radius: 10px;
+    background: #D9D9D9;
+    height: 1200px;
+}
+
+.bookHeight {
+    height: 1200px;
+    margin-bottom: 35px;
+}
+
+.bookScroll {
+    overflow-y: scroll;
+    height: 1200px;
+    padding: 15px;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    border-radius: 50px;
+    background: var(--gray-200, #E1E4E8);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: var(--primary-color, #423C6A);
+    height: 78px;
+}
+
+/* paigination */
+
+.b-pagination-outer {
+    margin-top: 35px;
+    border: 1px solid var(--gray-300, #C2C9D1);
+    border-radius: 5px;
+    padding: 13px 20px;
+    max-width: 882px;
+}
+
+.border-pagination {
+    text-align: center;
+    margin: 0;
+    gap: 11px;
+}
+
+.border-pagination li {
+    display: inline;
+
+}
+
+.border-pagination li a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    padding: 5px 13px;
+    color: var(--black, #313131);
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+    border: 0.682px solid transparent;
+    border-radius: 3.41px;
+}
+
+.border-pagination li a:hover {
+    color: #FFB230;
+    border: 0.682px solid var(--secondry-color, #FFB230);
+    border-radius: 3.41px;
+}
+
+.border-pagination li a.active {
+    color: #FFB230;
+    border: 0.682px solid var(--secondry-color, #FFB230);
+    border-radius: 3.41px;
+}
+
+
+.border-pagination li .activeNext {
+    color: #FFB230;
+}
+
+.showPage a {
+    color: var(--black, #313131);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.ebookMt {
+    margin-top: 200px;
+}
+
+
+.mb-ebook {
+    margin-bottom: 100px;
+}
+
+/* Preview Book Page End */

@@ -8,11 +8,13 @@ import ChangePassword from "../pages/ChangePassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import AccountSettings from "../pages/AccountSettings";
 import AuthorChat from "../pages/AuthorChat";
+import Bookmark from "../pages/Bookmark";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/account-settings", element: <AccountSettings /> },
   { path: "/author-chat", element: <AuthorChat /> },
+  { path: "/bookmark", element: <Bookmark /> },
   { path: "/login", element: <LogIn /> },
   {
     path: "/signUp",

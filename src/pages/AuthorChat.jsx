@@ -3,22 +3,15 @@ import Header from "../components/Header/Header";
 import ChatList from "../components/AuthorChat/ChatList";
 import Conversation from "../components/AuthorChat/Conversation";
 import arrow from "../assets/images/next_arrow.png";
+import PageHeading from "../components/Utils/PageHeading";
 
 const AuthorChat = () => {
   return (
     <div>
       <Header />
-
       <div className="container">
-        <div className="forPosition">
-          <div className="d-flex justify-content-start align-items-center mb-4 gap-2">
-            <a href="index.html">Home</a>
-            <img src={arrow} alt="Arrow" />
-            <a href="" className="activePage">
-              Chat with Author
-            </a>
-          </div>
-        </div>
+        <PageHeading> Chat with Author</PageHeading>
+
         <div className="authorChatBox mb-5 d-flex gap-4">
           {/* <!-- chat name List Start --> */}
           <ChatList />

@@ -87,7 +87,7 @@ const ActivityGraph = () => {
             <CartesianGrid vertical={false} />
             <XAxis dataKey="name" tickLine={false} axisLine={true} />
             <YAxis axisLine={false} tickLine={false} />
-            <Tooltip />
+            {/* <Tooltip /> */}
             <Line
               type="monotone"
               dataKey="RSI"
