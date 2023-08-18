@@ -11,6 +11,7 @@ import AuthorChat from "../pages/AuthorChat";
 import Bookmark from "../pages/Bookmark";
 import Contact from "../pages/Contact";
 import Layout from "../Layout/Layout";
+import ReadBook from "../pages/ReadBook";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([
       { path: "/account-settings", element: <AccountSettings /> },
       { path: "/author-chat", element: <AuthorChat /> },
       { path: "/bookmark", element: <Bookmark /> },
+      { path: "/read-book", element: <ReadBook /> },
     ],
   },
 ]);

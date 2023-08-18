@@ -8,7 +8,7 @@ import PageHeading from "../components/Utils/PageHeading";
 
 const AccountSettings = () => {
   return (
-    <div>
+    <>
       <div className="container">
         <PageHeading> Account Settings</PageHeading>
 
@@ -30,7 +30,7 @@ const AccountSettings = () => {
 
         <ActivityGraph />
       </div>
-    </div>
+    </>
   );
 };
 
