@@ -452,4 +452,41 @@ select::-ms-expand {
     font-weight: 700;
 }
 
+.blue_dot,
+.orange_dot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.blue_dot h6,
+.orange_dot h6 {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #423C6A;
+}
+
+.orange_dot h6 {
+    background-color: #FFB230;
+}
+
+.blue_dot p,
+.orange_dot p {
+    color: var(--black, #313131);
+    font-size: 17.864px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26.796px;
+}
+
+.activity select {
+    border-radius: 60px;
+    background: #D9D8E1;
+    color: var(--primary-color, #423C6A);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px;
+}
+
 /* Account Settings Page End */
