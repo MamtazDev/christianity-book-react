@@ -1,4 +1,6 @@
 import React from "react";
+import Deactivate from "../Modals/Deactivate";
+import DeactivateConfirm from "../Modals/DeactivateConfirm";
 
 const Notification = () => {
   return (
@@ -33,6 +35,28 @@ const Notification = () => {
           </div>
         </form>
       </div>
+
+      <div className="mb_30">
+        <h3>Deactivate Account</h3>
+        <p>
+          If you no longer want to receive notifications then Deactivate your
+          Account.
+        </p>
+      </div>
+
+      <button
+        className="deactiveBtn"
+        data-bs-toggle="modal"
+        href="#exampleModalToggle"
+        role="button"
+      >
+        Deactivate my Account!
+      </button>
+
+      {/* <!-- Modal Start --> */}
+      <Deactivate />
+      <DeactivateConfirm />
+      {/* <!-- Modal End --> */}
     </div>
   );
 };
