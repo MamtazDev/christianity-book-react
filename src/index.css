@@ -330,7 +330,7 @@ h1 {
   margin-bottom: 21px;
 }
 
-.banner a {
+.banner a,.contactAll button {
   border-radius: 50px;
   background: var(--primary-color, #423c6a);
   padding: 13px 38px;

@@ -9,12 +9,12 @@ import CompleteProfile from "../pages/CompleteProfile";
 import AccountSettings from "../pages/AccountSettings";
 import AuthorChat from "../pages/AuthorChat";
 import Bookmark from "../pages/Bookmark";
+import Contact from "../pages/Contact";
+import Layout from "../Layout/Layout";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
-  { path: "/account-settings", element: <AccountSettings /> },
-  { path: "/author-chat", element: <AuthorChat /> },
-  { path: "/bookmark", element: <Bookmark /> },
+
   { path: "/login", element: <LogIn /> },
   {
     path: "/signUp",
@@ -35,5 +35,18 @@ export const router = createBrowserRouter([
   {
     path: "/complete-profile",
     element: <CompleteProfile />,
+  },
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      { path: "/account-settings", element: <AccountSettings /> },
+      { path: "/author-chat", element: <AuthorChat /> },
+      { path: "/bookmark", element: <Bookmark /> },
+    ],
   },
 ]);

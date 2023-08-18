@@ -2,13 +2,10 @@ import React from "react";
 import PageHeading from "../components/Utils/PageHeading";
 import Pagination from "../components/Utils/Pagination";
 import BookMarkPoints from "../components/BookMark/BookMarkPoints";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
 
 const Bookmark = () => {
   return (
     <div>
-      <Header />
       <div className="container">
         <PageHeading>Bookmarks</PageHeading>
         <h2 className="mb_40">
@@ -21,7 +18,6 @@ const Bookmark = () => {
         <Pagination />
         {/* <!-- Pagination End --> */}
       </div>
-      <Footer />
     </div>
   );
 };
