@@ -490,3 +490,147 @@ select::-ms-expand {
 }
 
 /* Account Settings Page End */
+
+
+
+/* Chat with Author Page Start */
+
+.authorChatBox {
+    padding: 25px;
+    border-radius: 20px;
+    background: #fffbf5;
+}
+
+.readerBox {
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
+    width: 311px;
+    padding: 20px 8px;
+}
+
+.nameList img {
+    border-radius: 50%;
+}
+
+.nameList a,
+.chatList a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+}
+
+.nameList p,
+.grayBox p {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+.chatList {
+    width: 845px;
+}
+
+.msgSetting {
+    border-radius: 10px;
+    background: var(--gray-100, #F0F2F3);
+    padding: 14px 12px 12px 22px;
+}
+
+.chatOwner {
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
+    padding: 20px 30px;
+}
+
+
+.chatList span {
+    color: #289A00;
+    font-size: 12px;
+    font-weight: 400px;
+}
+
+.grayBox {
+    padding: 10px;
+    background-color: #E1E4E8;
+    border-radius: 10px 10px 10px 0;
+    width: fit-content;
+}
+
+.whiteBox {
+    padding: 11px;
+    background-color: #fff;
+}
+
+.grayBox .time {
+    color: #313131;
+    font-size: 8px;
+}
+
+.answerBox .time {
+    color: #E1E4E8;
+    font-size: 8px;
+}
+
+.answerBox {
+    padding: 10px;
+    border-radius: 10px 10px 0 10px;
+    width: fit-content;
+    background: #423C6A;
+}
+
+.answerBox p {
+    font-size: 12px;
+    font-weight: 500;
+    color: #E1E4E8;
+}
+
+.weekDayLine {
+    height: .5px;
+    width: 90%;
+    background-color: #92979D;
+}
+
+.dayTime p {
+    color: #313131;
+    font-size: 8px;
+    font-weight: 500px;
+    white-space: nowrap;
+}
+
+
+.sendForm {
+    background: #FFF;
+    box-shadow: 0px -1px 0px 0px #EEE;
+    padding: 5px 10px;
+}
+
+.file-upload>input {
+    display: none;
+}
+
+.textField {
+    width: 100%;
+    border-radius: 5px;
+    background: var(--gray-100, #F0F2F3);
+    padding: 10px 12px;
+}
+
+.textField::placeholder {
+    color: var(--black, #313131);
+    font-size: 14px;
+    font-weight: 400;
+
+}
+
+.sendForm button {
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+}
+
+.sendForm button:hover {
+    opacity: .8;
+}
+
+/* Chat with Author Page End */

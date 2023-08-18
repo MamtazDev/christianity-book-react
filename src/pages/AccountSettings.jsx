@@ -5,10 +5,13 @@ import ProfileSetting from "../components/AccountSettings/ProfileSetting";
 import Subscription from "../components/AccountSettings/Subscription";
 import Notification from "../components/AccountSettings/Notification";
 import ActivityGraph from "../components/AccountSettings/ActivityGraph";
+import Footer from "../components/Footer/Footer";
+import Header from "../components/Header/Header";
 
 const AccountSettings = () => {
   return (
     <div>
+      <Header />
       <div className="container">
         <div className="forPosition mb_100">
           <div className="d-flex justify-content-start align-items-center mb-4 mb-lg-5 gap-2">
@@ -33,12 +36,11 @@ const AccountSettings = () => {
             {/* <!-- Notification Seetings Start --> */}
             <Notification />
             {/* <!-- Notification Seetings End --> */}
-
-          
           </div>
         </div>
         <ActivityGraph />
       </div>
+      <Footer />
     </div>
   );
 };
