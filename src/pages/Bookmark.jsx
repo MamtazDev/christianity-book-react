@@ -1,9 +1,56 @@
 import React from "react";
 import PageHeading from "../components/Utils/PageHeading";
 import Pagination from "../components/Utils/Pagination";
-import BookMarkPoints from "../components/BookMark/BookMarkPoints";
+import Points from "../components/Utils/Points";
 
 const Bookmark = () => {
+  const options = [
+    {
+      title: "Getting Started",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "The Language of Gossip Box",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "The Language of Gossip Box",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "Getting Started",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "The Language of Gossip Box",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "The Language of Gossip Box",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "Getting Started",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "The Language of Gossip Box",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+    {
+      title: "The Language of Gossip Box",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    },
+  ];
   return (
     <div>
       <div className="container">
@@ -13,7 +60,7 @@ const Bookmark = () => {
           <br className="d-none d-lg-block" /> here!
         </h2>
 
-        <BookMarkPoints />
+        <Points options={options} />
         {/* <!-- Paginattion Start --> */}
         <Pagination />
         {/* <!-- Pagination End --> */}

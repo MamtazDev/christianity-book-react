@@ -14,6 +14,7 @@ import Layout from "../Layout/Layout";
 import ReadBook from "../pages/ReadBook";
 import Faq from "../pages/Faq";
 import Notification from "../pages/Notification";
+import HighLights from "../pages/HighLights";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
       { path: "/read-book", element: <ReadBook /> },
       { path: "/faq", element: <Faq /> },
       { path: "/notification", element: <Notification /> },
+      { path: "/highlights", element: <HighLights /> },
     ],
   },
 ]);
