@@ -758,6 +758,61 @@ select::-ms-expand {
 
 /* FAQ Page End */
 
+/* Notification Page Start */
+
+.outterBox {
+    border-radius: 20px;
+    background: #fffbf5;
+    padding: 40px 47px;
+    margin-bottom: 100px;
+}
+
+.notificationBox {
+    padding: 17px 30px;
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
+    margin-bottom: 20px;
+
+}
+
+.notification span {
+    margin-bottom: 20px;
+    color: var(--black, #313131);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.notification p {
+    color: var(--black, #313131);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.notification img {
+    border-radius: 50%;
+}
+
+.notification .noteTime {
+    color: var(--black, #313131);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-bottom: 12px;
+}
+
+.notification article p {
+    color: var(--black, #313131);
+    font-size: 16px;
+    font-weight: 500
+}
+
+.recent {
+    margin-top: 10px;
+}
+
+/* Notification Page End */
+
 
 /* Preview Book Page Start */
 

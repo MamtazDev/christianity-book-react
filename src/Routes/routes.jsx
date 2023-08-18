@@ -13,6 +13,7 @@ import Contact from "../pages/Contact";
 import Layout from "../Layout/Layout";
 import ReadBook from "../pages/ReadBook";
 import Faq from "../pages/Faq";
+import Notification from "../pages/Notification";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
       { path: "/bookmark", element: <Bookmark /> },
       { path: "/read-book", element: <ReadBook /> },
       { path: "/faq", element: <Faq /> },
+      { path: "/notification", element: <Notification /> },
     ],
   },
 ]);
