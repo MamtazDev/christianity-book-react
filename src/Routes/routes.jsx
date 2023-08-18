@@ -15,6 +15,7 @@ import ReadBook from "../pages/ReadBook";
 import Faq from "../pages/Faq";
 import Notification from "../pages/Notification";
 import HighLights from "../pages/HighLights";
+import MyNotes from "../pages/MyNotes";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -55,6 +56,7 @@ export const router = createBrowserRouter([
       { path: "/faq", element: <Faq /> },
       { path: "/notification", element: <Notification /> },
       { path: "/highlights", element: <HighLights /> },
+      { path: "/my-notes", element: <MyNotes /> },
     ],
   },
 ]);
