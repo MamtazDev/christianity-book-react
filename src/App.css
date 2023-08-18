@@ -668,6 +668,97 @@ select::-ms-expand {
 
 /* Bookmark Page End */
 
+
+/* FAQ Page Start */
+
+
+.accordion-body {
+    padding: 13px 20px;
+    color: var(--black, #313131);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.accordion-button {
+    border-radius: 10px;
+    color: var(--black, #313131);
+    font-size: 18px !important;
+    font-weight: 600;
+    line-height: 25px;
+    padding: 32px 20px;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: unset;
+    box-shadow: none;
+    border-bottom: 1px solid #E1E4E8;
+    color: #313131;
+}
+
+.accordion-button:focus {
+    border-color: #E1E4E8;
+}
+
+.accordion-item {
+    margin-bottom: 18px !important;
+    /* border-radius: 10px; */
+}
+
+.accordion-button:not(.collapsed) {
+    border-radius: unset;
+}
+
+.accordion-item:first-of-type {
+    background: var(--white, #FFF);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.accordion-item:not(:first-of-type) {
+    background: var(--white, #FFF);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+}
+
+.accordion-item:first-of-type .accordion-button {
+    border-radius: 10px;
+}
+
+.accordion-item:first-of-type .accordion-button:not(.collapsed) {
+    border-radius: 10px 10px 0 0;
+}
+
+.accordion-item:first-of-type {
+    border-radius: 10px;
+}
+
+.accordion-item:last-of-type {
+    border-radius: 10px;
+}
+
+.accordion-item:last-of-type .accordion-button.collapsed {
+    border-radius: 10px;
+}
+
+
+.accordion-button::after {
+    background-image: url(../images/faq_up.png);
+
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url(../images/faq_up.png);
+}
+
+/* FAQ Page End */
+
+
 /* Preview Book Page Start */
 
 .bookName {
