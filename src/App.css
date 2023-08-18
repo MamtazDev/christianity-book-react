@@ -929,3 +929,365 @@ select::-ms-expand {
 }
 
 /* Preview Book Page End */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width:1440px) {}
+
+
+@media only screen and (max-width:1024px) {}
+
+@media only screen and (max-width:992px) {}
+
+
+
+@media only screen and (max-width:768px) {
+
+
+    .profileShow .child {
+        top: 61px;
+        left: 0;
+    }
+
+    .accSettings a {
+        font-size: 14px;
+    }
+
+    .sub_header {
+        font-size: 18px;
+    }
+
+    .txt_curve {
+        padding-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+
+    .forPosition a {
+        font-size: 16px;
+    }
+
+    footer p {
+        font-size: 20px;
+    }
+
+    .linkFooter a {
+        font-size: 16px;
+    }
+
+    footer article p {
+        font-size: 14px;
+    }
+
+    .navbar-expand-lg {
+        background-color: #FFF;
+    }
+
+    .navbar-nav {
+        gap: 20px;
+    }
+
+    .footerBox {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chatList {
+        width: 490px;
+    }
+
+
+    .archiveRow{
+        gap: 20px;
+    }
+
+    .clientGuideInner{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .clientGuide h3{
+        text-align: center;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .achiveBox span, .aboutMeInner span {
+        font-size: 18px;
+    }
+
+    .achiveBox p, .aboutMeInner p, .latestVideoInner p {
+        font-size: 16px;
+    }
+
+    .pointsCover .row>*{
+        margin-top: 10px;
+    }
+
+    
+    .pointsCover span, .pointsCover h6 {
+        font-size: 18px;
+    }
+
+    .pointsCover p {
+        font-size: 16px;
+    }
+
+    .authorName span {
+        font-size: 25px;
+        padding: 16px 50px;
+        text-align: center;
+    }
+    .aboutAuthor p {
+        font-size: 18px;
+    }
+
+    .aboutAuthor .col-lg-5 {
+        padding-right: unset;
+    }
+
+    .authorInner{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* ebook Preview Start */
+    .bookHeight {
+        height: unset;
+    }
+
+    .bookScroll {
+        height: 600px;
+    }
+
+    .detalisPage {
+        height: unset;
+    }
+
+    .ebookMt {
+        margin-top: 0;
+    }
+
+    .mb-100 {
+        margin-bottom: 50px;
+    }
+
+    .b-pagination-outer {
+        padding: 5px;
+    }
+
+    .border-pagination {
+        gap: 0;
+    }
+
+    .border-pagination li a {
+        font-size: 8px;
+        padding: 5px;
+    }
+
+    .showPage a {
+        font-size: 8px;
+    }
+
+    .mb-ebook {
+        margin-bottom: 0;
+    }
+
+    .bookName {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    /* ebook Preview End */
+
+    /* Bookmark Page Start */
+
+    .mb_100 {
+        margin-bottom: 50px;
+    }
+
+    .bookMark {
+        flex-wrap: wrap !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .bookmarkInner span {
+        font-size: 18px;
+    }
+
+    .bookmarkInner article span {
+        font-size: 18px;
+    }
+
+    .bookmarkInner article p {
+        font-size: 14px;
+    }
+
+    /* Bookmark Page End */
+
+
+    .modalBtn{
+        flex-direction: column;
+    }
+
+    .deactiveAccModalOne h6 {
+        font-size: 25px;
+    }
+
+    .cancelAccBtn, .confirmBtn  {
+        padding: 12px 80px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .contactForm {
+        padding: 48px 20px;
+        margin-bottom: 50px;
+    }
+
+    .contactForm label {
+        font-size: 14px;
+    }
+
+    .contactForm input:placeholder {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .contactForm textarea {
+        font-size: 12px;
+    }
+
+    .authorChatBox {
+        flex-direction: column;
+    }
+
+    .chatList {
+        width: 350px;
+    }
+
+    .notificationBox {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .notification p {
+        font-size: 18px;
+    }
+
+    .notification .noteTime {
+        font-size: 10px;
+    }
+
+    .notification article p {
+        font-size: 12px;
+    }
+
+    /* Setting Page Start */
+    .account h3, .activity h3 {
+        font-size: 20px;
+    }
+
+    .account p {
+        font-size: 16px;
+    }
+
+    .changeEmail button {
+        font-size: 16px;
+    }
+
+    .changeEmail label,
+    .changePassword label, .profileSetting label, .notificationSetting label {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .changeEmail input,
+    .changePassword input,
+    .profileSetting input,
+    .profileSetting select {
+        font-size: 12px;
+    }
+
+    .changeEmail input::placeholder,
+    .changePassword input::placeholder,
+    .profileSetting input::placeholder {
+        font-size: 12px;
+    }
+
+    .changePassword button, .profileSetting button {
+        font-size: 16px;
+        padding: 12px 90px;
+    }
+
+    .subOutter {
+        padding: 10px;
+    }
+
+    .deactiveBtn {
+        font-size: 16px;
+        padding: 12px 40px;
+    }
+
+    .subscriptionBox span {
+        font-size: 16px;
+    }
+
+    .subscriptionBox h5 {
+        font-size: 22px;
+    }
+
+    .graybtn, .othersSub, .cancelSubBtn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    /* Setting Page End */
+}
+
+@media only screen and (max-width:425px) {
+    .profileShow .child {
+        left: -100%;
+    }
+
+    .profileShow .child {
+        width: 300px;
+    }
+}
+
+
+@media only screen and (max-width:320px) {
+    .chatList {
+        width: 300px;
+    }
+}
