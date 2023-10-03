@@ -9,3 +9,45 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.complete_profile_header {
+  text-align: center;
+}
+
+.complete_profile_header h4 {
+  color: var(--Black, #313131);
+  font-family: Raleway;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.complete_profile_header p {
+  color: #000;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px;
+  /* 138.889% */
+}
+
+.profileSetting {
+  max-width: 888px;
+  margin: auto;
+}
+
+.mt_30cp {
+  margin-top: 30px;
+}
+
+.profile_pic {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.create_profile_button{
+  text-align: center;
+}
