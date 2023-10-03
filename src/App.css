@@ -220,6 +220,15 @@ footer {
     margin-bottom: 15px;
     display: block;
 }
+.changeEmail label,
+.changePassword label,
+.profileSetting1 label {
+    color: var(--gray-400, #92979D);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
 
 .notificationSetting label {
     color: var(--gray-400, #92979D);
@@ -244,6 +253,21 @@ footer {
     font-weight: 500;
     width: 100%;
     max-width: 356px !important;
+    /* width: 100%; */
+    display: block;
+}
+.changeEmail input,
+.changePassword input,
+.profileSetting1 input,
+.profileSetting1 select {
+    border-bottom: 2px solid #423C6A;
+    padding-bottom: 5px;
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    /* max-width: 356px !important; */
+    /* width: 100%; */
     display: block;
 }
 
@@ -252,10 +276,23 @@ footer {
 .profileSetting select {
     border-bottom: 2px solid #C2C9D1;
 }
+.changePassword input,
+.profileSetting1 input,
+.profileSetting1 select {
+    border-bottom: 2px solid #C2C9D1;
+}
 
 .changeEmail input::placeholder,
 .changePassword input::placeholder,
 .profileSetting input::placeholder {
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.changeEmail input::placeholder,
+.changePassword input::placeholder,
+.profileSetting1 input::placeholder {
     color: var(--primary-color, #423C6A);
     font-size: 16px;
     font-weight: 500;
@@ -290,9 +327,26 @@ footer {
     transition: 0.4s ease-in-out;
     white-space: nowrap;
 }
+.changePassword button,
+.profileSetting1 button {
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 14px 90px;
+    border-radius: 32px;
+    background: var(--primary-color, #423C6A);
+    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.4s ease-in-out;
+    white-space: nowrap;
+}
 
 .changePassword button:hover,
 .profileSetting button:hover {
+    opacity: .9;
+}
+.changePassword button:hover,
+.profileSetting1 button:hover {
     opacity: .9;
 }
 
@@ -1297,11 +1351,24 @@ select::-ms-expand {
         font-size: 12px;
         margin-bottom: 10px;
     }
+    .changeEmail label,
+    .changePassword label,
+    .profileSetting1 label,
+    .notificationSetting label {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
 
     .changeEmail input,
     .changePassword input,
     .profileSetting input,
     .profileSetting select {
+        font-size: 12px;
+    }
+    .changeEmail input,
+    .changePassword input,
+    .profileSetting1 input,
+    .profileSetting1 select {
         font-size: 12px;
     }
 
@@ -1310,11 +1377,21 @@ select::-ms-expand {
     .profileSetting input::placeholder {
         font-size: 12px;
     }
+    .changeEmail input::placeholder,
+    .changePassword input::placeholder,
+    .profileSetting1 input::placeholder {
+        font-size: 12px;
+    }
 
     .changePassword button,
     .profileSetting button {
         font-size: 16px;
         padding: 12px 90px;
+    }
+    .changePassword button,
+    .profileSetting1 button {
+        font-size: 16px;
+        padding: 14px 90px;
     }
 
     .subOutter {

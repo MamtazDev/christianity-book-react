@@ -1,0 +1,122 @@
+.sub_header1 {
+    text-align: center;
+}
+
+.sub_header1 h3 {
+    color: var(--Black, #313131);
+    font-family: Raleway;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 20px;
+}
+
+.sub_header1 p {
+    color: #000;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+.sub_header1 small {
+    color: var(--Teritary-Color, #F67280);
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.sub_header1 h4 {
+    color: var(--Primary-Color, #423C6A);
+    text-align: center;
+    font-family: Raleway;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.promocode_input {
+    border-radius: 42px;
+    border: 1px solid #E2E8F0;
+    background: #FFF;
+    height: 40px;
+    padding: 10.5px 121.42px 10.5px 17px;
+    margin-top: 20px !important;
+}
+
+.promocode_input::placeholder {
+    color: var(--Black, #313131) !important;
+
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.apply_btn {
+    padding: 10.41px 12.06px 9.59px 10.36px;
+    border-radius: 62px;
+    background: var(--Primary-Color, #423C6A);
+    color: #FFF;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.2px;
+    /* 120% */
+    letter-spacing: 0.32px;
+    margin-left: 10.369px;
+}
+
+.subv_body {
+    padding: 39.808px 29px 36.615px 59px;
+    border-radius: 10px;
+    background: var(--White, #FFF);
+    box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.10);
+    max-width: 1005px !important;
+    width: 100% !important;
+    margin: auto;
+    margin-top: 30px !important;
+}
+
+.subv_body p {
+    color: var(--Black, #313131);
+    font-family: Raleway;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    /* 120% */
+}
+
+.purchase_sub {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10.5px !important;
+    padding: 12px 556.5px 12px 0px;
+    margin-bottom: 22.19px !important;
+}
+
+.purchase_sub input {
+    width: 30px;
+    height: 30px;
+}
+
+.purchase_sub small {
+    color: var(--Black, #313131);
+    font-family: Raleway;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 27px;
+    /* 135% */
+}

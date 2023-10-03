@@ -18,6 +18,7 @@ import HighLights from "../pages/HighLights";
 import MyNotes from "../pages/MyNotes";
 import PrivateRoute from "./PrivateRoute";
 import LoginRoute from "./LoginRoute";
+import Subscription from "./../pages/Subscription";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
     element: <CompleteProfile />,
   },
   {
+    path: "/subscription",
+    element: (
+      <PrivateRoute>
+        <Subscription />
+      </PrivateRoute>
+    ),
+  },
+  {
     path: "/",
     element: <Layout />,
     children: [
@@ -66,6 +75,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: "/author-chat",
         element: (

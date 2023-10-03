@@ -14,18 +14,9 @@ const AccountSettings = () => {
 
         <div className="account">
           <AccountSetting />
-
-          {/* <!-- Profile Settings Start --> */}
           <ProfileSetting />
-          {/* <!-- Profile Settings End --> */}
-
-          {/* <!-- Subscription Settings Start --> */}
           <Subscription />
-          {/* <!-- Subscription Settings End --> */}
-
-          {/* <!-- Notification Seetings Start --> */}
           <Notification />
-          {/* <!-- Notification Seetings End --> */}
         </div>
 
         <ActivityGraph />
