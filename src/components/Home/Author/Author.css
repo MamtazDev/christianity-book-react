@@ -1,0 +1,35 @@
+
+.aboutAuthor {
+    background: #fff3e0;
+    padding-top: 56px;
+}
+
+.authorName {
+    margin-top: -50px;
+}
+
+.authorName span {
+    display: inline-block;
+    color: var(--white, #FFF);
+    font-size: 40px;
+    font-weight: 600;
+    padding: 19px 96px;
+    background-color: var(--secondry-color, #FFB230);
+    -webkit-clip-path: polygon(15% 0, 100% 0, 86% 100%, 0% 100%);
+    clip-path: polygon(15% 0, 100% 0, 86% 100%, 0% 100%);
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+}
+
+.aboutAuthor p {
+    color: var(--black, #313131);
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+.aboutAuthor .col-lg-5 {
+    padding-right: 80px;
+}
+
+

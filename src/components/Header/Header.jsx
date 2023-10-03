@@ -6,9 +6,9 @@ const Header = () => {
     <header>
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             Your Logo
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

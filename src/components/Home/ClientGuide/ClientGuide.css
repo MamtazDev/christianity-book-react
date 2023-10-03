@@ -1,0 +1,29 @@
+.clientGuide {
+    background-image: url("../../../assets/images/bg.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 65px 0;
+}
+
+.clientGuide h3 {
+    color: var(--white, #FFF);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54px;
+}
+
+.clientGuide a {
+    padding: 13px 53px;
+    border-radius: 50px;
+    background: var(--secondry-color, #FFB230);
+    color: var(--white, #FFF);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    transition: 0.3s ease-in-out;
+}
+
+.clientGuide a:hover {
+    opacity: .8;
+}
