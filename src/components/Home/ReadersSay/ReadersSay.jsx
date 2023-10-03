@@ -3,6 +3,14 @@ import "./ReadersSay.css";
 import round1 from "../../../assets/images/round_pp1.png";
 import round2 from "../../../assets/images/round_pp2.png";
 import round3 from "../../../assets/images/round_pp3.png";
+import ReaderCard from "./ReaderCard";
+import { FreeMode, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 const ReadersSay = () => {
   return (
     <div>
@@ -19,44 +27,58 @@ const ReadersSay = () => {
               industry.
             </p>
 
-            <div className="row">
+            {/*         <div className="row">
               <div className="col-12 col-lg-4">
-                <div className="aboutMeInner text-center">
-                  <img src={round1} alt="Profile" />
-                  <span>Indiana James</span>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text. Lorem Ipsum is simply dummy text of the
-                    printing and typesetting industry.
-                  </p>
-                </div>
+                <ReaderCard img={round1} name="Indiana James" />
               </div>
               <div className="col-12 col-lg-4">
-                <div className="aboutMeInner text-center">
-                  <img src={round2} alt="Profile" />
-                  <span>John Wick</span>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text. Lorem Ipsum is simply dummy text of the
-                    printing and typesetting industry.
-                  </p>
-                </div>
+                <ReaderCard img={round2} name="John Wick" />
               </div>
               <div className="col-12 col-lg-4">
-                <div className="aboutMeInner text-center">
-                  <img src={round3} alt="Profile" />
-                  <span>Sara James</span>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text. Lorem Ipsum is simply dummy text of the
-                    printing and typesetting industry.
-                  </p>
-                </div>
+                <ReaderCard img={round3} name="Sara James" />
               </div>
-            </div>
+            </div> */}
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={30}
+              // freeMode={true}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[FreeMode, Pagination]}
+              className="mySwiper"
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+  
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+  
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 16,
+                },
+              }}
+            >
+              <SwiperSlide>
+                <ReaderCard img={round1} name="Indiana James" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReaderCard img={round2} name="John Wick" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReaderCard img={round3} name="Sara James" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReaderCard img={round2} name="John Wick" />
+              </SwiperSlide>
+             
+            </Swiper>
           </div>
         </div>
       </div>

@@ -16,11 +16,20 @@ import Faq from "../pages/Faq";
 import Notification from "../pages/Notification";
 import HighLights from "../pages/HighLights";
 import MyNotes from "../pages/MyNotes";
+import PrivateRoute from "./PrivateRoute";
+import LoginRoute from "./LoginRoute";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
 
-  { path: "/login", element: <LogIn /> },
+  {
+    path: "/login",
+    element: (
+      // <LoginRoute>
+      <LogIn />
+      // </LoginRoute>
+    ),
+  },
   {
     path: "/signUp",
     element: <SignUp />,
@@ -49,14 +58,66 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-      { path: "/account-settings", element: <AccountSettings /> },
-      { path: "/author-chat", element: <AuthorChat /> },
-      { path: "/bookmark", element: <Bookmark /> },
-      { path: "/read-book", element: <ReadBook /> },
+      {
+        path: "/account-settings",
+        element: (
+          <PrivateRoute>
+            <AccountSettings />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/author-chat",
+        element: (
+          <PrivateRoute>
+            <AuthorChat />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/bookmark",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Bookmark />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/read-book",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <ReadBook />
+          </PrivateRoute>
+        ),
+      },
       { path: "/faq", element: <Faq /> },
-      { path: "/notification", element: <Notification /> },
-      { path: "/highlights", element: <HighLights /> },
-      { path: "/my-notes", element: <MyNotes /> },
+      {
+        path: "/notification",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Notification />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/highlights",
+        element: (
+          <PrivateRoute>
+            <HighLights />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-notes",
+        element: (
+          <PrivateRoute>
+            <MyNotes />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

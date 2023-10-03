@@ -24,7 +24,7 @@ const UserProfileMenu = () => {
     <>
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <Link className="navbar-brand" to="index">
+          <Link className="navbar-brand" to="/">
             Your Logo
           </Link>
           <button

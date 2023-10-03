@@ -304,33 +304,7 @@ const Faq = () => {
                   </div>
                 </div>
               </div>
-              <div className="accordion-item">
-                <h2 className="accordion-header" id="panelsStayOpen-heading11">
-                  <button
-                    className="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapse11"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapse11"
-                  >
-                    Lorem Ipsum is simply dummy text of the printing.
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapse11"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-heading11"
-                >
-                  <div className="accordion-body">
-                    lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>
