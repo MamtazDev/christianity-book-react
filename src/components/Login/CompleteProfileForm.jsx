@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 const CompleteProfileForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);

@@ -16,7 +16,7 @@ const Banner = () => {
               <p>
                 "Obtain a Complimentary Copy Using a Free Promo Code: Freedom”
               </p>
-              <a href="#">
+              <a href="/read-book">
                 Read Now <img src={rightArrow} alt="" />
               </a>
             </div>

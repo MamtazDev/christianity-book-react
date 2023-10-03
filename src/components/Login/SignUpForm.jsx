@@ -24,11 +24,41 @@ const SignUpForm = () => {
     }
   };
 
+  /*   const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("register successful");
+    navigate("/");
+  }; */
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    navigate("/");
+    const formData = new FormData(event.target);
+      const userObject = {
+      email: formData.get("email"),
+      username: formData.get("username"),
+      password: formData.get("password"),
+    };
+  
+    // Get the existing data from localStorage or initialize an empty array
+    const existingData = JSON.parse(localStorage.getItem("userData")) || [];
+  
+    // Check if the email already exists in localStorage
+    const emailExists = existingData.some((user) => user.email === userObject.email);
+  
+    if (emailExists) {
+      alert("Email already exists. Please use a different email.");
+    } else {
+      // Add the new user object to the array
+      existingData.push(userObject);
+  
+      // Save the updated data back to localStorage
+      localStorage.setItem("userData", JSON.stringify(existingData));
+  
+      console.log("Registration successful");
+      navigate("/");
+    }
   };
+  
   return (
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox">
@@ -60,6 +90,7 @@ const SignUpForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("email", "focus")}
                 onBlur={() => handleFoucsInput("email", "blur")}
+                onChange={handleSubmit}
               />
             </div>
           </div>
@@ -130,8 +161,10 @@ const SignUpForm = () => {
             </div>
           </div>
 
-          <div className="logInActionContainer">
-            <button type="submit">Sign In</button>
+          <div className="logInActionContainer ">
+            <button className="sign-in-button" type="submit">
+              Sign Up
+            </button>
           </div>
         </form>
       </div>

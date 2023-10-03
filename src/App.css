@@ -135,7 +135,9 @@ footer {
 
 
 /* Account Settings Page Start */
-
+.account{
+    margin-bottom: 100px !important;
+}
 .account h3 {
     color: var(--black, #313131);
     font-size: 26px;
@@ -177,7 +179,7 @@ footer {
 
 .inputContainer {
     width: 100%;
-    max-width: 356px !important;
+    /* max-width: 356px !important; */
     display: block;
 }
 

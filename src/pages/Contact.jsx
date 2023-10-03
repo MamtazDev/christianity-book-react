@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div>
       <div className="container">
-        <PageHeading>Contact</PageHeading>
+        <PageHeading path="/contact">Contact</PageHeading>
         <ContactForm />
       </div>
     </div>

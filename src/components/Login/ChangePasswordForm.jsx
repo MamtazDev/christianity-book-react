@@ -25,7 +25,7 @@ const ChangePasswordForm = () => {
 
         <div className="h-100 w-100 d-flex  ">
           <div className=" w-100 my-auto">
-            <h2>Reset Password</h2>
+            <h2>Change Password</h2>
             <div className="headerText">
               <p>Please modify your password for security purposes!</p>
             </div>
@@ -67,7 +67,7 @@ const ChangePasswordForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit">Send OTP</button>
+                <button type="submit" className="sign-in-button">Change Password</button>
               </div>
             </form>
           </div>

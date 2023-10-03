@@ -17,8 +17,8 @@ const Footer = () => {
               Affordable Rate of $20.
             </p>
             <div className="linkFooter d-flex justify-content-center align-items-center mb-4 gap-5">
-              <a href="#">Home</a>
-              <a href="#">Contact Me</a>
+              <a href="/">Home</a>
+              <a href="/contact">Contact Me</a>
               <a href="#">Cart</a>
             </div>
             <div className="socialLink d-flex justify-content-center align-items-center mb-4">

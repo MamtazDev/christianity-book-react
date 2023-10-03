@@ -7,21 +7,21 @@ const ReadersSay = () => {
   return (
     <div>
       <div>
-        <div class="mb_all">
-          <div class="container">
+        <div className="mb_all">
+          <div className="container">
             <h2>
-              What My <span class="txt_curve">Readers</span> Say
+              What My <span className="txt_curve">Readers</span> Say
               <br />
               About Me.
             </h2>
-            <p class="mb_30 sub_header">
+            <p className="mb_30 sub_header">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.
             </p>
 
-            <div class="row">
-              <div class="col-12 col-lg-4">
-                <div class="aboutMeInner text-center">
+            <div className="row">
+              <div className="col-12 col-lg-4">
+                <div className="aboutMeInner text-center">
                   <img src={round1} alt="Profile" />
                   <span>Indiana James</span>
                   <p>
@@ -32,8 +32,8 @@ const ReadersSay = () => {
                   </p>
                 </div>
               </div>
-              <div class="col-12 col-lg-4">
-                <div class="aboutMeInner text-center">
+              <div className="col-12 col-lg-4">
+                <div className="aboutMeInner text-center">
                   <img src={round2} alt="Profile" />
                   <span>John Wick</span>
                   <p>
@@ -44,8 +44,8 @@ const ReadersSay = () => {
                   </p>
                 </div>
               </div>
-              <div class="col-12 col-lg-4">
-                <div class="aboutMeInner text-center">
+              <div className="col-12 col-lg-4">
+                <div className="aboutMeInner text-center">
                   <img src={round3} alt="Profile" />
                   <span>Sara James</span>
                   <p>

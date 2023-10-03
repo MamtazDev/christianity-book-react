@@ -4,21 +4,21 @@ import "./Author.css";
 const Author = () => {
   return (
     <>
-      <div class="aboutAuthor mb_all">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-12 col-lg-5">
-              <div class="authorImage">
-                <img class="img-fluid" src={author} alt="" />
+      <div className="aboutAuthor mb_all">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-12 col-lg-5">
+              <div className="authorImage">
+                <img className="img-fluid" src={author} alt="" />
               </div>
-              <div class="authorName text-center">
+              <div className="authorName text-center">
                 <span>“David Lory”</span>
               </div>
             </div>
-            <div class="col-12 col-lg-7">
-              <div class="authorInner">
-                <h2 class="mb_30">
-                  Author <span class="txt_curve">Introduction</span>
+            <div className="col-12 col-lg-7">
+              <div className="authorInner">
+                <h2 className="mb_30">
+                  Author <span className="txt_curve">Introduction</span>
                 </h2>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and

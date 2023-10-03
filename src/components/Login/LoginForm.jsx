@@ -8,6 +8,7 @@ import yellowEye from "../../assets/icons/yellowEye.png";
 import facebook from "../../assets/icons/facebook.png";
 import google from "../../assets/icons/google.png";
 import apple from "../../assets/icons/apple.png";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const [focusInput, setFocusInput] = useState(null);
@@ -24,8 +25,31 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/");
+    const formData = new FormData(event.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const userData = JSON.parse(localStorage.getItem("userData")) || [];
+    const user = userData.find((user) => user.email === email);
+
+    if (!user) {
+      alert("Email not found. Please register first.");
+    } else if (user.password !== password) {
+      alert("Incorrect password. Please try again.");
+    } else {
+      // Create a new array for the currently logged-in user
+      const loggedInUser = { email: user.email, username: user.username };
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Login Successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate("/");
+    }
   };
+
   return (
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox">
@@ -94,14 +118,22 @@ const LoginForm = () => {
           </div>
 
           <div className="logInActionContainer">
-            <button type="submit">Sign In</button>
+            <button type="submit" className="sign-in-button">
+              Sign In
+            </button>
 
             <p>or continue with</p>
 
             <div>
-              <img src={facebook} alt="" />
-              <img src={apple} alt="" />
-              <img src={google} alt="" />
+              <button type="button" className="social_button">
+                <img src={facebook} alt="" />
+              </button>
+              <button type="button" className="social_button">
+                <img src={apple} alt="" />
+              </button>
+              <button type="button" className="social_button">
+                <img src={google} alt="" />
+              </button>
             </div>
           </div>
         </form>

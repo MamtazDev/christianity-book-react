@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Banner from "../components/Home/Banner";
@@ -8,11 +8,20 @@ import ReadersSay from "../components/Home/ReadersSay/ReadersSay";
 import LatestVideo from "../components/Home/LatestVideo/LatestVideo";
 import PointsCovered from "../components/Home/PointsCovered/PointsCovered";
 import Author from "../components/Home/Author/Author";
+import UserProfileMenu from "../components/Header/UserProfileMenu ";
 
 const Home = () => {
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    const storedUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (storedUserData) {
+      setUserData(storedUserData);
+    }
+  }, []);
   return (
     <>
-      <Header />
+      {userData ? <UserProfileMenu /> : <Header />}
       <main>
         <Banner />
         <AchiveSection />

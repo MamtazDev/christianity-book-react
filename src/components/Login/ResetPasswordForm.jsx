@@ -55,7 +55,7 @@ const ResetPasswordForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit">Send OTP</button>
+                <button type="submit" className="sign-in-button">Send OTP</button>
               </div>
             </form>
           </div>

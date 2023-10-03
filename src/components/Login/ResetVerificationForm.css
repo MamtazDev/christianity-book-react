@@ -17,3 +17,6 @@
 .otpForm input::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
+.gap_2{
+  gap: 	1.625rem;
+}

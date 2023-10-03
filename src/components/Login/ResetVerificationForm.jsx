@@ -54,7 +54,7 @@ const ResetVerificationForm = () => {
 
             <form onSubmit={handleSubmit} className="otpForm">
               <div style={{ marginBottom: "49px" }}>
-                <div className="d-flex gap-2 mb-5">
+                <div className="d-flex gap_2 mb-5">
                   {otp.map((digit, index) => (
                     <input
                       key={index}
@@ -73,7 +73,7 @@ const ResetVerificationForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit">Confirm OTP</button>
+                <button type="submit" className="sign-in-button">Confirm OTP</button>
               </div>
             </form>
           </div>
