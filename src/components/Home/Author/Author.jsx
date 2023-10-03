@@ -12,7 +12,7 @@ const Author = () => {
                 <img className="img-fluid" src={author} alt="" />
               </div>
               <div className="authorName text-center">
-                <span>“David Lory”</span>
+                <span style={{ marginBottom: "10px" }}>“David Lory”</span>
               </div>
             </div>
             <div className="col-12 col-lg-7">

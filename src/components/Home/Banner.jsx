@@ -1,6 +1,7 @@
 import React from "react";
 import banner from "../../assets/images/banner.png";
 import rightArrow from "../../assets/images/right_arrow.png";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -16,9 +17,9 @@ const Banner = () => {
               <p>
                 "Obtain a Complimentary Copy Using a Free Promo Code: Freedom”
               </p>
-              <a href="/read-book">
+              <Link to="/read-book">
                 Read Now <img src={rightArrow} alt="" />
-              </a>
+              </Link>
             </div>
             <div className="col-12 col-lg-6">
               <div className="text-end">

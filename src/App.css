@@ -55,11 +55,11 @@ button {
 }
 
 .mb_20 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .mb_30 {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .mb_40 {
@@ -74,7 +74,7 @@ h2 {
     color: var(--black, #313131) !important;
     font-size: 40px !important;
     font-weight: 600 !important;
-    line-height: 56px !important;
+    line-height: 51px !important;
 }
 
 h2 span {
@@ -88,6 +88,7 @@ h2 span {
 .txt_curve {
     position: relative;
     padding-bottom: 56px;
+    text-transform: initial;
 }
 
 .txt_curve::after {
@@ -101,6 +102,29 @@ h2 span {
     border-style: solid;
     border-color: #FFB230 transparent transparent transparent;
     border-radius: 90% 90% 0 0;
+}
+
+.txt_curve1 {
+    position: relative;
+    padding-bottom: 56px;
+    text-transform: initial;
+}
+
+.txt_curve1::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    height: 57%;
+    width: 100%;
+    border: 6px;
+    border-style: solid;
+    border-color: #423C6A transparent transparent transparent;
+    border-radius: 90% 90% 0 0;
+}
+
+h2 .txt_curve1 {
+    color: #423C6A !important;
 }
 
 .sub_header {
@@ -128,6 +152,31 @@ footer {
     outline: none;
 }
 
+.mb_4 {
+    margin-bottom: 40px !important;
+}
+
+.send_msg_button {
+    border-radius: 50px;
+    background: var(--Primary-Color, #423C6A);
+    padding: 13px 31.38px;
+    color: var(--White, #FFF);
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+
+}
+
+.footer_button {
+    display: flex;
+    justify-content: center;
+}
+
+.linkFooter {
+    margin-top: 40px;
+}
+
 /* Common css End */
 
 
@@ -135,9 +184,10 @@ footer {
 
 
 /* Account Settings Page Start */
-.account{
+.account {
     margin-bottom: 100px !important;
 }
+
 .account h3 {
     color: var(--black, #313131);
     font-size: 26px;
@@ -934,7 +984,12 @@ select::-ms-expand {
 
 
 
-
+.swiper-pagination-bullet {
+    height: 20px !important;
+    width: 20px !important;
+    background-color: var(--Secondry-Color, #FFB230) !important;
+    margin-top: 40px !important;
+}
 
 
 
@@ -1027,35 +1082,39 @@ select::-ms-expand {
     }
 
 
-    .archiveRow{
+    .archiveRow {
         gap: 20px;
     }
 
-    .clientGuideInner{
+    .clientGuideInner {
         flex-direction: column;
         gap: 20px;
     }
 
-    .clientGuide h3{
+    .clientGuide h3 {
         text-align: center;
         font-size: 25px;
         line-height: 30px;
     }
 
-    .achiveBox span, .aboutMeInner span {
+    .achiveBox span,
+    .aboutMeInner span {
         font-size: 18px;
     }
 
-    .achiveBox p, .aboutMeInner p, .latestVideoInner p {
+    .achiveBox p,
+    .aboutMeInner p,
+    .latestVideoInner p {
         font-size: 16px;
     }
 
-    .pointsCover .row>*{
+    .pointsCover .row>* {
         margin-top: 10px;
     }
 
-    
-    .pointsCover span, .pointsCover h6 {
+
+    .pointsCover span,
+    .pointsCover h6 {
         font-size: 18px;
     }
 
@@ -1068,6 +1127,7 @@ select::-ms-expand {
         padding: 16px 50px;
         text-align: center;
     }
+
     .aboutAuthor p {
         font-size: 18px;
     }
@@ -1076,7 +1136,7 @@ select::-ms-expand {
         padding-right: unset;
     }
 
-    .authorInner{
+    .authorInner {
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -1157,7 +1217,7 @@ select::-ms-expand {
     /* Bookmark Page End */
 
 
-    .modalBtn{
+    .modalBtn {
         flex-direction: column;
     }
 
@@ -1165,7 +1225,8 @@ select::-ms-expand {
         font-size: 25px;
     }
 
-    .cancelAccBtn, .confirmBtn  {
+    .cancelAccBtn,
+    .confirmBtn {
         padding: 12px 80px;
         font-size: 18px;
     }
@@ -1216,7 +1277,8 @@ select::-ms-expand {
     }
 
     /* Setting Page Start */
-    .account h3, .activity h3 {
+    .account h3,
+    .activity h3 {
         font-size: 20px;
     }
 
@@ -1229,7 +1291,9 @@ select::-ms-expand {
     }
 
     .changeEmail label,
-    .changePassword label, .profileSetting label, .notificationSetting label {
+    .changePassword label,
+    .profileSetting label,
+    .notificationSetting label {
         font-size: 12px;
         margin-bottom: 10px;
     }
@@ -1247,7 +1311,8 @@ select::-ms-expand {
         font-size: 12px;
     }
 
-    .changePassword button, .profileSetting button {
+    .changePassword button,
+    .profileSetting button {
         font-size: 16px;
         padding: 12px 90px;
     }
@@ -1269,7 +1334,9 @@ select::-ms-expand {
         font-size: 22px;
     }
 
-    .graybtn, .othersSub, .cancelSubBtn {
+    .graybtn,
+    .othersSub,
+    .cancelSubBtn {
         font-size: 16px;
         padding: 12px 20px;
     }
