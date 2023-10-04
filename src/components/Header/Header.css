@@ -6,15 +6,17 @@
     z-index: 99999;
 
 }
-.navbar-brand{
+
+.navbar-brand {
     color: var(--Black, #313131);
-font-family: Raleway;
-font-size: 30px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+    font-family: Raleway;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 
 }
+
 .navbar-nav {
     gap: 41px;
 }
@@ -128,7 +130,7 @@ line-height: normal;
     border-radius: 50%;
 }
 
-.profile_img{
+.profile_img {
     border-radius: 50%;
     max-height: 90px;
     max-width: 90px;
@@ -187,8 +189,13 @@ line-height: normal;
     transition: .3s ease-in-out;
 }
 
+.profileName {
+    gap: 15px !important;
+}
+
 .profileName a:hover {
     opacity: .9;
+
 }
 
 .accSettings a {
@@ -205,4 +212,8 @@ line-height: normal;
 .accSettings a:hover {
     opacity: .9;
     background: #E1E4E8;
+}
+
+.profile_menu {
+    gap: 20px;
 }

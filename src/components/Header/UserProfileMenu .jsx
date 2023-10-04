@@ -51,7 +51,7 @@ const UserProfileMenu = () => {
                 </Link>
               </li>
             </ul>
-            <div className="d-flex align-items-center gap-3">
+            <div className="d-flex align-items-center profile_menu">
               <Link to="/author_chat">
                 <img src={chat_icon} alt="Chats" />
               </Link>
@@ -73,7 +73,7 @@ const UserProfileMenu = () => {
                     <div>
                       <p>John Duo</p>
                       <span className="d-block mb-2">johnduo@gmail.com</span>
-                      <Link to="/account-settings">Edit profile</Link>
+                      <Link to="/account-settings" className="mt-3">Edit profile</Link>
                     </div>
                   </div>
                   <hr />
