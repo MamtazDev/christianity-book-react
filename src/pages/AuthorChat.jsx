@@ -7,7 +7,7 @@ const AuthorChat = () => {
   return (
     <div>
       <div className="container">
-        <PageHeading> Chat with Author</PageHeading>
+        <PageHeading path="/author-chat"> Chat with Author</PageHeading>
 
         <div className="authorChatBox mb-5 d-flex gap-4">
           {/* <!-- chat name List Start --> */}

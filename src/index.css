@@ -416,6 +416,11 @@ h1 {
   line-height: 27px;
 }
 
+.accordion-item .accordion-button {
+  width: 100%;
+  background-color: #ffffff;
+}
+
 /* Contact Page End */
 
 @media only screen and (min-width: 1440px) {}

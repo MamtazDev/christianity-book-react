@@ -10,7 +10,7 @@ import faq from "../../assets/images/faq.png";
 import notes from "../../assets/images/notes.png";
 import highlight from "../../assets/images/highlight.png";
 import bookmark from "../../assets/images/bookmark.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const UserProfileMenu = () => {
   const navigate = useNavigate();
@@ -41,25 +41,36 @@ const UserProfileMenu = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link menu" aria-current="page" to="/">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
+                  aria-current="page"
+                  to="/"
+                >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link menu" to="/contact">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
+                  to="/contact"
+                >
                   Contact Me
-                </Link>
+                </NavLink>
               </li>
             </ul>
             <div className="d-flex align-items-center profile_menu">
-              <Link to="/author_chat">
+              <Link to="/author-chat">
                 <img src={chat_icon} alt="Chats" />
               </Link>
-              <Link to="notifications">
+              <Link to="/notification">
                 <img src={notification_icon} alt="Notifications" />
               </Link>
               <div className="profileShow d-flex align-items-center gap-1">
-                <Link to="accountSettings">
+                <Link to="/account-settings">
                   <img src={profile_round} alt="Profile Image" />
                 </Link>
                 <img className="arrow" src={drop_down} alt="Settings" />
@@ -73,7 +84,9 @@ const UserProfileMenu = () => {
                     <div>
                       <p>John Duo</p>
                       <span className="d-block mb-2">johnduo@gmail.com</span>
-                      <Link to="/account-settings" className="mt-3">Edit profile</Link>
+                      <Link to="/complete-profile" className="mt-3">
+                        Edit profile
+                      </Link>
                     </div>
                   </div>
                   <hr />
@@ -104,9 +117,9 @@ const UserProfileMenu = () => {
                     className="accSettings d-flex align-items-center gap-3"
                   >
                     <img src={logout} alt="" />
-                    {/* <Link to="/" style={{ color: "#E00000" }}> */}
-                    Logout
-                    {/* </Link> */}
+                    <Link to="/" style={{ color: "#E00000" }}>
+                      Logout
+                    </Link>
                   </div>
                 </div>
               </div>

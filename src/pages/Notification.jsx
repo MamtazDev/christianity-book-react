@@ -26,7 +26,7 @@ const Notification = () => {
   return (
     <div>
       <div className="container">
-        <PageHeading>Notifications</PageHeading>
+        <PageHeading path="/notification">Notifications</PageHeading>
         <div className="outterBox">
           <div className="notification">
             <span className="d-block">Today’s</span>

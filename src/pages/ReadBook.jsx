@@ -13,10 +13,11 @@ const ReadBook = () => {
           <br className="d-none d-lg-block" />
           Guide to Recovery.
         </h3>
-      </div>
+
 
       <ReadBooks />
       <Pagination />
+      </div>
     </div>
   );
 };

@@ -47,7 +47,7 @@ button {
 }
 
 .container {
-    max-width: 1248px;
+    max-width: 1440px;
 }
 
 .mb_all {
@@ -641,18 +641,45 @@ select::-ms-expand {
 
 
 /* Chat with Author Page Start */
+/* accordian */
+.button_click {
+    background-color: transparent;
+}
+
+/* .accordion-item .accordion-button:focus {
+    border: none !important;
+} */
+
+/* accordian */
+
+
+
+
+
+
+
+
+
+.profile_gap {
+    gap: 12px;
+}
+
+.sendForm {
+    gap: 11px !important;
+}
 
 .authorChatBox {
     padding: 25px;
     border-radius: 20px;
     background: #fffbf5;
+    gap: 25px;
 }
 
 .readerBox {
     border-radius: 10px;
     background: var(--white, #FFF);
     box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
-    width: 311px;
+    width: 327px;
     padding: 20px 8px;
 }
 
@@ -744,8 +771,12 @@ select::-ms-expand {
     font-size: 8px;
     font-weight: 500px;
     white-space: nowrap;
+
 }
 
+.dayTime {
+    margin-bottom: 30px;
+}
 
 .sendForm {
     background: #FFF;
@@ -982,9 +1013,15 @@ select::-ms-expand {
 
 .detalisPage {
     border-radius: 10px;
-    background: #D9D9D9;
+    /* background: #D9D9D9; */
     height: 1200px;
+    padding-left: 40px;
 }
+.detalisPage img{
+    width: 967.137px !important;
+height: 1718.886px;
+}
+
 
 .bookHeight {
     height: 1200px;

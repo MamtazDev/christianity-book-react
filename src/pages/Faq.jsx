@@ -21,6 +21,7 @@ const Faq = () => {
                     data-bs-target="#panelsStayOpen-collapseOne"
                     aria-expanded="true"
                     aria-controls="panelsStayOpen-collapseOne"
+                    
                   >
                     Lorem Ipsum is simply dummy text of the printing.
                   </button>

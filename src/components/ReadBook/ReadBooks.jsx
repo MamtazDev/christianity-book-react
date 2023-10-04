@@ -6,7 +6,7 @@ import bookCover from "../../assets/images/bookCover.png";
 
 const ReadBooks = () => {
   return (
-    <div className="previewBook mb-ebook">
+    <div className=" previewBook mb-ebook">
       <div className="row bookHeight m-0 gap-5">
         <div className="col-12 col-lg-3 bookScroll">
           <div className="bookIndex d-flex flex-column">
@@ -28,7 +28,7 @@ const ReadBooks = () => {
             />
           </div>
         </div>
-        <div className="col-12 col-lg-1"></div>
+        {/* <div className="col-12 col-lg-1"></div> */}
       </div>
     </div>
   );

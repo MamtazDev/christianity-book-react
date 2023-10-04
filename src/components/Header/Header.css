@@ -16,7 +16,9 @@
     line-height: normal;
 
 }
-
+.navbar-brand:hover{
+    color: #313131;
+}
 .navbar-nav {
     gap: 41px;
 }
@@ -197,7 +199,9 @@
     opacity: .9;
 
 }
-
+.gap-3{
+    gap: 15px;
+}
 .accSettings a {
     color: var(--black, #313131);
     font-size: 16px;
