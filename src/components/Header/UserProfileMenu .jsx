@@ -36,7 +36,7 @@ const UserProfileMenu = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -84,7 +84,7 @@ const UserProfileMenu = () => {
                     <div>
                       <p>John Duo</p>
                       <span className="d-block mb-2">johnduo@gmail.com</span>
-                      <Link to="/complete-profile" className="mt-3">
+                      <Link to="/complete-profile" className="mt-3" style={{marginTop:"10px"}}>
                         Edit profile
                       </Link>
                     </div>

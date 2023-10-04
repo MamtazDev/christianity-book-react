@@ -39,3 +39,8 @@
     line-height: 25px;
     /* 125% */
 }
+@media (max-width:990px){
+    .pointBoxShadow{
+        margin-bottom: 30px;
+    }
+}

@@ -14,7 +14,7 @@ const ContactForm = () => {
       </p>
       <div className="contactForm">
         <form action="">
-          <div className="d-flex gap-4 mb-5">
+          <div className="d-flex gap-4 mb-5 contact_gap">
             <div className="w-100">
               <label>Full Name</label>
               <input className="w-100" type="text" placeholder="John Duo" />
@@ -28,7 +28,7 @@ const ContactForm = () => {
               />
             </div>
           </div>
-          <div className="d-flex gap-4 mb-5">
+          <div className="d-flex gap-4 mb-5 contact_gap">
             <div className="w-100">
               <label>Country</label>
               <input

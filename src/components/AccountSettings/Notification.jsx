@@ -13,25 +13,25 @@ const Notification = () => {
       </div>
       <div className="notificationSetting mb_40">
         <form action="">
-          <div className="mb-lg-3">
+          <div className="mb-lg-3 not_checkbox_div">
             <input
               type="checkbox"
-              className="checkBox"
+              className="checkBox mr-2"
               name="weeklyMail"
               value="yes"
               checked
             />
-            <label>Receive weekly mails</label>
+            <p>Receive weekly mails</p>
           </div>
-          <div>
+          <div className="not_checkbox_div">
             <input
               type="checkbox"
               name="announcement"
-              className="checkBox"
+              className="checkBox mr-2"
               value="yes"
               checked
             />
-            <label htmlFor="">Receive new Product Announcements</label>
+            <p htmlFor="">Receive new Product Announcements</p>
           </div>
         </form>
       </div>

@@ -16,9 +16,11 @@
     line-height: normal;
 
 }
-.navbar-brand:hover{
+
+.navbar-brand:hover {
     color: #313131;
 }
+
 .navbar-nav {
     gap: 41px;
 }
@@ -29,13 +31,12 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    /* padding: 0; */
-
 }
 
 .nav-item {
     width: 100px !important;
 }
+
 
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 0;
@@ -199,9 +200,11 @@
     opacity: .9;
 
 }
-.gap-3{
+
+.gap-3 {
     gap: 15px;
 }
+
 .accSettings a {
     color: var(--black, #313131);
     font-size: 16px;
@@ -220,4 +223,55 @@
 
 .profile_menu {
     gap: 20px;
+}
+
+@media (max-width:768px) {
+
+    .header_1,
+    .profile_menu {
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        justify-content: center !important;
+        align-items: center;
+    }
+
+    .header_1 a {
+        width: fit-content;
+    }
+
+    .navbar-nav {
+        gap: 10px;
+        align-items: center;
+    }
+
+}
+
+
+@media only screen and (max-width:992px) {
+    .navbar-expand-lg {
+        background-color: #FFF4E0;
+    }
+
+    .header_1,
+    .profile_menu {
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        justify-content: center !important;
+        align-items: center;
+    }
+
+    .header_1 a {
+        width: fit-content;
+    }
+
+    .navbar-nav {
+        gap: 10px;
+        align-items: center;
+        margin-top: 40px;
+    }
+
 }

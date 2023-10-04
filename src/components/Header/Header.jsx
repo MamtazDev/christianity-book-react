@@ -18,7 +18,7 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -44,7 +44,7 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="d-flex gap-3">
+            <div className="d-flex gap-3 header_1">
               <Link className="dark_btn" to="/signup">
                 Sign Up
               </Link>

@@ -46,6 +46,18 @@ button {
     border-image: none;
 }
 
+button:focus {
+    border: none !important;
+    outline: none !important;
+
+}
+
+button:focus-visible {
+    border: none !important;
+    border-color: transparent;
+    outline: none !important;
+}
+
 .container {
     max-width: 1440px;
 }
@@ -243,6 +255,10 @@ footer {
     font-weight: 800;
 }
 
+.acount_gap {
+    gap: 21px;
+}
+
 .changeEmail {
     margin-bottom: 28px;
 }
@@ -275,7 +291,7 @@ footer {
 
 .inputContainer {
     width: 100%;
-    /* max-width: 356px !important; */
+    max-width: 356px !important;
     display: block;
 }
 
@@ -411,9 +427,13 @@ select::-ms-expand {
 .subOutter {
     overflow-x: scroll;
     white-space: nowrap;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 30px;
     /* padding: 50px; */
+}
+
+.cancel_sub_container {
+    gap: 16px;
 }
 
 .subOutter::-webkit-scrollbar {
@@ -508,8 +528,22 @@ select::-ms-expand {
 }
 
 .notificationSetting input.checkBox {
-    width: 15px !important;
-    height: 15px;
+    width: 23px !important;
+    height: 23px;
+}
+
+.not_checkbox_div p {
+    color: var(--Black, #313131);
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.not_checkbox_div {
+    display: flex;
+    align-items: center;
 }
 
 .deactiveBtn {
@@ -1017,9 +1051,10 @@ select::-ms-expand {
     height: 1200px;
     padding-left: 40px;
 }
-.detalisPage img{
+
+.detalisPage img {
     width: 967.137px !important;
-height: 1718.886px;
+    height: 1718.886px;
 }
 
 
@@ -1140,21 +1175,45 @@ height: 1718.886px;
 
 
 
-
-
-
-
-@media only screen and (min-width:1440px) {}
+.contact_gap{
+     gap: 40px;
+}
 
 
 @media only screen and (max-width:1024px) {}
 
-@media only screen and (max-width:992px) {}
+@media only screen and (max-width:992px) {
+
+    /* achive vbox  */
+    .achiveBox {
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 30px !important;
+
+    }
+
+    .clientGuide h3 {
+        font-size: 30px;
+    }
+
+}
 
 
 
 @media only screen and (max-width:768px) {
+.contact_gap{
+display: flex;
+flex-direction: column;
+}
+    h1 {
+        font-size: 35px !important;
+    }
 
+    .banner p {
+        font-size: 20px !important;
+    }
 
     .profileShow .child {
         top: 61px;

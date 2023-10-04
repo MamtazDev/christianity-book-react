@@ -113,9 +113,7 @@ footer {
   z-index: 99999;
 }
 
-.navbar-nav {
-  gap: 41px;
-}
+
 
 .nav-link {
   text-align: center;

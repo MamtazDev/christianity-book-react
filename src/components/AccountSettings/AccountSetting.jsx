@@ -13,7 +13,7 @@ const AccountSetting = () => {
 
             {/* <!-- Email Settings Start --> */}
             <form action="" className="changeEmail">
-              <div className="d-flex justify-content-start align-items-end gap-4 ">
+              <div className="d-flex justify-content-start align-items-end gap-4 acount_gap">
                 <div className="inputContainer">
                   <label>Change Email</label>
                   <input type="email" placeholder="Enter Email" />
@@ -25,7 +25,7 @@ const AccountSetting = () => {
 
             {/* <!-- Password Settings Start --> */}
             <form action="" className="changePassword mb_40">
-              <div className="d-flex flex-wrap justify-content-start align-items-end gap-4 mb-3 mb-lg-5">
+              <div className="d-flex flex-wrap justify-content-start align-items-end gap-4 mb-3 mb-lg-5 acount_gap">
                 <div className="inputContainer">
                   <label>Change Password</label>
                   <input type="password" placeholder="Enter Old Password" />

@@ -21,7 +21,7 @@ const Subscription = () => {
                 $9.99 <span className="payment">per month</span>
               </h5>
             </div>
-            <div className="d-flex align-items-center gap-2">
+            <div className="d-flex align-items-center gap-2 cancel_sub_container">
               <button className="graybtn">Cancel Subscription</button>
               <button className="othersSub">Subscribe for Others</button>
             </div>

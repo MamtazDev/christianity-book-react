@@ -11,7 +11,7 @@ const ProfileSetting = () => {
               </p>
             </div>
             <form action="" className="profileSetting mb_40">
-              <div className="d-flex justify-content-start align-items-end gap-4 mb-5">
+              <div className="d-flex justify-content-start align-items-end acount_gap mb-5">
                 <div className="inputContainer">
                   <label>Full Name</label>
                   <input type="text" placeholder="John Duo" />
@@ -21,7 +21,7 @@ const ProfileSetting = () => {
                   <input type="email" placeholder="johnduo@gmail.com" />
                 </div>
               </div>
-              <div className="d-flex justify-content-start align-items-end gap-4 mb-5">
+              <div className="d-flex justify-content-start align-items-end acount_gap mb-5">
                 <div className="inputContainer">
                   <label>Phone Number</label>
                   <input type="text" placeholder="+1 123 456 789" />

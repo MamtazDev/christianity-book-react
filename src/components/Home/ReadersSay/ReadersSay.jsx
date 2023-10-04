@@ -36,19 +36,28 @@ const ReadersSay = () => {
               modules={[FreeMode, Pagination]}
               className="mySwiper"
               breakpoints={{
-                640: {
+
+                320: {
                   slidesPerView: 1,
-                  spaceBetween: 16,
+                  spaceBetween: 30,
                 },
+                425: {
+                  slidesPerView: 1,
+                  spaceBetween: 30,
+                },
+                  640: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                  },
 
                 768: {
                   slidesPerView: 2,
-                  spaceBetween: 16,
+                  spaceBetween: 30,
                 },
 
                 1024: {
                   slidesPerView: 3,
-                  spaceBetween: 16,
+                  spaceBetween: 30,
                 },
               }}
             >
