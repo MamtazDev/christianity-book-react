@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import "./Subscription.css";
 import CompletePayment from "../components/Modals/CompletePayment";
 import SubscriptionForOthersModal from "./SubscriptionForOthersModal";
-
+import p1 from "../assets/images/p1.png";
+import p2 from "../assets/images/p2.png";
+import p3 from "../assets/images/p3.png";
+import p4 from "../assets/images/p4.png";
 const Subscription = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
@@ -35,7 +38,41 @@ const Subscription = () => {
       <div className="subv_body">
         <p>Payment Information</p>
         <form action="" class="profileSetting1  mt_30cp">
-          <div className="profile_pic"></div>
+          {/* payment */}
+          <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
+            <div class="payment_parent">
+              <input
+                type="radio"
+                name=""
+                className="payment_method_radio"
+                id=""
+              />
+              <div className="payment_div">
+                <h4>Credit Card</h4>
+                <small>Pay with credit card via Stripe</small>
+                <div className="payment_method">
+                  <img src={p1} alt="" />
+                  <img src={p2} alt="" />
+                  <img src={p3} alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="payment_parent">
+              <input
+                type="radio"
+                name=""
+                id=""
+                className="payment_method_radio"
+              />
+              <div className="payment_div">
+                <h4>Paypal</h4>
+                <small>Pay with your PayPal account</small>
+                <div className="payment_method">
+                  <img src={p4} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
             <div class="inputContainer">
               <label>Credit Card Number</label>
