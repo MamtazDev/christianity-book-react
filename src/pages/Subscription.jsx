@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Subscription.css";
+import CompletePayment from "../components/Modals/CompletePayment";
+import SubscriptionForOthersModal from "./SubscriptionForOthersModal";
 
 const Subscription = () => {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
       <div className="completeProfileContainer">
         <Link to="/">You Logo</Link>
       </div>
-
       <div className="sub_header1">
         <h3>Subscription!</h3>
         <p>
@@ -25,22 +27,16 @@ const Subscription = () => {
           <input
             type="text"
             className="promocode_input"
-            placeholder="Enter promo code"
-            name=""
-            id=""
+            placeholder="Enter email address"
           />
           <button className="apply_btn">Apply</button>
         </div>
       </div>
-      {/* subscription body */}
       <div className="subv_body">
         <p>Payment Information</p>
-
         <form action="" class="profileSetting1  mt_30cp">
-          <div className="profile_pic">
-            {/* <img src={profile} alt="" /> */}
-          </div>
-          <div class="d-flex justify-content-start align-items-end gap-4 mb-5">
+          <div className="profile_pic"></div>
+          <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
             <div class="inputContainer">
               <label>Credit Card Number</label>
               <input type="text" placeholder="Enter Card Number" />
@@ -50,9 +46,9 @@ const Subscription = () => {
               <input type="text" placeholder="John Duo" />
             </div>
           </div>
-          <div class="d-flex justify-content-start align-items-end gap-4 mb-5">
+          <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
             <div class="inputContainer">
-              <div class="d-flex justify-content-start align-items-end gap-4 ">
+              <div class="d-flex justify-content-start align-items-end gap_2 ">
                 <div class="inputContainer">
                   <label>Expiry Date</label>
                   <select class="" name="" id="">
@@ -77,14 +73,33 @@ const Subscription = () => {
               <input type="text" placeholder="Enter CVV/CVC Number" />
             </div>
           </div>
-
           <div className="purchase_sub">
-            <input type="radio" />
-           <small> Purchase Subscription for Others!</small>
-          </div>
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                onClick={() => setModalShow(true)}
+                class="checkbox__input"
+              />
+              <span class="checkbox__inner"></span>
+            </label>
+            <SubscriptionForOthersModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
 
+            <small> Purchase Subscription for Others!</small>
+          </div>
           <div className="create_profile_button">
-            <button className="">Complete Payment</button>
+            <button
+              href="#exampleModalToggle"
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+              Complete Payment
+            </button>
+
+            <CompletePayment />
           </div>
         </form>
       </div>

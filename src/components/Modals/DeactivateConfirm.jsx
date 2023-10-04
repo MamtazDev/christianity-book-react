@@ -3,7 +3,7 @@ import deactiveSuccess from "../../assets/images/deactive_success.png";
 
 const DeactivateConfirm = () => {
   return (
-    <div>
+    <>
       <div
         className="modal fade"
         id="exampleModalToggle2"
@@ -32,7 +32,7 @@ const DeactivateConfirm = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
