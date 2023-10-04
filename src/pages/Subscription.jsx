@@ -38,7 +38,6 @@ const Subscription = () => {
       <div className="subv_body">
         <p>Payment Information</p>
         <form action="" class="profileSetting1  mt_30cp">
-          {/* payment */}
           <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
             <div class="payment_parent">
               <input

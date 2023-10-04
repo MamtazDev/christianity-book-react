@@ -107,6 +107,7 @@ button {
     width: 100% !important;
     margin: auto;
     margin-top: 30px !important;
+    margin-bottom: 109px;
 }
 
 .subv_body p {
@@ -276,7 +277,8 @@ button {
     max-width: 340px !important;
     width: 100% !important;
 }
-.payment_div h4{
+
+.payment_div h4 {
     color: var(--Black, #313131);
     font-family: Raleway;
     font-size: 18px;
@@ -285,15 +287,16 @@ button {
 
 }
 
-.payment_div small{
+.payment_div small {
     color: var(--Black, #313131);
-font-family: Raleway;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: 27px; 
-margin-bottom: 8px;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    margin-bottom: 8px;
 }
+
 .payment_method_radio {
     width: 20px !important;
     height: 20px !important;

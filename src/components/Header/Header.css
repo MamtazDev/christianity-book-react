@@ -6,7 +6,15 @@
     z-index: 99999;
 
 }
+.navbar-brand{
+    color: var(--Black, #313131);
+font-family: Raleway;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
 
+}
 .navbar-nav {
     gap: 41px;
 }

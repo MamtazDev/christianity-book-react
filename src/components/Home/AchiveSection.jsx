@@ -10,21 +10,21 @@ const AchiveSection = () => {
       id: 1,
       title: "Mental Stability",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text..",
       image: mentalStability,
     },
     {
       id: 2,
       title: "Experience",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
       image: experience,
     },
     {
       id: 3,
       title: "Motivation",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
       image: motivation,
     },
   ];
@@ -38,7 +38,7 @@ const AchiveSection = () => {
           <h2>this Book?</h2>
         </div>
         <p className="mb_30 sub_header">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
+          Lorem Ipsum is simply dummy text of the printing and <br /> typesetting
           industry.
         </p>
         <div>

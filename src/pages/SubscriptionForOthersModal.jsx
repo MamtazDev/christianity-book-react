@@ -4,6 +4,7 @@ import close from "../assets/images/close.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./Subscription.css";
+import CompleteSubmisionotherModal from "../components/Modals/CompleteSubmisionotherModal";
 const SubscriptionForOthersModal = (props) => {
   return (
     <>
@@ -31,10 +32,17 @@ const SubscriptionForOthersModal = (props) => {
               type="text"
               className="email_sub_input "
               placeholder="Enter promo code"
-              name=""
-              id=""
+             
             />
-            <button className="save_btn">Send</button>
+            <button
+              className="save_btn"
+              data-bs-target="#exampleModalToggle3"
+              data-bs-toggle="modal"
+              data-bs-dismiss="modal"
+            >
+              Send
+            </button>
+            <CompleteSubmisionotherModal/>
           </div>
         </Modal.Body>
       </Modal>

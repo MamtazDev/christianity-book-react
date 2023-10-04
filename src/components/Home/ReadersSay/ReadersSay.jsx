@@ -17,7 +17,7 @@ const ReadersSay = () => {
       <div>
         <div className="mb_all">
           <div className="container">
-            <h2>
+            <h2 className="mb_20"> 
               What My <span className="txt_curve">Readers</span> Say
               <br />
               About Me.
@@ -26,22 +26,9 @@ const ReadersSay = () => {
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.
             </p>
-
-            {/*         <div className="row">
-              <div className="col-12 col-lg-4">
-                <ReaderCard img={round1} name="Indiana James" />
-              </div>
-              <div className="col-12 col-lg-4">
-                <ReaderCard img={round2} name="John Wick" />
-              </div>
-              <div className="col-12 col-lg-4">
-                <ReaderCard img={round3} name="Sara James" />
-              </div>
-            </div> */}
             <Swiper
               slidesPerView={3}
               spaceBetween={30}
-              // freeMode={true}
               loop={true}
               pagination={{
                 clickable: true,
@@ -53,12 +40,12 @@ const ReadersSay = () => {
                   slidesPerView: 1,
                   spaceBetween: 16,
                 },
-  
+
                 768: {
                   slidesPerView: 2,
                   spaceBetween: 16,
                 },
-  
+
                 1024: {
                   slidesPerView: 3,
                   spaceBetween: 16,
@@ -77,7 +64,6 @@ const ReadersSay = () => {
               <SwiperSlide>
                 <ReaderCard img={round2} name="John Wick" />
               </SwiperSlide>
-             
             </Swiper>
           </div>
         </div>
