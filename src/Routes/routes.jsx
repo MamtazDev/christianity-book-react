@@ -7,7 +7,6 @@ import ResetVerification from "../pages/ResetVerification";
 import ChangePassword from "../pages/ChangePassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import AccountSettings from "../pages/AccountSettings";
-import AuthorChat from "../pages/AuthorChat";
 import Bookmark from "../pages/Bookmark";
 import Contact from "../pages/Contact";
 import Layout from "../Layout/Layout";
@@ -17,40 +16,42 @@ import Notification from "../pages/Notification";
 import HighLights from "../pages/HighLights";
 import MyNotes from "../pages/MyNotes";
 import PrivateRoute from "./PrivateRoute";
-import LoginRoute from "./LoginRoute";
 import Subscription from "./../pages/Subscription";
+import AuthorChat from "./../components/AuthorChat/AuthorChat";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
 
   {
     path: "/login",
-    element: (
-      // <LoginRoute>
-      <LogIn />
-      // </LoginRoute>
-    ),
+    element: <LogIn />,
   },
+
   {
     path: "/signUp",
     element: <SignUp />,
   },
+
   {
     path: "/reset-password",
     element: <ResetPassword />,
   },
+
   {
     path: "/reset-verification",
     element: <ResetVerification />,
   },
+
   {
     path: "/change-password",
     element: <ChangePassword />,
   },
+
   {
     path: "/complete-profile",
     element: <CompleteProfile />,
   },
+
   {
     path: "/subscription",
     element: (
@@ -59,6 +60,7 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
   },
+
   {
     path: "/",
     element: <Layout />,
@@ -67,6 +69,7 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      
       {
         path: "/account-settings",
         element: (
@@ -84,34 +87,36 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: "/bookmark",
         element: (
           <PrivateRoute>
-            {" "}
             <Bookmark />
           </PrivateRoute>
         ),
       },
+
       {
         path: "/read-book",
         element: (
           <PrivateRoute>
-            {" "}
             <ReadBook />
           </PrivateRoute>
         ),
       },
+
       { path: "/faq", element: <Faq /> },
+
       {
         path: "/notification",
         element: (
           <PrivateRoute>
-            {" "}
             <Notification />
           </PrivateRoute>
         ),
       },
+
       {
         path: "/highlights",
         element: (
@@ -120,6 +125,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: "/my-notes",
         element: (
@@ -128,6 +134,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      
     ],
   },
 ]);

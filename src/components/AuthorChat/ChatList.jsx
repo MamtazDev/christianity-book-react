@@ -25,7 +25,7 @@ const ChatList = () => {
           <img src={profile} alt="" />
           <div>
             <a href="#">Marvin Mckinney</a>
-            <p>Lorem Ipsum is simply dummy text of</p>
+            <p>Hi,Mark Obama How Are You? </p>
           </div>
         </div>
       </div>

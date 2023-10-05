@@ -4,7 +4,7 @@ import settings from "../../assets/images/message_settings.png";
 import upload from "../../assets/images/imgUpload.png";
 import attach from "../../assets/images/attachFile.png";
 import submit from "../../assets/images/submit.png";
-import './AuthorChat.css'
+import "./AuthorChat.css";
 const Conversation = () => {
   return (
     <div className="chatList">
@@ -21,8 +21,8 @@ const Conversation = () => {
         </button>
       </div>
 
-      <div className="grayBox mb-5">
-        <div className="whiteBox mb-2">
+      <div className="grayBox mb-3">
+        <div className="whiteBox mb-3">
           <span className="d-block text-dark">you</span>
           <p>can I come over?</p>
         </div>
@@ -30,8 +30,8 @@ const Conversation = () => {
         <span className="d-block time">16.00</span>
       </div>
 
-      <div className="answerBox ml-auto mb-5">
-        <p className="mb-2">Ipsum has been the</p>
+      <div className="answerBox ml-auto mb-3">
+        <p className="mb-2">K i am on my way </p>
         <span className="d-block time">16.00 .Read</span>
       </div>
       <div className="grayBox mb-5">
@@ -43,12 +43,12 @@ const Conversation = () => {
         <p>Dec 7/10</p>
         <div className="weekDayLine"></div>
       </div>
-      <div className="answerBox ml-auto mb-5">
-        <p className="mb-2">Ipsum has been the</p>
+      <div className="answerBox ml-auto mb-3">
+        <p className="mb-2"> K i am on my way </p>
         <span className="d-block time">16.00 .Read</span>
       </div>
-      <div className="grayBox mt-5 mb-5">
-        <div className="whiteBox text-center mb-2">
+      <div className="grayBox mb-4">
+        <div className="whiteBox text-center mb-3">
           <img src={upload} alt="" />
         </div>
         <p className="mb-2">of course, let me know if you are on the way.</p>

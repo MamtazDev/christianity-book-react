@@ -885,7 +885,9 @@ footer {
     .clientGuide h3 {
         font-size: 30px;
     }
-
+.readerBox{
+    display: none;
+}
 }
 
 

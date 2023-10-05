@@ -32,7 +32,8 @@
 }
 
 .chatList {
-    width: 845px;
+    max-width: 845px;
+    width: 100%;
 }
 
 .msgSetting {
@@ -67,14 +68,19 @@
     background-color: #fff;
 }
 
+.whiteBox span {
+    font-weight: 700 !important;
+}
+
 .grayBox .time {
     color: #313131;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .answerBox .time {
     color: #E1E4E8;
-    font-size: 8px;
+    font-size: 10px;
+    text-align: right;
 }
 
 .answerBox {
