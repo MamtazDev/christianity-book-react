@@ -5,18 +5,15 @@ import Pagination from "../components/Utils/Pagination";
 
 const ReadBook = () => {
   return (
-    <div className="mb_100">
-      <div className="container mb_100">
+    <div className="container mb_100">
+      <div className="mb_200">
         <PageHeading path="/read-book">Read Book</PageHeading>
         <h3 className="mb-5 bookName">
           Christianity is My Mental Disorder: A Client
           <br className="d-none d-lg-block" />
           Guide to Recovery.
         </h3>
-
-
-      <ReadBooks />
-      <Pagination />
+        <ReadBooks />
       </div>
     </div>
   );

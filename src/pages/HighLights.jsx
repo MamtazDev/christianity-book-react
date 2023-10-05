@@ -45,16 +45,13 @@ const HighLights = () => {
   return (
     <div>
       <div className="container">
-        <PageHeading>Highlights</PageHeading>
+        <PageHeading path="/highlights">Highlights</PageHeading>
         <h2 className="mb_40">
           You can check your <span className="txt_curve">HIGHLIGHTS</span>
           <br className="d-none d-lg-block" /> here!
         </h2>
-
         <Points options={options} />
-        {/* <!-- Paginattion Start --> */}
         <Pagination />
-        {/* <!-- Pagination End --> */}
       </div>
     </div>
   );

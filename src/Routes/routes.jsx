@@ -8,7 +8,6 @@ import ChangePassword from "../pages/ChangePassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import AccountSettings from "../pages/AccountSettings";
 import Bookmark from "../pages/Bookmark";
-import Contact from "../pages/Contact";
 import Layout from "../Layout/Layout";
 import ReadBook from "../pages/ReadBook";
 import Faq from "../pages/Faq";
@@ -18,6 +17,7 @@ import MyNotes from "../pages/MyNotes";
 import PrivateRoute from "./PrivateRoute";
 import Subscription from "./../pages/Subscription";
 import AuthorChat from "./../components/AuthorChat/AuthorChat";
+import Contact from './../pages/Contact';
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },

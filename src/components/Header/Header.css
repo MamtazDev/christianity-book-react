@@ -166,12 +166,13 @@
 .profileShow .childHover {
     position: absolute;
     top: 61px;
-    right: 0;
+    left: -100% !important;
     transition: 0.3s ease-in-out;
     border-radius: 10px;
     background: var(--white, #FFF);
     padding: 31px 20px;
-    width: 364px;
+    min-width: 364px !important;
+    width: 100% !important;
     border: 1px solid #C2C9D1;
     visibility: visible;
     opacity: 1;
@@ -272,6 +273,9 @@
     .navbar-nav {
         gap: 10px;
         align-items: center;
+    }
+    .childHover{
+        width: 300px !important;
     }
 
 }

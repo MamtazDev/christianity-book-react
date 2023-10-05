@@ -33,7 +33,7 @@ const ProfileSetting = () => {
       </div>
       <form onSubmit={handleSubmit} className="profileSetting mb_40">
         <div className="d-flex justify-content-start flex-wrap align-items-end acount_gap mb-5">
-          <div className="inputContainer">
+          <div className="inputContainer1">
             <label>Full Name</label>
             <input
               name="fullName"
@@ -42,7 +42,7 @@ const ProfileSetting = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="inputContainer">
+          <div className="inputContainer1">
             <label>Email Address</label>
             <input
               name="email"
@@ -53,7 +53,7 @@ const ProfileSetting = () => {
           </div>
         </div>
         <div className="d-flex justify-content-start flex-wrap align-items-end acount_gap mb-5">
-          <div className="inputContainer">
+          <div className="inputContainer1">
             <label>Phone Number</label>
             <input
               name="phoneNo"
@@ -62,7 +62,7 @@ const ProfileSetting = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="inputContainer">
+          <div className="inputContainer1">
             <label>Country</label>
             <select
               name="country"

@@ -6,7 +6,7 @@ import p1 from "../assets/images/p1.png";
 import p2 from "../assets/images/p2.png";
 import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
-import SubscriptionForOthersModal from './../components/Modals/SubscriptionForOthersModal';
+import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 const Subscription = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
@@ -120,7 +120,7 @@ const Subscription = () => {
             </label>
             <SubscriptionForOthersModal
               show={modalShow}
-              onHide={() => setModalShow(false)}
+              onHide={setModalShow}
             />
 
             <small> Purchase Subscription for Others!</small>

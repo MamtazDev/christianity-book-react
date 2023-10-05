@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import rightArrow from "../../assets/images/right_arrow.png";
-
+import "./Contact.css";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",

@@ -56,7 +56,7 @@ const Bookmark = () => {
   return (
     <>
       <div className="container">
-        <PageHeading>Bookmarks</PageHeading>
+        <PageHeading path="/bookmark">Bookmarks</PageHeading>
         <h2 className="mb_40">
           You can check your <span className="txt_curve">Bookmarks</span>
           <br className="d-none d-lg-block" /> here!

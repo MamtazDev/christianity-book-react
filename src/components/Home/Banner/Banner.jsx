@@ -1,8 +1,8 @@
 import React from "react";
-import banner from "../../assets/images/banner.png";
-import rightArrow from "../../assets/images/right_arrow.png";
+import banner from "../../../assets/images/banner.png";
+import rightArrow from "../../../assets/images/right_arrow.png";
 import { Link } from "react-router-dom";
-
+import './Banner.css'
 const Banner = () => {
   return (
     <section>

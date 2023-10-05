@@ -6,6 +6,15 @@ import Modal from "react-bootstrap/Modal";
 // import "./Subscription.css";
 import CompleteSubmisionotherModal from "./CompleteSubmisionotherModal";
 const SubscriptionForOthersModal = (props) => {
+  const [secondModalShow, setSecondModalShow] = React.useState(false);
+
+  const sendHandler = () => {
+    // props.onHide(false);
+    setSecondModalShow(true);
+  };
+const hideHandler=()=>{
+  props.onHide(false)
+}
   return (
     <>
       <Modal
@@ -16,35 +25,44 @@ const SubscriptionForOthersModal = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            <Button onClick={props.onHide} className="close_button_subforother">
+            <Button onClick={hideHandler} className="close_button_subforother">
               <img src={close} alt="" />
             </Button>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="modal_body_subforother">
-          <h4>Subscribe for Others!</h4>
-          <p>
-            Please provide the user's email so they can access the web at no
-            cost.
-          </p>
-          <div>
-            <input
-              type="text"
-              className="email_sub_input "
-              placeholder="Enter promo code"
-             
-            />
-            <button
-              className="save_btn"
-              data-bs-target="#exampleModalToggle3"
-              data-bs-toggle="modal"
-              data-bs-dismiss="modal"
-            >
-              Send
-            </button>
-            <CompleteSubmisionotherModal/>
-          </div>
-        </Modal.Body>
+        {secondModalShow ? (
+          <Modal.Body className="modal_body_subforother"> 
+          <img src={deactiveSuccess} alt="Deactivate Account" />
+            <h4>Payment Successful!</h4>
+            <p>
+              You have successfully obtain subscription for johnduo@gmail.com.
+            </p>
+          </Modal.Body>
+        ) : (
+          <Modal.Body className="modal_body_subforother">
+            <h4>Subscribe for Others!</h4>
+            <p>
+              Please provide the user's email so they can access the web at no
+              cost.
+            </p>
+            <div>
+              <input
+                type="text"
+                className="email_sub_input "
+                placeholder="Enter promo code"
+              />
+              <Button
+                className="save_btn"
+                data-bs-target="#exampleModalToggle3"
+                data-bs-toggle="modal"
+                data-bs-dismiss="modal"
+                onClick={sendHandler}
+              >
+                Send
+              </Button>
+            </div>
+          </Modal.Body>
+        )}
       </Modal>
     </>
   );

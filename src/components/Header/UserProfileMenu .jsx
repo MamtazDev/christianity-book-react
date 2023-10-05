@@ -95,9 +95,9 @@ const UserProfileMenu = () => {
                 onClick={handleOpen}
                 ref={dropdownRef}
               >
-                <Link to="/account-settings">
+                <buttom type="button" style={{ cursor: "pointer" }}>
                   <img src={profile_round} alt="Profile Image" />
-                </Link>
+                </buttom>
                 <img
                   className={open && `arrow`}
                   src={drop_down}

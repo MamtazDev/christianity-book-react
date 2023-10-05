@@ -11,7 +11,7 @@ const AccountSettings = () => {
   return (
     <>
       <div className="container">
-        <PageHeading> Account Settings</PageHeading>
+        <PageHeading path="/account-settings"> Account Settings</PageHeading>
         <div className="account">
           <AccountSetting />
           <ProfileSetting />

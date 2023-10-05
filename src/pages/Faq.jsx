@@ -5,7 +5,7 @@ const Faq = () => {
   return (
     <div className="mb_100">
       <div className="container">
-        <PageHeading>FAQ's</PageHeading>
+        <PageHeading path="/faq">FAQ's</PageHeading>
         <h2 className="mb_40">
           Frequently Asked <span className="txt_curve">Questions</span>
         </h2>

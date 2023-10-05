@@ -45,16 +45,13 @@ const MyNotes = () => {
   return (
     <div>
       <div className="container">
-        <PageHeading>My Notes</PageHeading>
+        <PageHeading path="/my-notes">My Notes</PageHeading>
         <h2 className="mb_40">
           You can check your <span className="txt_curve">NOTES</span>
           <br className="d-none d-lg-block" /> here!
         </h2>
-
         <Points options={options} />
-        {/* <!-- Paginattion Start --> */}
         <Pagination />
-        {/* <!-- Pagination End --> */}
       </div>
     </div>
   );

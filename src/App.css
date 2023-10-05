@@ -62,9 +62,9 @@ button:focus-visible {
     outline: none !important;
 }
 
-.container {
-    max-width: 1440px;
-}
+/* .container {
+    max-width: 1440px !important;
+} */
 
 .mb_all {
     margin-bottom: 70px;
@@ -126,13 +126,6 @@ h2 span {
     border-radius: 20px;
 }
 
-/* banner */
-.text-end {
-    display: flex;
-    justify-content: end;
-}
-
-/* banner */
 
 .txt_curve {
     position: relative;
@@ -542,8 +535,6 @@ footer {
 
 
 
-
-
 .profile_gap {
     gap: 12px;
 }
@@ -744,6 +735,9 @@ footer {
 }
 
 
+.mb_200 {
+    margin-bottom: 200px !important;
+}
 
 .bookIndex {
     border-radius: 20px;
@@ -756,13 +750,16 @@ footer {
 .detalisPage {
     border-radius: 10px;
     /* background: #D9D9D9; */
-    height: 1200px;
+    max-height: 1200px;
+    height: 100%;
     padding-left: 40px;
+    width: 100% !important;
 }
 
 .detalisPage img {
-    width: 967.137px !important;
+    min-width: 967.137px !important;
     height: 1718.886px;
+    width: 100%;
 }
 
 
@@ -770,6 +767,7 @@ footer {
     height: 1200px;
     margin-bottom: 35px;
 }
+
 
 .bookScroll {
     overflow-y: scroll;
@@ -789,67 +787,6 @@ footer {
     height: 78px;
 }
 
-/* paigination */
-
-.b-pagination-outer {
-    margin-top: 35px;
-    border: 1px solid var(--gray-300, #C2C9D1);
-    border-radius: 5px;
-    padding: 13px 20px;
-    max-width: 882px;
-}
-
-.border-pagination {
-    text-align: center;
-    margin: 0;
-    gap: 11px;
-}
-
-.border-pagination li {
-    display: inline;
-
-}
-
-.border-pagination li a {
-    display: block;
-    text-decoration: none;
-    color: #000;
-    padding: 5px 13px;
-    color: var(--black, #313131);
-    font-size: 18px;
-    font-weight: 500;
-    transition: 0.3s ease-in-out;
-    border: 0.682px solid transparent;
-    border-radius: 3.41px;
-}
-
-.border-pagination li a:hover {
-    color: #FFB230;
-    border: 0.682px solid var(--secondry-color, #FFB230);
-    border-radius: 3.41px;
-}
-
-.border-pagination li a.active {
-    color: #FFB230;
-    border: 0.682px solid var(--secondry-color, #FFB230);
-    border-radius: 3.41px;
-}
-
-
-.border-pagination li .activeNext {
-    color: #FFB230;
-}
-
-.showPage a {
-    color: var(--black, #313131);
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.ebookMt {
-    margin-top: 200px;
-}
-
 
 .mb-ebook {
     margin-bottom: 100px;
@@ -866,11 +803,6 @@ footer {
     margin-top: 40px !important;
 }
 
-
-
-.contact_gap {
-    gap: 40px;
-}
 
 
 @media only screen and (max-width:1024px) {}
@@ -894,11 +826,19 @@ footer {
     .readerBox {
         display: none;
     }
+
+    .detalisPage img {
+        display: none;
+    }
 }
 
 
 
 @media only screen and (max-width:768px) {
+    .detalisPage img {
+        display: none;
+    }
+
     .text-end {
         /* display: flex; */
         justify-content: center;
@@ -918,6 +858,11 @@ footer {
     }
 
     .profileShow .child {
+        top: 61px;
+        left: 0;
+    }
+
+    .childHover {
         top: 61px;
         left: 0;
     }
@@ -1271,8 +1216,16 @@ footer {
         left: -100%;
     }
 
+    .profileShow .childHover {
+        left: -100%;
+    }
+
     .profileShow .child {
         width: 300px;
+    }
+
+    .profileShow .childHover {
+        width: 300px !important;
     }
 }
 
@@ -1281,19 +1234,25 @@ footer {
     .chatList {
         width: 300px;
     }
+    .profileShow .childHover {
+        width: 300px !important;
+    }
 }
 
 .cancelSubBtn:focus-visible {
     outline: red !important;
     border: red !important;
 }
+
 .cancelSubBtn:focus {
     outline: red !important;
     border: red !important;
 }
-.graph_gap{
+
+.graph_gap {
     gap: 24px;
 }
-.recharts-cartesian-axis-ticks{
+
+.recharts-cartesian-axis-ticks {
     margin-top: 15px;
 }

@@ -1,48 +1,31 @@
 import React from "react";
-/* import deactiveSuccess from "../assets/images/deactive_success.png";
-import close from "../assets/images/close.png";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal"; */
+import Modal from "react-bootstrap/Modal";
 
-const CompleteSubmisionotherModal = () => {
+const CompleteSubmisionotherModal = (props) => {
   return (
     <>
-      <div
-        className="modal fade"
-        id="exampleModalToggle3"
-        aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1"
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter1"
+        centered
       >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalToggleLabel2">
-                Modal 2
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              Hide this modal and show the first with the button below.
-            </div>
-            <div className="modal-footer">
-              <button
-                className="btn btn-primary"
-                data-bs-target="#exampleModalToggle"
-                data-bs-toggle="modal"
-                data-bs-dismiss="modal"
-              >
-                Back to first
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <Button className="close_button_subforother">
+              <img src={close} alt="" />
+            </Button>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modal_body_subforother">
+          <h4>Subscribe for Others!</h4>
+          <p>
+            Please provide the user's email so they can access the web at no
+            cost.
+          </p>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

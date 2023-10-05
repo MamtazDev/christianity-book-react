@@ -41,7 +41,7 @@ const CompleteProfileForm = () => {
             <img src={profile} alt="" />
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
-            <div className="inputContainer">
+            <div className="inputContainer1">
               <label>Full Name</label>
               <input
                 name="fullName"
@@ -50,7 +50,7 @@ const CompleteProfileForm = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="inputContainer">
+            <div className="inputContainer1">
               <label>Email Address</label>
               <input
                 name="email"
@@ -61,7 +61,7 @@ const CompleteProfileForm = () => {
             </div>
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
-            <div className="inputContainer">
+            <div className="inputContainer1">
               <label>Phone Number</label>
               <input
                 name="phoneNo"
@@ -70,7 +70,7 @@ const CompleteProfileForm = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="inputContainer">
+            <div className="inputContainer1">
               <label>Country</label>
               <select
                 name="country"
