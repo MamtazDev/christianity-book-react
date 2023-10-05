@@ -19,7 +19,7 @@ const Footer = () => {
               Affordable Rate of $20.
             </p>
             <div className="footer_button">
-              <Link href="/contact" className="send_msg_button">
+              <Link to="/contact" className="send_msg_button">
                 Send me a Message
                 <img src={rightArrow} alt="" style={{ marginLeft: "10px" }} />
               </Link>
@@ -47,7 +47,6 @@ const Footer = () => {
               </p>
             </article>
           </div>
-          <div></div>
         </div>
       </div>
     </footer>

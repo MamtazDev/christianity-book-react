@@ -41,6 +41,7 @@
 }
 
 .mt_30cp {
+  margin: auto;
   margin-top: 30px;
 }
 
@@ -50,4 +51,8 @@
 }
 .create_profile_button{
   text-align: center;
+}
+.complete_profile_gap{
+  gap: 30px;
+  justify-content: center !important;
 }

@@ -22,7 +22,7 @@
 }
 
 .navbar-nav {
-    gap: 41px;
+    gap: 40px;
 }
 
 .nav-link {
@@ -124,6 +124,16 @@
     background: #423C6A;
 }
 
+.profileName p {
+    margin-bottom: 5px !important;
+
+}
+
+.profileName span {
+    margin-bottom: 14px !important;
+
+}
+
 .profileShow {
     position: relative;
 }
@@ -205,6 +215,10 @@
     gap: 15px;
 }
 
+.accSettings {
+    margin-bottom: 16px !important;
+}
+
 .accSettings a {
     color: var(--black, #313131);
     font-size: 16px;
@@ -213,12 +227,16 @@
     line-height: 24px;
     text-transform: uppercase;
     transition: .3s ease-in-out;
-    padding: 8px;
+}
+
+.accSettings:last-child a {
+    font-weight: 700 !important;
 }
 
 .accSettings a:hover {
-    opacity: .9;
-    background: #E1E4E8;
+    /* opacity: .9; */
+    font-weight: 700 !important;
+    /* background: #E1E4E8; */
 }
 
 .profile_menu {

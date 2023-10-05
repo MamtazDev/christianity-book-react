@@ -36,7 +36,7 @@ const UserProfileMenu = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+            <span className="navbar-toggler-icon"><i className="fa-solid fa-bars"></i></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -83,30 +83,30 @@ const UserProfileMenu = () => {
                     />
                     <div>
                       <p>John Duo</p>
-                      <span className="d-block mb-2">johnduo@gmail.com</span>
+                      <span className="d-block">johnduo@gmail.com</span>
                       <Link to="/complete-profile" className="mt-3" style={{marginTop:"10px"}}>
                         Edit profile
                       </Link>
                     </div>
                   </div>
                   <hr />
-                  <div className="accSettings d-flex align-items-center gap-3 mb-3">
+                  <div className="accSettings d-flex align-items-center gap-3">
                     <img src={accountSetting} alt="Settings" />
                     <Link to="/account-settings">Account Settings</Link>
                   </div>
-                  <div className="accSettings d-flex align-items-center gap-3 mb-3">
+                  <div className="accSettings d-flex align-items-center gap-3 ">
                     <img src={bookmark} alt="Bookmarks" />
                     <Link to="/bookmark">Bookmarks</Link>
                   </div>
-                  <div className="accSettings d-flex align-items-center gap-3 mb-3">
+                  <div className="accSettings d-flex align-items-center gap-3">
                     <img src={highlight} alt="highlights" />
                     <Link to="/highlights">Highlights</Link>
                   </div>
-                  <div className="accSettings d-flex align-items-center gap-3 mb-3">
+                  <div className="accSettings d-flex align-items-center gap-3">
                     <img src={notes} alt="Notes" />
                     <Link to="/my-notes">My Notes</Link>
                   </div>
-                  <div className="accSettings d-flex align-items-center gap-3 mb-3">
+                  <div className="accSettings d-flex align-items-center gap-3">
                     <img src={faq} alt="FAQ" />
                     <Link to="/faq">FAQ’s</Link>
                   </div>

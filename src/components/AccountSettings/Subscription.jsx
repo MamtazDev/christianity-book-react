@@ -1,6 +1,7 @@
 import React from "react";
 import subscription from "../../assets/images/subcriptionPP_1.png";
 import subscription2 from "../../assets/images/subcriptionPP_2.png";
+import './AcountSetting.css'
 
 const Subscription = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './AcountSetting.css'
 const AccountSetting = () => {
   return (
     <div>

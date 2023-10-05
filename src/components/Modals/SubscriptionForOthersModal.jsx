@@ -1,10 +1,10 @@
 import React from "react";
-import deactiveSuccess from "../assets/images/deactive_success.png";
-import close from "../assets/images/close.png";
+import deactiveSuccess from "../../assets/images/deactive_success.png";
+import close from "../../assets/images/close.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "./Subscription.css";
-import CompleteSubmisionotherModal from "../components/Modals/CompleteSubmisionotherModal";
+// import "./Subscription.css";
+import CompleteSubmisionotherModal from "./CompleteSubmisionotherModal";
 const SubscriptionForOthersModal = (props) => {
   return (
     <>

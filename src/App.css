@@ -34,6 +34,10 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: none !important;
+}
+
 input {
     border: none;
 }
@@ -214,7 +218,9 @@ footer {
     font-weight: 700;
 
 }
-
+.send_msg_button:hover{
+    color: var(--White, #FFF) !important; 
+}
 .footer_button {
     display: flex;
     justify-content: center;
@@ -261,167 +267,6 @@ footer {
 
 .changeEmail {
     margin-bottom: 28px;
-}
-
-.changeEmail label,
-.changePassword label,
-.profileSetting label {
-    color: var(--gray-400, #92979D);
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.changeEmail label,
-.changePassword label,
-.profileSetting1 label {
-    color: var(--gray-400, #92979D);
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.notificationSetting label {
-    color: var(--gray-400, #92979D);
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.inputContainer {
-    width: 100%;
-    max-width: 356px !important;
-    display: block;
-}
-
-.changeEmail input,
-.changePassword input,
-.profileSetting input,
-.profileSetting select {
-    border-bottom: 2px solid #423C6A;
-    padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
-    max-width: 356px !important;
-    /* width: 100%; */
-    display: block;
-}
-
-.changeEmail input,
-.changePassword input,
-.profileSetting1 input,
-.profileSetting1 select {
-    border-bottom: 2px solid #423C6A;
-    padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
-    /* max-width: 356px !important; */
-    /* width: 100%; */
-    display: block;
-}
-
-.changePassword input,
-.profileSetting input,
-.profileSetting select {
-    border-bottom: 2px solid #C2C9D1;
-}
-
-.changePassword input,
-.profileSetting1 input,
-.profileSetting1 select {
-    border-bottom: 2px solid #C2C9D1;
-}
-
-.changeEmail input::placeholder,
-.changePassword input::placeholder,
-.profileSetting input::placeholder {
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.changeEmail input::placeholder,
-.changePassword input::placeholder,
-.profileSetting1 input::placeholder {
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.changeEmail button {
-    color: var(--primary-color, #423C6A);
-    font-size: 22px;
-    font-weight: 600;
-    outline: none;
-    border-bottom: 2px solid #423C6A;
-    background: transparent;
-    transition: 0.3s ease-in-out;
-    white-space: nowrap;
-}
-
-.changeEmail button:hover {
-    opacity: .9;
-    border-bottom: 2px solid transparent;
-}
-
-.changePassword button,
-.profileSetting button {
-    color: #FFF;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 16px 143px;
-    border-radius: 32px;
-    background: var(--primary-color, #423C6A);
-    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
-    transition: 0.4s ease-in-out;
-    white-space: nowrap;
-}
-
-.changePassword button,
-.profileSetting1 button {
-    color: #FFF;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 14px 90px;
-    border-radius: 32px;
-    background: var(--primary-color, #423C6A);
-    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
-    transition: 0.4s ease-in-out;
-    white-space: nowrap;
-}
-
-.changePassword button:hover,
-.profileSetting button:hover {
-    opacity: .9;
-}
-
-.changePassword button:hover,
-.profileSetting1 button:hover {
-    opacity: .9;
-}
-
-select {
-    border: none;
-}
-
-
-.profileSetting select {
-    background-image: url("../images/drop_down.png");
-    background-repeat: no-repeat;
-    background-position: right center;
-    /* -moz-appearance: none;
-    -webkit-appearance: none; */
-}
-
-select::-ms-expand {
-    display: none;
 }
 
 .subOutter {
@@ -702,154 +547,12 @@ select::-ms-expand {
     gap: 11px !important;
 }
 
-.authorChatBox {
-    padding: 25px;
-    border-radius: 20px;
-    background: #fffbf5;
-    gap: 25px;
-}
 
-.readerBox {
-    border-radius: 10px;
-    background: var(--white, #FFF);
-    box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
-    width: 327px;
-    padding: 20px 8px;
-}
-
-.nameList img {
-    border-radius: 50%;
-}
-
-.nameList a,
-.chatList a {
-    font-size: 18px;
-    font-weight: 500;
-    color: #000;
-}
-
-.nameList p,
-.grayBox p {
-    font-size: 12px;
-    font-weight: 500;
-    color: #000;
-}
-
-.chatList {
-    width: 845px;
-}
-
-.msgSetting {
-    border-radius: 10px;
-    background: var(--gray-100, #F0F2F3);
-    padding: 14px 12px 12px 22px;
-}
-
-.chatOwner {
-    border-radius: 10px;
-    background: var(--white, #FFF);
-    box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
-    padding: 20px 30px;
-}
-
-
-.chatList span {
-    color: #289A00;
-    font-size: 12px;
-    font-weight: 400px;
-}
-
-.grayBox {
-    padding: 10px;
-    background-color: #E1E4E8;
-    border-radius: 10px 10px 10px 0;
-    width: fit-content;
-}
-
-.whiteBox {
-    padding: 11px;
-    background-color: #fff;
-}
-
-.grayBox .time {
-    color: #313131;
-    font-size: 8px;
-}
-
-.answerBox .time {
-    color: #E1E4E8;
-    font-size: 8px;
-}
-
-.answerBox {
-    padding: 10px;
-    border-radius: 10px 10px 0 10px;
-    width: fit-content;
-    background: #423C6A;
-}
-
-.answerBox p {
-    font-size: 12px;
-    font-weight: 500;
-    color: #E1E4E8;
-}
-
-.weekDayLine {
-    height: .5px;
-    width: 90%;
-    background-color: #92979D;
-}
-
-.dayTime p {
-    color: #313131;
-    font-size: 8px;
-    font-weight: 500px;
-    white-space: nowrap;
-
-}
-
-.dayTime {
-    margin-bottom: 30px;
-}
-
-.sendForm {
-    background: #FFF;
-    box-shadow: 0px -1px 0px 0px #EEE;
-    padding: 5px 10px;
-}
-
-.file-upload>input {
-    display: none;
-}
-
-.textField {
-    width: 100%;
-    border-radius: 5px;
-    background: var(--gray-100, #F0F2F3);
-    padding: 10px 12px;
-}
-
-.textField::placeholder {
-    color: var(--black, #313131);
-    font-size: 14px;
-    font-weight: 400;
-
-}
-
-.sendForm button {
-    background-color: transparent;
-    transition: 0.3s ease-in-out;
-}
-
-.sendForm button:hover {
-    opacity: .8;
-}
 
 /* Chat with Author Page End */
 
 
 /* Bookmark Page Start */
-
 .bookmarkInner {
     border-radius: 10px;
     background: var(--white, #FFF);
@@ -1160,23 +863,8 @@ select::-ms-expand {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.contact_gap{
-     gap: 40px;
+.contact_gap {
+    gap: 40px;
 }
 
 
@@ -1203,10 +891,15 @@ select::-ms-expand {
 
 
 @media only screen and (max-width:768px) {
-.contact_gap{
-display: flex;
-flex-direction: column;
-}
+    .text-end {
+        /* display: flex; */
+        justify-content: center;
+    }
+    .contact_gap {
+        display: flex;
+        flex-direction: column;
+    }
+
     h1 {
         font-size: 35px !important;
     }
@@ -1314,8 +1007,8 @@ flex-direction: column;
     }
 
     .authorName span {
-        font-size: 25px;
-        padding: 16px 50px;
+        font-size: 25px !important;
+        padding: 15px 25px !important;
         text-align: center;
     }
 
@@ -1329,7 +1022,7 @@ flex-direction: column;
 
     .authorInner {
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 70px;
     }
 
     /* ebook Preview Start */

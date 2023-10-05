@@ -9,6 +9,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import './AcountSetting.css'
+
 
 const ActivityGraph = () => {
   const data = [

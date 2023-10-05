@@ -4,7 +4,7 @@ import settings from "../../assets/images/message_settings.png";
 import upload from "../../assets/images/imgUpload.png";
 import attach from "../../assets/images/attachFile.png";
 import submit from "../../assets/images/submit.png";
-
+import './AuthorChat.css'
 const Conversation = () => {
   return (
     <div className="chatList">
@@ -58,7 +58,7 @@ const Conversation = () => {
         <div className="sendForm d-flex align-items-center gap-4">
           <div className="file-upload">
             <label htmlFor="file-input">
-              <button className="button_click">
+              <button type="button" className="button_click">
                 <img src={attach} alt="Attached File" />
               </button>
             </label>
@@ -70,7 +70,7 @@ const Conversation = () => {
             name="message"
             placeholder="Type your message here.."
           />
-          <button type="submit">
+          <button type="button">
             <img className="img-fluid" src={submit} alt="Submit Button" />
           </button>
         </div>

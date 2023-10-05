@@ -3,7 +3,7 @@ import messaging from "../../assets/images/message_txt.png";
 import settings from "../../assets/images/message_settings.png";
 import edit from "../../assets/images/message_edit.png";
 import profile from "../../assets/images/chatProfile.png";
-
+import "./AuthorChat.css";
 const ChatList = () => {
   return (
     <div className="readerBox">
@@ -12,16 +12,15 @@ const ChatList = () => {
           <img src={messaging} alt="Message" />
         </div>
         <div className="d-flex align-items-center gap-3">
-          <img src={settings} alt="Settings" />
-          <img src={edit} alt="Edit" />
+          <button className="button_click">
+            <img src={settings} alt="Settings" />
+          </button>
+          <button className="button_click">
+            <img src={edit} alt="Edit" />
+          </button>
         </div>
       </div>
       <div className="nameList d-flex align-items-center gap-2">
-        <img
-          className="img-fluid"
-          src="./assets/images/chatProfile.png"
-          alt=""
-        />
         <div className="d-flex align-items-center profile_gap">
           <img src={profile} alt="" />
           <div>

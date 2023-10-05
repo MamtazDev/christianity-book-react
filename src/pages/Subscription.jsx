@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Subscription.css";
 import CompletePayment from "../components/Modals/CompletePayment";
-import SubscriptionForOthersModal from "./SubscriptionForOthersModal";
 import p1 from "../assets/images/p1.png";
 import p2 from "../assets/images/p2.png";
 import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
+import SubscriptionForOthersModal from './../components/Modals/SubscriptionForOthersModal';
 const Subscription = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
@@ -37,9 +37,9 @@ const Subscription = () => {
       </div>
       <div className="subv_body">
         <p>Payment Information</p>
-        <form action="" class="profileSetting1  mt_30cp">
-          <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
-            <div class="payment_parent">
+        <form action="" className="profileSetting1  mt_30cp">
+          <div className="d-flex justify-content-start align-items-end gap_4 mb-5">
+            <div className="payment_parent">
               <input
                 type="radio"
                 name=""
@@ -56,7 +56,7 @@ const Subscription = () => {
                 </div>
               </div>
             </div>
-            <div class="payment_parent">
+            <div className="payment_parent">
               <input
                 type="radio"
                 name=""
@@ -72,22 +72,22 @@ const Subscription = () => {
               </div>
             </div>
           </div>
-          <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
-            <div class="inputContainer">
+          <div className="d-flex justify-content-start align-items-end gap_4 mb-5">
+            <div className="inputContainer">
               <label>Credit Card Number</label>
               <input type="text" placeholder="Enter Card Number" />
             </div>
-            <div class="inputContainer">
+            <div className="inputContainer">
               <label>Card Holder Name</label>
               <input type="text" placeholder="John Duo" />
             </div>
           </div>
-          <div class="d-flex justify-content-start align-items-end gap_4 mb-5">
-            <div class="inputContainer">
-              <div class="d-flex justify-content-start align-items-end gap_2 ">
-                <div class="inputContainer">
+          <div className="d-flex justify-content-start align-items-end gap_4 mb-5">
+            <div className="inputContainer">
+              <div className="d-flex justify-content-start align-items-end gap_2 ">
+                <div className="inputContainer">
                   <label>Expiry Date</label>
-                  <select class="" name="" id="">
+                  <select className="" name="" id="">
                     <option selected>1</option>
                     <option value="1">2</option>
                     <option value="2">3</option>
@@ -95,8 +95,8 @@ const Subscription = () => {
                     <option value="4">5</option>
                   </select>
                 </div>
-                <div class="inputContainer">
-                  <select class="" name="" id="">
+                <div className="inputContainer">
+                  <select className="" name="" id="">
                     <option selected>2029</option>
                     <option value="1">2030</option>
                     <option value="2">2031</option>
@@ -104,19 +104,19 @@ const Subscription = () => {
                 </div>
               </div>
             </div>
-            <div class="inputContainer">
+            <div className="inputContainer">
               <label>CVV/CVC</label>
               <input type="text" placeholder="Enter CVV/CVC Number" />
             </div>
           </div>
           <div className="purchase_sub">
-            <label class="checkbox">
+            <label className="checkbox">
               <input
                 type="checkbox"
                 onClick={() => setModalShow(true)}
-                class="checkbox__input"
+                className="checkbox__input"
               />
-              <span class="checkbox__inner"></span>
+              <span className="checkbox__inner"></span>
             </label>
             <SubscriptionForOthersModal
               show={modalShow}

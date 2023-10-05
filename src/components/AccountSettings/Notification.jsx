@@ -1,6 +1,7 @@
 import React from "react";
 import Deactivate from "../Modals/Deactivate";
 import DeactivateConfirm from "../Modals/DeactivateConfirm";
+import './AcountSetting.css'
 
 const Notification = () => {
   return (

@@ -9,7 +9,7 @@ const Banner = () => {
       <div className="banner mb_all">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 pt-5">
               <span>Let’s make the best Investment!</span>
               <h1>
                 Christianity is My Mental Disorder: A Client Guide to Recovery.

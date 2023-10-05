@@ -19,28 +19,28 @@ const CompleteProfileForm = () => {
         <h4>Complete your Profile!</h4>
         <p>Kindly Enter your Credentials Below to Create Your Profile.</p>
       </div>
-      <form action="" class="profileSetting mt_30cp">
+      <form action="" className="profileSetting mt_30cp">
         <div className="profile_pic">
         <img src={profile} alt="" />
         </div>
-        <div class="d-flex justify-content-start align-items-end gap-4 mb-5">
-          <div class="inputContainer">
+        <div className="d-flex justify-content-start align-items-end gap-4 mb-5 complete_profile_gap">
+          <div className="inputContainer">
             <label>Full Name</label>
             <input type="text" placeholder="John Duo" />
           </div>
-          <div class="inputContainer">
+          <div className="inputContainer">
             <label>Email Address</label>
             <input type="email" placeholder="johnduo@gmail.com" />
           </div>
         </div>
-        <div class="d-flex justify-content-start align-items-end gap-4 mb-5">
-          <div class="inputContainer">
+        <div className="d-flex justify-content-start align-items-end gap-4 mb-5 complete_profile_gap">
+          <div className="inputContainer">
             <label>Phone Number</label>
             <input type="text" placeholder="+1 123 456 789" />
           </div>
-          <div class="inputContainer">
+          <div className="inputContainer">
             <label>Country</label>
-            <select class="" name="" id="">
+            <select className="" name="" id="">
               <option selected>Country</option>
               <option value="1">Bangladesh</option>
               <option value="2">Nepal</option>

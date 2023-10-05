@@ -323,7 +323,7 @@ h1 {
   margin-bottom: 21px;
 }
 
-.banner a,
+
 .contactAll button {
   border-radius: 50px;
   background: var(--primary-color, #423c6a);
@@ -332,7 +332,27 @@ h1 {
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
+  margin: auto !important;
+  display: flex;
+  max-width: 263px !important;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
 }
+
+.banner a {
+  border-radius: 50px;
+  background: var(--primary-color, #423c6a);
+  padding: 13px 38px;
+  color: var(--white, #fff);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: auto !important;
+
+  gap: 10px;
+}
+
 
 /* Banner Section End */
 
