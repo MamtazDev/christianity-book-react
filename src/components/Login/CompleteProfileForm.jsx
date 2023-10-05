@@ -1,60 +1,96 @@
 import React, { useRef, useState } from "react";
-import round from "../../assets/images/round_pp1.png";
 import profile from "../../assets/images/profile_pic.png";
 const CompleteProfileForm = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  /*   const [selectedImage, setSelectedImage] = useState(null);
   const inputRef = useRef(null);
-
   const handleClick = () => {
     inputRef.current.click();
   };
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
+  }; */
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phoneNo: "",
+    country: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
   };
   return (
-    <div>
-      <div className="complete_profile_header">
-        <h4>Complete your Profile!</h4>
-        <p>Kindly Enter your Credentials Below to Create Your Profile.</p>
+    <>
+      <div className="profile_parent_container">
+        <div className="complete_profile_header">
+          <h4>Complete your Profile!</h4>
+          <p>Kindly Enter your Credentials Below to Create Your Profile.</p>
+        </div>
+        <form onSubmit={handleSubmit} className="profileSetting mt_30cp">
+          <div className="profile_pic">
+            <img src={profile} alt="" />
+          </div>
+          <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
+            <div className="inputContainer">
+              <label>Full Name</label>
+              <input
+                name="fullName"
+                type="text"
+                placeholder="John Duo"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="inputContainer">
+              <label>Email Address</label>
+              <input
+                name="email"
+                type="email"
+                placeholder="johnduo@gmail.com"
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
+            <div className="inputContainer">
+              <label>Phone Number</label>
+              <input
+                name="phoneNo"
+                type="text"
+                placeholder="+1 123 456 789"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="inputContainer">
+              <label>Country</label>
+              <select
+                name="country"
+                onChange={handleInputChange}
+                value={formData.country}
+              >
+                <option value="">Country</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Nepal">Nepal</option>
+                <option value="India">India</option>
+                <option value="Canada">Canada</option>
+              </select>
+            </div>
+          </div>
+          <div className="create_profile_button">
+            <button className="">Create Profile</button>
+          </div>
+        </form>
       </div>
-      <form action="" className="profileSetting mt_30cp">
-        <div className="profile_pic">
-        <img src={profile} alt="" />
-        </div>
-        <div className="d-flex justify-content-start align-items-end gap-4 mb-5 complete_profile_gap">
-          <div className="inputContainer">
-            <label>Full Name</label>
-            <input type="text" placeholder="John Duo" />
-          </div>
-          <div className="inputContainer">
-            <label>Email Address</label>
-            <input type="email" placeholder="johnduo@gmail.com" />
-          </div>
-        </div>
-        <div className="d-flex justify-content-start align-items-end gap-4 mb-5 complete_profile_gap">
-          <div className="inputContainer">
-            <label>Phone Number</label>
-            <input type="text" placeholder="+1 123 456 789" />
-          </div>
-          <div className="inputContainer">
-            <label>Country</label>
-            <select className="" name="" id="">
-              <option selected>Country</option>
-              <option value="1">Bangladesh</option>
-              <option value="2">Nepal</option>
-              <option value="3">India</option>
-              <option value="4">Canada</option>
-            </select>
-          </div>
-        </div>
-        <div className="create_profile_button">
-
-        <button className="">Create Profile</button>
-        </div>
-      </form>
-    </div>
+    </>
   );
 };
 

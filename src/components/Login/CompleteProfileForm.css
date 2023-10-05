@@ -56,3 +56,9 @@
   gap: 30px;
   justify-content: center !important;
 }
+.profile_parent_container{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin-top: 100px;
+}
