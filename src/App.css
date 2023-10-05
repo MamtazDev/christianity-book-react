@@ -218,9 +218,11 @@ footer {
     font-weight: 700;
 
 }
-.send_msg_button:hover{
-    color: var(--White, #FFF) !important; 
+
+.send_msg_button:hover {
+    color: var(--White, #FFF) !important;
 }
+
 .footer_button {
     display: flex;
     justify-content: center;
@@ -328,6 +330,7 @@ footer {
     font-weight: 700;
     transition: 0.4s ease-in-out;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .graybtn:hover {
@@ -344,6 +347,7 @@ footer {
     background: transparent;
     transition: 0.4s ease-in-out;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .othersSub:hover {
@@ -361,6 +365,7 @@ footer {
     background: transparent;
     transition: 0.4s ease-in-out;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .cancelSubBtn:hover {
@@ -885,9 +890,10 @@ footer {
     .clientGuide h3 {
         font-size: 30px;
     }
-.readerBox{
-    display: none;
-}
+
+    .readerBox {
+        display: none;
+    }
 }
 
 
@@ -897,6 +903,7 @@ footer {
         /* display: flex; */
         justify-content: center;
     }
+
     .contact_gap {
         display: flex;
         flex-direction: column;
@@ -1220,8 +1227,8 @@ footer {
 
     .changePassword button,
     .profileSetting button {
-        font-size: 16px;
-        padding: 12px 90px;
+        font-size: 16px !important;
+        padding: 12px 90px !important;
     }
 
     .changePassword button,
@@ -1254,6 +1261,8 @@ footer {
         padding: 12px 20px;
     }
 
+
+
     /* Setting Page End */
 }
 
@@ -1272,4 +1281,19 @@ footer {
     .chatList {
         width: 300px;
     }
+}
+
+.cancelSubBtn:focus-visible {
+    outline: red !important;
+    border: red !important;
+}
+.cancelSubBtn:focus {
+    outline: red !important;
+    border: red !important;
+}
+.graph_gap{
+    gap: 24px;
+}
+.recharts-cartesian-axis-ticks{
+    margin-top: 15px  !important;
 }

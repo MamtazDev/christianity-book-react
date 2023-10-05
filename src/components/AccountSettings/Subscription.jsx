@@ -23,8 +23,8 @@ const Subscription = () => {
               </h5>
             </div>
             <div className="d-flex align-items-center gap-2 cancel_sub_container">
-              <button className="graybtn">Cancel Subscription</button>
-              <button className="othersSub">Subscribe for Others</button>
+              <div type="button" className="graybtn">Cancel Subscription</div>
+              <div type="button" className="othersSub">Subscribe for Others</div>
             </div>
           </div>
           <div className="graySubLine  mt-3 mb-3"></div>
@@ -41,7 +41,7 @@ const Subscription = () => {
               <p className="text-center">johnduo@gmail.com</p>
             </div>
             <div>
-              <button className="cancelSubBtn">Cancel Subscription</button>
+              <div type="button" className="cancelSubBtn">Cancel Subscription</div>
             </div>
           </div>
           <div className="graySubLine mt-3 mb-3"></div>
@@ -54,7 +54,7 @@ const Subscription = () => {
               <p className="text-center">johnduo@gmail.com</p>
             </div>
             <div>
-              <button className="cancelSubBtn">Cancel Subscription</button>
+              <div type="button" className="cancelSubBtn">Cancel Subscription</div>
             </div>
           </div>
         </div>

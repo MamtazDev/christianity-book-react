@@ -64,7 +64,7 @@ const ActivityGraph = () => {
 
         <div className="d-flex align-items-center justify-content-between gap-4 flex-wrap mb-5">
           <div>
-            <div className="d-flex align-items-center gap-5">
+            <div className="d-flex align-items-center graph_gap">
               <div className="blue_dot">
                 <h6></h6>
                 <p>Current Week</p>
@@ -87,9 +87,8 @@ const ActivityGraph = () => {
         <ResponsiveContainer width="100%" height={360}>
           <LineChart data={data}>
             <CartesianGrid vertical={false} />
-            <XAxis dataKey="name" tickLine={false} axisLine={true} />
+            <XAxis dataKey="name" tickLine={false} axisLine={true} top={5}/>
             <YAxis axisLine={false} tickLine={false} />
-            {/* <Tooltip /> */}
             <Line
               type="monotone"
               dataKey="RSI"

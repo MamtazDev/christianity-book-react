@@ -2,7 +2,7 @@ import React from "react";
 
 const Pagination = () => {
   return (
-    <div className="b-pagination-outer d-flex justify-content-between align-items-center w-100 ms-auto mb_100">
+    <div className="b-pagination-outer d-flex justify-content-between align-items-center w-100 ml-auto mb_100">
       <ul className="border-pagination d-flex justify-content-between align-items-center mx-end">
         <li>
           <a href="#">

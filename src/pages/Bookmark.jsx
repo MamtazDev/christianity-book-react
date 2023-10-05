@@ -4,6 +4,7 @@ import Pagination from "../components/Utils/Pagination";
 import Points from "../components/Utils/Points";
 
 const Bookmark = () => {
+
   const options = [
     {
       title: "Getting Started",
@@ -51,21 +52,19 @@ const Bookmark = () => {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
     },
   ];
+
   return (
-    <div>
+    <>
       <div className="container">
         <PageHeading>Bookmarks</PageHeading>
         <h2 className="mb_40">
           You can check your <span className="txt_curve">Bookmarks</span>
           <br className="d-none d-lg-block" /> here!
         </h2>
-
         <Points options={options} />
-        {/* <!-- Paginattion Start --> */}
         <Pagination />
-        {/* <!-- Pagination End --> */}
       </div>
-    </div>
+    </>
   );
 };
 

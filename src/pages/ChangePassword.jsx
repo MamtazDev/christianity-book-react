@@ -5,10 +5,12 @@ import ChangePasswordForm from "../components/Login/ChangePasswordForm";
 
 const ChangePassword = () => {
   return (
-    <div className="row m-0" style={{ height: "100vh" }}>
-      <ChangePasswordForm />
-      <SideBanner image={image} />
-    </div>
+    <>
+      <div className="row m-0" style={{ height: "100vh" }}>
+        <ChangePasswordForm />
+        <SideBanner image={image} />
+      </div>
+    </>
   );
 };
 

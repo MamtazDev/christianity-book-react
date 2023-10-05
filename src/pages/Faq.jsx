@@ -15,13 +15,12 @@ const Faq = () => {
               <div className="accordion-item">
                 <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                   <button
-                    className="accordion-button"
+                    className="accordion-button text-left"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseOne"
                     aria-expanded="true"
                     aria-controls="panelsStayOpen-collapseOne"
-                    
                   >
                     Lorem Ipsum is simply dummy text of the printing.
                   </button>
@@ -43,7 +42,7 @@ const Faq = () => {
               <div className="accordion-item">
                 <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseTwo"
@@ -73,7 +72,7 @@ const Faq = () => {
                   id="panelsStayOpen-headingThree"
                 >
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseThree"
@@ -103,7 +102,7 @@ const Faq = () => {
                   id="panelsStayOpen-headingFour"
                 >
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseFour"
@@ -133,7 +132,7 @@ const Faq = () => {
                   id="panelsStayOpen-headingFive"
                 >
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseFive"
@@ -164,7 +163,7 @@ const Faq = () => {
               <div className="accordion-item">
                 <h2 className="accordion-header" id="panelsStayOpen-headingSix">
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseSix"
@@ -194,7 +193,7 @@ const Faq = () => {
                   id="panelsStayOpen-headingSeven"
                 >
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseSeven"
@@ -224,7 +223,7 @@ const Faq = () => {
                   id="panelsStayOpen-headingEight"
                 >
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseEight"
@@ -254,7 +253,7 @@ const Faq = () => {
                   id="panelsStayOpen-headingNine"
                 >
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseNine"
@@ -281,7 +280,7 @@ const Faq = () => {
               <div className="accordion-item">
                 <h2 className="accordion-header" id="panelsStayOpen-headingTen">
                   <button
-                    className="accordion-button collapsed"
+                    className="accordion-button text-left  collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseTen"
@@ -305,7 +304,33 @@ const Faq = () => {
                   </div>
                 </div>
               </div>
-            
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="panelsStayOpen-headingTen">
+                  <button
+                    className="accordion-button text-left  collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseTen"
+                    aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseTen"
+                  >
+                    Lorem Ipsum is simply dummy text of the printing.
+                  </button>
+                </h2>
+                <div
+                  id="panelsStayOpen-collapseTen"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="panelsStayOpen-headingTen"
+                >
+                  <div className="accordion-body">
+                    lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
