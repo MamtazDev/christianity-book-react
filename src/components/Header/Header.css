@@ -149,7 +149,7 @@
     max-width: 90px;
 }
 
-.profileShow .child {
+.child {
     position: absolute;
     top: 61px;
     right: 0;
@@ -163,16 +163,26 @@
     border: 1px solid #C2C9D1;
 }
 
-.profileShow:hover .child {
+.profileShow .childHover {
+    position: absolute;
+    top: 61px;
+    right: 0;
+    transition: 0.3s ease-in-out;
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    padding: 31px 20px;
+    width: 364px;
+    border: 1px solid #C2C9D1;
     visibility: visible;
     opacity: 1;
 }
 
 .profileShow .arrow {
     transition: 0.3s ease-in;
+    cursor: pointer;
 }
 
-.profileShow:hover .arrow {
+.profileShow .arrow {
     transform: rotate(180deg);
 }
 

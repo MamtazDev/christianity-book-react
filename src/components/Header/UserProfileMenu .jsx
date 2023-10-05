@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Header.css";
 import chat_icon from "../../assets/images/chat_icon.png";
 import notification_icon from "../../assets/images/notification_icon.png";
@@ -13,12 +13,31 @@ import bookmark from "../../assets/images/bookmark.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const UserProfileMenu = () => {
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
     navigate("/login");
   };
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -36,7 +55,9 @@ const UserProfileMenu = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"><i className="fa-solid fa-bars"></i></span>
+            <span className="navbar-toggler-icon">
+              <i className="fa-solid fa-bars"></i>
+            </span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -69,59 +90,73 @@ const UserProfileMenu = () => {
               <Link to="/notification">
                 <img src={notification_icon} alt="Notifications" />
               </Link>
-              <div className="profileShow d-flex align-items-center gap-1">
+              <div
+                className="profileShow d-flex align-items-center gap-1"
+                onClick={handleOpen}
+                ref={dropdownRef}
+              >
                 <Link to="/account-settings">
                   <img src={profile_round} alt="Profile Image" />
                 </Link>
-                <img className="arrow" src={drop_down} alt="Settings" />
-                <div className="child">
-                  <div className="profileName d-flex align-items-center gap-3">
-                    <img
-                      className="img-fluid"
-                      src={profile_round}
-                      alt="Profile Image"
-                    />
-                    <div>
-                      <p>John Duo</p>
-                      <span className="d-block">johnduo@gmail.com</span>
-                      <Link to="/complete-profile" className="mt-3" style={{marginTop:"10px"}}>
-                        Edit profile
+                <img
+                  className={open && `arrow`}
+                  src={drop_down}
+                  alt="Settings"
+                />
+                {open && (
+                  <div className={open ? `childHover` : `child`}>
+                    <div className="profileName d-flex align-items-center gap-3">
+                      <img
+                        className="img-fluid"
+                        src={profile_round}
+                        alt="Profile Image"
+                      />
+                      <div>
+                        <p>John Duo</p>
+                        <span className="d-block">johnduo@gmail.com</span>
+                        <Link
+                          to="/complete-profile"
+                          className="mt-3"
+                          style={{ marginTop: "10px" }}
+                        >
+                          Edit profile
+                        </Link>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="accSettings d-flex align-items-center gap-3">
+                      <img src={accountSetting} alt="Settings" />
+                      <Link to="/account-settings">Account Settings</Link>
+                    </div>
+                    <div className="accSettings d-flex align-items-center gap-3 ">
+                      <img src={bookmark} alt="Bookmarks" />
+                      <Link to="/bookmark">Bookmarks</Link>
+                    </div>
+                    <div className="accSettings d-flex align-items-center gap-3">
+                      <img src={highlight} alt="highlights" />
+                      <Link to="/highlights">Highlights</Link>
+                    </div>
+                    <div className="accSettings d-flex align-items-center gap-3">
+                      <img src={notes} alt="Notes" />
+                      <Link to="/my-notes">My Notes</Link>
+                    </div>
+                    <div className="accSettings d-flex align-items-center gap-3">
+                      <img src={faq} alt="FAQ" />
+                      <Link to="/faq">FAQ’s</Link>
+                    </div>
+                    <hr />
+                    <div
+                      type="button"
+                      onClick={handleLogout}
+                      className="accSettings d-flex align-items-center gap-3"
+                    >
+                      <img src={logout} alt="" />
+                      <Link to="/" style={{ color: "#E00000" }}>
+                        Logout
                       </Link>
                     </div>
                   </div>
-                  <hr />
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={accountSetting} alt="Settings" />
-                    <Link to="/account-settings">Account Settings</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3 ">
-                    <img src={bookmark} alt="Bookmarks" />
-                    <Link to="/bookmark">Bookmarks</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={highlight} alt="highlights" />
-                    <Link to="/highlights">Highlights</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={notes} alt="Notes" />
-                    <Link to="/my-notes">My Notes</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={faq} alt="FAQ" />
-                    <Link to="/faq">FAQ’s</Link>
-                  </div>
-                  <hr />
-                  <div
-                    type="button"
-                    onClick={handleLogout}
-                    className="accSettings d-flex align-items-center gap-3"
-                  >
-                    <img src={logout} alt="" />
-                    <Link to="/" style={{ color: "#E00000" }}>
-                      Logout
-                    </Link>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./LatestVideo.css";
+import { Link } from "react-router-dom";
 const LatestVideo = () => {
   return (
     <>
@@ -31,7 +32,7 @@ const LatestVideo = () => {
                     printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text.
                   </p>
-                  <button className="watch_btn">Watch Video</button>
+                  <button className="watch_btn"><Link to="/">Watch Video</Link></button>
                 </article>
               </div>
             </div>

@@ -37,13 +37,17 @@
     padding: 13.21px 23.84px 12.79px 24px;
     border-radius: 40px;
     background: var(--Primary-Color, #423C6A);
+   
+
+    margin-top: 22px;
+}
+.watch_btn a{
     color: var(--White, #FFF);
     text-align: center;
     font-family: Raleway;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-
+    
     text-decoration-line: underline;
-    margin-top: 22px;
 }
