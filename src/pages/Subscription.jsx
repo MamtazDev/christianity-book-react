@@ -88,7 +88,7 @@ const Subscription = () => {
                 <div className="inputContainer">
                   <label>Expiry Date</label>
                   <select className="" name="" id="">
-                    <option selected>1</option>
+                    <option value="0">1</option>
                     <option value="1">2</option>
                     <option value="2">3</option>
                     <option value="3">4</option>
@@ -97,7 +97,7 @@ const Subscription = () => {
                 </div>
                 <div className="inputContainer">
                   <select className="" name="" id="">
-                    <option selected>2029</option>
+                    <option value="0">2029</option>
                     <option value="1">2030</option>
                     <option value="2">2031</option>
                   </select>

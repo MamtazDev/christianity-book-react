@@ -1,80 +1,127 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
-import LogIn from "../pages/LogIn";
-import SignUp from "../pages/SignUp";
-import ResetPassword from "../pages/ResetPassword";
-import ResetVerification from "../pages/ResetVerification";
-import ChangePassword from "../pages/ChangePassword";
-import CompleteProfile from "../pages/CompleteProfile";
-import AccountSettings from "../pages/AccountSettings";
-import Bookmark from "../pages/Bookmark";
-import Layout from "../Layout/Layout";
-import ReadBook from "../pages/ReadBook";
-import Faq from "../pages/Faq";
-import Notification from "../pages/Notification";
-import HighLights from "../pages/HighLights";
-import MyNotes from "../pages/MyNotes";
+import { Suspense, lazy, startTransition } from "react";
 import PrivateRoute from "./PrivateRoute";
-import Subscription from "./../pages/Subscription";
-import AuthorChat from "./../components/AuthorChat/AuthorChat";
-import Contact from './../pages/Contact';
+
+const importComponent = (path) =>
+  lazy(() => import(path).then((module) => ({ default: module.default })));
+
+const Home = importComponent("../pages/Home");
+const LogIn = importComponent("../pages/LogIn");
+const SignUp = importComponent("../pages/SignUp");
+const ResetPassword = importComponent("../pages/ResetPassword");
+const ResetVerification = importComponent("../pages/ResetVerification");
+const ChangePassword = importComponent("../pages/ChangePassword");
+const CompleteProfile = importComponent("../pages/CompleteProfile");
+const AccountSettings = importComponent("../pages/AccountSettings");
+const Bookmark = importComponent("../pages/Bookmark");
+const Layout = importComponent("../Layout/Layout");
+const ReadBook = importComponent("../pages/ReadBook");
+const Faq = importComponent("../pages/Faq");
+const Notification = importComponent("../pages/Notification");
+const HighLights = importComponent("../pages/HighLights");
+const MyNotes = importComponent("../pages/MyNotes");
+const Subscription = importComponent("../pages/Subscription");
+const AuthorChat = importComponent("../components/AuthorChat/AuthorChat");
+const Contact = importComponent("../pages/Contact");
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Home />
+      </Suspense>
+    ),
+  },
   {
     path: "/login",
-    element: <LogIn />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <LogIn />
+      </Suspense>
+    ),
   },
 
   {
     path: "/signUp",
-    element: <SignUp />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <SignUp />
+      </Suspense>
+    ),
   },
-
   {
     path: "/reset-password",
-    element: <ResetPassword />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <ResetPassword />
+      </Suspense>
+    ),
   },
 
   {
     path: "/reset-verification",
-    element: <ResetVerification />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <ResetVerification />
+      </Suspense>
+    ),
   },
 
   {
     path: "/change-password",
-    element: <ChangePassword />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <ChangePassword />
+      </Suspense>
+    ),
   },
 
   {
     path: "/complete-profile",
-    element: <CompleteProfile />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <CompleteProfile />
+      </Suspense>
+    ),
   },
-
   {
     path: "/subscription",
     element: (
       <PrivateRoute>
-        <Subscription />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Subscription />
+        </Suspense>
       </PrivateRoute>
     ),
   },
-
   {
     path: "/",
     element: <Layout />,
     children: [
       {
-        path: "/contact",
-        element: <Contact />,
+        path: "/faq",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Faq />
+          </Suspense>
+        ),
       },
-      
+      {
+        path: "/contact",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Contact />
+          </Suspense>
+        ),
+      },
       {
         path: "/account-settings",
         element: (
           <PrivateRoute>
-            <AccountSettings />
+            <Suspense fallback={<div>Loading...</div>}>
+              <AccountSettings />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -83,7 +130,9 @@ export const router = createBrowserRouter([
         path: "/author-chat",
         element: (
           <PrivateRoute>
-            <AuthorChat />
+            <Suspense fallback={<div>Loading...</div>}>
+              <AuthorChat />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -92,49 +141,52 @@ export const router = createBrowserRouter([
         path: "/bookmark",
         element: (
           <PrivateRoute>
-            <Bookmark />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Bookmark />
+            </Suspense>
           </PrivateRoute>
         ),
       },
-
       {
         path: "/read-book",
         element: (
           <PrivateRoute>
-            <ReadBook />
+            <Suspense fallback={<div>Loading...</div>}>
+              <ReadBook />
+            </Suspense>
           </PrivateRoute>
         ),
       },
-
-      { path: "/faq", element: <Faq /> },
-
       {
         path: "/notification",
         element: (
           <PrivateRoute>
-            <Notification />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Notification />
+            </Suspense>
           </PrivateRoute>
         ),
       },
-
       {
         path: "/highlights",
         element: (
           <PrivateRoute>
-            <HighLights />
+            <Suspense fallback={<div>Loading...</div>}>
+              <HighLights />
+            </Suspense>
           </PrivateRoute>
         ),
       },
-
       {
         path: "/my-notes",
         element: (
           <PrivateRoute>
-            <MyNotes />
+            <Suspense fallback={<div>Loading...</div>}>
+              <MyNotes />
+            </Suspense>
           </PrivateRoute>
         ),
       },
-      
     ],
   },
 ]);

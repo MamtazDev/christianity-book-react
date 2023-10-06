@@ -29,7 +29,6 @@ const ContactForm = () => {
       message: "",
     });
   };
-
   return (
     <div className="contactAll">
       <h2 className="mb-3">

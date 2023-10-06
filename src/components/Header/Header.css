@@ -243,7 +243,10 @@
 .accSettings:last-child a {
     font-weight: 700 !important;
 }
+.logout{
+    margin-bottom: 0px !important;
 
+}
 .accSettings a:hover {
     /* opacity: .9; */
     font-weight: 700 !important;

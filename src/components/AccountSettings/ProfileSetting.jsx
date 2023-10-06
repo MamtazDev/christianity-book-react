@@ -21,13 +21,16 @@ const ProfileSetting = () => {
     e.preventDefault();
     console.log(formData);
   };
-
+  const userDataString = localStorage.getItem("loggedInUser");
+  const userData = JSON.parse(userDataString);
+  const email = userData.email;
+  const username = userData.username;
   return (
     <div>
       <div className="mb_40">
         <h3>Profile Settings</h3>
         <p>
-          Here you can change your profile data you use on{" "}
+          Here you can change your profile data you use on
           <span>Christianity Book</span>.
         </p>
       </div>
@@ -40,6 +43,7 @@ const ProfileSetting = () => {
               type="text"
               placeholder="John Duo"
               onChange={handleInputChange}
+              value={username}
             />
           </div>
           <div className="inputContainer1">
@@ -49,6 +53,7 @@ const ProfileSetting = () => {
               type="email"
               placeholder="johnduo@gmail.com"
               onChange={handleInputChange}
+              value={email}
             />
           </div>
         </div>
@@ -69,7 +74,7 @@ const ProfileSetting = () => {
               onChange={handleInputChange}
               value={formData.country}
             >
-              <option value="">Country</option>
+              <option value="Country">Country</option>
               <option value="Bangladesh">Bangladesh</option>
               <option value="Nepal">Nepal</option>
               <option value="India">India</option>

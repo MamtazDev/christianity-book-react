@@ -18,7 +18,7 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+            <span className="navbar-toggler-icon"><i className="fa-solid fa-bars"></i></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">

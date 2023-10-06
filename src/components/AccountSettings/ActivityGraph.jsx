@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -9,54 +9,200 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import './AcountSetting.css'
+import "./AcountSetting.css";
 
+const data2 = [
+  {
+    name: "Thu",
+    Price: 80,
+    RSI: 90,
+    amt: 2000,
+  },
+  {
+    name: "Wed",
+    Price: 80,
+    RSI: 60,
+    amt: 2290,
+  },
+
+  {
+    name: "Fri",
+    Price: 100,
+    RSI: 90,
+    amt: 2181,
+  },
+  {
+    name: "Mon",
+    Price: 20,
+    RSI: 30,
+    amt: 2400,
+  },
+
+  {
+    name: "Sat",
+    Price: 100,
+    RSI: 110,
+    amt: 2500,
+  },
+  {
+    name: "Sun",
+    Price: 110,
+    RSI: 100,
+    amt: 2100,
+  },
+  {
+    name: "Tue",
+    Price: 40,
+    RSI: 30,
+    amt: 2210,
+  },
+];
+const data = [
+  {
+    name: "Mon",
+    Price: 20,
+    RSI: 30,
+    amt: 2400,
+  },
+  {
+    name: "Tue",
+    Price: 40,
+    RSI: 30,
+    amt: 2210,
+  },
+  {
+    name: "Wed",
+    Price: 80,
+    RSI: 60,
+    amt: 2290,
+  },
+  {
+    name: "Thu",
+    Price: 80,
+    RSI: 90,
+    amt: 2000,
+  },
+  {
+    name: "Fri",
+    Price: 100,
+    RSI: 90,
+    amt: 2181,
+  },
+  {
+    name: "Sat",
+    Price: 100,
+    RSI: 110,
+    amt: 2500,
+  },
+  {
+    name: "Sun",
+    Price: 110,
+    RSI: 100,
+    amt: 2100,
+  },
+];
+const data3 = [
+  {
+    name: "Mon",
+    Price: 20,
+    RSI: 30,
+    amt: 2400,
+  },
+  {
+    name: "Tue",
+    Price: 40,
+    RSI: 30,
+    amt: 2210,
+  },
+  {
+    name: "Wed",
+    Price: 80,
+    RSI: 60,
+    amt: 2290,
+  },
+  {
+    name: "Thu",
+    Price: 80,
+    RSI: 90,
+    amt: 2000,
+  },
+  {
+    name: "Fri",
+    Price: 100,
+    RSI: 90,
+    amt: 2181,
+  },
+  {
+    name: "Sat",
+    Price: 100,
+    RSI: 110,
+    amt: 2500,
+  },
+  {
+    name: "Sun",
+    Price: 110,
+    RSI: 100,
+    amt: 2100,
+  },
+  {
+    name: "Mon",
+    Price: 20,
+    RSI: 30,
+    amt: 2400,
+  },
+  {
+    name: "Tue",
+    Price: 40,
+    RSI: 30,
+    amt: 2210,
+  },
+  {
+    name: "Wed",
+    Price: 80,
+    RSI: 60,
+    amt: 2290,
+  },
+  {
+    name: "Thu",
+    Price: 80,
+    RSI: 90,
+    amt: 2000,
+  },
+  {
+    name: "Fri",
+    Price: 100,
+    RSI: 90,
+    amt: 2181,
+  },
+  {
+    name: "Sat",
+    Price: 100,
+    RSI: 110,
+    amt: 2500,
+  },
+  {
+    name: "Sun",
+    Price: 110,
+    RSI: 100,
+    amt: 2100,
+  },
+];
 
 const ActivityGraph = () => {
-  const data = [
-    {
-      name: "Mon",
-      Price: 20,
-      RSI: 30,
-      amt: 2400,
-    },
-    {
-      name: "Tue",
-      Price: 40,
-      RSI: 30,
-      amt: 2210,
-    },
-    {
-      name: "Wed",
-      Price: 80,
-      RSI: 60,
-      amt: 2290,
-    },
-    {
-      name: "Thu",
-      Price: 80,
-      RSI: 90,
-      amt: 2000,
-    },
-    {
-      name: "Fri",
-      Price: 100,
-      RSI: 90,
-      amt: 2181,
-    },
-    {
-      name: "Sat",
-      Price: 100,
-      RSI: 110,
-      amt: 2500,
-    },
-    {
-      name: "Sun",
-      Price: 110,
-      RSI: 100,
-      amt: 2100,
-    },
-  ];
+  const [chartData, setChartData] = useState(data);
+
+  const chartDataHandler = (event) => {
+    const selectedOption = event.target.value;
+
+    if (selectedOption === "Weekly") {
+      setChartData(data);
+    } else if (selectedOption === "Monthly") {
+      setChartData(data2);
+    } else if (selectedOption === "Yearly") {
+      setChartData(data3);
+    }
+  };
+
   return (
     <div className="mb_100">
       <div className="activity">
@@ -76,18 +222,18 @@ const ActivityGraph = () => {
             </div>
           </div>
           <div>
-            <select>
-              <option>Weekly</option>
-              <option>Monthly</option>
-              <option>Yearly</option>
+            <select onClick={chartDataHandler}>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
             </select>
           </div>
         </div>
 
         <ResponsiveContainer width="100%" height={360}>
-          <LineChart data={data}>
+          <LineChart data={chartData}>
             <CartesianGrid vertical={false} />
-            <XAxis dataKey="name" tickLine={false} axisLine={true} top={5}/>
+            <XAxis dataKey="name" tickLine={false} axisLine={true} top={5} />
             <YAxis axisLine={false} tickLine={false} />
             <Line
               type="monotone"

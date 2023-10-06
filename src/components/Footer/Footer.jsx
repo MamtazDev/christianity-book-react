@@ -8,11 +8,10 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer>
-      <div className="container">
-        <div className="d-flex justify-content-between footerBox gap-2">
-          <div>
-            <p style={{ fontSize: "40px" }}>Your Logo</p>
-          </div>
+      <div className="container d-flex align-items-start flex-wrap " style={{gap:"189px"}}>
+        <p style={{ fontSize: "40px" }} className="">Your Logo</p>
+        <div className="d-flex justify-content-center  footerBox gap-2">
+          <div></div>
           <div style={{ maxWidth: "700px" }}>
             <p className="mb_4">
               Do You Seek Answers? Reach Out to Me for a Question, at an

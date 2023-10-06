@@ -3,18 +3,15 @@ import deactiveSuccess from "../../assets/images/deactive_success.png";
 import close from "../../assets/images/close.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-// import "./Subscription.css";
-import CompleteSubmisionotherModal from "./CompleteSubmisionotherModal";
 const SubscriptionForOthersModal = (props) => {
   const [secondModalShow, setSecondModalShow] = React.useState(false);
 
   const sendHandler = () => {
-    // props.onHide(false);
     setSecondModalShow(true);
   };
-const hideHandler=()=>{
-  props.onHide(false)
-}
+  const hideHandler = () => {
+    props.onHide(false);
+  };
   return (
     <>
       <Modal
@@ -31,11 +28,19 @@ const hideHandler=()=>{
           </Modal.Title>
         </Modal.Header>
         {secondModalShow ? (
-          <Modal.Body className="modal_body_subforother"> 
-          <img src={deactiveSuccess} alt="Deactivate Account" />
+          <Modal.Body className="modal_body_subforother">
+            <img src={deactiveSuccess} alt="Deactivate Account" />
             <h4>Payment Successful!</h4>
             <p>
-              You have successfully obtain subscription for johnduo@gmail.com.
+              You have successfully obtain subscription for{" "}
+              <span
+                style={{
+                  color: "var(--Secondry-Color, #FFB230)",
+                  fontWeight: "700",
+                }}
+              >
+                johnduo@gmail.com.
+              </span>
             </p>
           </Modal.Body>
         ) : (

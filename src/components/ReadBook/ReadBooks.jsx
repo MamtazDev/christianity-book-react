@@ -7,7 +7,7 @@ import Pagination from "../Utils/Pagination";
 
 const ReadBooks = () => {
   return (
-    <div className=" previewBook mb-ebook .mb_100 mb-5">
+    <div className=" previewBook mb-ebook mb-5">
       <div className="row bookHeight m-0 gap-5">
         <div className="col-12 col-lg-3 bookScroll">
           <div className="bookIndex d-flex flex-column">
@@ -21,9 +21,9 @@ const ReadBooks = () => {
           </div>
         </div>
         <div className="col-12 col-lg-9">
-          <div className="detalisPage m-200">
+          <div className="detalisPage">
             <img className=" h-100" src={bookCover} alt="Book Cover" />
-            <Pagination className="w-100" />
+            {/* <Pagination className="w-100" /> */}
           </div>
         </div>
         {/* <div className="col-12 col-lg-1"></div> */}

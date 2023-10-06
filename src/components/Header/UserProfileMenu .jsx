@@ -15,7 +15,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 const UserProfileMenu = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -38,6 +37,11 @@ const UserProfileMenu = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const userDataString = localStorage.getItem("loggedInUser");
+  const userData = JSON.parse(userDataString);
+  const email = userData.email;
+  const username = userData.username;
 
   return (
     <>
@@ -95,11 +99,15 @@ const UserProfileMenu = () => {
                 onClick={handleOpen}
                 ref={dropdownRef}
               >
-                <buttom type="button" style={{ cursor: "pointer" }}>
+                <button
+                  type="button"
+                  className="button_click"
+                  style={{ cursor: "pointer" }}
+                >
                   <img src={profile_round} alt="Profile Image" />
-                </buttom>
+                </button>
                 <img
-                  className={open && `arrow`}
+                  className={open ? `arrow` : ""}
                   src={drop_down}
                   alt="Settings"
                 />
@@ -112,8 +120,10 @@ const UserProfileMenu = () => {
                         alt="Profile Image"
                       />
                       <div>
-                        <p>John Duo</p>
-                        <span className="d-block">johnduo@gmail.com</span>
+                        <p>{username ? username : "Joe"}</p>
+                        <span className="d-block">
+                          {email ? email : "joe@gmail.com"}
+                        </span>
                         <Link
                           to="/complete-profile"
                           className="mt-3"
@@ -148,7 +158,7 @@ const UserProfileMenu = () => {
                     <div
                       type="button"
                       onClick={handleLogout}
-                      className="accSettings d-flex align-items-center gap-3"
+                      className="accSettings d-flex align-items-center gap-3 logout"
                     >
                       <img src={logout} alt="" />
                       <Link to="/" style={{ color: "#E00000" }}>

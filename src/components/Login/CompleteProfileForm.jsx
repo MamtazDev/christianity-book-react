@@ -1,15 +1,6 @@
 import React, { useRef, useState } from "react";
 import profile from "../../assets/images/profile_pic.png";
 const CompleteProfileForm = () => {
-  /*   const [selectedImage, setSelectedImage] = useState(null);
-  const inputRef = useRef(null);
-  const handleClick = () => {
-    inputRef.current.click();
-  };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-  }; */
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -29,6 +20,10 @@ const CompleteProfileForm = () => {
     e.preventDefault();
     console.log(formData);
   };
+  const userDataString = localStorage.getItem("loggedInUser");
+  const userData = JSON.parse(userDataString);
+  const email = userData.email;
+  const username = userData.username;
   return (
     <>
       <div className="profile_parent_container">
@@ -48,6 +43,7 @@ const CompleteProfileForm = () => {
                 type="text"
                 placeholder="John Duo"
                 onChange={handleInputChange}
+                value={username}
               />
             </div>
             <div className="inputContainer1">
@@ -57,6 +53,7 @@ const CompleteProfileForm = () => {
                 type="email"
                 placeholder="johnduo@gmail.com"
                 onChange={handleInputChange}
+                value={email}
               />
             </div>
           </div>
@@ -77,7 +74,7 @@ const CompleteProfileForm = () => {
                 onChange={handleInputChange}
                 value={formData.country}
               >
-                <option value="">Country</option>
+                <option value="country">Country</option>
                 <option value="Bangladesh">Bangladesh</option>
                 <option value="Nepal">Nepal</option>
                 <option value="India">India</option>
