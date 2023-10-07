@@ -37,8 +37,8 @@ const Subscription = () => {
       </div>
       <div className="subv_body">
         <p>Payment Information</p>
-        <form action="" className="profileSetting1  mt_30cp">
-          <div className="d-flex justify-content-start align-items-end gap_4 mb-5">
+        <form action="" className="subscription  mt_30cp">
+          <div className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_4 mb-5">
             <div className="payment_parent">
               <input
                 type="radio"
@@ -72,44 +72,54 @@ const Subscription = () => {
               </div>
             </div>
           </div>
-          <div className="d-flex justify-content-start align-items-end gap_4 mb-5">
-            <div className="inputContainer">
-              <label>Credit Card Number</label>
-              <input type="text" placeholder="Enter Card Number" />
-            </div>
-            <div className="inputContainer">
-              <label>Card Holder Name</label>
-              <input type="text" placeholder="John Duo" />
+
+          <div className="profileSetting3 mb_40">
+            <div className="d-flex justify-content-start flex-wrap flex-md-nowrap gap_4 mb-5">
+              <div className="inputContainer2">
+                <label>Full Name</label>
+                <input name="fullName" type="text" placeholder="John Duo" />
+              </div>
+              <div className="inputContainer2">
+                <label>Email Address</label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="johnduo@gmail.com"
+                />
+              </div>
             </div>
           </div>
-          <div className="d-flex justify-content-start align-items-end gap_4 mb-5">
-            <div className="inputContainer">
-              <div className="d-flex justify-content-start align-items-end gap_2 ">
-                <div className="inputContainer">
-                  <label>Expiry Date</label>
-                  <select className="" name="" id="">
+          <div>
+            <div className="d-flex gap_4 w-100">
+              <div className="w-100">
+                <label>Expiry Date</label>
+                <div className="d-flex flex-wrap flex-md-nowrap gap_4 w-100">
+                  <select className="w-100" name="" id="">
                     <option value="0">1</option>
                     <option value="1">2</option>
                     <option value="2">3</option>
                     <option value="3">4</option>
                     <option value="4">5</option>
                   </select>
-                </div>
-                <div className="inputContainer">
-                  <select className="" name="" id="">
+                  <select className="w-100 pb-2" name="" id="">
                     <option value="0">2029</option>
                     <option value="1">2030</option>
                     <option value="2">2031</option>
                   </select>
                 </div>
               </div>
-            </div>
-            <div className="inputContainer">
-              <label>CVV/CVC</label>
-              <input type="text" placeholder="Enter CVV/CVC Number" />
+              <div className="w-100">
+                <label>CVV/CVC</label>
+                <input
+                  className="w-100"
+                  type="text"
+                  placeholder="Enter CVV/CVC Number"
+                />
+              </div>
             </div>
           </div>
-          <div className="purchase_sub">
+
+          <div className="purchase_sub mt_30cp mt-4">
             <label className="checkbox">
               <input
                 type="checkbox"

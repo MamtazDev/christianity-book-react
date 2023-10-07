@@ -57,8 +57,47 @@
   justify-content: center !important;
 }
 .profile_parent_container{
-  /* display: flex;
+  /* display: flex; 
   justify-content: center;
   align-items: center; */
   margin-top: 100px;
+}
+.completeprofile_inputContainer {
+  width: 100% !important;
+  max-width: 356px !important;
+  display: block;
+}
+.completeprofile_inputContainer label {
+  color: var(--gray-400, #92979D);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: block;
+}
+.completeprofile_inputContainer input{
+  border-bottom: 2px solid #C2C9D1 !important;
+}
+
+.changePassword input,
+.profileSetting input,
+.profileSetting select {
+    border-bottom: 2px solid #C2C9D1;
+    width: 100%;
+}
+select {
+  border: none;
+}
+.create_profile_button  button{
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 14px 90px;
+  border-radius: 32px;
+  background: var(--primary-color, #423C6A);
+  box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+  transition: 0.4s ease-in-out;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
 }

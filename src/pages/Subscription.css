@@ -265,7 +265,6 @@ button {
     justify-content: center;
     align-items: center;
     gap: 16px;
-    width: 340px;
 }
 
 .flex_payment {
@@ -300,4 +299,78 @@ button {
 .payment_method_radio {
     width: 20px !important;
     height: 20px !important;
+}
+
+.subscription input,select{
+    border-bottom: 2px solid #C2C9D1 !important;
+    display: block;
+
+
+}
+
+.sub_input {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sub_input input {
+    min-width: 429px !important;
+    width: 100% !important;
+}
+
+.sub_inputcontainer label {
+    display: block;
+}
+
+.sub_select_date {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sub_select_date select {
+    border: none;
+    border-bottom: 1px solid #C2C9D1;
+    min-width: 209px !important;
+    width: 100% !important;
+}
+.completeProfileContainer a {
+    color: #313131;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.create_profile_button button{
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 14px 90px;
+    border-radius: 32px;
+    background: var(--primary-color, #423C6A);
+    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.4s ease-in-out;
+    white-space: nowrap;
+    margin: auto !important;
+    display: flex;
+
+}
+.completeProfileContainer {
+    padding: 31px 50px;
+}
+@media (max-width:768px) {
+    .sub_input input {
+        max-width: 429px !important;
+        width: 100% !important;
+    }
+
+    .sub_select_date select {
+        border: none;
+        border-bottom: 1px solid #C2C9D1;
+        max-width: 209px !important;
+        width: 100% !important;
+    }
 }

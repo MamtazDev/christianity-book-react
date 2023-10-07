@@ -70,14 +70,35 @@
   width: 100%;
   padding-bottom: 9px;
 }
+.logInContainer form .inputContainer1 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 2px solid #c2c9d1;
+  width: 100%;
+  padding-bottom: 9px;
+}
 
 .logInContainer form .inputContainer input {
   width: 100%;
   outline: unset;
   border: unset;
 }
+.logInContainer form .inputContainer1 input {
+  width: 100%;
+  outline: unset;
+  border: unset;
+}
 
 .logInContainer form .inputContainer input::placeholder {
+  color: #423c6a;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.logInContainer form .inputContainer1 input::placeholder {
   color: #423c6a;
   font-size: 16px;
   font-style: normal;

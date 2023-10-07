@@ -117,7 +117,7 @@ const AccountSetting = () => {
 
       <form onSubmit={handleEmailSubmit} className="changeEmail">
         <div className="d-flex justify-content-start align-items-end gap-4 acount_gap">
-          <div className="inputContainer1">
+          <div className="inputContainer">
             <label>Change Email</label>
             <input
               type="email"
