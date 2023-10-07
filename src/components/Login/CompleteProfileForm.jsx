@@ -24,6 +24,24 @@ const CompleteProfileForm = () => {
   const userData = JSON.parse(userDataString);
   const email = userData.email;
   const username = userData.username;
+
+  // image
+  const uploadedImage = React.useRef(null);
+  const imageUploader = React.useRef(null);
+
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      const reader = new FileReader();
+      const { current } = uploadedImage;
+      current.file = file;
+      reader.onload = (e) => {
+        current.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <>
       <div className="profile_parent_container">
@@ -33,7 +51,54 @@ const CompleteProfileForm = () => {
         </div>
         <form onSubmit={handleSubmit} className="profileSetting mt_30cp">
           <div className="profile_pic">
-            <img src={profile} alt="" />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                ref={imageUploader}
+                style={{
+                  display: "none",
+                }}
+              />
+              {/* <div
+                style={{
+                  height: "60px",
+                  width: "60px",
+                  border: "1px dashed black",
+                }}
+                onClick={() => imageUploader.current.click()}
+              >
+                <img
+                  ref={uploadedImage}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "acsolute",
+                  }}
+                />
+              </div> */}
+            </div>
+
+            <div className="image_upload" onClick={() => imageUploader.current.click()}>
+              <img
+                ref={uploadedImage}
+                style={{
+                  // width: "10%",
+                  // height: "10%",
+                  position: "acsolute",
+                }}
+                src={profile}
+                alt=""
+              />
+            </div>
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
             <div className="completeprofile_inputContainer">
