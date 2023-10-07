@@ -7,47 +7,26 @@ import submit from "../../assets/images/submit.png";
 import "./AuthorChat.css";
 const Conversation = () => {
   const initialState = [
-    { type: "receiver", content: [] },
     { type: "sender", content: [] },
+    { type: "receiver", content: ["i got your message"] },
   ];
-  const [state, setState] = useState(initialState);
+  const [chatData, setChatData] = useState(initialState);
   const [message, setMessage] = useState("");
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
   const handleSubmit = () => {
     if (message.trim() !== "") {
-      const updatedState = state.map((msg) => {
-        if (msg.type === "sender") {
-          return { ...msg, content: [...msg.content, message] };
-        }
-        return msg;
-      });
-      setState(updatedState);
+      const newMessage = { type: "sender", content: [message] };
+      const newMessageForReceiver = { type: "receiver", content: [message] };
+      setChatData([...chatData, newMessage]);
       setMessage("");
 
-      localStorage.setItem("chatState", JSON.stringify(updatedState));
-      const updatedReceiverState = [
-        { type: "receiver", content: ["i got your message"] },
-        ...updatedState.slice(1),
-      ];
       setTimeout(() => {
-        setState(updatedReceiverState);
-        localStorage.setItem("chatState", JSON.stringify(updatedReceiverState));
-      }, 1000);
+        setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
+      }, 2000);
     }
   };
-  useEffect(() => {
-    const chatStateFromLocalStorage = localStorage.getItem("chatState");
-    if (chatStateFromLocalStorage) {
-      setState(JSON.parse(chatStateFromLocalStorage));
-    }
-  }, [setMessage]);
-  const receiverContent =
-    state.find((msg) => msg.type === "receiver")?.content || [];
-  const senderContent =
-    state.find((msg) => msg.type === "sender")?.content || [];
-
   return (
     <div className="chatList">
       <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
@@ -63,30 +42,29 @@ const Conversation = () => {
         </button>
       </div>
       {/* receiver */}
-      {receiverContent.map((data) => (
-        <div className="grayBox mb-3">
-          <div className="whiteBox mb-3">
-            <span className="d-block text-dark">you</span>
-            <p>{data}</p>
+      {chatData.map((data, index) =>
+        data.type === "receiver" ? (
+          <div className="grayBox mb-3">
+            <div className="whiteBox mb-3">
+              <span className="d-block text-dark">you</span>
+              <p>{data.content}</p>
+            </div>
+            <span className="d-block time">16.00</span>
           </div>
-          {/* <p className="mb-2">of course, let me know if you are on the way.</p> */}
-          <span className="d-block time">16.00</span>
-        </div>
-      ))}
-      {senderContent.map((data) => (
-        <div className="answerBox ml-auto mb-3">
-          <p className="mb-2">{data} </p>
-          <span className="d-block time">16.00 .Read</span>
-        </div>
-      ))}
-
+        ) : (
+          <div className="answerBox ml-auto mb-3">
+            <p className="mb-2">{data.content} </p>
+            <span className="d-block time">16.00 .Read</span>
+          </div>
+        )
+      )}
       <div className="dayTime d-flex align-items-center gap-1">
         <div className="weekDayLine"></div>
         <p>Dec 7/10</p>
         <div className="weekDayLine"></div>
       </div>
 
-      <form action="" onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="sendForm d-flex align-items-center gap-4">
           <div className="file-upload">
             <label htmlFor="file-input">
