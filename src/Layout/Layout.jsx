@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 import UserProfileMenu from "../components/Header/UserProfileMenu ";
 import { useEffect, useState } from "react";
+import ScrollToTop from "../Routes/ScrollToTop ";
 
 const Layout = () => {
   const [userData, setUserData] = useState(null);
@@ -15,6 +16,7 @@ const Layout = () => {
   }, []);
   return (
     <>
+      <ScrollToTop />
       {userData ? <UserProfileMenu /> : <Header />}
       <Outlet />
       <Footer />

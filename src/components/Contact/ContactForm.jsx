@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import rightArrow from "../../assets/images/right_arrow.png";
 import "./Contact.css";
+import Swal from "sweetalert2";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -17,10 +18,16 @@ const ContactForm = () => {
       [name]: value,
     });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Message sent successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     setFormData({
       fullName: "",
       emailAddress: "",

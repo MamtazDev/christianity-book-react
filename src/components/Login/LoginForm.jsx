@@ -36,7 +36,6 @@ const LoginForm = () => {
     } else if (user.password !== password) {
       alert("Incorrect password. Please try again.");
     } else {
-      // Create a new array for the currently logged-in user
       const loggedInUser = { email: user.email, username: user.username };
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       Swal.fire({

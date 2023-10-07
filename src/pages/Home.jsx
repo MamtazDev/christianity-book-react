@@ -8,7 +8,7 @@ import LatestVideo from "../components/Home/LatestVideo/LatestVideo";
 import PointsCovered from "../components/Home/PointsCovered/PointsCovered";
 import Author from "../components/Home/Author/Author";
 import UserProfileMenu from "../components/Header/UserProfileMenu ";
-import Banner from './../components/Home/Banner/Banner';
+import Banner from "./../components/Home/Banner/Banner";
 
 const Home = () => {
   const [userData, setUserData] = useState(null);

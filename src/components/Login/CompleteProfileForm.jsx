@@ -1,13 +1,9 @@
 import React, { useRef, useState } from "react";
 import profile from "../../assets/images/profile_pic.png";
-const CompleteProfileForm = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phoneNo: "",
-    country: "",
-  });
+import Swal from "sweetalert2";
 
+const CompleteProfileForm = () => {
+  const [droppedImage, setDroppedImage] = useState(null);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -15,23 +11,47 @@ const CompleteProfileForm = () => {
       [name]: value,
     });
   };
-
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phoneNo: "",
+    country: "",
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    const userDataString = localStorage.getItem("loggedInUser");
+    const userDatas = JSON.parse(userDataString);
+    userDatas.username = formData.username;
+    userDatas.email = formData.email;
+    userDatas.phoneNo = formData.phoneNo;
+    userDatas.country = formData.country;
+    localStorage.setItem("loggedInUser", JSON.stringify(userDatas));
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update profile successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    setFormData({
+      username: "",
+      email: "",
+      phoneNo: "",
+      country: "",
+    });
   };
+  // get item from
   const userDataString = localStorage.getItem("loggedInUser");
   const userData = JSON.parse(userDataString);
   const email = userData.email;
   const username = userData.username;
-
-  // image
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
-
+  const uploadedImage = useRef(null);
+  const imageUploader = useRef(null);
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     if (file) {
+      setDroppedImage(null);
       const reader = new FileReader();
       const { current } = uploadedImage;
       current.file = file;
@@ -41,7 +61,16 @@ const CompleteProfileForm = () => {
       reader.readAsDataURL(file);
     }
   };
-
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const [file] = e.dataTransfer.files;
+    if (file) {
+      setDroppedImage(URL.createObjectURL(file));
+    }
+  };
   return (
     <>
       <div className="profile_parent_container">
@@ -50,7 +79,11 @@ const CompleteProfileForm = () => {
           <p>Kindly Enter your Credentials Below to Create Your Profile.</p>
         </div>
         <form onSubmit={handleSubmit} className="profileSetting mt_30cp">
-          <div className="profile_pic">
+          <div
+            className="profile_pic"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
             <div
               style={{
                 display: "flex",
@@ -68,47 +101,31 @@ const CompleteProfileForm = () => {
                   display: "none",
                 }}
               />
-              {/* <div
-                style={{
-                  height: "60px",
-                  width: "60px",
-                  border: "1px dashed black",
-                }}
-                onClick={() => imageUploader.current.click()}
-              >
-                <img
-                  ref={uploadedImage}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    position: "acsolute",
-                  }}
-                />
-              </div> */}
             </div>
 
-            <div className="image_upload" onClick={() => imageUploader.current.click()}>
-              <img
-                ref={uploadedImage}
-                style={{
-                  // width: "10%",
-                  // height: "10%",
-                  position: "acsolute",
-                }}
-                src={profile}
-                alt=""
-              />
+            <div className="image_upload" draggable="true">
+              {droppedImage ? (
+                <img src={droppedImage} alt="" />
+              ) : (
+                <img
+                  onClick={() => imageUploader.current.click()}
+                  ref={uploadedImage}
+                  src={profile}
+                  alt=""
+                />
+              )}
             </div>
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
             <div className="completeprofile_inputContainer">
               <label>Full Name</label>
               <input
-                name="fullName"
+                name="username"
                 type="text"
-                placeholder="John Duo"
+                // placeholder="John Duo"
                 onChange={handleInputChange}
-                value={username}
+                defaultValue={username}
+                required
               />
             </div>
             <div className="completeprofile_inputContainer">
@@ -116,9 +133,10 @@ const CompleteProfileForm = () => {
               <input
                 name="email"
                 type="email"
-                placeholder="johnduo@gmail.com"
+                // placeholder="johnduo@gmail.com"
                 onChange={handleInputChange}
-                value={email}
+                defaultValue={email}
+                required
               />
             </div>
           </div>
@@ -127,9 +145,10 @@ const CompleteProfileForm = () => {
               <label>Phone Number</label>
               <input
                 name="phoneNo"
-                type="text"
-                placeholder="+1 123 456 789"
+                type="number"
+                // placeholder="+1 123 456 789"
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="completeprofile_inputContainer">
@@ -138,6 +157,7 @@ const CompleteProfileForm = () => {
                 name="country"
                 onChange={handleInputChange}
                 value={formData.country}
+                required
               >
                 <option value="country">Country</option>
                 <option value="Bangladesh">Bangladesh</option>
@@ -148,7 +168,7 @@ const CompleteProfileForm = () => {
             </div>
           </div>
           <div className="create_profile_button">
-            <button className="">Create Profile</button>
+            <button type="submit">Create Profile</button>
           </div>
         </form>
       </div>
@@ -157,53 +177,3 @@ const CompleteProfileForm = () => {
 };
 
 export default CompleteProfileForm;
-/* import React, { useRef, useState } from "react";
-import round from "../../assets/images/round_pp1.png";
-const CompleteProfileForm = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const inputRef = useRef(null);
-
-  const handleClick = () => {
-    inputRef.current.click();
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-  };
-  return (
-    <div>
-      <div className="complete_profile_header">
-        <h4>Complete your Profile!</h4>
-        <p>Kindly Enter your Credentials Below to Create Your Profile.</p>
-      </div>
-      <form>
-        <div className="">
-          <div className="">
-            <img
-              className="object-cover w-full h-full rounded-full"
-              src={round}
-              // src={
-              //   selectedImage
-              //     ? URL.createObjectURL(selectedImage)
-              //     : userInfo?.image
-              // }
-              alt=""
-            />
-          </div>
-          <img className="" src={camera.src} alt="" onClick={handleClick} />
-          <input
-            type="file"
-            className={styles.imageInputField}
-            accept="image/*"
-            onChange={handleFileChange}
-            ref={inputRef}
-          />
-        </div>
-      </form>
-    </div>
-  );
-};
-
-export default CompleteProfileForm;
- */

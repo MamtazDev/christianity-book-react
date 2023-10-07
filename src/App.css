@@ -776,15 +776,15 @@ footer {
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
-    border-radius: 50px;
+    width: 7px;
+    border-radius: 10px;
     background: var(--gray-200, #E1E4E8);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 50px;
+    border-radius: 10px;
     background: var(--primary-color, #423C6A);
-    height: 78px;
+
 }
 
 
@@ -793,9 +793,6 @@ footer {
 }
 
 /* Preview Book Page End */
-
-
-
 .swiper-pagination-bullet {
     height: 20px !important;
     width: 20px !important;
@@ -1415,7 +1412,7 @@ select {
 
 
 .profileSetting select {
-    background-image: url("../images/drop_down.png");
+    /* background-image: url("../images/drop_down.png"); */
     background-repeat: no-repeat;
     background-position: right center;
 }
@@ -1429,12 +1426,15 @@ select::-ms-expand {
     display: block;
 
 }
+
 .sub_inputcontainer {
     width: 100% !important;
     max-width: 209px !important;
     display: flex !important;
 }
-.profileSetting3 input, .profileSetting3 select {
+
+.profileSetting3 input,
+.profileSetting3 select {
     padding-bottom: 5px;
     color: var(--primary-color, #423C6A);
     font-size: 16px;
@@ -1442,13 +1442,15 @@ select::-ms-expand {
     width: 100%;
 
 }
-.select_date{
+
+.select_date {
     display: flex;
     /* flex-wrap: wrap; */
 }
-.second_row{
+
+.second_row {
     display: flex;
     justify-content: start;
     align-items: end;
-    gap:30px  !important;
+    gap: 30px !important;
 }
