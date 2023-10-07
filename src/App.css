@@ -801,6 +801,239 @@ footer {
 }
 
 
+.cancelSubBtn:focus-visible {
+    outline: red !important;
+    border: red !important;
+}
+
+.cancelSubBtn:focus {
+    outline: red !important;
+    border: red !important;
+}
+
+.graph_gap {
+    gap: 24px;
+}
+
+.recharts-cartesian-axis-ticks {
+    margin-top: 15px;
+}
+
+
+
+.changeEmail label,
+.changePassword label,
+.profileSetting label {
+    color: var(--gray-400, #92979D);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.changeEmail label,
+.changePassword label,
+.profileSetting1 label {
+    color: var(--gray-400, #92979D);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.notificationSetting label {
+    color: var(--gray-400, #92979D);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* account setting */
+.inputContainer {
+    width: 100%;
+    max-width: 356px !important;
+    display: block;
+}
+
+
+.inputContainer1 {
+    width: 100%;
+    max-width: 356px !important;
+    display: block;
+}
+
+.changeEmail input,
+.changePassword input,
+.profileSetting input,
+.profileSetting select {
+    border-bottom: 2px solid #423C6A;
+    padding-bottom: 5px;
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    max-width: 356px !important;
+    display: block;
+}
+
+.changeEmail input,
+.changePassword input,
+.profileSetting1 input,
+.profileSetting1 select {
+    border-bottom: 2px solid #423C6A;
+    padding-bottom: 5px;
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    display: block;
+}
+
+.changePassword input,
+.profileSetting input,
+.profileSetting select {
+    border-bottom: 2px solid #C2C9D1;
+}
+
+.changePassword input,
+.profileSetting1 input,
+.profileSetting1 select {
+    border-bottom: 2px solid #C2C9D1;
+}
+
+.changeEmail input::placeholder,
+.changePassword input::placeholder,
+.profileSetting input::placeholder {
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.changeEmail input::placeholder,
+.changePassword input::placeholder,
+.profileSetting1 input::placeholder {
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.changeEmail button {
+    color: var(--primary-color, #423C6A);
+    font-size: 22px;
+    font-weight: 600;
+    outline: none;
+    border-bottom: 2px solid #423C6A;
+    background: transparent;
+    transition: 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+.changeEmail button:hover {
+    opacity: .9;
+    border-bottom: 2px solid transparent;
+}
+
+.changePassword button,
+.profileSetting button {
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px 143px;
+    border-radius: 32px;
+    background: var(--primary-color, #423C6A);
+    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.4s ease-in-out;
+    white-space: nowrap;
+}
+
+.changePassword button,
+.profileSetting1 button {
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 14px 90px;
+    border-radius: 32px;
+    background: var(--primary-color, #423C6A);
+    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.4s ease-in-out;
+    white-space: nowrap;
+}
+
+.changePassword button:hover,
+.profileSetting button:hover {
+    opacity: .9;
+}
+
+.changePassword button:hover,
+.profileSetting1 button:hover {
+    opacity: .9;
+}
+
+select {
+    border: none;
+}
+
+
+.profileSetting select {
+    /* background-image: url("../images/drop_down.png"); */
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.inputContainer2 {
+    width: 100% !important;
+    display: block;
+
+}
+
+.sub_inputcontainer {
+    width: 100% !important;
+    max-width: 209px !important;
+    display: flex !important;
+}
+
+.profileSetting3 input,
+.profileSetting3 select {
+    padding-bottom: 5px;
+    color: var(--primary-color, #423C6A);
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+
+}
+
+.select_date {
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.second_row {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    gap: 30px !important;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+.footer_gap {
+    gap: 189px;
+}
+/* footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+height: 100vh;
+} */
 
 @media only screen and (max-width:1024px) {}
 
@@ -832,6 +1065,10 @@ footer {
 
 
 @media only screen and (max-width:768px) {
+    .footer_gap {
+        gap: 30px !important;
+    }
+
     .detalisPage img {
         display: none;
     }
@@ -1235,226 +1472,4 @@ footer {
     .profileShow .childHover {
         width: 300px !important;
     }
-}
-
-.cancelSubBtn:focus-visible {
-    outline: red !important;
-    border: red !important;
-}
-
-.cancelSubBtn:focus {
-    outline: red !important;
-    border: red !important;
-}
-
-.graph_gap {
-    gap: 24px;
-}
-
-.recharts-cartesian-axis-ticks {
-    margin-top: 15px;
-}
-
-
-
-.changeEmail label,
-.changePassword label,
-.profileSetting label {
-    color: var(--gray-400, #92979D);
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.changeEmail label,
-.changePassword label,
-.profileSetting1 label {
-    color: var(--gray-400, #92979D);
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.notificationSetting label {
-    color: var(--gray-400, #92979D);
-    font-size: 16px;
-    font-weight: 600;
-}
-
-/* account setting */
-.inputContainer {
-    width: 100%;
-    max-width: 356px !important;
-    display: block;
-}
-
-
-.inputContainer1 {
-    width: 100%;
-    max-width: 356px !important;
-    display: block;
-}
-
-.changeEmail input,
-.changePassword input,
-.profileSetting input,
-.profileSetting select {
-    border-bottom: 2px solid #423C6A;
-    padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
-    max-width: 356px !important;
-    display: block;
-}
-
-.changeEmail input,
-.changePassword input,
-.profileSetting1 input,
-.profileSetting1 select {
-    border-bottom: 2px solid #423C6A;
-    padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
-    display: block;
-}
-
-.changePassword input,
-.profileSetting input,
-.profileSetting select {
-    border-bottom: 2px solid #C2C9D1;
-}
-
-.changePassword input,
-.profileSetting1 input,
-.profileSetting1 select {
-    border-bottom: 2px solid #C2C9D1;
-}
-
-.changeEmail input::placeholder,
-.changePassword input::placeholder,
-.profileSetting input::placeholder {
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.changeEmail input::placeholder,
-.changePassword input::placeholder,
-.profileSetting1 input::placeholder {
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.changeEmail button {
-    color: var(--primary-color, #423C6A);
-    font-size: 22px;
-    font-weight: 600;
-    outline: none;
-    border-bottom: 2px solid #423C6A;
-    background: transparent;
-    transition: 0.3s ease-in-out;
-    white-space: nowrap;
-}
-
-.changeEmail button:hover {
-    opacity: .9;
-    border-bottom: 2px solid transparent;
-}
-
-.changePassword button,
-.profileSetting button {
-    color: #FFF;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 16px 143px;
-    border-radius: 32px;
-    background: var(--primary-color, #423C6A);
-    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
-    transition: 0.4s ease-in-out;
-    white-space: nowrap;
-}
-
-.changePassword button,
-.profileSetting1 button {
-    color: #FFF;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 14px 90px;
-    border-radius: 32px;
-    background: var(--primary-color, #423C6A);
-    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
-    transition: 0.4s ease-in-out;
-    white-space: nowrap;
-}
-
-.changePassword button:hover,
-.profileSetting button:hover {
-    opacity: .9;
-}
-
-.changePassword button:hover,
-.profileSetting1 button:hover {
-    opacity: .9;
-}
-
-select {
-    border: none;
-}
-
-
-.profileSetting select {
-    /* background-image: url("../images/drop_down.png"); */
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-
-select::-ms-expand {
-    display: none;
-}
-
-.inputContainer2 {
-    width: 100% !important;
-    display: block;
-
-}
-
-.sub_inputcontainer {
-    width: 100% !important;
-    max-width: 209px !important;
-    display: flex !important;
-}
-
-.profileSetting3 input,
-.profileSetting3 select {
-    padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
-
-}
-
-.select_date {
-    display: flex;
-    /* flex-wrap: wrap; */
-}
-
-.second_row {
-    display: flex;
-    justify-content: start;
-    align-items: end;
-    gap: 30px !important;
-}
-
-button,a{
-    cursor: pointer;
 }

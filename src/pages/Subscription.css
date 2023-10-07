@@ -361,6 +361,9 @@ button {
 .completeProfileContainer {
     padding: 31px 50px;
 }
+.subscription  {
+    margin-top: 30px;
+}
 @media (max-width:768px) {
     .sub_input input {
         max-width: 429px !important;
