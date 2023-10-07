@@ -1,28 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Suspense, lazy, startTransition } from "react";
+import { Suspense, lazy } from "react";
 import PrivateRoute from "./PrivateRoute";
-
-// const import = (path) =>
-//   lazy(() => import(path).then((module) => ({ default: module.default })));
-
-const Home = import("../pages/Home");
-const LogIn = import("../pages/LogIn");
-const SignUp = import("../pages/SignUp");
-const ResetPassword = import("../pages/ResetPassword");
-const ResetVerification = import("../pages/ResetVerification");
-const ChangePassword = import("../pages/ChangePassword");
-const CompleteProfile = import("../pages/CompleteProfile");
-const AccountSettings = import("../pages/AccountSettings");
-const Bookmark = import("../pages/Bookmark");
-const Layout = import("../Layout/Layout");
-const ReadBook = import("../pages/ReadBook");
-const Faq = import("../pages/Faq");
-const Notification = import("../pages/Notification");
-const HighLights = import("../pages/HighLights");
-const MyNotes = import("../pages/MyNotes");
-const Subscription = import("../pages/Subscription");
-const AuthorChat = import("../components/AuthorChat/AuthorChat");
-const Contact = import("../pages/Contact");
+const Home = lazy(() => import("../pages/Home"));
+const LogIn = lazy(() => import("../pages/LogIn"));
+const SignUp = lazy(() => import("../pages/SignUp"));
+const ResetPassword = lazy(() => import("../pages/ResetPassword"));
+const ResetVerification = lazy(() => import("../pages/ResetVerification"));
+const ChangePassword = lazy(() => import("../pages/ChangePassword"));
+const CompleteProfile = lazy(() => import("../pages/CompleteProfile"));
+const AccountSettings = lazy(() => import("../pages/AccountSettings"));
+const Bookmark = lazy(() => import("../pages/Bookmark"));
+const Layout = lazy(() => import("../Layout/Layout"));
+const ReadBook = lazy(() => import("../pages/ReadBook"));
+const Faq = lazy(() => import("../pages/Faq"));
+const Notification = lazy(() => import("../pages/Notification"));
+const HighLights = lazy(() => import("../pages/HighLights"));
+const MyNotes = lazy(() => import("../pages/MyNotes"));
+const Subscription = lazy(() => import("../pages/Subscription"));
+const AuthorChat = lazy(() => import("../components/AuthorChat/AuthorChat"));
+const Contact = lazy(() => import("../pages/Contact"));
 
 export const router = createBrowserRouter([
   {
