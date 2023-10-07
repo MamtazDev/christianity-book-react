@@ -2,27 +2,27 @@ import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy, startTransition } from "react";
 import PrivateRoute from "./PrivateRoute";
 
-const importComponent = (path) =>
-  lazy(() => import(path).then((module) => ({ default: module.default })));
+// const import = (path) =>
+//   lazy(() => import(path).then((module) => ({ default: module.default })));
 
-const Home = importComponent("../pages/Home");
-const LogIn = importComponent("../pages/LogIn");
-const SignUp = importComponent("../pages/SignUp");
-const ResetPassword = importComponent("../pages/ResetPassword");
-const ResetVerification = importComponent("../pages/ResetVerification");
-const ChangePassword = importComponent("../pages/ChangePassword");
-const CompleteProfile = importComponent("../pages/CompleteProfile");
-const AccountSettings = importComponent("../pages/AccountSettings");
-const Bookmark = importComponent("../pages/Bookmark");
-const Layout = importComponent("../Layout/Layout");
-const ReadBook = importComponent("../pages/ReadBook");
-const Faq = importComponent("../pages/Faq");
-const Notification = importComponent("../pages/Notification");
-const HighLights = importComponent("../pages/HighLights");
-const MyNotes = importComponent("../pages/MyNotes");
-const Subscription = importComponent("../pages/Subscription");
-const AuthorChat = importComponent("../components/AuthorChat/AuthorChat");
-const Contact = importComponent("../pages/Contact");
+const Home = import("../pages/Home");
+const LogIn = import("../pages/LogIn");
+const SignUp = import("../pages/SignUp");
+const ResetPassword = import("../pages/ResetPassword");
+const ResetVerification = import("../pages/ResetVerification");
+const ChangePassword = import("../pages/ChangePassword");
+const CompleteProfile = import("../pages/CompleteProfile");
+const AccountSettings = import("../pages/AccountSettings");
+const Bookmark = import("../pages/Bookmark");
+const Layout = import("../Layout/Layout");
+const ReadBook = import("../pages/ReadBook");
+const Faq = import("../pages/Faq");
+const Notification = import("../pages/Notification");
+const HighLights = import("../pages/HighLights");
+const MyNotes = import("../pages/MyNotes");
+const Subscription = import("../pages/Subscription");
+const AuthorChat = import("../components/AuthorChat/AuthorChat");
+const Contact = import("../pages/Contact");
 
 export const router = createBrowserRouter([
   {
