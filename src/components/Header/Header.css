@@ -179,12 +179,13 @@
 }
 
 .profileShow .arrow {
-    transition: 0.3s ease-in;
-    cursor: pointer;
+    transform: rotate(180deg);
+    transition: 0.5s ease-in;
 }
 
-.profileShow .arrow {
-    transform: rotate(180deg);
+.profileShow .arrow1 {
+
+    transition: 0.5s ease-in;
 }
 
 .profileName p {
@@ -243,10 +244,12 @@
 .accSettings:last-child a {
     font-weight: 700 !important;
 }
-.logout{
+
+.logout {
     margin-bottom: 0px !important;
 
 }
+
 .accSettings a:hover {
     /* opacity: .9; */
     font-weight: 700 !important;
@@ -277,7 +280,8 @@
         gap: 10px;
         align-items: center;
     }
-    .childHover{
+
+    .childHover {
         width: 300px !important;
     }
 

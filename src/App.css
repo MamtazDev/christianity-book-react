@@ -1454,3 +1454,7 @@ select::-ms-expand {
     align-items: end;
     gap: 30px !important;
 }
+
+button,a{
+    cursor: pointer;
+}

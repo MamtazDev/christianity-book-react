@@ -122,7 +122,7 @@ const CompleteProfileForm = () => {
               <input
                 name="username"
                 type="text"
-                // placeholder="John Duo"
+                placeholder="John Duo"
                 onChange={handleInputChange}
                 defaultValue={username}
                 required
@@ -133,7 +133,7 @@ const CompleteProfileForm = () => {
               <input
                 name="email"
                 type="email"
-                // placeholder="johnduo@gmail.com"
+                placeholder="johnduo@gmail.com"
                 onChange={handleInputChange}
                 defaultValue={email}
                 required
@@ -146,7 +146,7 @@ const CompleteProfileForm = () => {
               <input
                 name="phoneNo"
                 type="number"
-                // placeholder="+1 123 456 789"
+                placeholder="+1 123 456 789"
                 onChange={handleInputChange}
                 required
               />

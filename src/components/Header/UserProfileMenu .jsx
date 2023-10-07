@@ -107,7 +107,7 @@ const UserProfileMenu = () => {
                   <img src={profile_round} alt="Profile Image" />
                 </button>
                 <img
-                  className={open ? `arrow` : ""}
+                  className={open ? `arrow` : "arrow1"}
                   src={drop_down}
                   alt="Settings"
                 />
