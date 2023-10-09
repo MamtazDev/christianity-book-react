@@ -30,7 +30,6 @@ const Conversation = () => {
   const fileUploader = useRef(null);
   const [profileOpen, setProfileOpen] = useState(false);
 
-
   const [imageName, setImageName] = useState(null);
   const [uploadedImageArray, setUploadedImageArray] = useState([]);
   const handleInputChange = (e) => {
@@ -40,7 +39,7 @@ const Conversation = () => {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setUploadedImageArray([...uploadedImageArray, file]);
-    setImageName(file.name)
+    setImageName(file.name);
   };
   const openFileInput = () => {
     fileUploader.current.click();
@@ -56,6 +55,7 @@ const Conversation = () => {
       };
       setChatData([...chatData, newMessage]);
       setUploadedImageArray([]);
+      setImageName("");
       setTimeout(() => {
         const newMessageForReceiver = {
           type: "receiver",

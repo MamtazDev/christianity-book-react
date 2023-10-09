@@ -9,7 +9,9 @@ const Footer = () => {
   return (
     <footer>
       <div className="container d-flex align-items-start flex-wrap footer_gap">
-        <p style={{ fontSize: "40px" }} className="">Your Logo</p>
+        <p style={{ fontSize: "40px" }} className="">
+          Your Logo
+        </p>
         <div className="d-flex justify-content-center  footerBox gap-2">
           <div></div>
           <div style={{ maxWidth: "700px" }}>
@@ -26,7 +28,7 @@ const Footer = () => {
             <div className="linkFooter d-flex justify-content-center align-items-center mb_4 gap-5">
               <a href="/">Home</a>
               <a href="/contact">Contact Me</a>
-              <a href="#">Cart</a>
+              <a href="/faq">Faq</a>
             </div>
             <div className="socialLink d-flex justify-content-center align-items-center mb_4">
               <a href="#">
