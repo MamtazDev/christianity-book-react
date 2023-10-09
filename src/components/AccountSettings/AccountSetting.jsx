@@ -125,9 +125,11 @@ const AccountSetting = () => {
               placeholder="Enter Email"
               onChange={handleEmailInputChange}
               defaultValue={email}
+              className="change_email_iunput"
+
             />
           </div>
-          <button type="submit">Change Email</button>
+          <button type="submit" className="change_email_button">Change Email</button>
         </div>
       </form>
 

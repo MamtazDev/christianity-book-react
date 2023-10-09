@@ -1,12 +1,12 @@
 import React from "react";
 import Deactivate from "../Modals/Deactivate";
 import DeactivateConfirm from "../Modals/DeactivateConfirm";
-import './AcountSetting.css'
+import "./AcountSetting.css";
 
 const Notification = () => {
   return (
     <div>
-      <div className="mb_30">
+      <div className="mb_25">
         <h3>Notification Settings</h3>
         <p>
           <span>Christianity Book</span> will send you notifications
@@ -14,25 +14,25 @@ const Notification = () => {
       </div>
       <div className="notificationSetting mb_40">
         <form action="">
-          <div className="mb-lg-3 not_checkbox_div">
-            <input
-              type="checkbox"
-              className="checkBox mr-2"
-              name="weeklyMail"
-              value="yes"
-              checked
-            />
-            <p>Receive weekly mails</p>
+          <div className="not_checkbox_div">
+            <div className="form-check">
+              <input
+                className="form-check-input checkBox  mr-2"
+                type="checkbox"
+                value=""
+              />
+              <p htmlFor="">Receive weekly mails</p>
+            </div>
           </div>
           <div className="not_checkbox_div">
-            <input
-              type="checkbox"
-              name="announcement"
-              className="checkBox mr-2"
-              value="yes"
-              checked
-            />
-            <p htmlFor="">Receive new Product Announcements</p>
+            <div className="form-check">
+              <input
+                className="form-check-input checkBox  mr-2"
+                type="checkbox"
+                value=""
+              />
+              <p htmlFor="">Receive new Product Announcements</p>
+            </div>
           </div>
         </form>
       </div>

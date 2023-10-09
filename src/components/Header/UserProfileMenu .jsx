@@ -43,9 +43,33 @@ const UserProfileMenu = () => {
   const email = userData.email;
   const username = userData.username;
 
+  // navbar bg color when schrolling
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    // Function to handle the scroll event
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true); // When scrolled down, set isScrolled to true
+      } else {
+        setIsScrolled(false); // When at the top, set isScrolled to false
+      }
+    };
+
+    // Add scroll event listener when the component mounts
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); // Empty dependency array ensures this effect runs only once
+
+  const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : ''}`;
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg">
+      <nav className={navbarClasses}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             Your Logo

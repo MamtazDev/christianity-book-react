@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <LogIn />
       </Suspense>
     ),
@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
   {
     path: "/signUp",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <SignUp />
       </Suspense>
     ),
@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
   {
     path: "/reset-password",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <ResetPassword />
       </Suspense>
     ),
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
   {
     path: "/reset-verification",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <ResetVerification />
       </Suspense>
     ),
@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
   {
     path: "/change-password",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <ChangePassword />
       </Suspense>
     ),
@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
   {
     path: "/complete-profile",
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <CompleteProfile />
       </Suspense>
     ),
@@ -86,7 +86,7 @@ export const router = createBrowserRouter([
     path: "/subscription",
     element: (
       <PrivateRoute>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
           <Subscription />
         </Suspense>
       </PrivateRoute>
@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
       {
         path: "/faq",
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader/>}>
             <Faq />
           </Suspense>
         ),
@@ -107,7 +107,7 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader/>}>
             <Contact />
           </Suspense>
         ),
@@ -116,7 +116,7 @@ export const router = createBrowserRouter([
         path: "/account-settings",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <AccountSettings />
             </Suspense>
           </PrivateRoute>
@@ -127,7 +127,7 @@ export const router = createBrowserRouter([
         path: "/author-chat",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <AuthorChat />
             </Suspense>
           </PrivateRoute>
@@ -138,7 +138,7 @@ export const router = createBrowserRouter([
         path: "/bookmark",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <Bookmark />
             </Suspense>
           </PrivateRoute>
@@ -148,7 +148,7 @@ export const router = createBrowserRouter([
         path: "/read-book",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <ReadBook />
             </Suspense>
           </PrivateRoute>
@@ -158,7 +158,7 @@ export const router = createBrowserRouter([
         path: "/notification",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <Notification />
             </Suspense>
           </PrivateRoute>
@@ -168,7 +168,7 @@ export const router = createBrowserRouter([
         path: "/highlights",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <HighLights />
             </Suspense>
           </PrivateRoute>
@@ -178,7 +178,7 @@ export const router = createBrowserRouter([
         path: "/my-notes",
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
               <MyNotes />
             </Suspense>
           </PrivateRoute>

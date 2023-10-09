@@ -25,7 +25,6 @@ const Subscription = () => {
           <span>"Enter a Promo Code to get Free Access of </span> <br />
           reading online the book”
         </h4>
-
         <div>
           <input
             type="text"
@@ -38,36 +37,37 @@ const Subscription = () => {
       <div className="subv_body">
         <p>Payment Information</p>
         <form action="" className="subscription  mt_30cp">
-          <div className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_4 mb-5">
+          <div className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5">
             <div className="payment_parent">
               <input
                 type="radio"
-                name=""
-                className="payment_method_radio"
-                id=""
+                id="flexRadioDefault1"
+                name="flexRadioDefault"
+                className=" payment_method_radio"
               />
               <div className="payment_div">
                 <h4>Credit Card</h4>
                 <small>Pay with credit card via Stripe</small>
                 <div className="payment_method">
-                  <img src={p1} alt="" />
-                  <img src={p2} alt="" />
-                  <img src={p3} alt="" />
+                  <img src={p1} alt="visa" />
+                  <img src={p2} alt="payment-2" />
+                  <img src={p3} alt="amex" />
                 </div>
               </div>
             </div>
+
             <div className="payment_parent">
               <input
                 type="radio"
-                name=""
-                id=""
-                className="payment_method_radio"
+                id="flexRadioDefault1"
+                name="flexRadioDefault"
+                className=" payment_method_radio"
               />
               <div className="payment_div">
                 <h4>Paypal</h4>
                 <small>Pay with your PayPal account</small>
                 <div className="payment_method">
-                  <img src={p4} alt="" />
+                  <img src={p4} alt="paypal" />
                 </div>
               </div>
             </div>

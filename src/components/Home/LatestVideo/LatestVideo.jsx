@@ -32,7 +32,7 @@ const LatestVideo = () => {
                     printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text.
                   </p>
-                  <button className="watch_btn"><Link to="/">Watch Video</Link></button>
+                  <button className="watch_btn"><Link to="https://www.youtube.com/embed/zrI3XRFSwY8">Watch Video</Link></button>
                 </article>
               </div>
             </div>

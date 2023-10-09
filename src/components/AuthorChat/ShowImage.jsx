@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 function ShowImage({ item }) {
-    console.log(item.name)
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -15,10 +14,11 @@ function ShowImage({ item }) {
       reader.readAsDataURL(item);
     }
   }, []);
+
   return (
     <>
       {selectedFile && (
-        <img className="ml-auto" src={imageSrc} alt="Selected Image" />
+        <img className="ml-auto " src={imageSrc} alt="Selected Image" />
       )}
     </>
   );

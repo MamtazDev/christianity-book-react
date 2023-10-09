@@ -1,21 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import profile from "../../assets/images/chatProfile.png";
-import settings from "../../assets/images/message_settings.png";
-// import upload from "../../assets/images/imgUpload.png";
 import attach from "../../assets/images/attachFile.png";
 import submit from "../../assets/images/submit.png";
 import "./AuthorChat.css";
 import ShowImage from "./ShowImage";
+import ProfileSetting from "./ProfileSetting";
+import { getCurrentTime } from "../Utils/CurrentTime";
+import ChatDate from "./ChatDate";
+
 const Conversation = () => {
-  const getCurrentTime = () => {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const ampm = hours >= 12 ? "pm" : "am";
-    const formattedHours = hours % 12 || 12;
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    return `${formattedHours}:${formattedMinutes}${ampm}`;
-  };
   const [chatData, setChatData] = useState([
     { type: "sender", content: "HI", timestamp: getCurrentTime(), file: [] },
     {
@@ -25,13 +18,11 @@ const Conversation = () => {
       file: [],
     },
   ]);
-  // console.log(chatData);
-  const [message, setMessage] = useState("");
-  const fileUploader = useRef(null);
-  const [profileOpen, setProfileOpen] = useState(false);
-
-  const [imageName, setImageName] = useState(null);
   const [uploadedImageArray, setUploadedImageArray] = useState([]);
+  const [message, setMessage] = useState("");
+  const [imageName, setImageName] = useState(null);
+  const fileUploader = useRef(null);
+
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
@@ -44,7 +35,7 @@ const Conversation = () => {
   const openFileInput = () => {
     fileUploader.current.click();
   };
-
+  // submit button
   const handleSubmit = () => {
     if (message.trim() !== "" || uploadedImageArray.length > 0) {
       const newMessage = {
@@ -68,10 +59,6 @@ const Conversation = () => {
     }
   };
 
-  const handleProfileSetting = () => {
-    setProfileOpen(!profileOpen);
-  };
-
   return (
     <>
       <div className="chatList">
@@ -83,14 +70,9 @@ const Conversation = () => {
               <span className="d-block">Active Now</span>
             </div>
           </div>
-          <div className="profile_parent">
-            <button onClick={handleProfileSetting} className="button_click">
-              <img src={settings} alt="" />
-            </button>
-            {profileOpen && <div className="profile_setting">pppp</div>}
-          </div>
+          <ProfileSetting />
         </div>
-        {/* receiver */}
+        {/* chat data */}
         {chatData.map((data, index) =>
           data.type === "receiver" ? (
             <div className="grayBox mb-3" key={index}>
@@ -113,16 +95,11 @@ const Conversation = () => {
                   <p className="mb-2">{data.content} </p>
                 )}
               </>
-
               <span className="d-block time">{data.timestamp} .Read</span>
             </div>
           )
         )}
-        <div className="dayTime d-flex align-items-center gap-1">
-          <div className="weekDayLine"></div>
-          <p>Dec 7/10</p>
-          <div className="weekDayLine"></div>
-        </div>
+        <ChatDate />
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="sendForm d-flex align-items-center gap-4">
             <div className="file-upload">
@@ -138,7 +115,6 @@ const Conversation = () => {
               <input
                 id="file-input"
                 type="file"
-                // accept="image/*"
                 onChange={handleFileInputChange}
                 ref={fileUploader}
               />

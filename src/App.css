@@ -62,10 +62,21 @@ button:focus-visible {
     outline: none !important;
 }
 
+.navbar {
+    background-color: #FFF4E0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+}
+
+.navbar-scrolled {
+    background-color: white;
+}
+
+
 /* .container {
     max-width: 1440px !important;
 } */
-
 .mb_all {
     margin-bottom: 70px;
 }
@@ -382,11 +393,19 @@ footer {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-left: 15px;
+    margin-top: 6px;
+}
+
+.mb_25 {
+    margin-bottom: 25px;
 }
 
 .not_checkbox_div {
     display: flex;
     align-items: center;
+    margin-bottom: 19px;
+    margin-top: 0px !important;
 }
 
 .deactiveBtn {
@@ -848,6 +867,7 @@ footer {
 }
 
 /* account setting */
+
 .inputContainer {
     width: 100%;
     max-width: 356px !important;
@@ -1027,13 +1047,15 @@ a {
 .footer_gap {
     gap: 189px;
 }
-/* footer{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-height: 100vh;
-} */
+
+.chatList {
+    width: 490px;
+    overflow-y: scroll;
+    max-height: 700px !important;
+
+}
+
+
 
 @media only screen and (max-width:1024px) {}
 
@@ -1260,10 +1282,6 @@ height: 100vh;
         line-height: 35px;
     }
 
-    /* ebook Preview End */
-
-    /* Bookmark Page Start */
-
     .mb_100 {
         margin-bottom: 50px;
     }
@@ -1445,6 +1463,7 @@ height: 100vh;
     /* Setting Page End */
 }
 
+
 @media only screen and (max-width:425px) {
     .profileShow .child {
         left: -100%;
@@ -1458,8 +1477,9 @@ height: 100vh;
         width: 300px;
     }
 
-    .profileShow .childHover {
+    .childHover {
         width: 300px !important;
+        /* width: 100% !important; */
     }
 }
 
@@ -1469,7 +1489,7 @@ height: 100vh;
         width: 300px;
     }
 
-    .profileShow .childHover {
-        width: 300px !important;
+    .childHover {
+        min-width: 300px !important;
     }
 }
