@@ -23,8 +23,8 @@ const Conversation = () => {
       timestamp: getCurrentTime(),
     },
   ]);
+  // console.log(chatData);
   const [message, setMessage] = useState("");
-  const [selectedFileName, setSelectedFileName] = useState("");
   const fileUploader = useRef(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const [file, setFile] = useState(null);
@@ -35,50 +35,25 @@ const Conversation = () => {
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
- /*  const handleSubmit = () => {
-    if (message.trim() !== "" || file) {
-      const newMessage = {
-        type: "sender",
-        content: message,
-        file: file ? URL.createObjectURL(file) : null,
-        timestamp: getCurrentTime(),
-      };
-      const newMessageForReceiver = {
-        type: "receiver",
-        content: message,
-        timestamp: getCurrentTime(),
-      };
-      setChatData([...chatData, newMessage]);
-      setMessage("");
-      setSelectedFileName("");
-      setFile(null);
 
-      setTimeout(() => {
-        setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
-      }, 2000);
-    }
-  }; */
   const handleSubmit = () => {
     if (message.trim() !== "" || file) {
       const newMessage = {
         type: "sender",
         content: message,
-        file: file ? URL.createObjectURL(file) : null,
         timestamp: getCurrentTime(),
+        file: selectedFile,
       };
-      const newMessageForReceiver = {
-        type: "receiver",
-        content: message,
-        timestamp: getCurrentTime(),
-      };
-
-      // Add the message with file to chatData
       setChatData([...chatData, newMessage]);
       setMessage("");
-      setSelectedFileName("");
       setFile(null);
 
       setTimeout(() => {
+        const newMessageForReceiver = {
+          type: "receiver",
+          content: message,
+          timestamp: getCurrentTime(),
+        };
         setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
       }, 2000);
     }
@@ -104,10 +79,8 @@ const Conversation = () => {
     setProfileOpen(!profileOpen);
   };
   useEffect(() => {}, [selectedFile]);
-
   return (
     <>
-       {/* <p>Selected File: {selectedFile.name}</p> */}
       <div className="chatList">
         <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
           <div className="d-flex align-items-center gap-2 profile_gap">
@@ -124,7 +97,9 @@ const Conversation = () => {
             {profileOpen && <div className="profile_setting">pppp</div>}
           </div>
         </div>
-        {selectedFile && <img src={imageSrc} alt="Selected Image" />}
+        {selectedFile && (
+          <img className="ml-auto" src={imageSrc} alt="Selected Image" />
+        )}
         {/* receiver */}
         {chatData.map((data, index) =>
           data.type === "receiver" ? (
@@ -137,11 +112,14 @@ const Conversation = () => {
             </div>
           ) : (
             <div className="answerBox ml-auto mb-3" key={index}>
-              {data.file ? (
-                <div>
-                  <p className="mb-2">{data.content}</p>
-                  <img src={imageSrc} alt="Selected File" />
-                </div>
+              {data.content.endsWith(".png") ? (
+                <>
+                  <img
+                    className="ml-auto"
+                    src={imageSrc}
+                    alt="Selected Image"
+                  />
+                </>
               ) : (
                 <p className="mb-2">{data.content} </p>
               )}
@@ -149,6 +127,7 @@ const Conversation = () => {
             </div>
           )
         )}
+
         <div className="dayTime d-flex align-items-center gap-1">
           <div className="weekDayLine"></div>
           <p>Dec 7/10</p>
@@ -181,8 +160,7 @@ const Conversation = () => {
               name="message"
               placeholder="Type your message here.."
               onChange={handleInputChange}
-              // {selectedFile.name}
-              defaultValue={selectedFile ? selectedFile : ""}
+              defaultValue={selectedFile?.name ? selectedFile.name : ""}
             />
             <button type="button" onClick={handleSubmit}>
               <img className="img-fluid" src={submit} alt="Submit Button" />
