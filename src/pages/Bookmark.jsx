@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PageHeading from "../components/Utils/PageHeading";
 import Pagination from "../components/Utils/Pagination";
 import Points from "../components/Utils/Points";
+import usePagination from "../components/Utils/usePagination";
 
 const Bookmark = () => {
   const options = [
@@ -53,24 +54,8 @@ const Bookmark = () => {
   ];
 
   const itemsPerPage = 3;
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleNextPage = () => {
-    if (currentPage < Math.ceil(options.length / itemsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
+  const { currentPage, handleNextPage, handlePrevPage, handlePageChange } =
+    usePagination(itemsPerPage);
   return (
     <>
       <div className="container">

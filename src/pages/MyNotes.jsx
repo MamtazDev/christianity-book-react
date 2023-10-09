@@ -42,6 +42,12 @@ const MyNotes = () => {
       description: "Lorem Ipsum is simply dummy text.",
     },
   ];
+
+
+  const itemsPerPage = 3;
+  const { currentPage, handleNextPage, handlePrevPage, handlePageChange } =
+    usePagination(itemsPerPage);
+
   return (
     <div>
       <div className="container">

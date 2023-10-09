@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import profile from "../../assets/images/chatProfile.png";
 import settings from "../../assets/images/message_settings.png";
-import upload from "../../assets/images/imgUpload.png";
+// import upload from "../../assets/images/imgUpload.png";
 import attach from "../../assets/images/attachFile.png";
 import submit from "../../assets/images/submit.png";
 import "./AuthorChat.css";
@@ -15,7 +15,6 @@ const Conversation = () => {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes}${ampm}`;
   };
-
   const [chatData, setChatData] = useState([
     { type: "sender", content: "HI", timestamp: getCurrentTime() },
     {
@@ -30,10 +29,13 @@ const Conversation = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [file, setFile] = useState(null);
 
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
+
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
-  const handleSubmit = () => {
+ /*  const handleSubmit = () => {
     if (message.trim() !== "" || file) {
       const newMessage = {
         type: "sender",
@@ -55,29 +57,57 @@ const Conversation = () => {
         setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
       }, 2000);
     }
+  }; */
+  const handleSubmit = () => {
+    if (message.trim() !== "" || file) {
+      const newMessage = {
+        type: "sender",
+        content: message,
+        file: file ? URL.createObjectURL(file) : null,
+        timestamp: getCurrentTime(),
+      };
+      const newMessageForReceiver = {
+        type: "receiver",
+        content: message,
+        timestamp: getCurrentTime(),
+      };
+
+      // Add the message with file to chatData
+      setChatData([...chatData, newMessage]);
+      setMessage("");
+      setSelectedFileName("");
+      setFile(null);
+
+      setTimeout(() => {
+        setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
+      }, 2000);
+    }
   };
+
   // file upload
   const handleFileInputChange = (e) => {
-    const selectedFile = e.target.files[0];
-
-    console.log(selectedFile)
-    setFile(selectedFile);
-    if (selectedFile) {
-      setSelectedFileName(selectedFile.name);
-    } else {
-      setSelectedFileName("");
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImageSrc(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
   const openFileInput = () => {
     fileUploader.current.click();
   };
-
   // handleProfileSetting
   const handleProfileSetting = () => {
     setProfileOpen(!profileOpen);
   };
+  useEffect(() => {}, [selectedFile]);
+
   return (
     <>
+       {/* <p>Selected File: {selectedFile.name}</p> */}
       <div className="chatList">
         <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
           <div className="d-flex align-items-center gap-2 profile_gap">
@@ -94,6 +124,7 @@ const Conversation = () => {
             {profileOpen && <div className="profile_setting">pppp</div>}
           </div>
         </div>
+        {selectedFile && <img src={imageSrc} alt="Selected Image" />}
         {/* receiver */}
         {chatData.map((data, index) =>
           data.type === "receiver" ? (
@@ -105,8 +136,15 @@ const Conversation = () => {
               <span className="d-block">{data.timestamp}</span>
             </div>
           ) : (
-            <div className="answerBox ml-auto mb-3">
-              <p className="mb-2">{data.content} </p>
+            <div className="answerBox ml-auto mb-3" key={index}>
+              {data.file ? (
+                <div>
+                  <p className="mb-2">{data.content}</p>
+                  <img src={imageSrc} alt="Selected File" />
+                </div>
+              ) : (
+                <p className="mb-2">{data.content} </p>
+              )}
               <span className="d-block time">{data.timestamp} .Read</span>
             </div>
           )
@@ -143,7 +181,8 @@ const Conversation = () => {
               name="message"
               placeholder="Type your message here.."
               onChange={handleInputChange}
-              defaultValue={selectedFileName ? selectedFileName : ""}
+              // {selectedFile.name}
+              defaultValue={selectedFile ? selectedFile : ""}
             />
             <button type="button" onClick={handleSubmit}>
               <img className="img-fluid" src={submit} alt="Submit Button" />
