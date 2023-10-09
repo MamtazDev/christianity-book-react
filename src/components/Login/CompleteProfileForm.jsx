@@ -14,6 +14,7 @@ const CompleteProfileForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+
     phoneNo: "",
     country: "",
   });

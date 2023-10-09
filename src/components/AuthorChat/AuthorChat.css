@@ -34,6 +34,7 @@
 .chatList {
     max-width: 845px;
     width: 100%;
+    position: relative;
 }
 
 .msgSetting {
@@ -145,4 +146,23 @@
 
 .sendForm button:hover {
     opacity: .8;
+}
+
+
+/* profile setting */
+/* .profile_parent {
+    position: relative;
+}
+ */
+.profile_setting {
+    position: absolute;
+    background-color: red;
+    box-shadow: 2px 6px 14px 0px rgba(0, 0, 0, 0.10);
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    width: 200px;
+    /* width: 100% !important; */
+height: 100px;
+right: 0;
+
 }

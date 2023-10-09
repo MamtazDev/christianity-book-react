@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import profile from "../../assets/images/chatProfile.png";
 import settings from "../../assets/images/message_settings.png";
 import upload from "../../assets/images/imgUpload.png";
@@ -25,16 +25,20 @@ const Conversation = () => {
     },
   ]);
   const [message, setMessage] = useState("");
+  const [selectedFileName, setSelectedFileName] = useState("");
+  const fileUploader = useRef(null);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [file, setFile] = useState(null);
 
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
-
   const handleSubmit = () => {
-    if (message.trim() !== "") {
+    if (message.trim() !== "" || file) {
       const newMessage = {
         type: "sender",
         content: message,
+        file: file ? URL.createObjectURL(file) : null,
         timestamp: getCurrentTime(),
       };
       const newMessageForReceiver = {
@@ -44,75 +48,110 @@ const Conversation = () => {
       };
       setChatData([...chatData, newMessage]);
       setMessage("");
+      setSelectedFileName("");
+      setFile(null);
 
       setTimeout(() => {
         setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
       }, 2000);
     }
   };
+  // file upload
+  const handleFileInputChange = (e) => {
+    const selectedFile = e.target.files[0];
 
-  // Function to get the current time in "6:30pm" format
+    console.log(selectedFile)
+    setFile(selectedFile);
+    if (selectedFile) {
+      setSelectedFileName(selectedFile.name);
+    } else {
+      setSelectedFileName("");
+    }
+  };
+  const openFileInput = () => {
+    fileUploader.current.click();
+  };
 
+  // handleProfileSetting
+  const handleProfileSetting = () => {
+    setProfileOpen(!profileOpen);
+  };
   return (
-    <div className="chatList">
-      <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
-        <div className="d-flex align-items-center gap-2 profile_gap">
-          <img className="img-fluid" src={profile} alt="" />
-          <div>
-            <a href="#">Marvin Mckinney</a>
-            <span className="d-block">Active Now</span>
-          </div>
-        </div>
-        <button className="button_click">
-          <img src={settings} alt="" />
-        </button>
-      </div>
-      {/* receiver */}
-      {chatData.map((data, index) =>
-        data.type === "receiver" ? (
-          <div className="grayBox mb-3" key={index}>
-            <div className="whiteBox mb-3">
-              <span className="d-block text-dark">you</span>
-              <p>{data.content}</p>
+    <>
+      <div className="chatList">
+        <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
+          <div className="d-flex align-items-center gap-2 profile_gap">
+            <img className="img-fluid" src={profile} alt="" />
+            <div>
+              <a href="#">Marvin Mckinney</a>
+              <span className="d-block">Active Now</span>
             </div>
-            <span className="d-block">{data.timestamp}</span>
           </div>
-        ) : (
-          <div className="answerBox ml-auto mb-3">
-            <p className="mb-2">{data.content} </p>
-            <span className="d-block time">{data.timestamp} .Read</span>
+          <div className="profile_parent">
+            <button onClick={handleProfileSetting} className="button_click">
+              <img src={settings} alt="" />
+            </button>
+            {profileOpen && <div className="profile_setting">pppp</div>}
           </div>
-        )
-      )}
-      <div className="dayTime d-flex align-items-center gap-1">
-        <div className="weekDayLine"></div>
-        <p>Dec 7/10</p>
-        <div className="weekDayLine"></div>
-      </div>
-
-      <form onSubmit={(e) => e.preventDefault()}>
-        <div className="sendForm d-flex align-items-center gap-4">
-          <div className="file-upload">
-            <label htmlFor="file-input">
-              <button type="button" className="button_click">
-                <img src={attach} alt="Attached File" />
-              </button>
-            </label>
-            <input id="file-input" type="file" />
-          </div>
-          <input
-            className="textField"
-            type="text"
-            name="message"
-            placeholder="Type your message here.."
-            onChange={handleInputChange}
-          />
-          <button type="button" onClick={handleSubmit}>
-            <img className="img-fluid" src={submit} alt="Submit Button" />
-          </button>
         </div>
-      </form>
-    </div>
+        {/* receiver */}
+        {chatData.map((data, index) =>
+          data.type === "receiver" ? (
+            <div className="grayBox mb-3" key={index}>
+              <div className="whiteBox mb-3">
+                <span className="d-block text-dark">you</span>
+                <p>{data.content}</p>
+              </div>
+              <span className="d-block">{data.timestamp}</span>
+            </div>
+          ) : (
+            <div className="answerBox ml-auto mb-3">
+              <p className="mb-2">{data.content} </p>
+              <span className="d-block time">{data.timestamp} .Read</span>
+            </div>
+          )
+        )}
+        <div className="dayTime d-flex align-items-center gap-1">
+          <div className="weekDayLine"></div>
+          <p>Dec 7/10</p>
+          <div className="weekDayLine"></div>
+        </div>
+
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className="sendForm d-flex align-items-center gap-4">
+            <div className="file-upload">
+              <label htmlFor="file-input">
+                <button
+                  type="button"
+                  className="button_click"
+                  onClick={openFileInput}
+                >
+                  <img src={attach} alt="Attached File" />
+                </button>
+              </label>
+              <input
+                id="file-input"
+                type="file"
+                accept="image/*"
+                onChange={handleFileInputChange}
+                ref={fileUploader}
+              />
+            </div>
+            <input
+              className="textField"
+              type="text"
+              name="message"
+              placeholder="Type your message here.."
+              onChange={handleInputChange}
+              defaultValue={selectedFileName ? selectedFileName : ""}
+            />
+            <button type="button" onClick={handleSubmit}>
+              <img className="img-fluid" src={submit} alt="Submit Button" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
