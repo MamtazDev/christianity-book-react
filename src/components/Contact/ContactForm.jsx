@@ -47,7 +47,7 @@ const ContactForm = () => {
         industry.
       </p>
       <div className="contactForm">
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <div className="d-flex gap-4 mb-5 contact_gap">
             <div className="w-100">
               <label>Full Name</label>
@@ -57,6 +57,7 @@ const ContactForm = () => {
                 type="text"
                 placeholder="John Duo"
                 name="fullName"
+                required
               />
             </div>
             <div className="w-100">
@@ -67,6 +68,7 @@ const ContactForm = () => {
                 type="email"
                 placeholder="johnduo@gmail.com"
                 name="emailAddress"
+                required
               />
             </div>
           </div>
@@ -79,6 +81,7 @@ const ContactForm = () => {
                 type="text"
                 placeholder="United Kingdom"
                 name="country"
+                required
               />
             </div>
             <div className="w-100">
@@ -89,6 +92,7 @@ const ContactForm = () => {
                 type="text"
                 placeholder="+1 123 456 789"
                 name="phoneNumber"
+                required
               />
             </div>
           </div>
@@ -102,9 +106,10 @@ const ContactForm = () => {
               rows="6"
               name="message"
               onChange={handleInputChange}
+              required
             ></textarea>
           </div>
-          <button type="submit" onClick={handleSubmit}>
+          <button type="submit">
             Send Message <img src={rightArrow} alt="" />
           </button>
         </form>

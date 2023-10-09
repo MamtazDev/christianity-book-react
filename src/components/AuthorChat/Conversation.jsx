@@ -5,6 +5,7 @@ import settings from "../../assets/images/message_settings.png";
 import attach from "../../assets/images/attachFile.png";
 import submit from "../../assets/images/submit.png";
 import "./AuthorChat.css";
+import ShowImage from "./ShowImage";
 const Conversation = () => {
   const getCurrentTime = () => {
     const now = new Date();
@@ -16,69 +17,61 @@ const Conversation = () => {
     return `${formattedHours}:${formattedMinutes}${ampm}`;
   };
   const [chatData, setChatData] = useState([
-    { type: "sender", content: "HI", timestamp: getCurrentTime() },
+    { type: "sender", content: "HI", timestamp: getCurrentTime(), file: [] },
     {
       type: "receiver",
       content: "i got your message",
       timestamp: getCurrentTime(),
+      file: [],
     },
   ]);
   // console.log(chatData);
   const [message, setMessage] = useState("");
   const fileUploader = useRef(null);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [file, setFile] = useState(null);
 
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null);
 
+  const [imageName, setImageName] = useState(null);
+  const [uploadedImageArray, setUploadedImageArray] = useState([]);
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
+  // file upload
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    setUploadedImageArray([...uploadedImageArray, file]);
+    setImageName(file.name)
+  };
+  const openFileInput = () => {
+    fileUploader.current.click();
+  };
 
   const handleSubmit = () => {
-    if (message.trim() !== "" || file) {
+    if (message.trim() !== "" || uploadedImageArray.length > 0) {
       const newMessage = {
         type: "sender",
         content: message,
         timestamp: getCurrentTime(),
-        file: selectedFile,
+        file: uploadedImageArray,
       };
       setChatData([...chatData, newMessage]);
-      setMessage("");
-      setFile(null);
-
+      setUploadedImageArray([]);
       setTimeout(() => {
         const newMessageForReceiver = {
           type: "receiver",
           content: message,
           timestamp: getCurrentTime(),
+          file: uploadedImageArray,
         };
         setChatData((prevChatData) => [...prevChatData, newMessageForReceiver]);
       }, 2000);
     }
   };
 
-  // file upload
-  const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedFile(file);
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageSrc(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  const openFileInput = () => {
-    fileUploader.current.click();
-  };
-  // handleProfileSetting
   const handleProfileSetting = () => {
     setProfileOpen(!profileOpen);
   };
-  useEffect(() => {}, [selectedFile]);
+
   return (
     <>
       <div className="chatList">
@@ -97,9 +90,6 @@ const Conversation = () => {
             {profileOpen && <div className="profile_setting">pppp</div>}
           </div>
         </div>
-        {selectedFile && (
-          <img className="ml-auto" src={imageSrc} alt="Selected Image" />
-        )}
         {/* receiver */}
         {chatData.map((data, index) =>
           data.type === "receiver" ? (
@@ -112,28 +102,27 @@ const Conversation = () => {
             </div>
           ) : (
             <div className="answerBox ml-auto mb-3" key={index}>
-              {data.content.endsWith(".png") ? (
-                <>
-                  <img
-                    className="ml-auto"
-                    src={imageSrc}
-                    alt="Selected Image"
-                  />
-                </>
-              ) : (
-                <p className="mb-2">{data.content} </p>
-              )}
+              <>
+                {data.content === "" ? (
+                  <>
+                    {data?.file.map((single, index) => (
+                      <ShowImage key={index} item={single} />
+                    ))}
+                  </>
+                ) : (
+                  <p className="mb-2">{data.content} </p>
+                )}
+              </>
+
               <span className="d-block time">{data.timestamp} .Read</span>
             </div>
           )
         )}
-
         <div className="dayTime d-flex align-items-center gap-1">
           <div className="weekDayLine"></div>
           <p>Dec 7/10</p>
           <div className="weekDayLine"></div>
         </div>
-
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="sendForm d-flex align-items-center gap-4">
             <div className="file-upload">
@@ -149,7 +138,7 @@ const Conversation = () => {
               <input
                 id="file-input"
                 type="file"
-                accept="image/*"
+                // accept="image/*"
                 onChange={handleFileInputChange}
                 ref={fileUploader}
               />
@@ -158,10 +147,11 @@ const Conversation = () => {
               className="textField"
               type="text"
               name="message"
+              Value={imageName}
               placeholder="Type your message here.."
               onChange={handleInputChange}
-              defaultValue={selectedFile?.name ? selectedFile.name : ""}
             />
+
             <button type="button" onClick={handleSubmit}>
               <img className="img-fluid" src={submit} alt="Submit Button" />
             </button>
