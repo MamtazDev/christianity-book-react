@@ -161,8 +161,7 @@
     border-radius: 10px;
     background: var(--white, #FFF);
     width: 200px;
-    /* width: 100% !important; */
-height: 100px;
-right: 0;
+    height: 100px;
+    right: 0;
 
 }

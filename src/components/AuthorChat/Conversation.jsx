@@ -73,32 +73,34 @@ const Conversation = () => {
           <ProfileSetting />
         </div>
         {/* chat data */}
-        {chatData.map((data, index) =>
-          data.type === "receiver" ? (
-            <div className="grayBox mb-3" key={index}>
-              <div className="whiteBox mb-3">
-                <span className="d-block text-dark">you</span>
-                <p>{data.content}</p>
+        <div className="chat_scrolled">
+          {chatData.map((data, index) =>
+            data.type === "receiver" ? (
+              <div className="grayBox mb-3" key={index}>
+                <div className="whiteBox mb-3">
+                  <span className="d-block text-dark">you</span>
+                  <p>{data.content}</p>
+                </div>
+                <span className="d-block">{data.timestamp}</span>
               </div>
-              <span className="d-block">{data.timestamp}</span>
-            </div>
-          ) : (
-            <div className="answerBox ml-auto mb-3" key={index}>
-              <>
-                {data.content === "" ? (
-                  <>
-                    {data?.file.map((single, index) => (
-                      <ShowImage key={index} item={single} />
-                    ))}
-                  </>
-                ) : (
-                  <p className="mb-2">{data.content} </p>
-                )}
-              </>
-              <span className="d-block time">{data.timestamp} .Read</span>
-            </div>
-          )
-        )}
+            ) : (
+              <div className="answerBox ml-auto mb-3" key={index}>
+                <>
+                  {data.content === "" ? (
+                    <>
+                      {data?.file.map((single, index) => (
+                        <ShowImage key={index} item={single} />
+                      ))}
+                    </>
+                  ) : (
+                    <p className="mb-2">{data.content} </p>
+                  )}
+                </>
+                <span className="d-block time">{data.timestamp} .Read</span>
+              </div>
+            )
+          )}
+        </div>
         <ChatDate />
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="sendForm d-flex align-items-center gap-4">

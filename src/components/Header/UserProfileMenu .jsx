@@ -56,16 +56,13 @@ const UserProfileMenu = () => {
       }
     };
 
-    // Add scroll event listener when the component mounts
     window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // Empty dependency array ensures this effect runs only once
+  }, []); 
 
-  const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : ''}`;
+  const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : 'navbar_bg'}`;
 
   return (
     <>
