@@ -46,11 +46,10 @@ const Header = () => {
             </ul>
 
             <div className="d-flex gap-3 header_1">
-              {/* <Link className="dark_btn" to="/signup">
+              <Link className="dark_btn" to="/signup">
                 Sign Up
-              </Link> */}
-              {/* light_btn */}
-              <Link className=" dark_btn" to="/login">
+              </Link>
+              <Link className="light_btn" to="/login">
                 Sign In
               </Link>
             </div>
