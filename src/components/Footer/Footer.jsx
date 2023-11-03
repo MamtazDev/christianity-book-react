@@ -17,7 +17,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="col-lg-10">
-            <div className="d-flex justify-content-center  footerBox gap-2">
+            {/* <div className="d-flex justify-content-center  footerBox gap-2"> */}
               <div style={{ maxWidth: "700px" }}>
                 <p className="mb_4">
                   Do You Seek Answers? Reach Out to Me for a Question, at an
@@ -52,7 +52,7 @@ const Footer = () => {
                   </p>
                 </article>
               </div>
-            </div>
+            {/* </div> */}
           </div>
         </div>
 
