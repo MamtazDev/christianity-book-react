@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
-
+import PrivateRoute from "./PrivateRoute";
 import Loader from "../components/Utils/Loader";
 const Home = lazy(() => import("../pages/Home"));
 const LogIn = lazy(() => import("../pages/LogIn"));
@@ -82,15 +82,14 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
   },
-
   {
     path: "/subscription",
     element: (
-
-      <Suspense fallback={<Loader />}>
-        <Subscription />
-      </Suspense>
-
+      <PrivateRoute>
+        <Suspense fallback={<Loader />}>
+          <Subscription />
+        </Suspense>
+      </PrivateRoute>
     ),
   },
   {
@@ -116,72 +115,73 @@ export const router = createBrowserRouter([
       {
         path: "/account-settings",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <AccountSettings />
-          </Suspense>
-
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <AccountSettings />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
 
       {
         path: "/author-chat",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <AuthorChat />
-          </Suspense>
-
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <AuthorChat />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
 
       {
         path: "/bookmark",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <Bookmark />
-          </Suspense>
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <Bookmark />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
       {
         path: "/read-book",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <ReadBook />
-          </Suspense>
-
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <ReadBook />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
       {
         path: "/notification",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <Notification />
-          </Suspense>
-
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <Notification />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
       {
         path: "/highlights",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <HighLights />
-          </Suspense>
-
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <HighLights />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
       {
         path: "/my-notes",
         element: (
-
-          <Suspense fallback={<Loader />}>
-            <MyNotes />
-          </Suspense>
-
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <MyNotes />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
     ],

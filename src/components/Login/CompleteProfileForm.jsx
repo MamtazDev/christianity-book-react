@@ -26,13 +26,13 @@ const CompleteProfileForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(formData.username);
     const userDataString = localStorage.getItem("loggedInUser");
     const userDatas = JSON.parse(userDataString);
-    userDatas.username = formData.username;
-    userDatas.email = formData.email;
-    userDatas.phoneNo = formData.phoneNo;
-    userDatas.country = formData.country;
+    // userDatas.username = formData.username;
+    // userDatas.email = formData.email;
+    // userDatas.phoneNo = formData.phoneNo;
+    // userDatas.country = formData.country;
     localStorage.setItem("loggedInUser", JSON.stringify(userDatas));
     Swal.fire({
       position: "center",
@@ -191,7 +191,7 @@ const CompleteProfileForm = () => {
             </div>
           </div>
           <div className="create_profile_button">
-            <button type="submit" onClick={handleNavigateSubscription}>
+            <button type="submit" >
               Create Profile
             </button>
           </div>
