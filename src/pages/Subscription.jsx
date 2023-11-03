@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Subscription.css";
 import CompletePayment from "../components/Modals/CompletePayment";
@@ -8,13 +8,14 @@ import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
 import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 const Subscription = () => {
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
   const navigate = useNavigate();
 
   const handleCompletePayment = () => {
+    // Use navigate to programmatically navigate to the home page
     setTimeout(() => {
       navigate("/");
-    }, 2000);
+    }, 1000); // Change the delay time as needed
   };
 
   return (

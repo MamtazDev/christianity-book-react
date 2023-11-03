@@ -11,7 +11,6 @@ const SignUpForm = () => {
   const [look, setLook] = useState(false);
   const [lookConfirm, setLookConfirm] = useState(false);
   const navigate = useNavigate();
-
   const handleFoucsInput = (value, action) => {
     if (action === "focus") {
       setFocusInput(value);
@@ -39,14 +38,12 @@ const SignUpForm = () => {
     const existingData = JSON.parse(localStorage.getItem("userData")) || [];
 
     // Check if the email already exists in localStorage
-    const emailExists = existingData.some((user) => user.email === userObject.email);
+    const emailExists = existingData?.some((user) => user?.email === userObject?.email);
 
     if (emailExists) {
       alert("Email already exists. Please use a different email.");
     } else {
-      // Add the new user object to the array
       existingData.push(userObject);
-      // Save the updated data back to localStorage
       localStorage.setItem("userData", JSON.stringify(existingData));
       console.log("Registration successful");
       navigate("/complete-profile");
