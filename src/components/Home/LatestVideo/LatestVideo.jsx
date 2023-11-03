@@ -1,21 +1,35 @@
 import React from "react";
 import "./LatestVideo.css";
 import { Link } from "react-router-dom";
+import YoutubeVideo from "../YoutubeVideo/YoutubeVideo";
+import videoThumbnail from "../../../assets/images/videoThumbnail.png"
+
+
 const LatestVideo = () => {
   return (
     <>
       <div className="latestVideo mb_all">
         <div className="container">
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col-12 col-lg-5">
               <div className="videoBox">
-                <iframe
+
+                <YoutubeVideo videoId="zrI3XRFSwY8" thumbnailUrl={videoThumbnail} />
+
+                {/* https://www.youtube.com/embed/zrI3XRFSwY8 */}
+
+                {/* <MediaPlayer title="Sprite Fight" src="https://www.youtube.com/embed/zrI3XRFSwY8">
+                  <MediaProvider />
+                  <DefaultVideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" icons={defaultLayoutIcons} />
+                </MediaPlayer>; */}
+                {/* <iframe
                   src="https://www.youtube.com/embed/zrI3XRFSwY8"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                ></iframe>
+                ></iframe> */}
+
               </div>
             </div>
             <div className="col-12 col-lg-7">

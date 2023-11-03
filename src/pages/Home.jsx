@@ -9,6 +9,7 @@ import PointsCovered from "../components/Home/PointsCovered/PointsCovered";
 import Author from "../components/Home/Author/Author";
 import UserProfileMenu from "../components/Header/UserProfileMenu ";
 import Banner from "./../components/Home/Banner/Banner";
+import ImagePopUp from "../components/Home/ImagePopUp/ImagePopUp";
 
 const Home = () => {
   const [userData, setUserData] = useState(null);
@@ -28,6 +29,7 @@ const Home = () => {
         <ReadersSay />
         <LatestVideo />
         <PointsCovered />
+        <ImagePopUp />
         <Author />
       </main>
       <Footer />

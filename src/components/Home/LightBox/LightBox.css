@@ -1,0 +1,27 @@
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+}
+
+.lightbox-content button {
+    display: block;
+    margin-top: 10px;
+}
