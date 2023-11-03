@@ -1,9 +1,14 @@
 import React, { useRef, useState } from "react";
 import profile from "../../assets/images/profile_pic.png";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CompleteProfileForm = () => {
   const [droppedImage, setDroppedImage] = useState(null);
+
+  const navigate = useNavigate();
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -11,13 +16,14 @@ const CompleteProfileForm = () => {
       [name]: value,
     });
   };
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-
     phoneNo: "",
     country: "",
   });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -41,14 +47,17 @@ const CompleteProfileForm = () => {
       phoneNo: "",
       country: "",
     });
+    navigate('/subscription');
   };
+
   // get item from
   const userDataString = localStorage.getItem("loggedInUser");
   const userData = JSON.parse(userDataString);
-  const email = userData.email;
-  const username = userData.username;
+  const email = userData?.email ? userData.email : "test@gmail.com";
+  const username = userData?.username;
   const uploadedImage = useRef(null);
   const imageUploader = useRef(null);
+
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     if (file) {
@@ -62,9 +71,11 @@ const CompleteProfileForm = () => {
       reader.readAsDataURL(file);
     }
   };
+
   const handleDragOver = (e) => {
     e.preventDefault();
   };
+
   const handleDrop = (e) => {
     e.preventDefault();
     const [file] = e.dataTransfer.files;
@@ -72,6 +83,17 @@ const CompleteProfileForm = () => {
       setDroppedImage(URL.createObjectURL(file));
     }
   };
+
+  const handleNavigateSubscription = () => {
+    if (formData?.username && formData?.email && formData?.phoneNo && formData?.country) {
+      navigate('/subscription');
+    } else {
+      alert('Fill in all the information');
+    }
+  }
+
+
+
   return (
     <>
       <div className="profile_parent_container">
@@ -169,7 +191,9 @@ const CompleteProfileForm = () => {
             </div>
           </div>
           <div className="create_profile_button">
-            <button type="submit">Create Profile</button>
+            <button type="submit" onClick={handleNavigateSubscription}>
+              Create Profile
+            </button>
           </div>
         </form>
       </div>

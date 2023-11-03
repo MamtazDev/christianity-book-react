@@ -29,10 +29,7 @@ const CompletePayment = () => {
             <div className="modal-body deactiveAccModalOne text-center payment_modal_text">
               <img src={deactiveSuccess} alt="Deactivate Account" />
               <h6 className="mt-4 mb-3 text-dark">Payment Successful!</h6>
-              <p
-                className="mb-5 "
-                style={{ marginLeft: "79px", marginRight: "79px" }}
-              >
+              <p className="mb-5 " style={{ marginLeft: "79px", marginRight: "79px" }}>
                 Your subscription has been successfully activated, granting you
                 access to read the book online with voice translation and
                 participate in the Q&A forum.

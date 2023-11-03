@@ -14,7 +14,6 @@ const Home = () => {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
     const storedUserData = JSON.parse(localStorage.getItem("loggedInUser"));
-
     if (storedUserData) {
       setUserData(storedUserData);
     }

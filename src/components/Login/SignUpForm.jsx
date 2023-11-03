@@ -3,9 +3,6 @@ import message from "../../assets/icons/message.png";
 import lock from "../../assets/icons/padlock.png";
 import eye from "../../assets/icons/eye.png";
 import yellowEye from "../../assets/icons/yellowEye.png";
-import facebook from "../../assets/icons/facebook.png";
-import google from "../../assets/icons/google.png";
-import apple from "../../assets/icons/apple.png";
 import user from "../../assets/icons/user.png";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,7 +10,6 @@ const SignUpForm = () => {
   const [focusInput, setFocusInput] = useState(null);
   const [look, setLook] = useState(false);
   const [lookConfirm, setLookConfirm] = useState(false);
-
   const navigate = useNavigate();
 
   const handleFoucsInput = (value, action) => {
@@ -33,32 +29,30 @@ const SignUpForm = () => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-      const userObject = {
+    const userObject = {
       email: formData.get("email"),
       username: formData.get("username"),
       password: formData.get("password"),
     };
-  
+
     // Get the existing data from localStorage or initialize an empty array
     const existingData = JSON.parse(localStorage.getItem("userData")) || [];
-  
+
     // Check if the email already exists in localStorage
     const emailExists = existingData.some((user) => user.email === userObject.email);
-  
+
     if (emailExists) {
       alert("Email already exists. Please use a different email.");
     } else {
       // Add the new user object to the array
       existingData.push(userObject);
-  
       // Save the updated data back to localStorage
       localStorage.setItem("userData", JSON.stringify(existingData));
-  
       console.log("Registration successful");
-      navigate("/");
+      navigate("/complete-profile");
     }
   };
-  
+
   return (
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox">
@@ -77,11 +71,7 @@ const SignUpForm = () => {
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: "49px" }}>
             <label>Email</label>
-            <div
-              className={`inputContainer ${
-                focusInput === "email" && "focusInput"
-              }`}
-            >
+            <div className={`inputContainer ${focusInput === "email" && "focusInput"}`}>
               <img src={message} alt="" />
               <input
                 type="email"
@@ -94,13 +84,10 @@ const SignUpForm = () => {
               />
             </div>
           </div>
+
           <div style={{ marginBottom: "49px" }}>
             <label>Username</label>
-            <div
-              className={`inputContainer ${
-                focusInput === "username" && "focusInput"
-              }`}
-            >
+            <div className={`inputContainer ${focusInput === "username" && "focusInput"}`}>
               <img src={user} alt="" />
               <input
                 type="text"
@@ -112,13 +99,10 @@ const SignUpForm = () => {
               />
             </div>
           </div>
+
           <div style={{ marginBottom: "49px" }}>
             <label>Create Password</label>
-            <div
-              className={`inputContainer ${
-                focusInput === "crPassword" && "focusInput"
-              }`}
-            >
+            <div className={`inputContainer ${focusInput === "crPassword" && "focusInput"}`}>
               <img src={lock} alt="" />
               <input
                 type={look ? "text" : "password"}
@@ -136,14 +120,15 @@ const SignUpForm = () => {
               />
             </div>
           </div>
+
           <div style={{ marginBottom: "58px" }}>
             <label>Confirm Password</label>
             <div
-              className={`inputContainer ${
-                focusInput === "cfPassword" && "focusInput"
-              }`}
+              className={`inputContainer ${focusInput === "cfPassword" && "focusInput"
+                }`}
             >
               <img src={lock} alt="" />
+
               <input
                 type={lookConfirm ? "text" : "password"}
                 name="confirmPassword"
@@ -152,12 +137,14 @@ const SignUpForm = () => {
                 onFocus={() => handleFoucsInput("cfPassword", "focus")}
                 onBlur={() => handleFoucsInput("cfPassword", "blur")}
               />
+
               <img
                 style={{ cursor: "pointer" }}
                 src={lookConfirm ? yellowEye : eye}
                 alt=""
                 onClick={() => setLookConfirm(!lookConfirm)}
               />
+
             </div>
           </div>
 

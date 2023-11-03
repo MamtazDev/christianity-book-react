@@ -44,6 +44,7 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
+
             <div className="d-flex gap-3 header_1">
               <Link className="dark_btn" to="/signup">
                 Sign Up
@@ -52,6 +53,7 @@ const Header = () => {
                 Sign In
               </Link>
             </div>
+            
           </div>
         </div>
       </nav>
