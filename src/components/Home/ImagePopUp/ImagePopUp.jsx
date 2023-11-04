@@ -54,7 +54,13 @@ const ImagePopUp = () => {
     };
     return (
         <div className='ImagePopUp py-5' >
+            <div className='text-center py-5'>
+                <h2>
+                    Book Cover
+                </h2>
+            </div>
             <div className="image-gallery d-flex flex-wrap justify-content-center gap-4 whitespace-nowrap">
+
                 {
                     allCoverImages.map((img, index) => (
                         <div className='me-4' style={{ marginRight: '14px', marginBottom: '20px' }} key={index}>
