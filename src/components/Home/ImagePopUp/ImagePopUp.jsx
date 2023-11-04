@@ -53,8 +53,8 @@ const ImagePopUp = () => {
         setLightboxImage(null);
     };
     return (
-        <div className='ImagePopUp py-5' >
-            <div className='text-center py-5'>
+        <div className='ImagePopUp pb-5' >
+            <div className='text-center pb-5'>
                 <h2>
                     Book Cover
                 </h2>
