@@ -11,6 +11,16 @@ import coverSeven from '../../../assets/images/coverSeven.jpg'
 import coverEight from '../../../assets/images/coverEight.jpg'
 import coverNine from '../../../assets/images/coverNine.jpg'
 
+// import styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+
+// import plugins if you need
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
+import LightGallery from 'lightgallery/react/Lightgallery.es5';
+
 const allCoverImages = [
     {
         src: coverOne,
@@ -43,45 +53,32 @@ const allCoverImages = [
 
 
 const ImagePopUp = () => {
-    const [lightboxImage, setLightboxImage] = useState(null);
-
-    const openLightbox = (image) => {
-        setLightboxImage(image);
+    const onInit = () => {
+        console.log('lightGallery has been initialized');
     };
 
-    const closeLightbox = () => {
-        setLightboxImage(null);
-    };
     return (
-        <div className='ImagePopUp pb-5' >
+        <div className='ImagePopUp pb-5'>
             <div className='text-center pb-5'>
-                <h2>
-                    Book Cover
-                </h2>
+                <h2>Book Cover</h2>
             </div>
-            <div className="image-gallery d-flex flex-wrap justify-content-center gap-4 whitespace-nowrap">
+            <div className="image-gallery text-center">
+                <LightGallery onInit={onInit} speed={500} plugins={[lgThumbnail, lgZoom]} className="d-flex flex-wrap justify-content-center">
+                    {allCoverImages.map((img, index) => (
+                        <a
+                            data-lg-size="1406-1390"
+                            className="gallery-item me-4 m-2"
+                            data-src={img.src}
+                            data-sub-html=""
+                        >
+                            <img width={315} height={200} src={img.src} className='mb-4' alt="Christianity Book" />
+                        </a>
 
-                {
-                    allCoverImages.map((img, index) => (
-                        <div className='me-4' style={{ marginRight: '14px', marginBottom: '20px' }} key={index}>
-                            <img
-
-                                width={315}
-                                height={200}
-                                src={img.src}
-                                alt="img"
-                                onClick={() => openLightbox(`${img.src}`)}
-                            />
-                        </div>
-                    ))
-                }
+                    ))}
+                </LightGallery>
             </div>
-
-            {lightboxImage && (
-                <LightBox image={lightboxImage} onClose={closeLightbox} />
-            )}
         </div>
-    )
-}
+    );
+};
 
 export default ImagePopUp

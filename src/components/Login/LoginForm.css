@@ -12,7 +12,7 @@
 }
 
 .logInContainer h5 a {
-  color: #313131;
+  color: var(--black);
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -20,7 +20,7 @@
 }
 
 .logInContainer h2 {
-  color: #313131;
+  color: var(--black);
   font-size: 34px;
   font-style: normal;
   font-weight: 700;
@@ -46,7 +46,7 @@
 }
 
 .logInContainer .headerText a {
-  color: #ffb230;
+  color: var(--secondry);
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -91,7 +91,7 @@
 }
 
 .logInContainer form .inputContainer input::placeholder {
-  color: #423c6a;
+  color: var(--primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -99,7 +99,7 @@
 }
 
 .logInContainer form .inputContainer1 input::placeholder {
-  color: #423c6a;
+  color: var(--primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -107,7 +107,7 @@
 }
 
 .focusInput {
-  border-bottom: 2px solid #423c6a !important;
+  border-bottom: 2px solid var(--primary) !important;
 }
 
 .checkBoxInputContainer {
@@ -147,7 +147,7 @@
 .logInActionContainer .sign-in-button {
   width: 100%;
   border-radius: 32px;
-  background: #423c6a;
+  background: var(--primary);
   box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
   color: #fff;
   text-align: center;
@@ -164,7 +164,7 @@
   margin-top: 36px;
   margin-bottom: 36px;
   text-align: center;
-  color: #313131;
+color: var(--black);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
