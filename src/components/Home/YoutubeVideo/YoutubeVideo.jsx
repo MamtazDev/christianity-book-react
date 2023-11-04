@@ -1,49 +1,7 @@
-// import React, { useState } from 'react'
-// import YouTube from 'react-youtube';
-
-// const YoutubeVideo = ({ videoId, thumbnailUrl }) => {
-//     const [videoPlaying, setVideoPlaying] = useState(false);
-
-//     const onReady = (event) => {
-//         event.target.pauseVideo();
-//     };
-
-//     const playVideo = () => {
-//         setVideoPlaying(true);
-//     };
-
-//     const opts = {
-//         height: '390',
-//         width: '640',
-//         playerVars: {
-//             autoplay: 1,
-//         },
-//     };
-//     return (
-//         <div>
-//             {
-//                 !videoPlaying ? (
-//                     <div className="custom-thumbnail" onClick={playVideo}>
-//                         <img src={thumbnailUrl} alt="Custom Thumbnail" />
-//                         <YouTube videoId={videoId} opts={opts} onReady={onReady} />
-//                     </div>
-//                 ) : null
-//             }
-//         </div>
-//     )
-// }
-
-// export default YoutubeVideo
-
-
 import React, { useState } from 'react';
 
 const YoutubeVideo = ({ videoId, thumbnailUrl }) => {
     const [videoPlaying, setVideoPlaying] = useState(false);
-
-    const onReady = (event) => {
-        event.target.pauseVideo();
-    };
 
     const playVideo = () => {
         setVideoPlaying(true);
@@ -51,9 +9,11 @@ const YoutubeVideo = ({ videoId, thumbnailUrl }) => {
 
     const opts = {
         height: '350',
-        // width: '640',
         playerVars: {
             autoplay: 1,
+            controls: 0,
+            showinfo: 0,
+            modestbranding: 1,  // Remove YouTube logo
         },
     };
 
@@ -65,13 +25,12 @@ const YoutubeVideo = ({ videoId, thumbnailUrl }) => {
                 </div>
             ) : (
                 <div className="youtube-video">
-
                     <iframe
                         allow='autoplay'
                         title="YouTube Video"
                         width={opts.width}
                         height={opts.height}
-                        src={`https://www.youtube.com/embed/${videoId}?autoplay=${opts.playerVars.autoplay}`}
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=${opts.playerVars.autoplay}&controls=${opts.playerVars.controls}&showinfo=${opts.playerVars.showinfo}&modestbranding=${opts.playerVars.modestbranding}`}
                         allowFullScreen
                     ></iframe>
                 </div>
