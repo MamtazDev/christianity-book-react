@@ -16,9 +16,9 @@ const Footer = () => {
               Your Logo
             </p>
           </div>
-          <div className="col-lg-10">
+          <div className="col-lg-8">
             <div className="d-flex justify-content-center footerBox gap-2">
-            <div style={{ maxWidth: "700px" }}>
+            <div >
                 <p className="mb_4">
                   Do You Seek Answers? Reach Out to Me for a Question, at an
                   Affordable Rate of $20.

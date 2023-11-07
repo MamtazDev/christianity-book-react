@@ -33,12 +33,20 @@ a {
   text-decoration: none;
 }
 
+
 :root {
+  --primary: #423C6A;
+  --black: #313131;
+  --secondry: #436dd0;
+  --e0: #436dd036;
+  /* --e0: #436dd0; */
+}
+/* :root {
   --primary: #423C6A;
   --black: #313131;
   --secondry: #ffb230;
   --e0: #fff3e0;
-}
+} */
 
 .container {
   max-width: 1248px;
@@ -326,6 +334,7 @@ footer article p {
   background-size: cover;
   padding: 120px 0;
   position: relative;
+  background: var(--e0);
 }
 
 .banner span {
