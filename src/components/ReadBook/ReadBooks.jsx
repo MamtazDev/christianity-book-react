@@ -1,32 +1,42 @@
-import React from "react";
-import cover from "../../assets/images/smCover.png";
-import content from "../../assets/images/smSec.png";
-import subcontent from "../../assets/images/smthree.png";
-import bookCover from "../../assets/images/bookCover.png";
-import Pagination from "../Utils/Pagination";
+import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import pdfBooks from '../../assets/book/book.pdf'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const ReadBooks = () => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
   return (
     <div className=" previewBook mb-ebook mb-5">
       <div className="row bookHeight m-0 gap-5">
-        <div className="col-12 col-lg-3 bookScroll">
-          <div className="bookIndex d-flex flex-column">
-            <img src={cover} alt="" />
-            <img src={content} alt="" />
-            <img src={subcontent} alt="" />
-            <img src={subcontent} alt="" />
-            <img src={subcontent} alt="" />
-            <img src={subcontent} alt="" />
-            <img src={subcontent} alt="" />
+        <div className="col-lg-3 bookScroll">
+          <div className="bookIndex">
+
           </div>
         </div>
-        <div className="col-12 col-lg-9">
+
+        <div className="col-lg-9">
           <div className="detalisPage">
-            <img className=" h-100" src={bookCover} alt="Book Cover" />
-            {/* <Pagination className="w-100" /> */}
+            <Document
+              file={pdfBooks} // Replace with your PDF file URL or path
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              <Page
+                pageNumber={pageNumber}
+                width={600} // Adjust the width as needed
+              />
+            </Document>
+            <p>
+              Page {pageNumber} of {numPages}
+            </p>
           </div>
         </div>
-        {/* <div className="col-12 col-lg-1"></div> */}
+
       </div>
     </div>
   );

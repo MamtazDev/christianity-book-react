@@ -13,11 +13,8 @@ const LatestVideo = () => {
           <div className="row align-items-center">
             <div className="col-12 col-lg-5">
               <div className="videoBox">
-
                 <YoutubeVideo videoId="zrI3XRFSwY8" thumbnailUrl={videoThumbnail} />
-
                 {/* https://www.youtube.com/embed/zrI3XRFSwY8 */}
-
               </div>
             </div>
             <div className="col-12 col-lg-7">

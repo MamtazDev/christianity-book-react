@@ -1,9 +1,10 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Outlet } from "react-router-dom";
-import UserProfileMenu from "../components/Header/UserProfileMenu ";
+// import UserProfileMenu from "../components/Header/UserProfileMenu ";
 import { useEffect, useState } from "react";
-import ScrollToTop from "../Routes/ScrollToTop ";
+import UserProfileMenu from "../components/Header/UserProfileMenu ";
+// import ScrollToTop from "../Routes/ScrollToTop ";
 
 const Layout = () => {
   const [userData, setUserData] = useState(null);
@@ -14,10 +15,13 @@ const Layout = () => {
       setUserData(storedUserData);
     }
   }, []);
+
   return (
     <>
-      <ScrollToTop />
-      {userData ? <UserProfileMenu /> : <Header />}
+      {/* <ScrollToTop /> */}
+      {/* {userData.email ? <UserProfileMenu /> : <Header />} */}
+      <Header />
+      {/* <UserProfileMenu/> */}
       <Outlet />
       <Footer />
     </>

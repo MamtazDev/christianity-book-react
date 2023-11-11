@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import UserProfileMenu from "./UserProfileMenu ";
 
 const Header = () => {
+
+  const userDataString = localStorage.getItem("loggedInUser");
+  const userData = JSON.parse(userDataString);
+  // scroll
+  // navbar bg color when schrolling
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    // Function to handle the scroll event
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true); // When scrolled down, set isScrolled to true
+      } else {
+        setIsScrolled(false); // When at the top, set isScrolled to false
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : 'navbar_bg'}`;
+
   return (
     <header>
-      <nav className="navbar navbar-expand-lg">
+      <nav className={navbarClasses}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             Your Logo
@@ -44,15 +69,23 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-
-            <div className="d-flex gap-3 header_1">
-              <Link className="dark_btn" to="/signup">
-                Sign Up
-              </Link>
-              <Link className="light_btn" to="/login">
-                Sign In
-              </Link>
+            <div className="ms-auto">
+              {
+                userData ?
+                  <UserProfileMenu />
+                  :
+                  <div className="d-flex gap-3 header_1">
+                    <Link className="dark_btn" to="/signup">
+                      Sign Up
+                    </Link>
+                    <Link className="light_btn" to="/login">
+                      Sign In
+                    </Link>
+                  </div>
+              }
             </div>
+
+
 
           </div>
         </div>

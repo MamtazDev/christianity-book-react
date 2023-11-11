@@ -7,9 +7,10 @@ import ReadersSay from "../components/Home/ReadersSay/ReadersSay";
 import LatestVideo from "../components/Home/LatestVideo/LatestVideo";
 import PointsCovered from "../components/Home/PointsCovered/PointsCovered";
 import Author from "../components/Home/Author/Author";
-import UserProfileMenu from "../components/Header/UserProfileMenu ";
+// import UserProfileMenu from "../components/Header/UserProfileMenu ";
 import Banner from "./../components/Home/Banner/Banner";
 import ImagePopUp from "../components/Home/ImagePopUp/ImagePopUp";
+import UserProfileMenu from "../components/Header/UserProfileMenu ";
 
 const Home = () => {
   const [userData, setUserData] = useState(null);
@@ -21,7 +22,9 @@ const Home = () => {
   }, []);
   return (
     <>
-      {userData ? <UserProfileMenu /> : <Header />}
+      {/* {userData ? <UserProfileMenu /> : <Header />} */}
+      <Header />
+      {/* <UserProfileMenu /> */}
       <main>
         <Banner />
         <AchiveSection />
