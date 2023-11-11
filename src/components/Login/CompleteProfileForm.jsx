@@ -134,8 +134,8 @@ const CompleteProfileForm = () => {
               ) : (
                 <img
                   width={'175px'}
-                    height={'175px'}
-                    style={{borderRadius: '50%'}}
+                  height={'175px'}
+                  style={{ borderRadius: '50%' }}
                   ref={uploadedImage}
                   src={profile}
                   alt=""
@@ -143,7 +143,7 @@ const CompleteProfileForm = () => {
               )}
 
               <div className="camera-icon position-absolute">
-                <img onClick={() => imageUploader.current.click()}
+                <img style={{ cursor: 'pointer' }} onClick={() => imageUploader.current.click()}
                   src={cameraIcon} alt="camera" />
               </div>
 
