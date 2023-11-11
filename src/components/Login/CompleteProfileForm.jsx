@@ -128,21 +128,24 @@ const CompleteProfileForm = () => {
               />
             </div>
 
-            <div className="image_upload" draggable="true">
+            <div className="image_upload position-relative" draggable="true">
               {droppedImage ? (
                 <img src={droppedImage} alt="" />
               ) : (
                 <img
-                  onClick={() => imageUploader.current.click()}
+                  width={'175px'}
+                    height={'175px'}
+                    style={{borderRadius: '50%'}}
                   ref={uploadedImage}
                   src={profile}
                   alt=""
                 />
               )}
-{/*
-              <div className="position-absolute ">
-                <img src={cameraIcon} alt="camera" />
-              </div> */}
+
+              <div className="camera-icon position-absolute">
+                <img onClick={() => imageUploader.current.click()}
+                  src={cameraIcon} alt="camera" />
+              </div>
 
             </div>
           </div>
