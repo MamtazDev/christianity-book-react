@@ -3,6 +3,8 @@ import profile from "../../assets/images/profile_pic.png";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import cameraIcon from '../../assets/images/camera-icon.png'
+
 const CompleteProfileForm = () => {
   const [droppedImage, setDroppedImage] = useState(null);
 
@@ -137,6 +139,11 @@ const CompleteProfileForm = () => {
                   alt=""
                 />
               )}
+{/*
+              <div className="position-absolute ">
+                <img src={cameraIcon} alt="camera" />
+              </div> */}
+
             </div>
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">

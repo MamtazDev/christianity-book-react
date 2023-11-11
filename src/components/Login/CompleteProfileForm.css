@@ -110,8 +110,8 @@ select {
   cursor: pointer;
 }
 
-.image_upload img{
+/* .image_upload img{
   border-radius: 50% !important;
   width: 175px;
   height: 175px;
-}
+} */
