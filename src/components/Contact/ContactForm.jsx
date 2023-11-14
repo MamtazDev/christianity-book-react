@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import rightArrow from "../../assets/images/right_arrow.png";
 import "./Contact.css";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 const ContactForm = () => {
+  const navigate = useNavigate(); // Use useNavigate for navigation
+  // const location = useLocation();
+  // const authorLink = location.pathname;
+
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [formData, setFormData] = useState({
     fullName: "",
     emailAddress: "",
@@ -17,6 +23,9 @@ const ContactForm = () => {
       ...formData,
       [name]: value,
     });
+
+    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    setPhoneNumber(numericValue);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +44,7 @@ const ContactForm = () => {
       phoneNumber: "",
       message: "",
     });
+    navigate('/author-chat');
   };
   return (
     <div className="contactAll">
@@ -57,7 +67,6 @@ const ContactForm = () => {
                 type="text"
                 placeholder="John Duo"
                 name="fullName"
-                required
               />
             </div>
             <div className="w-100">
@@ -68,7 +77,6 @@ const ContactForm = () => {
                 type="email"
                 placeholder="johnduo@gmail.com"
                 name="emailAddress"
-                required
               />
             </div>
           </div>
@@ -81,7 +89,6 @@ const ContactForm = () => {
                 type="text"
                 placeholder="United Kingdom"
                 name="country"
-                required
               />
             </div>
             <div className="w-100">
@@ -92,7 +99,7 @@ const ContactForm = () => {
                 type="text"
                 placeholder="+1 123 456 789"
                 name="phoneNumber"
-                required
+                value={phoneNumber}
               />
             </div>
           </div>

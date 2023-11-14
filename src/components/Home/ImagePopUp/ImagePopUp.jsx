@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './ImagePopUp.css'
-import LightBox from '../LightBox/LightBox';
 import coverOne from '../../../assets/images/coverOne.jpg'
 import coverTwo from '../../../assets/images/coverTwo.jpg'
 import coverThree from '../../../assets/images/coverThree.jpg'
@@ -66,6 +65,7 @@ const ImagePopUp = () => {
                 <LightGallery onInit={onInit} speed={500} plugins={[lgThumbnail, lgZoom]} className="d-flex flex-wrap justify-content-center">
                     {allCoverImages.map((img, index) => (
                         <a
+                            key={index}
                             data-lg-size="1406-1390"
                             className="gallery-item me-4 m-2"
                             data-src={img.src}

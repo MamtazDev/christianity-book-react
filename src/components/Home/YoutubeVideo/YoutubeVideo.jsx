@@ -21,7 +21,7 @@ const YoutubeVideo = ({ videoId, thumbnailUrl }) => {
         <div>
             {!videoPlaying ? (
                 <div className="custom-thumbnail" onClick={playVideo}>
-                    <img className='img-fluid' src={thumbnailUrl} alt="Custom Thumbnail" />
+                    <img className='img-fluid' style={{cursor:'pointer'}} src={thumbnailUrl} alt="Custom Thumbnail" />
                 </div>
             ) : (
                 <div className="youtube-video">

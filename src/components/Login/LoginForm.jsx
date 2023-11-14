@@ -68,12 +68,12 @@ const LoginForm = () => {
           <div style={{ marginBottom: "49px" }}>
             <label>Email</label>
             <div
-              className={`inputContainer ${
-                focusInput === "email" && "focusInput"
-              }`}
+              className={`inputContainer ${focusInput === "email" && "focusInput"
+                }`}
             >
               <img src={message} alt="" />
               <input
+                className="w-100"
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
@@ -83,15 +83,15 @@ const LoginForm = () => {
               />
             </div>
           </div>
-          <div>
+          <div className="w-100">
             <label>Password</label>
             <div
-              className={`inputContainer ${
-                focusInput === "password" && "focusInput"
-              }`}
+              className={`inputContainer ${focusInput === "password" && "focusInput"
+                }`}
             >
               <img src={lock} alt="" />
               <input
+                className="w-100"
                 type={look ? "text" : "password"}
                 name="password"
                 placeholder="Enter your Password"
@@ -110,8 +110,12 @@ const LoginForm = () => {
 
           <div className="checkBoxInputContainer">
             <div>
-              <input type="checkbox" name="" id="" />
-              <p>Remember me</p>
+              <label htmlFor="remember_me" className="d-flex align-items-center">
+                <input type="checkbox" name="" id="remember_me" />
+                <p style={{ marginLeft: '15px' }}>
+                  Remember me
+                </p>
+              </label>
             </div>
             <Link to="/reset-password">Forgot Password?</Link>
           </div>

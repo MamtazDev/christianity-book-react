@@ -104,11 +104,7 @@ const CompleteProfileForm = () => {
           <p>Kindly Enter your Credentials Below to Create Your Profile.</p>
         </div>
         <form onSubmit={handleSubmit} className="profileSetting mt_30cp">
-          <div
-            className="profile_pic"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
+          <div className="profile_pic" onDragOver={handleDragOver} onDrop={handleDrop}>
             <div
               style={{
                 display: "flex",
@@ -146,10 +142,11 @@ const CompleteProfileForm = () => {
                 <img style={{ cursor: 'pointer' }} onClick={() => imageUploader.current.click()}
                   src={cameraIcon} alt="camera" />
               </div>
-
             </div>
+
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
+
             <div className="completeprofile_inputContainer">
               <label>Full Name</label>
               <input
@@ -161,6 +158,7 @@ const CompleteProfileForm = () => {
                 required
               />
             </div>
+
             <div className="completeprofile_inputContainer">
               <label>Email Address</label>
               <input
@@ -172,6 +170,7 @@ const CompleteProfileForm = () => {
                 required
               />
             </div>
+
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
             <div className="completeprofile_inputContainer">

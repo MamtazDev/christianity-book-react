@@ -3,32 +3,44 @@ import facebook from "../../assets/images/fb.png";
 import twitter from "../../assets/images/twitter.png";
 import youtube from "../../assets/images/youtube.png";
 import rightArrow from "../../assets/images/right_arrow.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate()
+
+  const handleScrollTop = () => {
+    window.scrollTo(0, 0)
+    navigate('/contact')
+  }
+
   return (
     <footer>
-      {/* d-flex align-items-start flex-wrap footer_gap */}
       <div className="container ">
         <div className="row">
+
           <div className="col-lg-2">
             <p style={{ fontSize: "40px" }} className="">
               Your Logo
             </p>
           </div>
+
           <div className="col-lg-8">
             <div className="d-flex justify-content-center footerBox gap-2">
-            <div >
+              <div>
                 <p className="mb_4">
                   Do You Seek Answers? Reach Out to Me for a Question, at an
                   Affordable Rate of $20.
                 </p>
+
                 <div className="footer_button">
-                  <Link to="/contact" className="send_msg_button">
+
+                  <Link className="send_msg_button" onClick={handleScrollTop}>
                     Send me a Message
                     <img src={rightArrow} alt="" style={{ marginLeft: "10px" }} />
                   </Link>
+
                 </div>
+
                 <div className="linkFooter d-flex justify-content-center align-items-center mb_4 gap-5">
                   <a href="/">Home</a>
                   <a href="/contact">Contact Me</a>

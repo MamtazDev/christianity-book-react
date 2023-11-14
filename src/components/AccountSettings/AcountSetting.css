@@ -27,14 +27,14 @@
 /* account setting */
 .inputContainer {
     width: 100%;
-    max-width: 356px !important;
+    /* max-width: 356px !important; */
     display: block;
 }
 
 
 .inputContainer1 {
     width: 100%;
-    max-width: 356px !important;
+    /* max-width: 356px !important; */
     display: block;
 }
 

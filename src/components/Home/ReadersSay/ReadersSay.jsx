@@ -6,8 +6,6 @@ import round3 from "../../../assets/images/round_pp3.png";
 import ReaderCard from "./ReaderCard";
 import { FreeMode, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
@@ -17,7 +15,7 @@ const ReadersSay = () => {
       <div>
         <div className="mb_all">
           <div className="container">
-            <h2 className="mb_20"> 
+            <h2 className="mb_20">
               What My <span className="txt_curve">Readers</span> Say
               <br />
               About Me.
@@ -29,11 +27,12 @@ const ReadersSay = () => {
             <Swiper
               slidesPerView={3}
               spaceBetween={30}
-              loop={true}
+              loop={false}
               pagination={{
                 clickable: true,
+                bullets: true,
               }}
-              modules={[FreeMode, Pagination]}
+              modules={[Pagination]}
               className="mySwiper"
               breakpoints={{
 

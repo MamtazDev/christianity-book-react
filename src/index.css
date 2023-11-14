@@ -254,7 +254,7 @@ footer {
 }
 
 .light_btn:hover {
-  color: var(--e0);
+  color: white;
   background: var(--primary);
 }
 

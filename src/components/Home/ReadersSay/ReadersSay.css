@@ -19,3 +19,12 @@
     font-weight: 400;
     line-height: 25px;
 }
+
+.mySwiper {
+    width: 100%;
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+}
