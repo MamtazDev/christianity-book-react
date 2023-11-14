@@ -23,10 +23,9 @@ const ReadBooks = () => {
         <div className="col-12 col-lg-9">
           <div className="detalisPage">
             <img className=" h-100" src={bookCover} alt="Book Cover" />
-            {/* <Pagination className="w-100" /> */}
+            
           </div>
         </div>
-        {/* <div className="col-12 col-lg-1"></div> */}
       </div>
     </div>
   );
