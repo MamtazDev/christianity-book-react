@@ -95,14 +95,14 @@ button:focus-visible {
 }
 
 h2 {
-    color: var(--black, #313131) !important;
+    color: var(--black) !important;
     font-size: 40px !important;
     font-weight: 600 !important;
     line-height: 51px !important;
 }
 
 h2 span {
-    color: var(--secondry-color, #FFB230) !important;
+    color: var(--secondry) !important;
     text-transform: uppercase !important;
     margin-left: 10px;
     margin-right: 10px;
@@ -111,7 +111,7 @@ h2 span {
 
 /* payment model */
 .payment_modal_text p {
-    color: var(--Black, #313131);
+    color: var(--black);
     text-align: center;
     font-family: Raleway;
     font-size: 28px !important;
@@ -121,7 +121,7 @@ h2 span {
 }
 
 .payment_modal_text h6 {
-    color: var(--Black, #313131);
+    color: var(--black);
     text-align: center;
     font-family: Raleway !important;
     font-size: 36px !important;
@@ -150,7 +150,7 @@ h2 span {
     width: 100%;
     border: 6px;
     border-style: solid;
-    border-color: #FFB230 transparent transparent transparent;
+    border-color: var(--secondry) transparent transparent transparent;
     border-radius: 90% 90% 0 0;
 }
 
@@ -170,34 +170,34 @@ h2 span {
     width: 100%;
     border: 6px;
     border-style: solid;
-    border-color: #423C6A transparent transparent transparent;
+    border-color: var(--primary) transparent transparent transparent;
     border-radius: 90% 90% 0 0;
 }
 
 h2 .txt_curve1 {
-    color: #423C6A !important;
+    color: var(--primary) !important;
 }
 
 .sub_header {
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 24px;
     font-weight: 500;
     max-width: 617.108px;
 }
 
 .forPosition a {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 20px;
     font-weight: 500;
 }
 
 .forPosition .activePage {
     font-weight: 700 !important;
-    color: #423C6A;
+    color: var(--primary)
 }
 
 footer {
-    background: #fff3e0;
+    background: var(--e0);
 }
 
 :focus-visible {
@@ -210,7 +210,7 @@ footer {
 
 .send_msg_button {
     border-radius: 50px;
-    background: var(--Primary-Color, #423C6A);
+    background: var(--primary);
     padding: 13px 31.38px;
     color: var(--White, #FFF);
     font-family: Raleway;
@@ -236,31 +236,27 @@ footer {
 
 /* Common css End */
 
-
-
-
-
 /* Account Settings Page Start */
 .account {
     margin-bottom: 100px !important;
 }
 
 .account h3 {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .account p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 0.6px;
 }
 
 .account p span {
-    color: #FFB230;
+    color: var(--secondry);
     font-weight: 800;
 }
 
@@ -304,20 +300,20 @@ footer {
 }
 
 .subscriptionBox span {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 22px;
     font-weight: 600;
 }
 
 .subscriptionBox h5 {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 30px;
     font-weight: 700;
 }
 
 .payment {
     font-weight: 500;
-    color: var(--black, #313131) !important;
+    color: var(--black) !important;
 }
 
 .graybtn {
@@ -341,8 +337,8 @@ footer {
 .othersSub {
     padding: 16px 24px;
     border-radius: 32px;
-    border: 1px solid var(--secondry-color, #FFB230);
-    color: var(--secondry-color, #FFB230);
+    border: 1px solid var(--secondry);
+    color: var(--secondry);
     font-size: 20px;
     font-weight: 700;
     background: transparent;
@@ -352,7 +348,7 @@ footer {
 }
 
 .othersSub:hover {
-    background-color: var(--secondry-color, #FFB230);
+    background-color: var(--secondry);
     color: #FFF;
 }
 
@@ -384,7 +380,7 @@ footer {
 }
 
 .not_checkbox_div p {
-    color: var(--Black, #313131);
+    color: var(--black);
     font-family: Raleway;
     font-size: 18px;
     font-style: normal;
@@ -436,7 +432,7 @@ footer {
 }
 
 .deactiveAccModalOne p {
-    color: var(--black, #313131);
+    color: var(--black);
     text-align: center;
     font-family: "Raleway", sans-serif;
     font-size: 28px;
@@ -487,7 +483,7 @@ footer {
 }
 
 .activity h3 {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 26px;
     font-weight: 700;
 }
@@ -504,16 +500,16 @@ footer {
     height: 10px;
     width: 10px;
     border-radius: 50%;
-    background-color: #423C6A;
+    background-color: var(--primary);
 }
 
 .orange_dot h6 {
-    background-color: #FFB230;
+    background-color: var(--secondry)
 }
 
 .blue_dot p,
 .orange_dot p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 17.864px;
     font-style: normal;
     font-weight: 600;
@@ -523,7 +519,7 @@ footer {
 .activity select {
     border-radius: 60px;
     background: #D9D8E1;
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 14px;
     font-weight: 600;
     padding: 15px;
@@ -544,11 +540,6 @@ footer {
 } */
 
 /* accordian */
-
-
-
-
-
 
 
 .profile_gap {
@@ -573,21 +564,21 @@ footer {
 }
 
 .bookmarkInner span {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 24px;
     font-weight: 500;
     display: block;
 }
 
 .bookmarkInner article span {
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 24px;
     font-weight: 700;
     display: block;
 }
 
 .bookmarkInner article p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 20px;
     font-weight: 400;
     line-height: 25px;
@@ -601,7 +592,7 @@ footer {
 
 .accordion-body {
     padding: 13px 20px;
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
@@ -609,7 +600,7 @@ footer {
 
 .accordion-button {
     border-radius: 10px;
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 18px !important;
     font-weight: 600;
     line-height: 25px;
@@ -624,7 +615,7 @@ footer {
     background-color: unset;
     box-shadow: none;
     border-bottom: 1px solid #E1E4E8;
-    color: #313131;
+    color: var(--black);
 }
 
 .accordion-button:focus {
@@ -705,13 +696,13 @@ footer {
 
 .notification span {
     margin-bottom: 20px;
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 22px;
     font-weight: 500;
 }
 
 .notification p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 22px;
     font-weight: 600;
 }
@@ -721,7 +712,7 @@ footer {
 }
 
 .notification .noteTime {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 0;
@@ -729,7 +720,7 @@ footer {
 }
 
 .notification article p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 16px;
     font-weight: 500
 }
@@ -744,7 +735,7 @@ footer {
 /* Preview Book Page Start */
 
 .bookName {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 40px;
     font-weight: 600;
     line-height: 56px;
@@ -799,7 +790,7 @@ footer {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: var(--primary-color, #423C6A);
+    background: var(--primary);
 
 }
 
@@ -812,7 +803,7 @@ footer {
 .swiper-pagination-bullet {
     height: 20px !important;
     width: 20px !important;
-    background-color: var(--Secondry-Color, #FFB230) !important;
+    background-color: var(--secondry) !important;
     margin-top: 40px !important;
 }
 
@@ -882,9 +873,9 @@ footer {
 .changePassword input,
 .profileSetting input,
 .profileSetting select {
-    border-bottom: 2px solid #423C6A;
+    border-bottom: 2px solid var(--primary);
     padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 16px;
     font-weight: 500;
     width: 100%;
@@ -896,9 +887,9 @@ footer {
 .changePassword input,
 .profileSetting1 input,
 .profileSetting1 select {
-    border-bottom: 2px solid #423C6A;
+    border-bottom: 2px solid var(--primary);
     padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 16px;
     font-weight: 500;
     width: 100%;
@@ -920,7 +911,7 @@ footer {
 .changeEmail input::placeholder,
 .changePassword input::placeholder,
 .profileSetting input::placeholder {
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 16px;
     font-weight: 500;
 }
@@ -928,17 +919,17 @@ footer {
 .changeEmail input::placeholder,
 .changePassword input::placeholder,
 .profileSetting1 input::placeholder {
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 16px;
     font-weight: 500;
 }
 
 .changeEmail button {
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 22px;
     font-weight: 600;
     outline: none;
-    border-bottom: 2px solid #423C6A;
+    border-bottom: 2px solid var(--primary);
     background: transparent;
     transition: 0.3s ease-in-out;
     white-space: nowrap;
@@ -957,7 +948,7 @@ footer {
     font-weight: 700;
     padding: 16px 143px;
     border-radius: 32px;
-    background: var(--primary-color, #423C6A);
+    background: var(--primary);
     box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
     transition: 0.4s ease-in-out;
     white-space: nowrap;
@@ -971,7 +962,7 @@ footer {
     font-weight: 700;
     padding: 14px 90px;
     border-radius: 32px;
-    background: var(--primary-color, #423C6A);
+    background: var(--primary);
     box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
     transition: 0.4s ease-in-out;
     white-space: nowrap;
@@ -1017,7 +1008,7 @@ select::-ms-expand {
 .profileSetting3 input,
 .profileSetting3 select {
     padding-bottom: 5px;
-    color: var(--primary-color, #423C6A);
+    color: var(--primary);
     font-size: 16px;
     font-weight: 500;
     width: 100%;
@@ -1049,7 +1040,7 @@ a {
 
 }
 
-.chat_scrolled{
+.chat_scrolled {
     overflow-y: scroll;
     max-height: 700px !important;
 
@@ -1092,30 +1083,38 @@ a {
     .detalisPage img {
         display: none;
     }
+
     .text-end {
         justify-content: center;
     }
+
     .contact_gap {
         display: flex;
         flex-direction: column;
     }
+
     h1 {
         font-size: 35px !important;
     }
+
     .banner p {
         font-size: 20px !important;
     }
+
     .profileShow .child {
         top: 61px;
         left: 0;
     }
+
     .childHover {
         top: 61px;
         left: 0;
     }
+
     .accSettings a {
         font-size: 14px;
     }
+
     .sub_header {
         font-size: 18px;
     }
@@ -1480,5 +1479,222 @@ a {
 
     .childHover {
         min-width: 300px !important;
+    }
+}
+
+
+/* //LOGIN */
+.logInContainer {
+    padding-top: 31px;
+    padding-left: 50px;
+}
+
+.logInBox {
+    max-width: 430px;
+}
+
+.logInContainer h5 {
+    margin-bottom: 96px;
+}
+
+.logInContainer h5 a {
+    color: var(--black);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.logInContainer h2 {
+    color: var(--black);
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 27px;
+}
+
+.logInContainer .headerText {
+    margin-bottom: 57px;
+}
+
+.logInContainer .headerText p {
+    color: #000;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.logInContainer .headerText p:first-child {
+    margin-bottom: 9px;
+}
+
+.logInContainer .headerText a {
+    color: var(--secondry);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.logInContainer form label {
+    color: #92979d;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+.logInContainer form .inputContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 2px solid #c2c9d1;
+    width: 100%;
+    padding-bottom: 9px;
+}
+
+.logInContainer form .inputContainer1 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 2px solid #c2c9d1;
+    width: 100%;
+    padding-bottom: 9px;
+}
+
+.logInContainer form .inputContainer input {
+    width: 100%;
+    outline: unset;
+    border: unset;
+}
+
+.logInContainer form .inputContainer1 input {
+    width: 100%;
+    outline: unset;
+    border: unset;
+}
+
+.logInContainer form .inputContainer input::placeholder {
+    color: var(--primary);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.logInContainer form .inputContainer1 input::placeholder {
+    color: var(--primary);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.focusInput {
+    border-bottom: 2px solid var(--primary) !important;
+}
+
+.checkBoxInputContainer {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 62px;
+}
+
+.checkBoxInputContainer input {
+    width: 15px;
+    height: 15px;
+}
+
+.checkBoxInputContainer div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.checkBoxInputContainer p {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.checkBoxInputContainer a {
+    color: #4d4d4d;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.logInActionContainer .sign-in-button {
+    width: 100%;
+    border-radius: 32px;
+    background: var(--primary);
+    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border: unset;
+}
+
+.logInActionContainer p {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    text-align: center;
+    color: var(--black);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.logInActionContainer div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.social_button {
+    background-color: transparent;
+}
+
+@media only screen and (max-width: 688px) {
+    .logInContainer {
+        padding: 20px;
+    }
+
+    .logInBox {
+        max-width: unset;
+    }
+}
+
+@media only screen and (min-width: 689px) and (max-width: 992px) {
+    .logInContainer {
+        padding: 50px;
+    }
+
+    .logInBox {
+        max-width: unset;
+    }
+}
+
+@media only screen and (min-width: 689px) and (max-width: 992px) {
+    .logInContainer {
+        padding: 50px;
+    }
+
+    .logInBox {
+        max-width: unset;
     }
 }

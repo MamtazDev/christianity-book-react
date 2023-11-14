@@ -16,7 +16,7 @@
 .clientGuide a {
     padding: 13px 53px;
     border-radius: 50px;
-    background: var(--secondry-color, #FFB230);
+    background: var(--secondry);
     color: var(--white, #FFF);
     font-size: 18px;
     font-weight: 700;

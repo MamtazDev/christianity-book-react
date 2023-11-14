@@ -1,6 +1,5 @@
-
 .aboutAuthor {
-    background: #fff3e0;
+    background: var(--e0);
     padding-top: 56px;
 }
 
@@ -14,7 +13,7 @@
     font-size: 40px;
     font-weight: 600;
     padding: 19px 96px;
-    background-color: var(--secondry-color, #FFB230);
+    background-color: var(--secondry);
     -webkit-clip-path: polygon(15% 0, 100% 0, 86% 100%, 0% 100%);
     clip-path: polygon(15% 0, 100% 0, 86% 100%, 0% 100%);
     border-radius: 20px;
@@ -22,7 +21,7 @@
 }
 
 .aboutAuthor p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 24px;
     font-weight: 400;
 }
@@ -31,5 +30,3 @@
 .aboutAuthor .col-lg-5 {
     padding-right: 80px;
 }
-
-

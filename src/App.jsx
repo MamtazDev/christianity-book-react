@@ -6,9 +6,9 @@ import { Suspense } from "react";
 function App() {
   return (
     <>
-      <Suspense fallback="..loading">
+      {/* <Suspense fallback="..loading"> */}
         <RouterProvider router={router} />
-      </Suspense>
+      {/* </Suspense> */}
     </>
   );
 }

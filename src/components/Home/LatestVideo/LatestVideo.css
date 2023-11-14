@@ -1,24 +1,19 @@
 .videoBox,
 .videoBox iframe {
     width: 100%;
-    min-height: 403px !important;
-    height: 100%;
+    /* min-height: 403px !important;
+    height: 100%; */
 }
 
 .latestVideo {
-    background: #fff3e0;
-    min-height: 403px;
-    height: 100%;
-}
-
-.latestVideoInner article {
-    padding-top: 68px;
-    padding-bottom: 68px;
+    background: var(--e0);
+    /* min-height: 403px;
+    height: 100%; */
 }
 
 .disorder {
     display: block;
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 22px;
     font-weight: 600;
     line-height: 24px;
@@ -27,7 +22,7 @@
 }
 
 .latestVideoInner p {
-    color: var(--black, #313131);
+    color: var(--black);
     font-size: 20px;
     font-weight: 400;
     line-height: 26px;
@@ -36,18 +31,16 @@
 .watch_btn {
     padding: 13.21px 23.84px 12.79px 24px;
     border-radius: 40px;
-    background: var(--Primary-Color, #423C6A);
-   
-
+    background: var(--primary);
     margin-top: 22px;
 }
-.watch_btn a{
+
+.watch_btn a {
     color: var(--White, #FFF);
     text-align: center;
     font-family: Raleway;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    
     text-decoration-line: underline;
 }

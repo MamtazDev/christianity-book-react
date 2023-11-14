@@ -3,7 +3,7 @@
 }
 
 .sub_header1 h3 {
-    color: var(--Black, #313131);
+   color: var(--black);
     font-family: Raleway;
     font-size: 34px;
     font-style: normal;
@@ -31,7 +31,7 @@
 }
 
 .sub_header1 h4 {
-    color: var(--Primary-Color, #423C6A);
+    color: var(--primary);
     text-align: center;
     font-family: Raleway;
     font-size: 22px;
@@ -51,7 +51,7 @@
 }
 
 .promocode_input::placeholder {
-    color: var(--Black, #313131) !important;
+ color: var(--black) !important;
 
     font-family: Raleway;
     font-size: 16px;
@@ -63,7 +63,7 @@
 .apply_btn {
     padding: 10.41px 12.06px 9.59px 10.36px;
     border-radius: 62px;
-    background: var(--Primary-Color, #423C6A);
+    background: var(--primary);
     color: #FFF;
     text-align: center;
     font-family: Raleway;
@@ -79,7 +79,7 @@
 .save_btn {
     padding: 10.41px 12.06px 9.59px 10.36px;
     border-radius: 62px;
-    background: var(--Primary-Color, #423C6A);
+    background: var(--primary);
     color: #FFF;
     text-align: center;
     font-family: Raleway;
@@ -92,11 +92,11 @@
     height: 60px !important;
     width: 106px;
 
-    border-color: #423C6A !important;
+    border-color: var(--primary) !important;
 }
 
 .save_btn:hover {
-    background: var(--Primary-Color, #423C6A);
+    background: var(--primary);
     color: #FFF;
 
 }
@@ -104,9 +104,9 @@
     gap: 90px;
 }
 
-input[type=radio].Yellow { 
-    accent-color: pink !important; 
-} 
+input[type=radio].Yellow {
+    accent-color: pink !important;
+}
 
 button {
     cursor: pointer;
@@ -125,7 +125,7 @@ button {
 }
 
 .subv_body p {
-    color: var(--Black, #313131);
+   color: var(--black);
     font-family: Raleway;
     font-size: 20px;
     font-style: normal;
@@ -148,7 +148,7 @@ button {
 }
 
 .purchase_sub small {
-    color: var(--Black, #313131);
+   color: var(--black);
     font-family: Raleway;
     font-size: 20px;
     font-style: normal;
@@ -190,7 +190,7 @@ button {
 }
 
 .modal_body_subforother p {
-    color: var(--Black, #313131);
+   color: var(--black);
     text-align: center;
     font-family: Raleway;
     font-size: 28px;
@@ -201,7 +201,7 @@ button {
 }
 
 .modal_body_subforother h4 {
-    color: var(--Black, #313131);
+   color: var(--black);
     text-align: center;
     font-family: Raleway;
     font-size: 36px;
@@ -262,8 +262,8 @@ button {
 }
 
 .checkbox__input:checked+.checkbox__inner {
-    border-color: #423c6a;
-    background-color: #423c6a;
+    border-color: var(--primary);
+    background-color: var(--primary);
     background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='14px' height='10px' viewBox='0 0 14 10' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 59.1 (86144) - https://sketch.com --%3E%3Ctitle%3Echeck%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='ios_modification' transform='translate(-27.000000, -191.000000)' fill='%23FFFFFF' fill-rule='nonzero'%3E%3Cg id='Group-Copy' transform='translate(0.000000, 164.000000)'%3E%3Cg id='ic-check-18px' transform='translate(25.000000, 23.000000)'%3E%3Cpolygon id='check' points='6.61 11.89 3.5 8.78 2.44 9.84 6.61 14 15.56 5.05 14.5 4'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     background-size: 14px 10px;
 }
@@ -292,7 +292,7 @@ button {
 }
 
 .payment_div h4 {
-    color: var(--Black, #313131);
+   color: var(--black);
     font-family: Raleway;
     font-size: 18px;
     font-style: normal;
@@ -301,7 +301,7 @@ button {
 }
 
 .payment_div small {
-    color: var(--Black, #313131);
+   color: var(--black);
     font-family: Raleway;
     font-size: 18px;
     font-style: normal;
@@ -352,7 +352,7 @@ select {
 }
 
 .completeProfileContainer a {
-    color: #313131;
+color: var(--black);
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -366,7 +366,7 @@ select {
     font-weight: 700;
     padding: 14px 90px;
     border-radius: 32px;
-    background: var(--primary-color, #423C6A);
+    background: var(--primary);
     box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
     transition: 0.4s ease-in-out;
     white-space: nowrap;

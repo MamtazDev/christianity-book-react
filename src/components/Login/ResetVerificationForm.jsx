@@ -46,7 +46,8 @@ const ResetVerificationForm = () => {
             <div className="headerText">
               <p>We've send you the verification code on</p>
               <p
-                style={{ color: "#423C6A", fontSize: "18px", fontWeight: 700 }}
+                className="text_clr_primary"
+                style={{ fontSize: "18px", fontWeight: 700 }}
               >
                 johnduo@gmail.com
               </p>

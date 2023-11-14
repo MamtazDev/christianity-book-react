@@ -34,10 +34,7 @@ const SubscriptionForOthersModal = (props) => {
             <p>
               You have successfully obtain subscription for{" "}
               <span
-                style={{
-                  color: "var(--Secondry-Color, #FFB230)",
-                  fontWeight: "700",
-                }}
+                className="text_clr_secondary fw-bold"
               >
                 johnduo@gmail.com.
               </span>

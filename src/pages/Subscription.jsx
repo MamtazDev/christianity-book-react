@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Subscription.css";
 import CompletePayment from "../components/Modals/CompletePayment";
 import p1 from "../assets/images/p1.png";
@@ -8,7 +8,15 @@ import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
 import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 const Subscription = () => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const navigate = useNavigate();
+  const handleCompletePayment = () => {
+    setTimeout(() => {
+      navigate("/");
+      window.location.reload();
+    }, 1000);
+  };
+
   return (
     <>
       <div className="completeProfileContainer">
@@ -34,6 +42,7 @@ const Subscription = () => {
           <button className="apply_btn">Apply</button>
         </div>
       </div>
+
       <div className="subv_body">
         <p>Payment Information</p>
         <form action="" className="subscription  mt_30cp">
@@ -89,6 +98,7 @@ const Subscription = () => {
               </div>
             </div>
           </div>
+
           <div>
             <div className="d-flex gap_4 w-100">
               <div className="w-100">
@@ -120,6 +130,7 @@ const Subscription = () => {
           </div>
 
           <div className="purchase_sub mt_30cp mt-4">
+
             <label className="checkbox">
               <input
                 type="checkbox"
@@ -128,6 +139,7 @@ const Subscription = () => {
               />
               <span className="checkbox__inner"></span>
             </label>
+
             <SubscriptionForOthersModal
               show={modalShow}
               onHide={setModalShow}
@@ -135,8 +147,10 @@ const Subscription = () => {
 
             <small> Purchase Subscription for Others!</small>
           </div>
+
           <div className="create_profile_button">
             <button
+              onClick={handleCompletePayment}
               href="#exampleModalToggle"
               type="button"
               data-toggle="modal"
