@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PageHeading from "../components/Utils/PageHeading";
-import PdfViewerComponent from "../components/ReadBook/PDFReader";
+import ReadBooks from "../components/ReadBook/ReadBooks";
+import Pagination from "../components/Utils/Pagination";
+import ReadBooks2 from "../components/ReadBook/ReadBooks2";
 
 const ReadBook = () => {
 
@@ -23,25 +25,9 @@ const ReadBook = () => {
             <br className="d-none d-lg-block" />
             Guide to Recovery.
           </h3>
-          
           {/* <ReadBooks /> */}
-          <div className="App">
-            <input type="file" accept="application/pdf" onChange={handleFileChange} />
 
-            <button className="App-button" onClick={handleOpen}>
-              Open another document
-            </button>
-
-            {/* <button className="App-button" onClick={handleOpenAnother}>
-              Open another handleOpenAnother
-            </button> */}
-            <div className="">
-              <PdfViewerComponent document={document} />
-            </div>
-          </div>
-
-
-          {/* <PDFReader/> */}
+          <ReadBooks2/>
         </div>
         {/* <Pagination /> */}
       </div>
