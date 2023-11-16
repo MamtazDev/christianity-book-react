@@ -2,6 +2,7 @@ import React from "react";
 import PageHeading from "../components/Utils/PageHeading";
 import ReadBooks from "../components/ReadBook/ReadBooks";
 import Pagination from "../components/Utils/Pagination";
+import ReadBooks2 from "../components/ReadBook/ReadBooks2";
 
 const ReadBook = () => {
   return (
@@ -14,7 +15,9 @@ const ReadBook = () => {
             <br className="d-none d-lg-block" />
             Guide to Recovery.
           </h3>
-          <ReadBooks />
+          {/* <ReadBooks /> */}
+
+          <ReadBooks2/>
         </div>
         <Pagination />
       </div>
