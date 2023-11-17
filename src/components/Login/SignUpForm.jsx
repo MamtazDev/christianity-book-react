@@ -147,7 +147,6 @@ const SignUpForm = () => {
               />
             </div>
           </div>
-
           <div style={{ marginBottom: "49px" }}>
             <label>Create Password</label>
             <div className={`inputContainer ${focusInput === "password" && "focusInput"}`}>
