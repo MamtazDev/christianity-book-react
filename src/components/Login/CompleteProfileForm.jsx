@@ -25,7 +25,7 @@ const CompleteProfileForm = () => {
   const userDataString = localStorage.getItem("loggedInUser");
   const userData = JSON.parse(userDataString);
   const token = userData.token
-  const email = userData?.data?.email ? userData?.data?.email : "test@gmail.com";
+  const email = userData?.data?.email;
   const userName = userData?.data?.userName;
 
 

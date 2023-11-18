@@ -214,9 +214,7 @@ import bookmark from "../../assets/images/bookmark.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const UserProfileMenu = ({ data }) => {
-  // const { email, userName, image } = data.data
-  // console.log(email,userName)
-
+  const { email, userName, image } = data?.data
 
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -243,10 +241,6 @@ const UserProfileMenu = ({ data }) => {
     };
   }, []);
 
-  // const userDataString = localStorage.getItem("loggedInUser");
-  // const userData = JSON.parse(userDataString);
-  // // const email = userData?.email;
-  // const username = userData?.username;
 
   // navbar bg color when schrolling
   const [isScrolled, setIsScrolled] = useState(false);
@@ -266,7 +260,12 @@ const UserProfileMenu = ({ data }) => {
     };
   }, []);
 
-  
+
+
+  const logOutHandler = () => {
+    localStorage.removeItem("loggedInUser")
+  }
+
   const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : 'navbar_bg'}`;
 
   return (
@@ -347,7 +346,7 @@ const UserProfileMenu = ({ data }) => {
                   className="accSettings d-flex align-items-center gap-3 logout"
                 >
                   <img src={logout} alt="" />
-                  <Link to="/" style={{ color: "#E00000" }}>
+                  <Link onClick={logOutHandler}  to="/" style={{ color: "#E00000" }}>
                     Logout
                   </Link>
                 </div>

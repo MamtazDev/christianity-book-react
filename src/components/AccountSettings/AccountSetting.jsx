@@ -3,23 +3,14 @@ import "./AcountSetting.css";
 import Swal from "sweetalert2";
 
 const AccountSetting = () => {
-  const [emailFormData, setEmailFormData] = useState({
-    newEmail: "",
-  });
+
+ 
 
   const [passwordFormData, setPasswordFormData] = useState({
     oldPassword: "",
     newPassword: "",
     confirmNewPassword: "",
   });
-
-  const handleEmailInputChange = (e) => {
-    const { name, value } = e.target;
-    setEmailFormData({
-      ...emailFormData,
-      [name]: value,
-    });
-  };
 
   const handlePasswordInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,36 +20,85 @@ const AccountSetting = () => {
     });
   };
 
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const userToUpdate = userData.find(
-      (user) => user.username === "Tonni Akter"
-    );
+  const [emailFormData, setEmailFormData] = useState({
+    email: "",
+  });
+  const handleEmailInputChange = (e) => {
+    const { name, value } = e.target;
+    setEmailFormData({
+      ...emailFormData,
+      [name]: value,
+    });
+  };
 
-    if (userToUpdate) {
-      userToUpdate.email = emailFormData.newEmail;
-      localStorage.setItem("userData", JSON.stringify(userData));
+
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    const userDataString = localStorage.getItem("loggedInUser");
+    const userData = JSON.parse(userDataString);
+    const userId = userData.data._id;
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/users/changeEmail/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailFormData),
+      });
+  
       setEmailFormData({
-        newEmail: "",
+        email: ""
       });
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Email updated successfully!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    } else {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "User not found",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      const updatedUserData = {
+        ...userData,
+        data: {
+          ...userData.data,
+          email: data.email, // Assuming the server returns the updated email
+        }
+      };
+      localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
+    } catch (error) {
+      console.log('account setting error found', error);
     }
   };
+  
+/*   const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    const userDataString = localStorage.getItem("loggedInUser");
+    const userData = JSON.parse(userDataString);
+    // const email = userData.email;
+    console.log(userData)
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/users/changeEmail/${userData.data._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailFormData),
+      });
+      setEmailFormData({
+        email: ""
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const loggedInUser = { ...data, data: data.data };
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
+    } catch (error) {
+      console.log('accountsetting error found', error)
+    }
+  }; */
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -101,9 +141,7 @@ const AccountSetting = () => {
       });
     }
   };
-  const userDataString = localStorage.getItem("loggedInUser");
-  const userData = JSON.parse(userDataString);
-  const email = userData.email;
+
 
   return (
     <>
@@ -121,12 +159,11 @@ const AccountSetting = () => {
             <label>Change Email</label>
             <input
               type="email"
-              name="newEmail"
+              name="email"
               placeholder="Enter Email"
               onChange={handleEmailInputChange}
-              defaultValue={email}
+              // value={email}
               className="change_email_iunput"
-
             />
           </div>
           <button type="submit" className="change_email_button">Change Email</button>

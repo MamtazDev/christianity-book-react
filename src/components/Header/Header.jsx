@@ -3,9 +3,16 @@ import { Link, NavLink } from "react-router-dom";
 import UserProfileMenu from "./UserProfileMenu ";
 
 const Header = () => {
-
+  const [data, setData] = useState({})
   const userDataString = localStorage.getItem("loggedInUser");
   const userData = JSON.parse(userDataString);
+  useEffect(() => {
+    if (userData) {
+      setData(userData)
+    }
+
+  }, userData)
+
   // scroll
   // navbar bg color when schrolling
   const [isScrolled, setIsScrolled] = useState(false);
@@ -71,7 +78,8 @@ const Header = () => {
             <div className="ms-auto">
               {
                 userData ?
-                  <UserProfileMenu data={userData} />
+                  <UserProfileMenu data={userData}/>
+                  // <p>No User data</p>
                   :
                   <div className="d-flex gap-3 header_1">
                     <Link className="dark_btn" to="/signup">
