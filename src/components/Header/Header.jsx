@@ -19,7 +19,6 @@ const Header = () => {
         setIsScrolled(false); // When at the top, set isScrolled to false
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -72,7 +71,7 @@ const Header = () => {
             <div className="ms-auto">
               {
                 userData ?
-                  <UserProfileMenu />
+                  <UserProfileMenu data={userData} />
                   :
                   <div className="d-flex gap-3 header_1">
                     <Link className="dark_btn" to="/signup">

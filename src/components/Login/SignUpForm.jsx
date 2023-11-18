@@ -23,7 +23,6 @@ const SignUpForm = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    // role: '',
     userName: '',
     role: "user"
   });
@@ -50,6 +49,8 @@ const SignUpForm = () => {
 
       const data = await response.json();
       console.log(data)
+      const loggedInUser = { data: data.user, token: data.accessTOken };
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       setFormData({
         email: '',
         password: '',

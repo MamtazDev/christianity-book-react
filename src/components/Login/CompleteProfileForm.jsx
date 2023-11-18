@@ -7,58 +7,67 @@ import cameraIcon from '../../assets/images/camera-icon.png'
 
 const CompleteProfileForm = () => {
   const [droppedImage, setDroppedImage] = useState(null);
+  const uploadedImage = useRef(null);
+  const imageUploader = useRef(null);
 
   const navigate = useNavigate();
 
-
+// form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+    console.log(formData)
   };
-
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    phoneNo: "",
-    country: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData.username);
-    const userDataString = localStorage.getItem("loggedInUser");
-    const userDatas = JSON.parse(userDataString);
-    // userDatas.username = formData.username;
-    // userDatas.email = formData.email;
-    // userDatas.phoneNo = formData.phoneNo;
-    // userDatas.country = formData.country;
-    localStorage.setItem("loggedInUser", JSON.stringify(userDatas));
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Update profile successfully",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    setFormData({
-      username: "",
-      email: "",
-      phoneNo: "",
-      country: "",
-    });
-    navigate('/subscription');
-  };
-
   // get item from
   const userDataString = localStorage.getItem("loggedInUser");
   const userData = JSON.parse(userDataString);
-  const email = userData?.email ? userData.email : "test@gmail.com";
-  const username = userData?.username;
-  const uploadedImage = useRef(null);
-  const imageUploader = useRef(null);
+  const token = userData.token
+  const email = userData?.data?.email ? userData?.data?.email : "test@gmail.com";
+  const userName = userData?.data?.userName;
+
+
+  const [formData, setFormData] = useState({
+    image: "",
+    userName: userName,
+    email: email,
+    phoneNumber: "",
+    country: "",
+  });
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/users/edit/${userData.data._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      setFormData({
+        image: "",
+        userName: "",
+        email: "",
+        phoneNumber: "",
+        country: "",
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const loggedInUser = { data: data.data, token: token };
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
@@ -87,7 +96,7 @@ const CompleteProfileForm = () => {
   };
 
   const handleNavigateSubscription = () => {
-    if (formData?.username && formData?.email && formData?.phoneNo && formData?.country) {
+    if (formData?.userName && formData?.email && formData?.phoneNumber && formData?.country) {
       navigate('/subscription');
     } else {
       alert('Fill in all the information');
@@ -118,6 +127,9 @@ const CompleteProfileForm = () => {
                 accept="image/*"
                 onChange={handleImageUpload}
                 ref={imageUploader}
+                name="image"
+                value={userData.image}
+                // onChange={handleInputChange}
                 style={{
                   display: "none",
                 }}
@@ -146,15 +158,14 @@ const CompleteProfileForm = () => {
 
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
-
             <div className="completeprofile_inputContainer">
               <label>Full Name</label>
               <input
-                name="username"
+                name="userName"
                 type="text"
                 placeholder="John Duo"
                 onChange={handleInputChange}
-                defaultValue={username}
+                value={formData.userName}
                 required
               />
             </div>
@@ -166,20 +177,20 @@ const CompleteProfileForm = () => {
                 type="email"
                 placeholder="johnduo@gmail.com"
                 onChange={handleInputChange}
-                defaultValue={email}
+                value={formData.email}
                 required
               />
             </div>
-
           </div>
           <div className="d-flex justify-content-start flex-wrap align-items-end complete_profile_gap mb-5">
             <div className="completeprofile_inputContainer">
               <label>Phone Number</label>
               <input
-                name="phoneNo"
+                name="phoneNumber"
                 type="number"
                 placeholder="+1 123 456 789"
                 onChange={handleInputChange}
+                value={formData.phoneNumber}
                 required
               />
             </div>
