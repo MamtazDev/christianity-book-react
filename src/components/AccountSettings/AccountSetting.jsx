@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AcountSetting.css";
 import Swal from "sweetalert2";
+import { changeEmail } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
-const AccountSetting = () => {
-
- 
-
+const AccountSetting = ({ user, setUser }) => {
   const [passwordFormData, setPasswordFormData] = useState({
     oldPassword: "",
     newPassword: "",
     confirmNewPassword: "",
   });
+
+  const navigate = useNavigate();
+
+  const [newEmail, setNewEmail] = useState(null);
+
+  const handleChangeEmail = async () => {
+    const response = await changeEmail({
+      userId: user?._id,
+      data: {
+        email: newEmail,
+      },
+    });
+
+    if (response?.status === 200) {
+      localStorage.removeItem("loggedInUser");
+      setUser(null);
+      navigate("/login");
+    }
+  };
 
   const handlePasswordInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +49,6 @@ const AccountSetting = () => {
     });
   };
 
-
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
     const userDataString = localStorage.getItem("loggedInUser");
@@ -39,37 +56,40 @@ const AccountSetting = () => {
     const userId = userData.data._id;
 
     try {
-      const response = await fetch(`http://localhost:8000/api/users/changeEmail/${userId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailFormData),
-      });
-  
+      const response = await fetch(
+        `http://localhost:8000/api/users/changeEmail/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailFormData),
+        }
+      );
+
       setEmailFormData({
-        email: ""
+        email: "",
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const data = await response.json();
       const updatedUserData = {
         ...userData,
         data: {
           ...userData.data,
           email: data.email, // Assuming the server returns the updated email
-        }
+        },
       };
       localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
     } catch (error) {
-      console.log('account setting error found', error);
+      console.log("account setting error found", error);
     }
   };
-  
-/*   const handleEmailSubmit = async (e) => {
+
+  /*   const handleEmailSubmit = async (e) => {
     e.preventDefault();
     const userDataString = localStorage.getItem("loggedInUser");
     const userData = JSON.parse(userDataString);
@@ -141,7 +161,7 @@ const AccountSetting = () => {
       });
     }
   };
-
+  console.log(user, "user");
 
   return (
     <>
@@ -153,7 +173,7 @@ const AccountSetting = () => {
         </p>
       </div>
 
-      <form onSubmit={handleEmailSubmit} className="changeEmail">
+      <div className="changeEmail">
         <div className="d-flex justify-content-start align-items-end gap-4 acount_gap">
           <div className="inputContainer">
             <label>Change Email</label>
@@ -161,14 +181,21 @@ const AccountSetting = () => {
               type="email"
               name="email"
               placeholder="Enter Email"
-              onChange={handleEmailInputChange}
-              // value={email}
+              onChange={(e) => setNewEmail(e.target.value)}
+              Value={user?.email}
               className="change_email_iunput"
             />
           </div>
-          <button type="submit" className="change_email_button">Change Email</button>
+          <button
+            style={{ cursor: `${!newEmail ? "not-allowed" : "pointer"}` }}
+            className="change_email_button"
+            onClick={handleChangeEmail}
+            disabled={!newEmail}
+          >
+            Change Email
+          </button>
         </div>
-      </form>
+      </div>
 
       <form onSubmit={handlePasswordSubmit} className="changePassword mb_40">
         <div className="d-flex flex-wrap justify-content-start align-items-end gap-4 mb-3 mb-lg-5 acount_gap">
