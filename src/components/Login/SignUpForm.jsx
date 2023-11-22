@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import message from "../../assets/icons/message.png";
 import lock from "../../assets/icons/padlock.png";
 import eye from "../../assets/icons/eye.png";
 import yellowEye from "../../assets/icons/yellowEye.png";
 import user from "../../assets/icons/user.png";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUpForm = () => {
+  const { setUser } = useContext(AuthContext);
+
   const [focusInput, setFocusInput] = useState(null);
   const [look, setLook] = useState(false);
   const [lookConfirm, setLookConfirm] = useState(false);
@@ -18,35 +21,57 @@ const SignUpForm = () => {
       setFocusInput(null);
     }
   };
+  // form data
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    userName: "",
+    role: "user",
+  });
 
-  /*   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("register successful");
-    navigate("/");
-  }; */
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-    const formData = new FormData(event.target);
-    const userObject = {
-      email: formData.get("email"),
-      username: formData.get("username"),
-      password: formData.get("password"),
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // Get the existing data from localStorage or initialize an empty array
-    const existingData = JSON.parse(localStorage.getItem("userData")) || [];
+    try {
+      const response = await fetch("http://localhost:8000/api/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Check if the email already exists in localStorage
-    const emailExists = existingData?.some((user) => user?.email === userObject?.email);
-
-    if (emailExists) {
-      alert("Email already exists. Please use a different email.");
-    } else {
-      existingData.push(userObject);
-      localStorage.setItem("userData", JSON.stringify(existingData));
-      console.log("Registration successful");
-      navigate("/complete-profile");
+      const data = await response.json();
+      console.log(data);
+      const loggedInUser = { data: data.user, token: data.accessTOken };
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+      setUser(loggedInUser);
+      setFormData({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        userName: "",
+      });
+      if (response.ok) {
+        // User created successfully, you can handle the response data here
+        navigate("/complete-profile");
+        console.log(data);
+      } else {
+        // Handle error response
+        console.error(data.message);
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error("Error:", error.message);
     }
   };
 
@@ -68,52 +93,69 @@ const SignUpForm = () => {
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: "49px" }}>
             <label>Email</label>
-            <div className={`inputContainer ${focusInput === "email" && "focusInput"}`}>
+            <div
+              className={`inputContainer ${
+                focusInput === "email" && "focusInput"
+              }`}
+            >
               <img src={message} alt="" />
               <input
-                type="email"
-                name="email"
                 placeholder="Enter your email address"
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("email", "focus")}
                 onBlur={() => handleFoucsInput("email", "blur")}
-                onChange={handleSubmit}
+                // onChange={handleSubmit}
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
           </div>
 
           <div style={{ marginBottom: "49px" }}>
             <label>Username</label>
-            <div className={`inputContainer ${focusInput === "username" && "focusInput"}`}>
+            <div
+              className={`inputContainer ${
+                focusInput === "userName" && "focusInput"
+              }`}
+            >
               <img src={user} alt="" />
               <input
                 type="text"
-                name="username"
+                name="userName"
                 placeholder="Enter your User name"
                 autoComplete="off"
-                onFocus={() => handleFoucsInput("username", "focus")}
-                onBlur={() => handleFoucsInput("username", "blur")}
+                onFocus={() => handleFoucsInput("userName", "focus")}
+                onBlur={() => handleFoucsInput("userName", "blur")}
+                value={formData.userName}
+                onChange={handleChange}
               />
             </div>
           </div>
-
           <div style={{ marginBottom: "49px" }}>
             <label>Create Password</label>
-            <div className={`inputContainer ${focusInput === "crPassword" && "focusInput"}`}>
+            <div
+              className={`inputContainer ${
+                focusInput === "password" && "focusInput"
+              }`}
+            >
               <img src={lock} alt="" />
               <input
                 type={look ? "text" : "password"}
                 name="password"
                 placeholder="Enter your Password"
                 autoComplete="off"
-                onFocus={() => handleFoucsInput("crPassword", "focus")}
-                onBlur={() => handleFoucsInput("crPassword", "blur")}
+                onFocus={() => handleFoucsInput("password", "focus")}
+                onBlur={() => handleFoucsInput("password", "blur")}
               />
               <img
                 style={{ cursor: "pointer" }}
                 src={look ? yellowEye : eye}
                 alt=""
                 onClick={() => setLook(!look)}
+                value={formData.password}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -121,18 +163,20 @@ const SignUpForm = () => {
           <div style={{ marginBottom: "58px" }}>
             <label>Confirm Password</label>
             <div
-              className={`inputContainer ${focusInput === "cfPassword" && "focusInput"
-                }`}
+              className={`inputContainer ${
+                focusInput === "confirmPassword" && "focusInput"
+              }`}
             >
               <img src={lock} alt="" />
-
               <input
                 type={lookConfirm ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Enter your Password"
                 autoComplete="off"
-                onFocus={() => handleFoucsInput("cfPassword", "focus")}
-                onBlur={() => handleFoucsInput("cfPassword", "blur")}
+                onFocus={() => handleFoucsInput("confirmPassword", "focus")}
+                onBlur={() => handleFoucsInput("confirmPassword", "blur")}
+                value={formData.confirmPassword}
+                onChange={handleChange}
               />
 
               <img
@@ -141,7 +185,6 @@ const SignUpForm = () => {
                 alt=""
                 onClick={() => setLookConfirm(!lookConfirm)}
               />
-
             </div>
           </div>
 

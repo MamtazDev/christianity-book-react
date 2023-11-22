@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import "./LoginForm.css";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import message from "../../assets/icons/message.png";
 import lock from "../../assets/icons/padlock.png";
 import eye from "../../assets/icons/eye.png";
@@ -8,9 +8,10 @@ import yellowEye from "../../assets/icons/yellowEye.png";
 import facebook from "../../assets/icons/facebook.png";
 import google from "../../assets/icons/google.png";
 import apple from "../../assets/icons/apple.png";
-import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const LoginForm = () => {
+  const { setUser } = useContext(AuthContext);
   const [focusInput, setFocusInput] = useState(null);
   const [look, setLook] = useState(false);
   const navigate = useNavigate();
@@ -22,30 +23,54 @@ const LoginForm = () => {
       setFocusInput(null);
     }
   };
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (event) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const userData = JSON.parse(localStorage.getItem("userData")) || [];
-    const user = userData.find((user) => user.email === email);
+    console.log(formData);
 
-    if (!user) {
-      alert("Email not found. Please register first.");
-    } else if (user.password !== password) {
-      alert("Incorrect password. Please try again.");
-    } else {
-      const loggedInUser = { email: user.email, username: user.username };
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Login Successful',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      navigate("/");
+    try {
+      const response = await fetch("http://localhost:8000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        const loggedInUser = { data: data.user, token: data.accessTOken };
+        setUser(loggedInUser);
+        localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      } else {
+        console.error(data.message);
+        alert("Login failed. Please check your email and password.");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -68,8 +93,9 @@ const LoginForm = () => {
           <div style={{ marginBottom: "49px" }}>
             <label>Email</label>
             <div
-              className={`inputContainer ${focusInput === "email" && "focusInput"
-                }`}
+              className={`inputContainer ${
+                focusInput === "email" && "focusInput"
+              }`}
             >
               <img src={message} alt="" />
               <input
@@ -80,14 +106,17 @@ const LoginForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("email", "focus")}
                 onBlur={() => handleFoucsInput("email", "blur")}
+                onChange={handleChange}
+                value={formData.email}
               />
             </div>
           </div>
           <div className="w-100">
             <label>Password</label>
             <div
-              className={`inputContainer ${focusInput === "password" && "focusInput"
-                }`}
+              className={`inputContainer ${
+                focusInput === "password" && "focusInput"
+              }`}
             >
               <img src={lock} alt="" />
               <input
@@ -98,6 +127,8 @@ const LoginForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("password", "focus")}
                 onBlur={() => handleFoucsInput("password", "blur")}
+                onChange={handleChange}
+                value={formData.password}
               />
               <img
                 style={{ cursor: "pointer" }}
@@ -110,11 +141,12 @@ const LoginForm = () => {
 
           <div className="checkBoxInputContainer">
             <div>
-              <label htmlFor="remember_me" className="d-flex align-items-center">
+              <label
+                htmlFor="remember_me"
+                className="d-flex align-items-center"
+              >
                 <input type="checkbox" name="" id="remember_me" />
-                <p style={{ marginLeft: '15px' }}>
-                  Remember me
-                </p>
+                <p style={{ marginLeft: "15px" }}>Remember me</p>
               </label>
             </div>
             <Link to="/reset-password">Forgot Password?</Link>

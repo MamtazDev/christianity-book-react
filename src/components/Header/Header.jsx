@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserProfileMenu from "./UserProfileMenu ";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
+  const [data, setData] = useState({});
 
-  const userDataString = localStorage.getItem("loggedInUser");
-  const userData = JSON.parse(userDataString);
-  // scroll
-  // navbar bg color when schrolling
+  const { user } = useContext(AuthContext);
+  // const userDataString = localStorage.getItem("loggedInUser");
+  // const userData = JSON.parse(userDataString);
+  // useEffect(() => {
+  //   if (userData) {
+  //     setData(userData)
+  //   }
+
+  // }, userData)
+
+  // // scroll
+  // // navbar bg color when schrolling
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -19,13 +29,14 @@ const Header = () => {
         setIsScrolled(false); // When at the top, set isScrolled to false
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : 'navbar_bg'}`;
+  const navbarClasses = `navbar navbar-expand-lg ${
+    isScrolled ? "navbar-scrolled" : "navbar_bg"
+  }`;
 
   return (
     <header>
@@ -43,7 +54,9 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"><i className="fa-solid fa-bars"></i></span>
+            <span className="navbar-toggler-icon">
+              <i className="fa-solid fa-bars"></i>
+            </span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -70,23 +83,20 @@ const Header = () => {
               </li>
             </ul>
             <div className="ms-auto">
-              {
-                userData ?
-                  <UserProfileMenu />
-                  :
-                  <div className="d-flex gap-3 header_1">
-                    <Link className="dark_btn" to="/signup">
-                      Sign Up
-                    </Link>
-                    <Link className="light_btn" to="/login">
-                      Sign In
-                    </Link>
-                  </div>
-              }
+              {user ? (
+                <UserProfileMenu data={user} />
+              ) : (
+                // <p>No User data</p>
+                <div className="d-flex gap-3 header_1">
+                  <Link className="dark_btn" to="/signup">
+                    Sign Up
+                  </Link>
+                  <Link className="light_btn" to="/login">
+                    Sign In
+                  </Link>
+                </div>
+              )}
             </div>
-
-
-
           </div>
         </div>
       </nav>

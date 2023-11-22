@@ -213,7 +213,9 @@ import highlight from "../../assets/images/highlight.png";
 import bookmark from "../../assets/images/bookmark.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-const UserProfileMenu = () => {
+const UserProfileMenu = ({ data }) => {
+  const { email, userName, image } = data?.data
+
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -239,10 +241,6 @@ const UserProfileMenu = () => {
     };
   }, []);
 
-  const userDataString = localStorage.getItem("loggedInUser");
-  const userData = JSON.parse(userDataString);
-  const email = userData?.email;
-  const username = userData?.username;
 
   // navbar bg color when schrolling
   const [isScrolled, setIsScrolled] = useState(false);
@@ -256,102 +254,107 @@ const UserProfileMenu = () => {
         setIsScrolled(false); // When at the top, set isScrolled to false
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+
+
+  const logOutHandler = () => {
+    localStorage.removeItem("loggedInUser")
+  }
+
   const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : 'navbar_bg'}`;
 
   return (
     <>
-        <div className="container">
+      <div className="container">
 
-          <div className="d-flex align-items-center profile_menu">
-            <Link to="/author-chat">
-              <img src={chat_icon} alt="Chats" />
-            </Link>
-            <Link to="/notification">
-              <img src={notification_icon} alt="Notifications" />
-            </Link>
-            <div
-              className="profileShow d-flex align-items-center gap-1"
-              onClick={handleOpen}
-              ref={dropdownRef}
+        <div className="d-flex align-items-center profile_menu">
+          <Link to="/author-chat">
+            <img src={chat_icon} alt="Chats" />
+          </Link>
+          <Link to="/notification">
+            <img src={notification_icon} alt="Notifications" />
+          </Link>
+          <div
+            className="profileShow d-flex align-items-center gap-1"
+            onClick={handleOpen}
+            ref={dropdownRef}
+          >
+            <button
+              type="button"
+              className="button_click"
+              style={{ cursor: "pointer" }}
             >
-              <button
-                type="button"
-                className="button_click"
-                style={{ cursor: "pointer" }}
-              >
-                <img src={profile_round} alt="Profile Image" />
-              </button>
-              <img
-                className={open ? `arrow` : "arrow1"}
-                src={drop_down}
-                alt="Settings"
-              />
-              {open && (
-                <div className={open ? `childHover` : `child`}>
-                  <div className="profileName d-flex align-items-center gap-3">
-                    <img
-                      className="img-fluid"
-                      src={profile_round}
-                      alt="Profile Image"
-                    />
-                    <div>
-                      <p>{username ? username : "Joe"}</p>
-                      <span className="d-block">
-                        {email ? email : "joe@gmail.com"}
-                      </span>
-                      <Link
-                        to="/complete-profile"
-                        className="mt-3"
-                        style={{ marginTop: "10px" }}
-                      >
-                        Edit profile
-                      </Link>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={accountSetting} alt="Settings" />
-                    <Link to="/account-settings">Account Settings</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3 ">
-                    <img src={bookmark} alt="Bookmarks" />
-                    <Link to="/bookmark">Bookmarks</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={highlight} alt="highlights" />
-                    <Link to="/highlights">Highlights</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={notes} alt="Notes" />
-                    <Link to="/my-notes">My Notes</Link>
-                  </div>
-                  <div className="accSettings d-flex align-items-center gap-3">
-                    <img src={faq} alt="FAQ" />
-                    <Link to="/faq">FAQ’s</Link>
-                  </div>
-                  <hr />
-                  <div
-                    type="button"
-                    onClick={handleLogout}
-                    className="accSettings d-flex align-items-center gap-3 logout"
-                  >
-                    <img src={logout} alt="" />
-                    <Link to="/" style={{ color: "#E00000" }}>
-                      Logout
+              <img src={profile_round} alt="Profile Image" />
+            </button>
+            <img
+              className={open ? `arrow` : "arrow1"}
+              src={drop_down}
+              alt="Settings"
+            />
+            {open && (
+              <div className={open ? `childHover` : `child`}>
+                <div className="profileName d-flex align-items-center gap-3">
+                  <img
+                    className="img-fluid"
+                    src={profile_round}
+                    alt="Profile Image"
+                  />
+                  <div>
+                    <p>{userName ? userName : "Joe"}</p>
+                    <span className="d-block">
+                      {email ? email : "joe@gmail.com"}
+                    </span>
+                    <Link
+                      to="/complete-profile"
+                      className="mt-3"
+                      style={{ marginTop: "10px" }}
+                    >
+                      Edit profile
                     </Link>
                   </div>
                 </div>
-              )}
-            </div>
+                <hr />
+                <div className="accSettings d-flex align-items-center gap-3">
+                  <img src={accountSetting} alt="Settings" />
+                  <Link to="/account-settings">Account Settings</Link>
+                </div>
+                <div className="accSettings d-flex align-items-center gap-3 ">
+                  <img src={bookmark} alt="Bookmarks" />
+                  <Link to="/bookmark">Bookmarks</Link>
+                </div>
+                <div className="accSettings d-flex align-items-center gap-3">
+                  <img src={highlight} alt="highlights" />
+                  <Link to="/highlights">Highlights</Link>
+                </div>
+                <div className="accSettings d-flex align-items-center gap-3">
+                  <img src={notes} alt="Notes" />
+                  <Link to="/my-notes">My Notes</Link>
+                </div>
+                <div className="accSettings d-flex align-items-center gap-3">
+                  <img src={faq} alt="FAQ" />
+                  <Link to="/faq">FAQ’s</Link>
+                </div>
+                <hr />
+                <div
+                  type="button"
+                  onClick={handleLogout}
+                  className="accSettings d-flex align-items-center gap-3 logout"
+                >
+                  <img src={logout} alt="" />
+                  <Link onClick={logOutHandler}  to="/" style={{ color: "#E00000" }}>
+                    Logout
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
+      </div>
 
 
     </>
