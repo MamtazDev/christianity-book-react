@@ -9,6 +9,7 @@ import facebook from "../../assets/icons/facebook.png";
 import google from "../../assets/icons/google.png";
 import apple from "../../assets/icons/apple.png";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { addNotifications } from "../../api/notifications";
 
 const LoginForm = () => {
   const { setUser } = useContext(AuthContext);
@@ -53,6 +54,11 @@ const LoginForm = () => {
       console.log(data);
 
       if (response.ok) {
+        await addNotifications({
+          title: "User LoggedIn",
+          content: "User Logged in successfully",
+          userId: data?.user?._id,
+        });
         const loggedInUser = { data: data.user, token: data.accessTOken };
         setUser(loggedInUser);
         localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));

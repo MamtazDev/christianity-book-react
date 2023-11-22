@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
   const [resetPasswordInfo, setResetPasswordInfo] = useState({});
 
   const [contactMessage, setContactMessage] = useState("");
+  const [allNotifications, setAllNotifications] = useState([]);
 
   const authInfo = {
     user,
@@ -16,6 +17,8 @@ const AuthProvider = ({ children }) => {
     setResetPasswordInfo,
     contactMessage,
     setContactMessage,
+    allNotifications,
+    setAllNotifications,
   };
 
   return (
