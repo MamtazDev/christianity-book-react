@@ -27,7 +27,7 @@ const ReadBook = () => {
           </h3>
           {/* <ReadBooks /> */}
 
-          <ReadBooks2/>
+          <ReadBooks2  url={"https://www.africau.edu/images/default/sample.pdf"}  />
         </div>
         {/* <Pagination /> */}
       </div>
