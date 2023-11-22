@@ -5,9 +5,13 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  const [resetPasswordInfo, setResetPasswordInfo] = useState({});
+
   const authInfo = {
     user,
     setUser,
+    resetPasswordInfo,
+    setResetPasswordInfo,
   };
 
   return (

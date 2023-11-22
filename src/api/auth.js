@@ -36,3 +36,8 @@ export const changePassword = async ({ userEmail, data }) => {
   );
   return res.json();
 };
+
+export const sendOtpToEmail = async (email) => {
+  const res = await fetch(`http://localhost:8000/api/users/sendOtp/${email}`);
+  return res.json();
+};

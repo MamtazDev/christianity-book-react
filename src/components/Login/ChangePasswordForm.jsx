@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { changePassword } from "../../api/auth";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const ChangePasswordForm = () => {
+  const { resetPasswordInfo } = useContext(AuthContext);
   const [focusInput, setFocusInput] = useState(null);
   const navigate = useNavigate();
   const handleFoucsInput = (value, action) => {
@@ -12,9 +16,32 @@ const ChangePasswordForm = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate("/");
+    const form = event.target;
+
+    const newPassword = form.password.value;
+    const password = form.confirm.value;
+
+    if (newPassword === password) {
+      const response = await changePassword({
+        userEmail: resetPasswordInfo?.email,
+        data: { password: password },
+      });
+
+      if (response?.status === 200) {
+        localStorage.removeItem("loggedInUser");
+        navigate("/login");
+      }
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Password is not matched!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
   return (
     <div className="col-12 col-lg-6 logInContainer">
@@ -67,7 +94,9 @@ const ChangePasswordForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit" className="sign-in-button">Change Password</button>
+                <button type="submit" className="sign-in-button">
+                  Change Password
+                </button>
               </div>
             </form>
           </div>

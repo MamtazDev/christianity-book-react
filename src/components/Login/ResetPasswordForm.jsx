@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import message from "../../assets/icons/message.png";
 import { Link, useNavigate } from "react-router-dom";
+import { sendOtpToEmail } from "../../api/auth";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const ResetPasswordForm = () => {
   const [focusInput, setFocusInput] = useState(null);
+  const { resetPasswordInfo, setResetPasswordInfo } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleFoucsInput = (value, action) => {
@@ -14,10 +17,18 @@ const ResetPasswordForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    navigate("/reset-verification");
+    const email = e.target.email.value;
+
+    const response = await sendOtpToEmail(email);
+    if (response?.OTP) {
+      setResetPasswordInfo({ email, OTP: response?.OTP });
+      navigate("/reset-verification");
+    }
+
+    // navigate("/reset-verification");
   };
   return (
     <div className="col-12 col-lg-6 logInContainer">
@@ -55,7 +66,9 @@ const ResetPasswordForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit" className="sign-in-button">Send OTP</button>
+                <button type="submit" className="sign-in-button">
+                  Send OTP
+                </button>
               </div>
             </form>
           </div>
