@@ -7,11 +7,15 @@ const AuthProvider = ({ children }) => {
 
   const [resetPasswordInfo, setResetPasswordInfo] = useState({});
 
+  const [contactMessage, setContactMessage] = useState("");
+
   const authInfo = {
     user,
     setUser,
     resetPasswordInfo,
     setResetPasswordInfo,
+    contactMessage,
+    setContactMessage,
   };
 
   return (

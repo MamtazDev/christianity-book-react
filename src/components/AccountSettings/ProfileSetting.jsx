@@ -23,8 +23,8 @@ const ProfileSetting = () => {
   };
   const userDataString = localStorage.getItem("loggedInUser");
   const userData = JSON.parse(userDataString);
-  const email = userData.email;
-  const username = userData.username;
+  const email = userData?.email;
+  const username = userData?.username;
   return (
     <div>
       <div className="mb_40">
