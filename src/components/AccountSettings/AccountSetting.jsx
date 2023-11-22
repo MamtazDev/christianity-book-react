@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AcountSetting.css";
 import Swal from "sweetalert2";
-import { changeEmail } from "../../api/auth";
+import { changeEmail, changePassword } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
 const AccountSetting = ({ user, setUser }) => {
@@ -89,79 +89,35 @@ const AccountSetting = ({ user, setUser }) => {
     }
   };
 
-  /*   const handleEmailSubmit = async (e) => {
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
-    const userDataString = localStorage.getItem("loggedInUser");
-    const userData = JSON.parse(userDataString);
-    // const email = userData.email;
-    console.log(userData)
 
-    try {
-      const response = await fetch(`http://localhost:8000/api/users/changeEmail/${userData.data._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailFormData),
+    const form = e.target;
+
+    const newPassword = form.newPassword.value;
+    const password = form.confirmNewPassword.value;
+
+    if (newPassword === password) {
+      const response = await changePassword({
+        userEmail: user?.email,
+        data: { password: password },
       });
-      setEmailFormData({
-        email: ""
-      })
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
 
-      const data = await response.json();
-      const loggedInUser = { ...data, data: data.data };
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-
-    } catch (error) {
-      console.log('accountsetting error found', error)
-    }
-  }; */
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const userToUpdate = userData.find(
-      (user) => user.username === "Tonni Akter"
-    );
-    if (userToUpdate) {
-      if (userToUpdate.password === passwordFormData.oldPassword) {
-        userToUpdate.password = passwordFormData.newPassword;
-        localStorage.setItem("userData", JSON.stringify(userData));
-        setPasswordFormData({
-          oldPassword: "",
-          newPassword: "",
-          confirmNewPassword: "",
-        });
-
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Password updated successfully!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Old password is incorrect",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      if (response?.status === 200) {
+        localStorage.removeItem("loggedInUser");
+        setUser(null);
+        navigate("/login");
       }
     } else {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "User not found",
+        title: "Password is not matched!",
         showConfirmButton: false,
         timer: 1500,
       });
     }
   };
-  console.log(user, "user");
 
   return (
     <>
@@ -205,7 +161,7 @@ const AccountSetting = ({ user, setUser }) => {
               type="password"
               name="oldPassword"
               placeholder="Enter Old Password"
-              onChange={handlePasswordInputChange}
+              required
             />
           </div>
           <div className="inputContainer">
@@ -214,7 +170,7 @@ const AccountSetting = ({ user, setUser }) => {
               type="password"
               name="newPassword"
               placeholder="Enter New Password"
-              onChange={handlePasswordInputChange}
+              required
             />
           </div>
           <div className="inputContainer">
@@ -223,7 +179,7 @@ const AccountSetting = ({ user, setUser }) => {
               type="password"
               name="confirmNewPassword"
               placeholder="Confirm New Password"
-              onChange={handlePasswordInputChange}
+              required
             />
           </div>
         </div>
