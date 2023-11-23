@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { getConversationOfTwoUsers } from "../api/conversations";
+import { BASE_URL } from "../config/confir";
 
 const useConversationIdCheck = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const useConversationIdCheck = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:8000/api/conversations/users/${user?.data?._id}`)
+      fetch(`${BASE_URL}/api/conversations/users/${user?.data?._id}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

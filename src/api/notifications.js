@@ -1,5 +1,7 @@
+import { BASE_URL } from "../config/confir";
+
 export const addNotifications = async (data) => {
-  const res = await fetch("http://localhost:8000/api/notifications/add", {
+  const res = await fetch(`${BASE_URL}/api/notifications/add`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -10,15 +12,12 @@ export const addNotifications = async (data) => {
 };
 
 export const getUserNotifications = async (data) => {
-  const res = await fetch(
-    `http://localhost:8000/api/notifications/userNotifications`,
-    {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  const res = await fetch(`${BASE_URL}/api/notifications/userNotifications`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
   return res.json();
 };

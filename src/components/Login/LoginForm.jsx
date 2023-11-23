@@ -10,6 +10,7 @@ import google from "../../assets/icons/google.png";
 import apple from "../../assets/icons/apple.png";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
+import { BASE_URL } from "../../config/confir";
 
 const LoginForm = () => {
   const { setUser } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const LoginForm = () => {
     console.log(formData);
 
     try {
-      const response = await fetch("http://localhost:8000/api/users/login", {
+      const response = await fetch(`${BASE_URL}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
