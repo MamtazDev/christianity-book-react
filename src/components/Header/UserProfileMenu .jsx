@@ -199,7 +199,7 @@
 // };
 
 // export default UserProfileMenu;
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Header.css";
 import chat_icon from "../../assets/images/chat_icon.png";
 import notification_icon from "../../assets/images/notification_icon.png";
@@ -212,9 +212,14 @@ import notes from "../../assets/images/notes.png";
 import highlight from "../../assets/images/highlight.png";
 import bookmark from "../../assets/images/bookmark.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { getUserNotifications } from "../../api/notifications";
 
 const UserProfileMenu = ({ data }) => {
-  const { email, userName, image } = data?.data
+  const { email, userName, image } = data?.data;
+
+  const { user, allNotifications, setAllNotifications } =
+    useContext(AuthContext);
 
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -234,13 +239,23 @@ const UserProfileMenu = ({ data }) => {
     }
   };
 
+  const getAllNotifications = async () => {
+    const response = await getUserNotifications({ userId: user?.data?._id });
+    if (response) {
+      setAllNotifications(response);
+    }
+  };
+
+  useEffect(() => {
+    getAllNotifications();
+  }, [user]);
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
 
   // navbar bg color when schrolling
   const [isScrolled, setIsScrolled] = useState(false);
@@ -254,30 +269,53 @@ const UserProfileMenu = ({ data }) => {
         setIsScrolled(false); // When at the top, set isScrolled to false
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-
-
   const logOutHandler = () => {
-    localStorage.removeItem("loggedInUser")
-  }
+    localStorage.removeItem("loggedInUser");
+  };
 
-  const navbarClasses = `navbar navbar-expand-lg ${isScrolled ? 'navbar-scrolled' : 'navbar_bg'}`;
+  const navbarClasses = `navbar navbar-expand-lg ${
+    isScrolled ? "navbar-scrolled" : "navbar_bg"
+  }`;
 
   return (
     <>
       <div className="container">
-
         <div className="d-flex align-items-center profile_menu">
           <Link to="/author-chat">
             <img src={chat_icon} alt="Chats" />
           </Link>
           <Link to="/notification">
-            <img src={notification_icon} alt="Notifications" />
+            <div style={{ position: "relative" }}>
+              <img
+                src={notification_icon}
+                alt="Notifications"
+                className="w-100 h-100"
+              />
+              {allNotifications?.length > 0 && (
+                <p
+                  style={{
+                    fontSize: "12px",
+                    position: "absolute",
+                    top: "0",
+                    right: "0",
+                    backgroundColor: "red",
+                    paddingRight: "5px",
+                    paddingLeft: "5px",
+                    borderRadius: "100%",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {allNotifications.length}
+                </p>
+              )}
+            </div>
           </Link>
           <div
             className="profileShow d-flex align-items-center gap-1"
@@ -346,7 +384,11 @@ const UserProfileMenu = ({ data }) => {
                   className="accSettings d-flex align-items-center gap-3 logout"
                 >
                   <img src={logout} alt="" />
-                  <Link onClick={logOutHandler}  to="/" style={{ color: "#E00000" }}>
+                  <Link
+                    onClick={logOutHandler}
+                    to="/"
+                    style={{ color: "#E00000" }}
+                  >
                     Logout
                   </Link>
                 </div>
@@ -355,8 +397,6 @@ const UserProfileMenu = ({ data }) => {
           </div>
         </div>
       </div>
-
-
     </>
   );
 };

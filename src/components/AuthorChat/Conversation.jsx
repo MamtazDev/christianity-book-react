@@ -7,8 +7,15 @@ import ShowImage from "./ShowImage";
 import ProfileSetting from "./ProfileSetting";
 import { getCurrentTime } from "../Utils/CurrentTime";
 import ChatDate from "./ChatDate";
+import { addMessage } from "../../api/conversations";
+import { convertTime } from "../Utils/convertTIme";
 
-const Conversation = () => {
+const Conversation = ({
+  allMessages,
+  user,
+  conversationId,
+  getConversationId,
+}) => {
   const [chatData, setChatData] = useState([
     { type: "sender", content: "HI", timestamp: getCurrentTime(), file: [] },
     {
@@ -59,6 +66,20 @@ const Conversation = () => {
     }
   };
 
+  const [sendingMessage, setSendingMessage] = useState("");
+  const handleSendMessage = async () => {
+    const sendMessageRes = await addMessage({
+      conversationId,
+      sender: user?._id,
+      text: sendingMessage,
+    });
+
+    if (sendMessageRes) {
+      getConversationId();
+      setSendingMessage("");
+    }
+  };
+
   return (
     <>
       <div className="chatList">
@@ -74,32 +95,39 @@ const Conversation = () => {
         </div>
         {/* chat data */}
         <div className="chat_scrolled">
-          {chatData.map((data, index) =>
-            data.type === "receiver" ? (
-              <div className="grayBox mb-3" key={index}>
-                <div className="whiteBox mb-3">
-                  <span className="d-block text-dark">you</span>
-                  <p>{data.content}</p>
+          {allMessages &&
+            allMessages.length > 0 &&
+            allMessages?.map((data, index) =>
+              data?.sender !== user?._id ? (
+                <div className="grayBox mb-3" key={index}>
+                  <div className="whiteBox mb-3">
+                    <span className="d-block text-dark">you</span>
+                    <p>{data.text}</p>
+                  </div>
+                  <span className="d-block">
+                    {convertTime(data?.createdAt)}
+                  </span>
                 </div>
-                <span className="d-block">{data.timestamp}</span>
-              </div>
-            ) : (
-              <div className="answerBox ml-auto mb-3" key={index}>
-                <>
-                  {data.content === "" ? (
-                    <>
-                      {data?.file.map((single, index) => (
-                        <ShowImage key={index} item={single} />
-                      ))}
-                    </>
-                  ) : (
-                    <p className="mb-2">{data.content} </p>
-                  )}
-                </>
-                <span className="d-block time">{data.timestamp} .Read</span>
-              </div>
-            )
-          )}
+              ) : (
+                <div className="answerBox ml-auto mb-3" key={index}>
+                  <>
+                    {data?.content === "" ? (
+                      <>
+                        {data?.file.map((single, index) => (
+                          <ShowImage key={index} item={single} />
+                        ))}
+                      </>
+                    ) : (
+                      <p className="mb-2">{data?.text} </p>
+                    )}
+                  </>
+                  {/* <span className="d-block time">{data?.timestamp} .Read</span> */}
+                  <span className="d-block time">
+                    {convertTime(data?.createdAt)}{" "}
+                  </span>
+                </div>
+              )
+            )}
         </div>
         <ChatDate />
         <form onSubmit={(e) => e.preventDefault()}>
@@ -125,12 +153,13 @@ const Conversation = () => {
               className="textField"
               type="text"
               name="message"
-              Value={imageName}
+              // Value={imageName}
+              value={sendingMessage}
               placeholder="Type your message here.."
-              onChange={handleInputChange}
+              onChange={(e) => setSendingMessage(e.target.value)}
             />
 
-            <button type="button" onClick={handleSubmit}>
+            <button type="button" onClick={handleSendMessage}>
               <img className="img-fluid" src={submit} alt="Submit Button" />
             </button>
           </div>

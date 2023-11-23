@@ -18,6 +18,8 @@ import ReadBook from "./../pages/ReadBook";
 import HighLights from "./../pages/HighLights";
 import MyNotes from "./../pages/MyNotes";
 import Notification from "./../pages/Notification";
+import ProtectedRoute from "./ProtectedRoute";
+import LoginRoute from "./LoginRoute";
 
 export const router = createBrowserRouter([
   {
@@ -26,27 +28,47 @@ export const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LogIn />,
+    element: (
+      <LoginRoute>
+        <LogIn />
+      </LoginRoute>
+    ),
   },
 
   {
     path: "/signUp",
-    element: <SignUp />,
+    element: (
+      <LoginRoute>
+        <SignUp />
+      </LoginRoute>
+    ),
   },
 
   {
     path: "/reset-password",
-    element: <ResetPassword />,
+    element: (
+      <LoginRoute>
+        <ResetPassword />
+      </LoginRoute>
+    ),
   },
 
   {
     path: "/reset-verification",
-    element: <ResetVerification />,
+    element: (
+      <LoginRoute>
+        <ResetVerification />
+      </LoginRoute>
+    ),
   },
 
   {
     path: "/change-password",
-    element: <ChangePassword />,
+    element: (
+      <LoginRoute>
+        <ChangePassword />
+      </LoginRoute>
+    ),
   },
 
   {
@@ -71,14 +93,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <ProtectedRoute>
+            {/* <Contact /> */}
+            <Contact />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/account-settings",
         element: (
-          // <PrivateRoute>
-          <AccountSettings />
-          // </PrivateRoute>
+          <PrivateRoute>
+            <AccountSettings />
+          </PrivateRoute>
         ),
       },
 

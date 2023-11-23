@@ -1,50 +1,52 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import rightArrow from "../../assets/images/right_arrow.png";
 import "./Contact.css";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
+import {
+  addConversationBySenderReciver,
+  addMessage,
+} from "../../api/conversations";
 const ContactForm = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
   // const location = useLocation();
   // const authorLink = location.pathname;
 
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [formData, setFormData] = useState({
-    fullName: "",
-    emailAddress: "",
-    country: "",
-    phoneNumber: "",
-    message: "",
-  });
+  const { user, setContactMessage } = useContext(AuthContext);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
-    const numericValue = e.target.value.replace(/[^0-9]/g, '');
-    setPhoneNumber(numericValue);
-  };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Message sent successfully",
-      showConfirmButton: false,
-      timer: 1500,
+
+    const message = e.target.message.value;
+
+    if (message) {
+      setContactMessage(message);
+    }
+
+    const response = await addConversationBySenderReciver({
+      senderId: user?.data?._id,
     });
-    setFormData({
-      fullName: "",
-      emailAddress: "",
-      country: "",
-      phoneNumber: "",
-      message: "",
-    });
-    navigate('/author-chat');
+
+    if (response) {
+      const sendMessageRes = await addMessage({
+        conversationId: response?._id,
+        sender: user?.data?._id,
+        text: message,
+      });
+
+      if (sendMessageRes) {
+        navigate("/author-chat");
+      }
+    }
+
+    // Swal.fire({
+    //   position: "center",
+    //   icon: "success",
+    //   title: "Message sent successfully",
+    //   showConfirmButton: false,
+    //   timer: 1500,
+    // });
   };
   return (
     <div className="contactAll">
@@ -62,21 +64,21 @@ const ContactForm = () => {
             <div className="w-100">
               <label>Full Name</label>
               <input
-                onChange={handleInputChange}
                 className="w-100"
                 type="text"
                 placeholder="John Duo"
                 name="fullName"
+                required
               />
             </div>
             <div className="w-100">
               <label>Email Address</label>
               <input
-                onChange={handleInputChange}
                 className="w-100"
                 type="email"
                 placeholder="johnduo@gmail.com"
                 name="emailAddress"
+                required
               />
             </div>
           </div>
@@ -84,22 +86,21 @@ const ContactForm = () => {
             <div className="w-100">
               <label>Country</label>
               <input
-                onChange={handleInputChange}
                 className="w-100"
                 type="text"
                 placeholder="United Kingdom"
                 name="country"
+                required
               />
             </div>
             <div className="w-100">
               <label>Phone Number</label>
               <input
-                onChange={handleInputChange}
                 className="w-100"
                 type="text"
                 placeholder="+1 123 456 789"
                 name="phoneNumber"
-                value={phoneNumber}
+                required
               />
             </div>
           </div>
@@ -112,7 +113,6 @@ const ContactForm = () => {
               cols="30"
               rows="6"
               name="message"
-              onChange={handleInputChange}
               required
             ></textarea>
           </div>

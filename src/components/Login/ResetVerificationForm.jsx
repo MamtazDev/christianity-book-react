@@ -1,8 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ResetVerificationForm.css";
+import { AuthContext } from "../../contexts/AuthProvider";
+import Swal from "sweetalert2";
 
 const ResetVerificationForm = () => {
+  const { resetPasswordInfo, setResetPasswordInfo } = useContext(AuthContext);
+  console.log(resetPasswordInfo, "fff");
   const [otp, setOtp] = useState(["", "", "", ""]);
 
   const navigate = useNavigate();
@@ -28,10 +32,25 @@ const ResetVerificationForm = () => {
   };
 
   const isFilled = otp.every((digit) => digit !== "");
+  console.log(isFilled);
 
+  const handleConfirmOTP = () => {
+    const inputOTP = otp.join("");
+
+    if (inputOTP === resetPasswordInfo?.OTP) {
+      navigate("/change-password");
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "OTP is not matched!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/change-password");
   };
   return (
     <div className="col-12 col-lg-6 logInContainer">
@@ -53,7 +72,7 @@ const ResetVerificationForm = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="otpForm">
+            <div className="otpForm">
               <div style={{ marginBottom: "49px" }}>
                 <div className="d-flex gap_2 mb-5">
                   {otp.map((digit, index) => (
@@ -74,9 +93,16 @@ const ResetVerificationForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit" className="sign-in-button">Confirm OTP</button>
+                <button
+                  type="button"
+                  className="sign-in-button"
+                  disabled={!isFilled}
+                  onClick={handleConfirmOTP}
+                >
+                  Confirm OTP
+                </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
