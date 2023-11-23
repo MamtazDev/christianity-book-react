@@ -70,7 +70,8 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
         console.error(error.message);
       });
 
-    // Cleanup
+    // Cleanupf
+    // Cleanupf
     return () => {
       // Remove the event listeners
       if (instanceRef.current) {
