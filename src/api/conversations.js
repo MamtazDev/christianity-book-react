@@ -1,5 +1,7 @@
+import { BASE_URL } from "../config/confir";
+
 export const addConversationBySenderReciver = async (data) => {
-  const res = await fetch("http://localhost:8000/api/conversations/add", {
+  const res = await fetch(`${BASE_URL}/api/conversations/add`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -10,21 +12,17 @@ export const addConversationBySenderReciver = async (data) => {
 };
 
 export const getConversationOfTwoUsers = async (userId) => {
-  const res = await fetch(
-    `http://localhost:8000/api/conversations/users/${userId}`
-  );
+  const res = await fetch(`${BASE_URL}/api/conversations/users/${userId}`);
   return res.json();
 };
 
 export const getMessageByConversationId = async (conversationId) => {
-  const res = await fetch(
-    `http://localhost:8000/api/messages/${conversationId}`
-  );
+  const res = await fetch(`${BASE_URL}/api/messages/${conversationId}`);
   return res.json();
 };
 
 export const addMessage = async (data) => {
-  const res = await fetch("http://localhost:8000/api/messages/add", {
+  const res = await fetch(`${BASE_URL}/api/messages/add`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
