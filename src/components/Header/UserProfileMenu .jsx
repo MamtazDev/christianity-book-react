@@ -216,7 +216,9 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { getUserNotifications } from "../../api/notifications";
 
 const UserProfileMenu = ({ data }) => {
-  const { email, userName, image } = data?.data;
+  // const { email, userName, image } = data?.data;
+  const { email, userName, image } = data;
+
 
   const { user, allNotifications, setAllNotifications } =
     useContext(AuthContext);
