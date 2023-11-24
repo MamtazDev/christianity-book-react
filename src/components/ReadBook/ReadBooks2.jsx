@@ -40,7 +40,7 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
       baseUrl,
       disableWebAssemblyStreaming: true,
       container: "#pspdfkit1",
-      document: url,
+      document: pdfBooks,
     })
       .then((loadedInstance) => {
         instanceRef.current = loadedInstance;
