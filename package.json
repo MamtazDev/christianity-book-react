@@ -1,6 +1,7 @@
 {
   "name": "christianitybook",
   "private": true,
+  "homepage": "https://christianity-book-react.vercel.app",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
