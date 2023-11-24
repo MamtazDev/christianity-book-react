@@ -1,30 +1,52 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./AcountSetting.css";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { updateUserInfo } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
 const ProfileSetting = () => {
-  const [formData, setFormData] = useState({
+  const { user, setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const [profileSettingsData, setProfileSettingsData] = useState({
     fullName: "",
-    email: "",
-    phoneNo: "",
+    phoneNumber: "",
     country: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setProfileSettingsData({ ...profileSettingsData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const responseData = await updateUserInfo({
+      userId: user?.data?._id,
+      data: profileSettingsData,
+    });
+
+    if (responseData?.status === 200) {
+      localStorage.removeItem("loggedInUser");
+      setUser(null);
+      navigate("/login");
+    }
   };
-  const userDataString = localStorage.getItem("loggedInUser");
-  const userData = JSON.parse(userDataString);
-  const email = userData?.email;
-  const username = userData?.username;
+
+  console.log(profileSettingsData, "gggg");
+
+  useEffect(() => {
+    if (user) {
+      setProfileSettingsData({
+        ...profileSettingsData,
+        fullName: user?.data?.fullName,
+        phoneNumber: user?.data?.phoneNumber,
+        country: user?.data?.country,
+      });
+    }
+  }, [user]);
   return (
     <div>
       <div className="mb_40">
@@ -43,7 +65,7 @@ const ProfileSetting = () => {
               type="text"
               placeholder="John Duo"
               onChange={handleInputChange}
-              value={username}
+              value={profileSettingsData?.fullName}
             />
           </div>
           <div className="inputContainer1">
@@ -52,8 +74,8 @@ const ProfileSetting = () => {
               name="email"
               type="email"
               placeholder="johnduo@gmail.com"
-              onChange={handleInputChange}
-              value={email}
+              value={user?.data?.email}
+              readOnly
             />
           </div>
         </div>
@@ -61,10 +83,11 @@ const ProfileSetting = () => {
           <div className="inputContainer1">
             <label>Phone Number</label>
             <input
-              name="phoneNo"
+              name="phoneNumber"
               type="text"
               placeholder="+1 123 456 789"
               onChange={handleInputChange}
+              value={profileSettingsData?.phoneNumber}
             />
           </div>
           <div className="inputContainer1">
@@ -72,17 +95,46 @@ const ProfileSetting = () => {
             <select
               name="country"
               onChange={handleInputChange}
-              value={formData.country}
+              value={profileSettingsData?.country}
             >
-              <option value="Country">Country</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Nepal">Nepal</option>
-              <option value="India">India</option>
-              <option value="Canada">Canada</option>
+              <option disabled>Select country</option>
+              <option
+                value="Bangladesh"
+                selected={profileSettingsData?.country === "Bangladesh"}
+              >
+                Bangladesh
+              </option>
+              <option
+                value="Nepal"
+                selected={profileSettingsData?.country === "Nepal"}
+              >
+                Nepal
+              </option>
+              <option
+                value="India"
+                selected={profileSettingsData?.country === "India"}
+              >
+                India
+              </option>
+              <option
+                value="Canada"
+                selected={profileSettingsData?.country === "Canada"}
+              >
+                Canada
+              </option>
             </select>
           </div>
         </div>
-        <button type="submit">Save Changes</button>
+        <button
+          type="submit"
+          disabled={
+            !profileSettingsData?.phoneNumber ||
+            !profileSettingsData?.country ||
+            !profileSettingsData?.fullName
+          }
+        >
+          Save Changes
+        </button>
       </form>
     </div>
   );
