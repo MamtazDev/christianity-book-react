@@ -1,5 +1,7 @@
+import { BASE_URL } from "../config/confir";
+
 export const updateUserInfo = async ({ userId, data }) => {
-  const res = await fetch(`http://localhost:8000/api/users/edit/${userId}`, {
+  const res = await fetch(`${BASE_URL}/api/users/edit/${userId} `, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -10,22 +12,19 @@ export const updateUserInfo = async ({ userId, data }) => {
 };
 
 export const changeEmail = async ({ userId, data }) => {
-  const res = await fetch(
-    `http://localhost:8000/api/users/changeEmail/${userId}`,
-    {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  const res = await fetch(`${BASE_URL}/api/users/changeEmail/${userId}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
   return res.json();
 };
 
 export const changePassword = async ({ userEmail, data }) => {
   const res = await fetch(
-    `http://localhost:8000/api/users/changePassword/${userEmail}`,
+    `${BASE_URL}/api/users/changePassword/${userEmail}`,
     {
       method: "PUT",
       headers: {
@@ -38,6 +37,6 @@ export const changePassword = async ({ userEmail, data }) => {
 };
 
 export const sendOtpToEmail = async (email) => {
-  const res = await fetch(`http://localhost:8000/api/users/sendOtp/${email}`);
+  const res = await fetch(`${BASE_URL}/api/users/sendOtp/${email}`);
   return res.json();
 };

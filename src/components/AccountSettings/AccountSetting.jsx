@@ -57,7 +57,7 @@ const AccountSetting = ({ user, setUser }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/users/changeEmail/${userId}`,
+        `${BASE_URL}/api/users/changeEmail/${userId}`,
         {
           method: "PUT",
           headers: {

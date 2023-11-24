@@ -6,6 +6,7 @@ import yellowEye from "../../assets/icons/yellowEye.png";
 import user from "../../assets/icons/user.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { BASE_URL } from "../../config/confir";
 
 const SignUpForm = () => {
   const { setUser } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const SignUpForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/users/signup", {
+      const response = await fetch(`${BASE_URL}/api/users/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
