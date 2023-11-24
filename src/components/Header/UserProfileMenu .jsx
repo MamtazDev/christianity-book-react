@@ -213,10 +213,22 @@ import highlight from "../../assets/images/highlight.png";
 import bookmark from "../../assets/images/bookmark.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+<<<<<<< HEAD
 import {
   getUserNotifications,
   makeNotificationSeen,
 } from "../../api/notifications";
+=======
+import { getUserNotifications } from "../../api/notifications";
+
+const UserProfileMenu = ({ data }) => {
+  // const { email, userName, image } = data?.data;
+  const { email, userName, image } = data;
+
+
+  const { user, allNotifications, setAllNotifications } =
+    useContext(AuthContext);
+>>>>>>> 19e50ec16a4d220a616644ad93a4ffd02bdb0e7c
 
 const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
   const [open, setOpen] = useState(false);
