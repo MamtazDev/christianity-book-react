@@ -10,7 +10,7 @@ import { updateUserInfo, uploadImageToImgBB } from "../../api/auth";
 const CompleteProfileForm = () => {
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const imageInput = useRef(null);
 
@@ -45,6 +45,13 @@ const CompleteProfileForm = () => {
       });
 
       if (responseData?.status === 200) {
+        const localUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+        const newLocalUserData = {
+          ...localUserData,
+          data: responseData?.data,
+        };
+        localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
+        setUser(newLocalUserData);
         navigate("/subscription");
       }
     }

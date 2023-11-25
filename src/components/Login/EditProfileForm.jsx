@@ -44,9 +44,19 @@ const EditProfileForm = () => {
         });
 
         if (responseData?.status === 200) {
-          localStorage.removeItem("loggedInUser");
-          setUser(null);
-          navigate("/login");
+          const localUserData = JSON.parse(
+            localStorage.getItem("loggedInUser")
+          );
+          const newLocalUserData = {
+            ...localUserData,
+            data: responseData?.data,
+          };
+          localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(newLocalUserData)
+          );
+          setUser(newLocalUserData);
+          navigate("/account-settings");
         }
       }
     } else {
@@ -56,9 +66,14 @@ const EditProfileForm = () => {
       });
 
       if (responseData?.status === 200) {
-        localStorage.removeItem("loggedInUser");
-        setUser(null);
-        navigate("/login");
+        const localUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+        const newLocalUserData = {
+          ...localUserData,
+          data: responseData?.data,
+        };
+        localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
+        setUser(newLocalUserData);
+        navigate("/account-settings");
       }
     }
   };
