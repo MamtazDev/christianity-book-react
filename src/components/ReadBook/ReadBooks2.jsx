@@ -5,7 +5,7 @@ import pdfBooks from "../../assets/book/book.pdf";
 import PdfViewerComponent from "./PdfViewerComponent";
 
 // const baseUrl = `${window.location.protocol}//${window.location.host}/node_modules/pspdfkit/dist/`;
-const baseUrl = `/public/pspdfkit-lib`;
+// const baseUrl = `/public/pspdfkit-lib`;
 
 export default function ReadBooks2({ url, setArrayBuffer }) {
   const instanceRef = useRef(null);
@@ -28,36 +28,6 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
         console.log("Annotation is not working fine.")
       }
 
-
-
-    // try {
-    //   // console.log('anotationsdh',event)
-    //   // const { annotations } = event;
-
-    //   // console.log('e-anotation',annotations)
-
-    //   if (event && event.annotations) {
-    //     console.log(event,'eeveent')
-    //     const { annotations } = event;
-
-    //     console.log('e-anotation',annotations)
-    //     // Process each annotation
-    //     annotations.forEach((annotation) => {
-    //       if (annotation instanceof PSPDFKit.Annotations.TextAnnotation) {
-    //         console.log("Note added:", annotation);
-    //       } else if (annotation instanceof PSPDFKit.Annotations.HighlightAnnotation) {
-    //         console.log("Highlight added:", annotation);
-    //       }
-    //     }); }
-    //     else{
-    //       console.log("Annotation is not working fine.")
-    //     }
-
-    //   // Save the PDF to the server when annotations change
-    //   // savePdfToServer();
-    // } catch (error) {
-    //   console.error("Error handling annotation added:", error);
-    // }
   };
 
   useEffect(() => {
@@ -66,10 +36,10 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
     
 
     PSPDFKit.load({
-      baseUrl,
+      // baseUrl,
       disableWebAssemblyStreaming: true,
       container: "#pspdfkit1",
-      document: pdfBooks,
+      document: url,
     })
       .then((loadedInstance) => {
         instanceRef.current = loadedInstance;
@@ -80,37 +50,13 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
           handleAnnotationsChange
         );
 
-        // Add event listener for annotation added
-        // instanceRef.current.addEventListener("annotations.change", handleAnnotationAdded);
-        // loadedInstance.addEventListener("annotations.change", function(event){
-        //   console.log('even2',event)
-        // });
-        // loadedInstance.addEventListener("annotations.change", () => {
-        //   let an = new PSPDFKit.Annotations.NoteAnnotation;
-       
-        //   console.log('as',an);
-        //   console.log("Something in the annotations has changed.");
-        // });
-
 
         loadedInstance.addEventListener("annotations.change", async () => {
           console.log("Something in the annotations has changed.");
           try {
-
-            // Text Anotation
-            // let selectedText =  loadedInstance.getTextSelection();
-            // let textValue = await selectedText.getText(text=>text)
-            // console.log('textValue',textValue)
-
-
-            // Note Anotations
-            // Assuming you want annotations from all pages, or adjust as needed
-            // let an = new PSPDFKit.Annotations.Annotation;
             let Notean = new PSPDFKit.Annotations.NoteAnnotation;
             // console.log('an',an)
             console.log('Notean',Notean)
-
-         
           } catch (error) {
             console.error("Error retrieving annotations:", error);
           }
@@ -126,26 +72,6 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
           
         console.log('createdAnnotations',createdAnnotations)
 
-
-
-
-
-
-          // let selectedText =  loadedInstance.getTextSelection();
-
-          // const textValue = await selectedText.getText(text=>text)
-          
-          // console.log('textValue',textValue)
-          
-          // const annotation = new PSPDFKit.Annotations.TextAnnotation({
-          //   pageIndex: 0,
-          //   text: { format: "plain", value : "Welcome to\nPSPDFKit" },
-          //   font: "Helvetica",
-          //   isBold: true,
-          //   horizontalAlign: "center",
-          //   boundingBox: new PSPDFKit.Geometry.Rect({ left: 10, top: 20, width: 30, height: 40 }),
-          //   fontColor: PSPDFKit.Color.RED
-          // });
 
         });
   
@@ -217,18 +143,6 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
       // Retrieve annotations (notes, bookmarks, etc.) from PSPDFKit for a specific page
       const annotations = await instanceRef.current.getAnnotations(pageIndex);
 
-      // console.log('annotation', annotations)
-
-      // Filter annotations for highlights and notes
-      // const highlights = annotations.filter(annotation => annotation.type === "highlight" &&  console.log("Highlights:", highlights));
-      // const notes = annotations.filter(annotation => annotation.type === "note" && console.log("Notes:", notes));
-
-      // Log highlights and notes in the console
-
-      // Log annotations in JSON format
-      // console.log("Changes from PDF: ", JSON.stringify(annotations, null, 2));
-
-      // Save the PDF to the server when annotations change
       savePdfToServer();
     } catch (error) {
       console.error("Error fetching annotations:", error);
@@ -239,7 +153,7 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
   return <>
     <div className="PDF-viewer">
 			<PdfViewerComponent
-				document={pdfBooks}
+				document={url}
 			/>
 		</div>
   </>

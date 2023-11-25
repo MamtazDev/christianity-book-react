@@ -19,8 +19,10 @@ export default function PdfViewerComponent(props) {
         // Container where PSPDFKit should be mounted.
         container,
         // The document to open.
-        document: props.document, 
+        document: "https://www.africau.edu/images/default/sample.pdf", 
+        // document: props.document, 
         // Use the public directory URL as a base URL. PSPDFKit will download its library assets from here.
+        // baseUrl: `/public/`
         baseUrl: `${window.location.protocol}//${window.location.host}/public/`
         // baseUrl: `${window.location.protocol}//${window.location.host}/${process.env.PUBLIC_URL}`
       });
