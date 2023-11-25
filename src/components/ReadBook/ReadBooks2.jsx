@@ -5,7 +5,7 @@ import pdfBooks from "../../assets/book/book.pdf";
 // import PdfViewerComponent from "./PdfViewerComponent";
 
 // const baseUrl = `${window.location.protocol}//${window.location.host}/node_modules/pspdfkit/dist/`;
-const baseUrl =  `${window.location.protocol}//${window.location.host}/assets/`;
+const baseUrl =  `${window.location.protocol}//${window.location.host}/`;
 
 export default function ReadBooks2({ url, setArrayBuffer }) {
   const instanceRef = useRef(null);
