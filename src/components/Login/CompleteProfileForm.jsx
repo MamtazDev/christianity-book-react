@@ -12,8 +12,6 @@ const CompleteProfileForm = () => {
 
   const { user } = useContext(AuthContext);
 
-  console.log(user, "user gg");
-
   const imageInput = useRef(null);
 
   const [updateUserData, setUpdateUserData] = useState({});
@@ -25,13 +23,6 @@ const CompleteProfileForm = () => {
       setUpdateUserData({ ...updateUserData, [e.target.name]: e.target.value });
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   try {
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const handleCreateProfile = async () => {
     const userData = {
@@ -112,7 +103,7 @@ const CompleteProfileForm = () => {
               <input
                 name="fullName"
                 type="text"
-                placeholder="John Duo"
+                placeholder="Enter your full name"
                 onChange={handleInputValueChange}
               />
             </div>
@@ -133,14 +124,14 @@ const CompleteProfileForm = () => {
               <input
                 name="phoneNumber"
                 type="number"
-                placeholder="+1 123 456 789"
+                placeholder="Enter your phone number"
                 onChange={handleInputValueChange}
               />
             </div>
             <div className="completeprofile_inputContainer">
               <label>Country</label>
               <select name="country" onChange={handleInputValueChange}>
-                <option value="country">Country</option>
+                <option disabled>Select country</option>
                 <option value="Bangladesh">Bangladesh</option>
                 <option value="Nepal">Nepal</option>
                 <option value="India">India</option>

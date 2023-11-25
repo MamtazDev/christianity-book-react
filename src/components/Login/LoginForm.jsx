@@ -11,6 +11,7 @@ import apple from "../../assets/icons/apple.png";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
 import { BASE_URL } from "../../config/confir";
+import { userLogin } from "../../api/auth";
 
 const LoginForm = () => {
   const { setUser } = useContext(AuthContext);
@@ -38,47 +39,91 @@ const LoginForm = () => {
     });
   };
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+
+    setErrorMessage("");
+    setIsLoading(true);
+
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const data = {
+      email,
+      password,
+    };
 
     try {
-      const response = await fetch(`${BASE_URL}/api/users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
+      const response = await userLogin(data);
+      if (response?.status === 200) {
         await addNotifications({
           title: "User LoggedIn",
           content: "User Logged in successfully",
-          userId: data?.user?._id,
+          userId: response?.user?._id,
         });
-        const loggedInUser = { data: data.user, token: data.accessTOken };
+        const loggedInUser = {
+          data: response?.user,
+          token: response?.accessTOken,
+        };
         setUser(loggedInUser);
         localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Login Successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        setErrorMessage("");
+        setIsLoading(false);
         navigate("/");
-      } else {
-        console.error(data.message);
-        alert("Login failed. Please check your email and password.");
+      }
+      if (response?.status === 401) {
+        setErrorMessage(response?.message);
+        setIsLoading(false);
       }
     } catch (error) {
+      setErrorMessage(error.message);
+      setIsLoading(false);
       console.error("Error:", error.message);
-      alert("An error occurred. Please try again later.");
     }
+
+    console.log(data, "daa");
+
+    // try {
+    //   const response = await fetch(`${BASE_URL}/api/users/login`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+
+    //   const data = await response.json();
+    //   console.log(data);
+
+    //   if (response.ok) {
+    //     await addNotifications({
+    //       title: "User LoggedIn",
+    //       content: "User Logged in successfully",
+    //       userId: data?.user?._id,
+    //     });
+    //     const loggedInUser = { data: data.user, token: data.accessTOken };
+    //     setUser(loggedInUser);
+    //     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    //     Swal.fire({
+    //       position: "center",
+    //       icon: "success",
+    //       title: "Login Successful",
+    //       showConfirmButton: false,
+    //       timer: 1500,
+    //     });
+    //     navigate("/");
+    //   } else {
+    //     console.error(data.message);
+    //     alert("Login failed. Please check your email and password.");
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error.message);
+    //   alert("An error occurred. Please try again later.");
+    // }
   };
 
   return (
@@ -113,8 +158,7 @@ const LoginForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("email", "focus")}
                 onBlur={() => handleFoucsInput("email", "blur")}
-                onChange={handleChange}
-                value={formData.email}
+                required
               />
             </div>
           </div>
@@ -134,8 +178,7 @@ const LoginForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("password", "focus")}
                 onBlur={() => handleFoucsInput("password", "blur")}
-                onChange={handleChange}
-                value={formData.password}
+                required
               />
               <img
                 style={{ cursor: "pointer" }}
@@ -159,9 +202,16 @@ const LoginForm = () => {
             <Link to="/reset-password">Forgot Password?</Link>
           </div>
 
+          <p className="mb-3 text-danger ">{errorMessage}</p>
+
           <div className="logInActionContainer">
-            <button type="submit" className="sign-in-button">
-              Sign In
+            <button
+              type="submit"
+              className="sign-in-button"
+              disabled={isLoading}
+              style={{ cursor: `${isLoading ? "not-allowed" : "pointer"}` }}
+            >
+              {isLoading ? "Signing in..." : "Sign In"}
             </button>
 
             <p>or continue with</p>

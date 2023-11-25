@@ -15,7 +15,7 @@ const useConversationIdCheck = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if (data._id) {
+          if (data?._id) {
             setConversationId(true);
             setIsLoading(false);
           }

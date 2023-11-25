@@ -71,42 +71,43 @@
 
 
 
-import React, { useEffect, useRef } from "react";
+// import React, { useEffect, useRef } from "react";
 
-export default function PdfViewerComponent(props) {
-  const containerRef = useRef(null);
-  let instance;
+// export default function PdfViewerComponent(props) {
+//   const containerRef = useRef(null);
+//   let instance;
 
-  useEffect(() => {
-    const container = containerRef.current;
 
-    (async function () {
-      instance = await import("pspdfkit").then((pspdfkit) => pspdfkit.default);
-      await instance.load({
-        container,
-        document: props.document,
-        baseUrl: `${window.location.protocol}//${window.location.host}/${process.env.PUBLIC_URL}`,
-        // Enable the "Note" tool in the UI
-        enableAnnotationToolbar: true,
-      });
+//   useEffect(() => {
+//     const container = containerRef.current;
 
-      // Add an event listener to listen for annotation create events
-      instance.addEventListener("annotations.create", (event) => {
-        const { annotations } = event;
-        // Log information about the created annotations
-        console.log("Annotations created:", annotations);
-      });
-    })();
+//     (async function () {
+//       instance = await import("pspdfkit").then((pspdfkit) => pspdfkit.default);
+//       await instance.load({
+//         container,
+//         document: props.document,
+//         baseUrl: `${window.location.protocol}//${window.location.host}/${process.env.PUBLIC_URL}`,
+//         // Enable the "Note" tool in the UI
+//         enableAnnotationToolbar: true,
+//       });
 
-    return () => {
-      if (instance) {
-        instance.unload(container);
-      }
-    };
-  }, [props.document]);
+//       // Add an event listener to listen for annotation create events
+//       instance.addEventListener("annotations.create", (event) => {
+//         const { annotations } = event;
+//         // Log information about the created annotations
+//         console.log("Annotations created:", annotations);
+//       });
+//     })();
 
-  return <div ref={containerRef} style={{ width: "100%", height: "90vh" }} />;
-}
+//     return () => {
+//       if (instance) {
+//         instance.unload(container);
+//       }
+//     };
+//   }, [props.document]);
+
+//   return <div ref={containerRef} style={{ width: "100%", height: "90vh" }} />;
+// }
 
 
 

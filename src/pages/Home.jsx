@@ -13,13 +13,6 @@ import ImagePopUp from "../components/Home/ImagePopUp/ImagePopUp";
 import UserProfileMenu from "../components/Header/UserProfileMenu ";
 
 const Home = () => {
-  const [userData, setUserData] = useState(null);
-  // useEffect(() => {
-  //   const storedUserData = JSON.parse(localStorage.getItem("loggedInUser"));
-  //   if (storedUserData) {
-  //     setUserData(storedUserData);
-  //   }
-  // }, []);
   return (
     <>
       {/* {userData ? <UserProfileMenu /> : <Header />} */}
