@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PageHeading from "../components/Utils/PageHeading";
 import bell from "../assets/images/darkNotification.png";
 import { AuthContext } from "../contexts/AuthProvider";
@@ -6,26 +6,7 @@ import { formatDate } from "../components/Utils/convertNotificationTime";
 
 const Notification = () => {
   const { allNotifications } = useContext(AuthContext);
-  const notifications = [
-    {
-      status: "Booked",
-      time: "02",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's...",
-    },
-    {
-      status: "Booked",
-      time: "02",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's...",
-    },
-    {
-      status: "Booked",
-      time: "02",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's...",
-    },
-  ];
+
   return (
     <div>
       <div className="container">

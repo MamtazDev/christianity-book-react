@@ -213,6 +213,12 @@ import highlight from "../../assets/images/highlight.png";
 import bookmark from "../../assets/images/bookmark.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+<<<<<<< HEAD
+import {
+  getUserNotifications,
+  makeNotificationSeen,
+} from "../../api/notifications";
+=======
 import { getUserNotifications } from "../../api/notifications";
 
 const UserProfileMenu = ({ data }) => {
@@ -222,7 +228,9 @@ const UserProfileMenu = ({ data }) => {
 
   const { user, allNotifications, setAllNotifications } =
     useContext(AuthContext);
+>>>>>>> 19e50ec16a4d220a616644ad93a4ffd02bdb0e7c
 
+const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -245,6 +253,14 @@ const UserProfileMenu = ({ data }) => {
     const response = await getUserNotifications({ userId: user?.data?._id });
     if (response) {
       setAllNotifications(response);
+    }
+  };
+
+  const handleNotificationStatus = async () => {
+    const response = await makeNotificationSeen({ userId: user?.data?._id });
+    if (response === 200) {
+      getAllNotifications();
+      console.log(response, "ffff");
     }
   };
 
@@ -293,30 +309,34 @@ const UserProfileMenu = ({ data }) => {
             <img src={chat_icon} alt="Chats" />
           </Link>
           <Link to="/notification">
-            <div style={{ position: "relative" }}>
+            <div
+              style={{ position: "relative" }}
+              onClick={handleNotificationStatus}
+            >
               <img
                 src={notification_icon}
                 alt="Notifications"
                 className="w-100 h-100"
               />
-              {allNotifications?.length > 0 && (
-                <p
-                  style={{
-                    fontSize: "12px",
-                    position: "absolute",
-                    top: "0",
-                    right: "0",
-                    backgroundColor: "red",
-                    paddingRight: "5px",
-                    paddingLeft: "5px",
-                    borderRadius: "100%",
-                    color: "white",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {allNotifications.length}
-                </p>
-              )}
+              {allNotifications &&
+                allNotifications?.filter((i) => !i.isSeen).length > 0 && (
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      backgroundColor: "red",
+                      paddingRight: "5px",
+                      paddingLeft: "5px",
+                      borderRadius: "100%",
+                      color: "white",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {allNotifications?.filter((i) => !i.isSeen)?.length}
+                  </p>
+                )}
             </div>
           </Link>
           <div
@@ -345,9 +365,9 @@ const UserProfileMenu = ({ data }) => {
                     alt="Profile Image"
                   />
                   <div>
-                    <p>{userName ? userName : "Joe"}</p>
+                    <p>{user?.data?.userName ? user?.data?.userName : "Joe"}</p>
                     <span className="d-block">
-                      {email ? email : "joe@gmail.com"}
+                      {user?.data?.email ? user?.data?.email : "joe@gmail.com"}
                     </span>
                     <Link
                       to="/complete-profile"

@@ -6,15 +6,16 @@ import yellowEye from "../../assets/icons/yellowEye.png";
 import user from "../../assets/icons/user.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { BASE_URL } from "../../config/confir";
+import { userSignup } from "../../api/auth";
 
 const SignUpForm = () => {
   const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [focusInput, setFocusInput] = useState(null);
   const [look, setLook] = useState(false);
   const [lookConfirm, setLookConfirm] = useState(false);
-  const navigate = useNavigate();
+
   const handleFoucsInput = (value, action) => {
     if (action === "focus") {
       setFocusInput(value);
@@ -22,57 +23,68 @@ const SignUpForm = () => {
       setFocusInput(null);
     }
   };
-  // form data
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    userName: "",
-    role: "user",
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(`${BASE_URL}/api/users/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    setErrorMessage("");
+    setIsLoading(true);
 
-      const data = await response.json();
-      console.log(data);
-      const loggedInUser = { data: data.user, token: data.accessTOken };
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-      setUser(loggedInUser);
-      setFormData({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        userName: "",
-      });
-      if (response.ok) {
-        // User created successfully, you can handle the response data here
-        navigate("/complete-profile");
-        console.log(data);
-      } else {
-        // Handle error response
-        console.error(data.message);
+    const form = e.target;
+
+    const email = form.email.value;
+    const userName = form.userName.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    const data = {
+      role: "user",
+      email,
+      userName,
+      password,
+    };
+
+    if (!passwordRegex.test(password)) {
+      setErrorMessage(
+        "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long."
+      );
+      setIsLoading(false);
+      return;
+    } else if (password !== confirmPassword) {
+      setErrorMessage("Password is not matched!");
+      setIsLoading(false);
+      return;
+    } else {
+      try {
+        const response = await userSignup(data);
+
+        if (response?.status === 403) {
+          setErrorMessage(response?.message);
+          setIsLoading(false);
+        }
+
+        if (response?.status === 200) {
+          const loggedInUser = {
+            data: response?.user,
+            token: response?.accessTOken,
+          };
+          localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+          setUser(loggedInUser);
+          setErrorMessage("");
+          setIsLoading(false);
+          navigate("/complete-profile");
+        }
+      } catch (error) {
+        setErrorMessage(error.message);
+        setIsLoading(false);
+        onsole.error("Error:", error.message);
       }
-    } catch (error) {
-      // Handle network or other errors
-      console.error("Error:", error.message);
     }
   };
 
@@ -105,11 +117,9 @@ const SignUpForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("email", "focus")}
                 onBlur={() => handleFoucsInput("email", "blur")}
-                // onChange={handleSubmit}
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -129,8 +139,7 @@ const SignUpForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("userName", "focus")}
                 onBlur={() => handleFoucsInput("userName", "blur")}
-                value={formData.userName}
-                onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -149,14 +158,13 @@ const SignUpForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("password", "focus")}
                 onBlur={() => handleFoucsInput("password", "blur")}
+                required
               />
               <img
                 style={{ cursor: "pointer" }}
                 src={look ? yellowEye : eye}
                 alt=""
                 onClick={() => setLook(!look)}
-                value={formData.password}
-                onChange={handleChange}
               />
             </div>
           </div>
@@ -176,8 +184,7 @@ const SignUpForm = () => {
                 autoComplete="off"
                 onFocus={() => handleFoucsInput("confirmPassword", "focus")}
                 onBlur={() => handleFoucsInput("confirmPassword", "blur")}
-                value={formData.confirmPassword}
-                onChange={handleChange}
+                required
               />
 
               <img
@@ -188,10 +195,16 @@ const SignUpForm = () => {
               />
             </div>
           </div>
+          <p className="mb-3 text-danger ">{errorMessage}</p>
 
           <div className="logInActionContainer ">
-            <button className="sign-in-button" type="submit">
-              Sign Up
+            <button
+              className="sign-in-button"
+              type="submit"
+              disabled={isLoading}
+              style={{ cursor: `${isLoading ? "not-allowed" : "pointer"}` }}
+            >
+              {isLoading ? "Signing up..." : "Sign Up"}
             </button>
           </div>
         </form>

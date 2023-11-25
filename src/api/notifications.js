@@ -21,3 +21,13 @@ export const getUserNotifications = async (data) => {
   });
   return res.json();
 };
+
+export const makeNotificationSeen = async (data) => {
+  const res = await fetch(`${BASE_URL}/api/notifications/notificationStatus`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};

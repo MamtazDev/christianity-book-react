@@ -4,20 +4,9 @@ import UserProfileMenu from "./UserProfileMenu ";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
-  const [data, setData] = useState({});
+  const { user, allNotifications, setAllNotifications } =
+    useContext(AuthContext);
 
-  const { user } = useContext(AuthContext);
-  // const userDataString = localStorage.getItem("loggedInUser");
-  // const userData = JSON.parse(userDataString);
-  // useEffect(() => {
-  //   if (userData) {
-  //     setData(userData)
-  //   }
-
-  // }, userData)
-
-  // // scroll
-  // // navbar bg color when schrolling
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -34,6 +23,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const navbarClasses = `navbar navbar-expand-lg ${
     isScrolled ? "navbar-scrolled" : "navbar_bg"
   }`;
@@ -84,7 +74,11 @@ const Header = () => {
             </ul>
             <div className="ms-auto">
               {user ? (
-                <UserProfileMenu data={user} />
+                <UserProfileMenu
+                  user={user}
+                  allNotifications={allNotifications}
+                  setAllNotifications={setAllNotifications}
+                />
               ) : (
                 // <p>No User data</p>
                 <div className="d-flex gap-3 header_1">
