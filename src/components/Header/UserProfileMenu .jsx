@@ -337,7 +337,16 @@ const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
               className="button_click"
               style={{ cursor: "pointer" }}
             >
-              <img src={profile_round} alt="Profile Image" />
+              <img
+                style={{
+                  height: "51px",
+                  width: "51px",
+                  objectFit: "cover",
+                  borderRadius: "100%",
+                }}
+                src={user?.data?.image ? user?.data?.image : profile_round}
+                alt="Profile Image"
+              />
             </button>
             <img
               className={open ? `arrow` : "arrow1"}
@@ -348,8 +357,14 @@ const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
               <div className={open ? `childHover` : `child`}>
                 <div className="profileName d-flex align-items-center gap-3">
                   <img
+                    style={{
+                      height: "51px",
+                      width: "51px",
+                      objectFit: "cover",
+                      borderRadius: "100%",
+                    }}
                     className="img-fluid"
-                    src={profile_round}
+                    src={user?.data?.image ? user?.data?.image : profile_round}
                     alt="Profile Image"
                   />
                   <div>
@@ -358,7 +373,7 @@ const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
                       {user?.data?.email ? user?.data?.email : "joe@gmail.com"}
                     </span>
                     <Link
-                      to="/complete-profile"
+                      to="/edit-profile"
                       className="mt-3"
                       style={{ marginTop: "10px" }}
                     >

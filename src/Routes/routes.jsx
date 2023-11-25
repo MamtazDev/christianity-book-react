@@ -20,6 +20,7 @@ import MyNotes from "./../pages/MyNotes";
 import Notification from "./../pages/Notification";
 import ProtectedRoute from "./ProtectedRoute";
 import LoginRoute from "./LoginRoute";
+import EditProfile from "../pages/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,11 @@ export const router = createBrowserRouter([
   {
     path: "/complete-profile",
     element: <CompleteProfile />,
+  },
+
+  {
+    path: "/edit-profile",
+    element: <EditProfile />,
   },
   {
     path: "/subscription",
