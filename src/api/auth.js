@@ -1,4 +1,4 @@
-import { BASE_URL } from "../config/confir";
+import { BASE_URL, imageHostKey } from "../config/confir";
 
 export const userSignup = async (data) => {
   const res = await fetch(`${BASE_URL}/api/users/signup`, {
@@ -57,5 +57,17 @@ export const changePassword = async ({ userEmail, data }) => {
 
 export const sendOtpToEmail = async (email) => {
   const res = await fetch(`${BASE_URL}/api/users/sendOtp/${email}`);
+  return res.json();
+};
+
+export const uploadImageToImgBB = async (data) => {
+  const res = await fetch(
+    `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+
   return res.json();
 };

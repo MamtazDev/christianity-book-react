@@ -1,13 +1,11 @@
-import React, { useContext, useRef, useState } from "react";
-import profile from "../../assets/images/profile_pic.png";
-import Swal from "sweetalert2";
-import { useLocation, useNavigate } from "react-router-dom";
-
+import React, { useContext, useEffect, useRef, useState } from "react";
 import cameraIcon from "../../assets/images/camera-icon.png";
+
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { updateUserInfo, uploadImageToImgBB } from "../../api/auth";
 
-const CompleteProfileForm = () => {
+const EditProfileForm = () => {
   const navigate = useNavigate();
 
   const { user, setUser } = useContext(AuthContext);
@@ -31,17 +29,40 @@ const CompleteProfileForm = () => {
       country: updateUserData?.country,
     };
 
-    const fromData = new FormData();
-    fromData.append("image", updateUserData?.image);
+    if (typeof updateUserData?.image === "object") {
+      const fromData = new FormData();
+      fromData.append("image", updateUserData?.image);
 
-    const uploadImageData = await uploadImageToImgBB(fromData);
+      const uploadImageData = await uploadImageToImgBB(fromData);
 
-    if (uploadImageData?.success) {
-      const newUserData = { ...userData, image: uploadImageData?.data?.url };
+      if (uploadImageData?.success) {
+        const newUserData = { ...userData, image: uploadImageData?.data?.url };
 
+        const responseData = await updateUserInfo({
+          userId: user?.data?._id,
+          data: newUserData,
+        });
+
+        if (responseData?.status === 200) {
+          const localUserData = JSON.parse(
+            localStorage.getItem("loggedInUser")
+          );
+          const newLocalUserData = {
+            ...localUserData,
+            data: responseData?.data,
+          };
+          localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(newLocalUserData)
+          );
+          setUser(newLocalUserData);
+          navigate("/account-settings");
+        }
+      }
+    } else {
       const responseData = await updateUserInfo({
         userId: user?.data?._id,
-        data: newUserData,
+        data: userData,
       });
 
       if (responseData?.status === 200) {
@@ -52,10 +73,22 @@ const CompleteProfileForm = () => {
         };
         localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
         setUser(newLocalUserData);
-        navigate("/subscription");
+        navigate("/account-settings");
       }
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      setUpdateUserData({
+        ...updateUserData,
+        image: user?.data?.image,
+        fullName: user?.data?.fullName,
+        phoneNumber: user?.data?.phoneNumber,
+        country: user?.data?.country,
+      });
+    }
+  }, [user]);
   return (
     <>
       <div className="profile_parent_container">
@@ -91,14 +124,20 @@ const CompleteProfileForm = () => {
             </div>
 
             <div className="image_upload position-relative" draggable="true">
-              {updateUserData?.image ? (
-                <img src={URL.createObjectURL(updateUserData?.image)} alt="" />
+              {typeof updateUserData?.image === "object" ? (
+                <img
+                  width={"175px"}
+                  height={"175px"}
+                  style={{ borderRadius: "50%" }}
+                  src={URL.createObjectURL(updateUserData?.image)}
+                  alt=""
+                />
               ) : (
                 <img
                   width={"175px"}
                   height={"175px"}
                   style={{ borderRadius: "50%" }}
-                  src={profile}
+                  src={user?.data?.image}
                   alt=""
                 />
               )}
@@ -119,6 +158,7 @@ const CompleteProfileForm = () => {
               <input
                 name="fullName"
                 type="text"
+                value={updateUserData?.fullName}
                 placeholder="Enter your full name"
                 onChange={handleInputValueChange}
               />
@@ -141,32 +181,44 @@ const CompleteProfileForm = () => {
                 name="phoneNumber"
                 type="number"
                 placeholder="Enter your phone number"
+                value={updateUserData?.phoneNumber}
                 onChange={handleInputValueChange}
               />
             </div>
             <div className="completeprofile_inputContainer">
               <label>Country</label>
-              <select name="country" onChange={handleInputValueChange}>
+              <select name="Select country" onChange={handleInputValueChange}>
                 <option disabled>Select country</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Nepal">Nepal</option>
-                <option value="India">India</option>
-                <option value="Canada">Canada</option>
+                <option
+                  value="Bangladesh"
+                  selected={updateUserData?.country === "Bangladesh"}
+                >
+                  Bangladesh
+                </option>
+                <option
+                  value="Nepal"
+                  selected={updateUserData?.country === "Nepal"}
+                >
+                  Nepal
+                </option>
+                <option
+                  value="India"
+                  selected={updateUserData?.country === "India"}
+                >
+                  India
+                </option>
+                <option
+                  value="Canada"
+                  selected={updateUserData?.country === "Canada"}
+                >
+                  Canada
+                </option>
               </select>
             </div>
           </div>
           <div className="create_profile_button">
-            <button
-              onClick={handleCreateProfile}
-              type="button"
-              disabled={
-                !updateUserData?.fullName ||
-                !updateUserData?.phoneNumber ||
-                !updateUserData?.country ||
-                !updateUserData?.image
-              }
-            >
-              Create Profile
+            <button onClick={handleCreateProfile} type="button">
+              Edit Profile
             </button>
           </div>
         </div>
@@ -175,4 +227,4 @@ const CompleteProfileForm = () => {
   );
 };
 
-export default CompleteProfileForm;
+export default EditProfileForm;

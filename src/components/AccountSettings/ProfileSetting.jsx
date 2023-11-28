@@ -3,6 +3,7 @@ import "./AcountSetting.css";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { updateUserInfo } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ProfileSetting = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -29,13 +30,23 @@ const ProfileSetting = () => {
     });
 
     if (responseData?.status === 200) {
-      localStorage.removeItem("loggedInUser");
-      setUser(null);
-      navigate("/login");
+      const localUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+      const newLocalUserData = {
+        ...localUserData,
+        data: responseData?.data,
+      };
+      localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
+      setUser(newLocalUserData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Profile Update Successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/account-settings");
     }
   };
-
-  console.log(profileSettingsData, "gggg");
 
   useEffect(() => {
     if (user) {
