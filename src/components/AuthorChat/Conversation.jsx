@@ -14,7 +14,8 @@ const Conversation = ({
   allMessages,
   user,
   conversationId,
-  getConversationId,
+  getConversation,
+  selectedUserInfo,
 }) => {
   const [chatData, setChatData] = useState([
     { type: "sender", content: "HI", timestamp: getCurrentTime(), file: [] },
@@ -75,7 +76,7 @@ const Conversation = ({
     });
 
     if (sendMessageRes) {
-      getConversationId();
+      getConversation();
       setSendingMessage("");
     }
   };
@@ -85,10 +86,24 @@ const Conversation = ({
       <div className="chatList">
         <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
           <div className="d-flex align-items-center gap-2 profile_gap">
-            <img className="img-fluid" src={profile} alt="" />
+            <img
+              className="img-fluid"
+              src={
+                selectedUserInfo?.userInfo?.image
+                  ? selectedUserInfo?.userInfo?.image
+                  : profile
+              }
+              alt=""
+              style={{
+                height: "60px",
+                width: "60px",
+                borderRadius: "100%",
+                objectFit: "cover",
+              }}
+            />
             <div>
-              <a href="#">Marvin Mckinney</a>
-              <span className="d-block">Active Now</span>
+              <a href="#">{selectedUserInfo?.userInfo?.userName}</a>
+              {/* <span className="d-block">Active Now</span> */}
             </div>
           </div>
           <ProfileSetting />

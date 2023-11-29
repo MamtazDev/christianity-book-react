@@ -31,3 +31,8 @@ export const addMessage = async (data) => {
   });
   return res.json();
 };
+
+export const getConversationOfAnUser = async (userId) => {
+  const res = await fetch(`${BASE_URL}/api/conversations/${userId}`);
+  return res.json();
+};
