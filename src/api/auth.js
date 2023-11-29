@@ -71,3 +71,11 @@ export const uploadImageToImgBB = async (data) => {
 
   return res.json();
 };
+
+export const updateSubscriptionInfo = async (userId) => {
+  const res = await fetch(`${BASE_URL}/api/users/subscription/${userId}`, {
+    method: "PUT",
+  });
+
+  return res.json();
+};

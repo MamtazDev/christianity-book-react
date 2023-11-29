@@ -1,8 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Stripe from "stripe"
-
+import React, { useContext, useRef } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Stripe from "stripe";
 
 import p1 from "../../assets/images/p1.png";
 import p2 from "../../assets/images/p2.png";
@@ -12,150 +11,144 @@ import p4 from "../../assets/images/p4.png";
 import SubscriptionForOthersModal from "../Modals/SubscriptionForOthersModal";
 import CompletePayment from "../Modals/CompletePayment";
 
-
 import {
-    CardNumberElement,
-    CardExpiryElement,
-    CardCvcElement,
-    useStripe,
-    useElements,
-  } from "@stripe/react-stripe-js";
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import { updateSubscriptionInfo } from "../../api/auth";
+import { AuthContext } from "../../contexts/AuthProvider";
 
-
-
-  const CARD_OPTIONS = {
-    iconStyle: "solid",
-    style: {
-      base: {
-        borderStyle: "solid",
-        borderWidth: "1px",
-        background: "#121212",
-        color: "#fff",
-        border: "1px solid red",
-        fontSize: "20px",
-        "::placeholder": {
-          color: "white",
-        },
-        width: "100%",
+const CARD_OPTIONS = {
+  iconStyle: "solid",
+  style: {
+    base: {
+      borderStyle: "solid",
+      borderWidth: "1px",
+      background: "#121212",
+      color: "#000",
+      border: "1px solid red",
+      fontSize: "20px",
+      "::placeholder": {
+        color: "white",
       },
-      invalid: {
-        iconColor: "#ffc7ee",
-        color: "#ffc7ee",
-      },
+      width: "100%",
     },
-  };
-
-  
+    invalid: {
+      iconColor: "#ffc7ee",
+      color: "#f00101",
+    },
+  },
+};
 
 function Payment() {
+  const [modalShow, setModalShow] = useState(false);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const [modalShow, setModalShow] = useState(false);
-    const navigate = useNavigate();
+  const stripe = useStripe();
+  const elements = useElements();
 
-    const stripe = useStripe();
-    const elements = useElements();
+  const handleCompletePayment = () => {
+    alert("Data send");
+    setModalShow(true);
+    // setTimeout(() => {
+    //   navigate("/");
+    //   window.location.reload();
+    // }, 1000);
+  };
 
+  const completeSubButton = useRef(null);
 
+  const handlePayment = async () => {
+    // Get the PaymentIntent client secret from your server or set it on the client-side
+    // const clientSecret = 'YOUR_CLIENT_SECRET';
+    if (!stripe) {
+      // Stripe.js has not loaded yet, so do nothing.
+      return;
+    }
 
-
-    const handleCompletePayment = () => {
-  
-      alert("Data send")
-      setModalShow(true)
-      // setTimeout(() => {
-      //   navigate("/");
-      //   window.location.reload();
-      // }, 1000);
+    // setIsProcessing(true);
+    const userData = {
+      stripeCustomerId: "d5s4gf6s8fg456sa4g5dfg",
+      subscriptionName: "Monthly",
     };
 
+    console.log(userData, "usss");
 
-    const handlePayment = async () => {
-        // Get the PaymentIntent client secret from your server or set it on the client-side
-        // const clientSecret = 'YOUR_CLIENT_SECRET';
-        if (!stripe) {
-          // Stripe.js has not loaded yet, so do nothing.
-          return;
-        }
-    
-        // setIsProcessing(true);
-        const userData = {
-          stripeCustomerId: "d5s4gf6s8fg456sa4g5dfg",
-          subscriptionName: "Monthly",
-        };
-    
-        console.log(userData, "usss");
-    
-        // const SubscriptionRes = await createSubscrption(userData);
-    
-        // console.log(SubscriptionRes, "sub");
-    
-        // const clientSecret = "";
-        
-        const clientSecret = await createPaymentIntent(
-            2000 ,
-            "usd"
-        );
-    
-        const cardElement = elements.getElement(CardNumberElement);
-    
-        //   const clientSecret = await createPaymentIntent(
-        //     duration === "monthly" ? 2000 : 20000,
-        //     "usd"
-        //   );
-    
-        console.log(clientSecret, "client secret");
-    
-        console.log(cardElement, "cardElement");
-    
-        const { error, paymentIntent } = await stripe.confirmCardPayment(
-          clientSecret,
-          {
-            payment_method: {
-              type: "card",
-              card: cardElement, // Replace with the actual CardElement
-              billing_details: {
-                name: "firstName" + " " + "lastName",
-                address: {
-                  line1: "addressLine",
-                  city: "address",
-                  postal_code: 1206,
-                  country: "BD",
-                },
-              },
+    // const SubscriptionRes = await createSubscrption(userData);
+
+    // console.log(SubscriptionRes, "sub");
+
+    // const clientSecret = "";
+
+    const clientSecret = await createPaymentIntent(2000, "usd");
+
+    const cardElement = elements.getElement(CardNumberElement);
+
+    //   const clientSecret = await createPaymentIntent(
+    //     duration === "monthly" ? 2000 : 20000,
+    //     "usd"
+    //   );
+
+    console.log(clientSecret, "client secret");
+
+    console.log(cardElement, "cardElement");
+
+    const { error, paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          type: "card",
+          card: cardElement, // Replace with the actual CardElement
+          billing_details: {
+            name: "firstName" + " " + "lastName",
+            address: {
+              line1: "addressLine",
+              city: "address",
+              postal_code: 1206,
+              country: "BD",
             },
-          }
-        );
-    
-        console.log(paymentIntent, "pppp");
-    
-        if (error) {
-        //   setError(error?.message);
-          console.error("error", error);
-        //   setIsProcessing(false);
-          // Handle error: Show error to the user
-        } else if (paymentIntent.status === "succeeded") {
-        //   setIsProcessing(false);
-        alert("Successfully paid!")
-          // Payment succeeded, handle success
-    
-          // alert("Your payment done successfully");
-    
-        //   setPaymentModalShow(false);
-        //   setPaymentSuccessFullModalShow(true);
-    
-        //   creditButtonRef.current.click();
-    
-        //   setError("");
-        //   navigate("/");
-        }
-      };
+          },
+        },
+      }
+    );
 
-      
+    console.log(paymentIntent, "pppp");
 
+    if (error) {
+      //   setError(error?.message);
+      console.error("error", error);
+      //   setIsProcessing(false);
+      // Handle error: Show error to the user
+    } else if (paymentIntent.status === "succeeded") {
+      //   setIsProcessing(false);
+      // alert("Successfully paid!");
+      // Payment succeeded, handle success
+
+      // alert("Your payment done successfully");
+
+      //   setPaymentModalShow(false);
+      //   setPaymentSuccessFullModalShow(true);
+
+      //   creditButtonRef.current.click();
+
+      //   setError("");
+      navigate("/");
+      const response = await updateSubscriptionInfo(user?.data?._id);
+
+      // if (response?.status === 200) {
+      // completeSubButton?.current?.click();
+      // }
+    }
+  };
 
   return (
-    <div>
-         <form action="" className="subscription  mt_30cp">
+    <>
+      <div>
+        <form action="" className="subscription  mt_30cp">
           <div className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5">
             <div className="payment_parent">
               <input
@@ -166,8 +159,6 @@ function Payment() {
               />
               <div className="payment_div">
                 <h4>Credit Card</h4>
-                
-
 
                 <small>Pay with credit card via Stripe</small>
                 <div className="payment_method">
@@ -243,7 +234,6 @@ function Payment() {
           </div>
 
           <div className="purchase_sub mt_30cp mt-4">
-
             <label className="checkbox">
               <input
                 type="checkbox"
@@ -294,32 +284,39 @@ function Payment() {
           <div className="create_profile_button">
             <button
               onClick={handlePayment}
-            //   onClick={handleCompletePayment}
-              href="#exampleModalToggle"
+              //   onClick={handleCompletePayment}
               type="button"
-            //   data-toggle="modal"
-            //   data-target="#exampleModalCenter"
             >
               Complete Payment
             </button>
-
-            <CompletePayment />
           </div>
         </form>
-    </div>
-  )
+      </div>
+
+      <CompletePayment />
+
+      <button
+        style={{ display: "none" }}
+        onClick={handlePayment}
+        //   onClick={handleCompletePayment}
+        ref={completeSubButton}
+        href="#exampleModalToggle"
+        type="button"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      ></button>
+    </>
+  );
 }
 
-export default Payment
-
-
+export default Payment;
 
 //  const stripe = require("stripe")("sk_test_pggpOl1FECwCoLsgXDTQjtjF00An8mKwrj");
 
-
-
- const createPaymentIntent = async (amountInCents, currency) => {
-  const stripe = Stripe("sk_test_51NOY81IxAutj9x1S8jD9AfAgqJYIctPkILZ3iggy1atSBdOSL3lhh2l693sPHcAoMkRJ9ivTW55zNape1xe8C4f9005uYWjXIx");
+const createPaymentIntent = async (amountInCents, currency) => {
+  const stripe = Stripe(
+    "sk_test_51NOY81IxAutj9x1S8jD9AfAgqJYIctPkILZ3iggy1atSBdOSL3lhh2l693sPHcAoMkRJ9ivTW55zNape1xe8C4f9005uYWjXIx"
+  );
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
@@ -328,12 +325,7 @@ export default Payment
 
     return paymentIntent.client_secret;
   } catch (error) {
-    console.error("Error on createPayment intent",error);
+    console.error("Error on createPayment intent", error);
     throw new Error("Failed to create PaymentIntent");
   }
 };
-
-
-
-
-

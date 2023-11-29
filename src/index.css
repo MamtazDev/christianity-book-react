@@ -33,9 +33,8 @@ a {
   text-decoration: none;
 }
 
-
 :root {
-  --primary: #423C6A;
+  --primary: #423c6a;
   --black: #313131;
   --secondry: #436dd0;
   --e0: #436dd036;
@@ -70,7 +69,7 @@ a {
   color: var(--secondry);
 }
 
-.text_clr_e0{
+.text_clr_e0 {
   color: var(--e0);
 }
 
@@ -89,7 +88,7 @@ a {
   background-color: var(--secondry);
 }
 
-.bg_clr_e0{
+.bg_clr_e0 {
   background-color: var(--e0);
 }
 
@@ -122,7 +121,7 @@ h2 span {
   height: 40%;
   width: 100%;
   border-style: solid;
-  border-color: var(--secondry)transparent transparent transparent;
+  border-color: var(--secondry) transparent transparent transparent;
   border-radius: 90% 60% 0 0;
 }
 
@@ -182,7 +181,7 @@ footer {
 
 .nav-link:focus,
 .nav-link:hover {
-  color: var(--primary)!important;
+  color: var(--primary) !important;
   font-weight: 700;
   letter-spacing: 0.32px;
 }
@@ -308,10 +307,12 @@ footer p {
 
 .lineBox {
   height: 2px;
-  background: linear-gradient(270deg,
-      rgba(66, 60, 106, 0) 12.69%,
-      #423c6a 50.52%,
-      rgba(66, 60, 106, 0) 86.34%);
+  background: linear-gradient(
+    270deg,
+    rgba(66, 60, 106, 0) 12.69%,
+    #423c6a 50.52%,
+    rgba(66, 60, 106, 0) 86.34%
+  );
   width: 100%;
 }
 
@@ -361,7 +362,6 @@ h1 {
   margin-bottom: 21px;
 }
 
-
 .contactAll button {
   border-radius: 50px;
   background: var(--primary);
@@ -391,7 +391,6 @@ h1 {
 
   gap: 10px;
 }
-
 
 /* Banner Section End */
 
@@ -480,11 +479,14 @@ h1 {
 
 /* Contact Page End */
 
-@media only screen and (min-width: 1440px) {}
+@media only screen and (min-width: 1440px) {
+}
 
-@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 1024px) {
+}
 
-@media only screen and (max-width: 992px) {}
+@media only screen and (max-width: 992px) {
+}
 
 @media only screen and (max-width: 768px) {
   .sub_header {
@@ -545,16 +547,18 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 425px) {}
+@media only screen and (max-width: 425px) {
+}
 
-@media only screen and (max-width: 320px) {}
+@media only screen and (max-width: 320px) {
+}
 
-
-.card_input{
+.card_input {
   border: 1px solid rgb(242, 202, 202);
   margin: 10px;
   padding: 5px;
   border-radius: 4px;
-  color: #000;
-  background-color: rgb(4, 4, 4);
+  /* color: #f00101 !important; */
+  color: #000000 !important;
+  background-color: rgb(252, 252, 252);
 }

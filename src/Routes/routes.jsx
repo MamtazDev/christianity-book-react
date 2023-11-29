@@ -21,6 +21,7 @@ import Notification from "./../pages/Notification";
 import ProtectedRoute from "./ProtectedRoute";
 import LoginRoute from "./LoginRoute";
 import EditProfile from "../pages/EditProfile";
+import SubscriptionRoute from "./SubscriptionRoute";
 
 export const router = createBrowserRouter([
   {
@@ -135,9 +136,9 @@ export const router = createBrowserRouter([
       {
         path: "/read-book",
         element: (
-          <PrivateRoute>
+          <SubscriptionRoute>
             <ReadBook />
-          </PrivateRoute>
+          </SubscriptionRoute>
         ),
       },
       {
