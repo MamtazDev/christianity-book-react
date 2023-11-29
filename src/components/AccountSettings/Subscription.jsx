@@ -45,7 +45,7 @@ const Subscription = () => {
             </div>
           </div>
           <div className="graySubLine mt-3 mb-3"></div>
-          <div className="d-flex justify-content-between align-items-center">
+          {/* <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center gap-3">
               <img src={subscription2} alt="" />
               <p style={{ fontWeight: "600" }}>Siara James</p>
@@ -56,7 +56,7 @@ const Subscription = () => {
             <div>
               <div type="button" className="cancelSubBtn">Cancel Subscription</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
