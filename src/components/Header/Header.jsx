@@ -32,9 +32,9 @@ const Header = () => {
     <header>
       <nav className={navbarClasses}>
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <a className="navbar-brand" href="/">
             Your Logo
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"

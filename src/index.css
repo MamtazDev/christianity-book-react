@@ -548,3 +548,13 @@ h1 {
 @media only screen and (max-width: 425px) {}
 
 @media only screen and (max-width: 320px) {}
+
+
+.card_input{
+  border: 1px solid rgb(242, 202, 202);
+  margin: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  color: #000;
+  background-color: rgb(4, 4, 4);
+}

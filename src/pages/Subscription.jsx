@@ -7,15 +7,34 @@ import p2 from "../assets/images/p2.png";
 import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
 
-import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
+import Payment from "../components/Payment/Payment"
+
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+
+// import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
+
+
 const Subscription = () => {
   const [modalShow, setModalShow] = useState(false);
   const navigate = useNavigate();
+
+
+  const stripePromise = loadStripe(
+    "pk_test_51NOY81IxAutj9x1S3U3aEuf8BlAgkDGUmMOdl4L1RD8C7x2GV0y2apW6rCvQtG6eZUatdreJJUbelnf2fQfbnFyu00I54cGbH5"
+  );
+
+
+
   const handleCompletePayment = () => {
-    setTimeout(() => {
-      navigate("/");
-      window.location.reload();
-    }, 1000);
+
+    alert("Data send")
+    // setModalShow(true)
+    // setTimeout(() => {
+    //   navigate("/");
+    //   window.location.reload();
+    // }, 1000);
   };
 
   return (
@@ -46,123 +65,13 @@ const Subscription = () => {
 
       <div className="subv_body">
         <p>Payment Information</p>
-        <form action="" className="subscription  mt_30cp">
-          <div className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5">
-            <div className="payment_parent">
-              <input
-                type="radio"
-                id="flexRadioDefault1"
-                name="flexRadioDefault"
-                className=" payment_method_radio"
-              />
-              <div className="payment_div">
-                <h4>Credit Card</h4>
-                <small>Pay with credit card via Stripe</small>
-                <div className="payment_method">
-                  <img src={p1} alt="visa" />
-                  <img src={p2} alt="payment-2" />
-                  <img src={p3} alt="amex" />
-                </div>
-              </div>
-            </div>
 
-            <div className="payment_parent">
-              <input
-                type="radio"
-                id="flexRadioDefault1"
-                name="flexRadioDefault"
-                className=" payment_method_radio"
-              />
-              <div className="payment_div">
-                <h4>Paypal</h4>
-                <small>Pay with your PayPal account</small>
-                <div className="payment_method">
-                  <img src={p4} alt="paypal" />
-                </div>
-              </div>
-            </div>
-          </div>
+        <Elements stripe={stripePromise}>
+           <Payment/>
+        </Elements>
 
-          <div className="profileSetting3 mb_40">
-            <div className="d-flex justify-content-start flex-wrap flex-md-nowrap gap_4 mb-5">
-              <div className="inputContainer2">
-                <label>Full Name</label>
-                <input name="fullName" type="text" placeholder="John Duo" />
-              </div>
-              <div className="inputContainer2">
-                <label>Email Address</label>
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="johnduo@gmail.com"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="d-flex gap_4 w-100">
-              <div className="w-100">
-                <label>Expiry Date</label>
-                <div className="d-flex flex-wrap flex-md-nowrap gap_4 w-100">
-                  <select className="w-100" name="" id="">
-                    <option value="0">1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                    <option value="4">5</option>
-                  </select>
-                  <select className="w-100 pb-2" name="" id="">
-                    <option value="0">2029</option>
-                    <option value="1">2030</option>
-                    <option value="2">2031</option>
-                  </select>
-                </div>
-              </div>
-              <div className="w-100">
-                <label>CVV/CVC</label>
-                <input
-                  className="w-100"
-                  type="text"
-                  placeholder="Enter CVV/CVC Number"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="purchase_sub mt_30cp mt-4">
-
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                onClick={() => setModalShow(true)}
-                className="checkbox__input"
-              />
-              <span className="checkbox__inner"></span>
-            </label>
-
-            <SubscriptionForOthersModal
-              show={modalShow}
-              onHide={setModalShow}
-            />
-
-            <small> Purchase Subscription for Others!</small>
-          </div>
-
-          <div className="create_profile_button">
-            <button
-              onClick={handleCompletePayment}
-              href="#exampleModalToggle"
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-            >
-              Complete Payment
-            </button>
-
-            <CompletePayment />
-          </div>
-        </form>
+        {/* <Payment/> */}
+       
       </div>
     </>
   );
