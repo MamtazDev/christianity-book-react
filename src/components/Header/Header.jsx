@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <header>
       <nav className={navbarClasses}>
-        <div className="container">
+        <div className="container header_container">
           <a className="navbar-brand" href="/">
             Your Logo
           </a>
@@ -51,25 +51,25 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink
+                <a
                   className={({ isActive }) =>
                     isActive ? " nav-link menu active__hov" : "nav-link"
                   }
                   aria-current="page"
-                  to="/"
+                  href="/"
                 >
                   Home
-                </NavLink>
+                </a>
               </li>
               <li className="nav-item">
-                <NavLink
+                <a
                   className={({ isActive }) =>
                     isActive ? " nav-link menu active__hov" : "nav-link"
                   }
-                  to="/contact"
+                  href="/contact"
                 >
                   Contact Me
-                </NavLink>
+                </a>
               </li>
             </ul>
             <div className="ms-auto">
