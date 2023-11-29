@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <header>
       <nav className={navbarClasses}>
-        <div className="container">
+        <div className="container header_container">
           <a className="navbar-brand" href="/">
             Your Logo
           </a>

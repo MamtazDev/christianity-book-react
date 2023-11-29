@@ -563,7 +563,7 @@ h1 {
   background-color: rgb(252, 252, 252);
 }
 
-a{
+.header_container a{
   color: #000000!important;
   font-weight: 700;
 }
