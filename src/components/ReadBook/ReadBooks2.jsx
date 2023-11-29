@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
-import pdfBooks from "../../assets/book/book.pdf";
+import pdfBooks from "../../assets/book/Christianity is My Mental Disorder.pdf";
 
 // import PdfViewerComponent from "./PdfViewerComponent";
 
@@ -39,7 +39,7 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
       baseUrl,
       disableWebAssemblyStreaming: true,
       container: "#pspdfkit1",
-      document: url,
+      document: pdfBooks,
     })
       .then((loadedInstance) => {
         instanceRef.current = loadedInstance;
@@ -61,10 +61,6 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
             console.error("Error retrieving annotations:", error);
           }
         });
-
-
-
-       
 
         loadedInstance.addEventListener("annotations.create", async createdAnnotations => {
 
@@ -103,7 +99,7 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
         console.log("Cleanup function called");
       }
     };
-  }, [url]);
+  }, []);
 
   const savePdfToServer = async () => {
     try {
