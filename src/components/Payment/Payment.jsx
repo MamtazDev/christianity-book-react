@@ -20,6 +20,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { updateSubscriptionInfo } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { addNotifications } from "../../api/notifications";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -45,7 +46,7 @@ const CARD_OPTIONS = {
 
 function Payment() {
   const [modalShow, setModalShow] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const stripe = useStripe();
@@ -136,8 +137,22 @@ function Payment() {
       //   creditButtonRef.current.click();
 
       //   setError("");
-      navigate("/");
       const response = await updateSubscriptionInfo(user?.data?._id);
+      const localUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+      const newData = { ...localUserData?.data, isSubscribed: true };
+      const newLocalUserData = {
+        ...localUserData,
+        data: newData,
+      };
+      localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
+      setUser(newLocalUserData);
+      const notiRes = await addNotifications({
+        title: "Subscription Done.",
+        content: "subscription successfully",
+        userId: user?.data?._id,
+      });
+
+      navigate("/");
 
       // if (response?.status === 200) {
       // completeSubButton?.current?.click();

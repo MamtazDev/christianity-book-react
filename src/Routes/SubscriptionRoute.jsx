@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import useSubscriptionCheck from "../hooks/useSubscriptionCheck";
 
 function SubscriptionRoute({ children }) {
-  const navigate = useNavigate();
+  const isSubscribe = useSubscriptionCheck();
 
-  const userEmail = localStorage.getItem("loggedInUser");
-  useEffect(() => {
-    if (userEmail?.data?.isSubscribed === false) {
-      navigate("/subscription");
-      return undefined;
-    }
-  });
-  return children;
+  if (isSubscribe) {
+    return children;
+  } else if (!isSubscribe) {
+    return <Navigate to="/subscription" replace></Navigate>;
+  }
 }
 
 export default SubscriptionRoute;

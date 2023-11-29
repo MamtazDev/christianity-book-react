@@ -136,9 +136,9 @@ export const router = createBrowserRouter([
       {
         path: "/read-book",
         element: (
-          <SubscriptionRoute>
-            <ReadBook />
-          </SubscriptionRoute>
+          // <SubscriptionRoute>
+          <ReadBook />
+          // </SubscriptionRoute>
         ),
       },
       {
