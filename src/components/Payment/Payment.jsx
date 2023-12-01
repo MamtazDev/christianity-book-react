@@ -253,7 +253,7 @@ function Payment() {
 
           <div className="card_info flex flex-col lg:flex-row gap-4 items-center w-full">
             <div className="w-full">
-              {/* <label htmlFor="card_number">Card Number</label> */}
+              <label htmlFor="card_number">Card Number</label>
               {/* <input
                 id="card_number"
                 type="number"
@@ -265,14 +265,14 @@ function Payment() {
             </div>
             <div className="flex gap-[15px] lg:gap-4 items-center w-full">
               <div className="w-full">
-                {/* <label htmlFor="card_number">Expiration Date (MMYY)</label> */}
+                <label htmlFor="card_number">Expiration Date (MMYY)</label>
                 {/* <input id="card_number" type="number" placeholder="1234" /> */}
                 <div className="card_input">
                   <CardExpiryElement options={CARD_OPTIONS} />
                 </div>
               </div>
               <div className="w-full">
-                {/* <label htmlFor="card_number">CVV/ CVC</label> */}
+                <label htmlFor="card_number">CVV/ CVC</label>
                 {/* <input id="card_number" type="number" placeholder="123" /> */}
                 <div className="card_input">
                   <CardCvcElement options={CARD_OPTIONS} />

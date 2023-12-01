@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import pdfBooks from "../../assets/book/Christianity is My Mental Disorder.pdf";
 
-// import PdfViewerComponent from "./PdfViewerComponent";
+import PdfViewerComponent from "./PdfViewerComponent";
 
 // const baseUrl = `${window.location.protocol}//${window.location.host}/node_modules/pspdfkit/dist/`;
 const baseUrl =  `${window.location.protocol}//${window.location.host}/`;
@@ -145,6 +145,9 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
     }
   };
 
-  return <div id="pspdfkit1" style={{ width: "100%", height: "100vh" }} />;
+  // return <div id="pspdfkit1" style={{ width: "100%", height: "100vh" }} />;
+  return <>
+    <PdfViewerComponent document= {pdfBooks}/>
+  </>
  
 }

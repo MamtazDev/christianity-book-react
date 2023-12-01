@@ -32,9 +32,12 @@ const Header = () => {
     <header>
       <nav className={navbarClasses}>
         <div className="container header_container">
-          <a className="navbar-brand" href="/">
+          {/* <a className="navbar-brand" href="/">
             Your Logo
-          </a>
+          </a> */}
+          <Link className="navbar-brand" to="/">
+            Your Logo
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -51,7 +54,16 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
+                <Link
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
+                  aria-current="page"
+                  to="/"
+                >
+                  Home
+                </Link>
+                {/* <a
                   className={({ isActive }) =>
                     isActive ? " nav-link menu active__hov" : "nav-link"
                   }
@@ -59,17 +71,25 @@ const Header = () => {
                   href="/"
                 >
                   Home
-                </a>
+                </a> */}
               </li>
               <li className="nav-item">
-                <a
+                <Link
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
+                  to="/contact"
+                >
+                  Contact Me
+                </Link>
+                {/* <a
                   className={({ isActive }) =>
                     isActive ? " nav-link menu active__hov" : "nav-link"
                   }
                   href="/contact"
                 >
                   Contact Me
-                </a>
+                </a> */}
               </li>
             </ul>
             <div className="ms-auto">
