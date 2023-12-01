@@ -92,7 +92,13 @@ const CompleteProfileForm = () => {
 
             <div className="image_upload position-relative" draggable="true">
               {updateUserData?.image ? (
-                <img src={URL.createObjectURL(updateUserData?.image)} alt="" />
+                <img
+                  width={"175px"}
+                  height={"175px"}
+                  style={{ borderRadius: "50%" }}
+                  src={URL.createObjectURL(updateUserData?.image)}
+                  alt=""
+                />
               ) : (
                 <img
                   width={"175px"}
