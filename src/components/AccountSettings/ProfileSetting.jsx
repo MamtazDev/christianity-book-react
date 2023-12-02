@@ -64,7 +64,7 @@ const ProfileSetting = () => {
         <h3>Profile Settings</h3>
         <p>
           Here you can change your profile data you use on
-          <span>Christianity Book</span>.
+          <span> Christianity Book</span>.
         </p>
       </div>
       <form onSubmit={handleSubmit} className="profileSetting mb_40">

@@ -17,10 +17,10 @@ const AccountSettings = () => {
         <div className="account">
           <AccountSetting user={user?.data} setUser={setUser} />
           <ProfileSetting />
-          <Subscription />
-          <Notification />
+          {/* <Subscription /> */}
+          {/* <Notification /> */}
         </div>
-        <ActivityGraph />
+        {/* <ActivityGraph /> */}
       </div>
     </>
   );

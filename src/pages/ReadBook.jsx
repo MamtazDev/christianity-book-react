@@ -26,6 +26,10 @@ const ReadBook = () => {
   const [arrayBuffer, setArrayBuffer] = useState(null);
 
   useEffect(() => {
+
+    console.log("ArrayBuffer:", arrayBuffer)
+
+
     if (user?.data?.isSubscribed === true) {
       setSubscribed(true);
     } else {
@@ -33,7 +37,7 @@ const ReadBook = () => {
     }
 
     setAuthChecked(true);
-  }, [user]);
+  }, [user, arrayBuffer]);
 
   return authChecked ? (
     <>
@@ -49,9 +53,9 @@ const ReadBook = () => {
 
           <ReadBooks2
             setArrayBuffer={setArrayBuffer}
-            url={"https://www.africau.edu/images/default/sample.pdf"}
           />
-          {/* <ReadBooks3 arrayBuffer={arrayBuffer} url={"https://www.africau.edu/images/default/sample.pdf"}  /> */}
+
+          {/* <ReadBooks3 arrayBuffer={arrayBuffer} /> */}
         </div>
         {/* <Pagination /> */}
       </div>

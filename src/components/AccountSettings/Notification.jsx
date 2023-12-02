@@ -6,13 +6,13 @@ import "./AcountSetting.css";
 const Notification = () => {
   return (
     <div>
-      <div className="mb_25">
+      {/* <div className="mb_25">
         <h3>Notification Settings</h3>
         <p>
           <span>Christianity Book</span> will send you notifications
         </p>
-      </div>
-      <div className="notificationSetting mb_40">
+      </div> */}
+      {/* <div className="notificationSetting mb_40">
         <form action="">
           <div className="not_checkbox_div">
             <div className="form-check">
@@ -43,7 +43,7 @@ const Notification = () => {
             </div>
           </div>
         </form>
-      </div>
+      </div> */}
 
       <div className="mb_30">
         <h3>Deactivate Account</h3>

@@ -100,13 +100,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: (
-          <ProtectedRoute>
-            {/* <Contact /> */}
-            <Contact />
-          </ProtectedRoute>
-        ),
-      },
+        element:    <PrivateRoute> <Contact /></PrivateRoute>
+},
+      // {
+      //   path: "/contact",
+      //   element: (
+      //     <ProtectedRoute>
+      //       {/* <Contact /> */}
+      //       <Contact />
+      //     </ProtectedRoute>
+      //   ),
+      // },
       {
         path: "/account-settings",
         element: (

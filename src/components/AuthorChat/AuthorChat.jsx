@@ -4,6 +4,7 @@ import Conversation from "./Conversation";
 import PageHeading from "../Utils/PageHeading";
 import { AuthContext } from "../../contexts/AuthProvider";
 import {
+  addConversationBySenderReciver,
   getConversationOfAnUser,
   getConversationOfTwoUsers,
   getMessageByConversationId,
@@ -28,7 +29,16 @@ const AuthorChat = () => {
       );
       setAllMessages(getMessageRes);
     }
+    else{
+      const response = await addConversationBySenderReciver({
+        senderId: user?.data?._id,
+      });
+      setConversationId(response?._id)
+      
+    }
   };
+
+ 
 
   const getAdminConversations = async () => {
     const allConversations = await getConversationOfAnUser(user?.data?._id);
@@ -59,7 +69,7 @@ const AuthorChat = () => {
     );
     setAllMessages(getMessageRes);
   };
-  console.log(allMessages, "ffffall");
+
 
   useEffect(() => {
     if (user) {
@@ -69,7 +79,7 @@ const AuthorChat = () => {
         getConversationId();
       }
     }
-  }, [user]);
+  }, []);
   return (
     <>
       <div className="container">

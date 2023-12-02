@@ -36,3 +36,15 @@ export const getConversationOfAnUser = async (userId) => {
   const res = await fetch(`${BASE_URL}/api/conversations/${userId}`);
   return res.json();
 };
+
+export const sendMailToAuthor = async(data)=>{
+  const res = await fetch(`${BASE_URL}/api/conversations/sendEmail`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+
+  return res.json()
+}

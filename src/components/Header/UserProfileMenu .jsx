@@ -386,7 +386,7 @@ const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
                   <img src={accountSetting} alt="Settings" />
                   <Link to="/account-settings">Account Settings</Link>
                 </div>
-                <div className="accSettings d-flex align-items-center gap-3 ">
+                {/* <div className="accSettings d-flex align-items-center gap-3 ">
                   <img src={bookmark} alt="Bookmarks" />
                   <Link to="/bookmark">Bookmarks</Link>
                 </div>
@@ -397,7 +397,7 @@ const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
                 <div className="accSettings d-flex align-items-center gap-3">
                   <img src={notes} alt="Notes" />
                   <Link to="/my-notes">My Notes</Link>
-                </div>
+                </div> */}
                 <div className="accSettings d-flex align-items-center gap-3">
                   <img src={faq} alt="FAQ" />
                   <Link to="/faq">FAQ’s</Link>

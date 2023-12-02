@@ -1,13 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import pdfBooks from "../../assets/book/Christianity is My Mental Disorder.pdf";
 
 import PdfViewerComponent from "./PdfViewerComponent";
+import { BASE_URL } from "../../config/confir";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 // const baseUrl = `${window.location.protocol}//${window.location.host}/node_modules/pspdfkit/dist/`;
 const baseUrl =  `${window.location.protocol}//${window.location.host}/`;
 
-export default function ReadBooks2({ url, setArrayBuffer }) {
+export default function ReadBooks2({  setArrayBuffer }) {
+const {user}=useContext(AuthContext)
+
   const instanceRef = useRef(null);
 
   const handleAnnotationAdded = async (event) => {
@@ -33,13 +37,12 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
   useEffect(() => {
    
     console.log('sdfkit',PSPDFKit)
-    
-
     PSPDFKit.load({
       baseUrl,
       disableWebAssemblyStreaming: true,
       container: "#pspdfkit1",
       document: pdfBooks,
+      // pdfBuffer ? pdfBuffer: pdfData ,
     })
       .then((loadedInstance) => {
         instanceRef.current = loadedInstance;
@@ -63,9 +66,6 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
         });
 
         loadedInstance.addEventListener("annotations.create", async createdAnnotations => {
-
-          
-          
         console.log('createdAnnotations',createdAnnotations)
 
 
@@ -106,18 +106,20 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
       // Capture PDF data from the PSPDFKit instance
       const pdfData = await instanceRef.current.exportPDF();
 
-      // console.log("pdfData", pdfData)
+      console.log("pdfData main pdf : ", pdfData);
+
       setArrayBuffer(pdfData);
 
       // Send PDF data to the server
       const response = await fetch(
-        "https://your-server-endpoint.com/save-pdf",
+        `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/pdf",
           },
-          body: pdfData,
+          // body: pdfBuffer ? pdfBuffer: pdfData ,
+          body: pdfData ,
         }
       );
 
@@ -147,7 +149,7 @@ export default function ReadBooks2({ url, setArrayBuffer }) {
 
   // return <div id="pspdfkit1" style={{ width: "100%", height: "100vh" }} />;
   return <>
-    <PdfViewerComponent document= {pdfBooks}/>
+    <PdfViewerComponent setArrayBuffer={setArrayBuffer} document= {pdfBooks}/>
   </>
  
 }

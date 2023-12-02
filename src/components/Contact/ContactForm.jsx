@@ -7,6 +7,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import {
   addConversationBySenderReciver,
   addMessage,
+  sendMailToAuthor,
 } from "../../api/conversations";
 const ContactForm = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
@@ -19,26 +20,47 @@ const ContactForm = () => {
     e.preventDefault();
 
     const message = e.target.message.value;
+    const contactInfo={
+  name: e.target.fullName.value,
+  phoneNumber:e.target.phoneNumber.value,
+  country:e.target.country.value
+}
 
-    if (message) {
-      setContactMessage(message);
-    }
+const data = {
+  email: user?.data?.email,
+  message,
+  contactInfo
+}
 
-    const response = await addConversationBySenderReciver({
-      senderId: user?.data?._id,
-    });
+const response = await sendMailToAuthor(data)
 
-    if (response) {
-      const sendMessageRes = await addMessage({
-        conversationId: response?._id,
-        sender: user?.data?._id,
-        text: message,
-      });
+if(response?.status ===200){
+  navigate("/")
+}
 
-      if (sendMessageRes) {
-        navigate("/author-chat");
-      }
-    }
+console.log(response,"ress")
+
+
+
+    // if (message) {
+    //   setContactMessage(message);
+    // }
+
+    // const response = await addConversationBySenderReciver({
+    //   senderId: user?.data?._id,
+    // });
+
+    // if (response) {
+    //   const sendMessageRes = await addMessage({
+    //     conversationId: response?._id,
+    //     sender: user?.data?._id,
+    //     text: message,
+    //   });
+
+    //   if (sendMessageRes) {
+    //     navigate("/author-chat");
+    //   }
+    // }
 
     // Swal.fire({
     //   position: "center",
@@ -78,7 +100,8 @@ const ContactForm = () => {
                 type="email"
                 placeholder="johnduo@gmail.com"
                 name="emailAddress"
-                required
+                value={user?.data?.email}
+                readOnly
               />
             </div>
           </div>
