@@ -1,39 +1,3 @@
-// import { useEffect, useRef } from "react";
-
-// export default function PdfViewerComponent(props) {
-//   const containerRef = useRef(null);
-//   console.log('public',process.env.PUBLIC_URL)
-
-//   useEffect(() => {
-//     const container = containerRef.current; // This `useRef` instance will render the PDF.
-
-//     let PSPDFKit, instance;
-
-//     (async function () {
-//       PSPDFKit = await import("pspdfkit")
-
-// 		PSPDFKit.unload(container) // Ensure that there's only one PSPDFKit instance.
-
-//       instance = await PSPDFKit.load({
-//         // Container where PSPDFKit should be mounted.
-//         container,
-//         // The document to open.
-//         // document: "https://www.africau.edu/images/default/sample.pdf",
-//         document: props.document,
-//         // Use the public directory URL as a base URL. PSPDFKit will download its library assets from here.
-//         // baseUrl: `/public/`
-//         baseUrl: `${window.location.protocol}//${window.location.host}/public/`
-//         // baseUrl: `${window.location.protocol}//${window.location.host}/${process.env.PUBLIC_URL}`
-//       });
-//     })();
-
-//     return () => PSPDFKit && PSPDFKit.unload(container)
-//   }, []);
-
-//   // This div element will render the document to the DOM.
-//   return <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />
-// }
-
 import React, { useContext, useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import { BASE_URL } from "../../config/confir";
@@ -43,7 +7,7 @@ export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
 
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     const container = containerRef.current;
@@ -89,8 +53,16 @@ export default function PdfViewerComponent(props) {
     try {
       // Capture PDF data from the PSPDFKit instance
       const pdfData = await instanceRef.current.exportPDF();
+      const blob = new Blob([pdfData], { type: 'application/pdf' });
+
 
       console.log("pdfData from pdfViewerComponent: ", pdfData);
+      console.log("pdfData from pdfViewerComponent Type: ", typeof pdfData);
+
+      // Get the size of the Blob
+      const blobSize = blob.size;
+      console.log("Blob Size: ", blobSize, "bytes");
+
 
       // props.setArrayBuffer(pdfData);
 
@@ -105,28 +77,21 @@ export default function PdfViewerComponent(props) {
       // const base64Data = btoa(String.fromCharCode.apply(null, uint8Array));
 
       const formData = new FormData();
-      // formData.append("data", new Blob([pdfData]));
-      // formData.append("data", new Blob([pdfData]));
-      formData.append("blob", new Blob([pdfData]), "filename");
-
-      const fetchOptions = {
-        method: "PUT",
-        body: [...formData],
-      };
-      // fetchOptions.headers = new Headers({
-      //   "Content-Type": "multipart/form-data",
-      // });
-
-      console.log("fetch options", fetchOptions);
-      // for (var [key, value] of formData.entries()) {
-      //   console.log(key, value);
-      // }
-      console.log(...formData);
+      formData.append("file", blob);
 
       // Send PDF data to the server
       const response = await fetch(
-        `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
-        fetchOptions
+        // `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
+        `${BASE_URL}/upload/${user?.data?._id}`,
+        {
+          method: "PUT",
+          // method: "PUT",
+          // headers: {
+          //   "Content-Type": "application/pdf",
+          // },
+          // body: pdfBuffer ? pdfBuffer: pdfData ,
+          body: formData,
+        }
       );
 
       if (response.ok) {
