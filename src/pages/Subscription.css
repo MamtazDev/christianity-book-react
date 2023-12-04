@@ -285,6 +285,7 @@ button {
 .payment_div {
   max-width: 340px !important;
   width: 100% !important;
+  margin-left: 15px;
 }
 
 .payment_div h4 {

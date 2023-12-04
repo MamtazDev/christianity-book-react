@@ -25,6 +25,7 @@ import {
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
 import { getCountryCode } from "../../utils/countryCodes";
+import Paypal from "./Paypal";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -168,55 +169,72 @@ function Payment({ codeApplied }) {
     }
   };
 
+  const [paymentOption, setPaymentOption] = useState("creditCard");
+  const handlePaymentOption = (option) => {
+    console.log(option);
+    setPaymentOption(option);
+  };
+
   return (
     <>
       <div>
         <form action="" className="subscription  mt_30cp">
-          <div className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5">
+          <div
+            action=""
+            className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5"
+          >
             <div className="payment_parent">
-              <input
-                type="radio"
-                id="flexRadioDefault1"
-                name="flexRadioDefault"
-                className=" payment_method_radio"
-              />
-              <div className="payment_div">
-                <h4>Credit Card</h4>
+              <label htmlFor="creditCard" className="d-flex align-items-center">
+                <input
+                  type="radio"
+                  id="creditCard"
+                  name="flexRadioDefault"
+                  className=" payment_method_radio "
+                  checked={paymentOption === "creditCard"}
+                  onChange={() => handlePaymentOption("creditCard")}
+                />
+                <div className="payment_div">
+                  <h4>Credit Card</h4>
 
-                <small>Pay with credit card via Stripe</small>
-                <div className="payment_method">
-                  <img src={p1} alt="visa" />
-                  <img src={p2} alt="payment-2" />
-                  <img src={p3} alt="amex" />
+                  <small>Pay with credit card via Stripe</small>
+                  <div className="payment_method">
+                    <img src={p1} alt="visa" />
+                    <img src={p2} alt="payment-2" />
+                    <img src={p3} alt="amex" />
+                  </div>
                 </div>
-              </div>
+              </label>
             </div>
 
             <div className="payment_parent">
-              <input
-                type="radio"
-                id="flexRadioDefault1"
-                name="flexRadioDefault"
-                className=" payment_method_radio"
-              />
-              <div className="payment_div">
-                <h4>Paypal</h4>
-                <small>Pay with your PayPal account</small>
-                <div className="payment_method">
-                  <img src={p4} alt="paypal" />
+              <label htmlFor="paypal" className="d-flex align-items-center">
+                <input
+                  type="radio"
+                  id="paypal"
+                  name="flexRadioDefault"
+                  className=" payment_method_radio"
+                  checked={paymentOption === "paypal"}
+                  onChange={() => handlePaymentOption("paypal")}
+                />
+                <div className="payment_div">
+                  <h4>Paypal</h4>
+                  <small>Pay with your PayPal account</small>
+                  <div className="payment_method">
+                    <img src={p4} alt="paypal" />
+                  </div>
                 </div>
-              </div>
+              </label>
             </div>
           </div>
 
           {/* <div className="profileSetting3 mb_40">
             <div className="d-flex justify-content-start flex-wrap flex-md-nowrap gap_4 mb-5">
               <div className="inputContainer2">
-                <label>Full Name</label>
+              <label>Full Name</label>
                 <input name="fullName" type="text" placeholder="John Duo" />
-              </div>
+                </div>
 
-              <div className="inputContainer2">
+                <div className="inputContainer2">
                 <label>Email Address</label>
                 <input
                   name="email"
@@ -256,7 +274,7 @@ function Payment({ codeApplied }) {
               </div>
             </div>
           </div> */}
-          {/* 
+          {/*
           <div className="purchase_sub mt_30cp mt-4">
             <label className="checkbox">
               <input
@@ -273,52 +291,55 @@ function Payment({ codeApplied }) {
             />
 
             <small> Purchase Subscription for Others!</small>
+
           </div> */}
 
-          <div className="d-flex w-100 " style={{ gap: "30px" }}>
-            <div className="w-100">
-              <label htmlFor="card_number">Card Number</label>
-              <div className="card_input">
-                <CardNumberElement
-                  options={CARD_OPTIONS}
-                  // options={{
-                  //   ...CARD_OPTIONS,
-                  //   placeholder: "Enter card number",
-                  // }}
-                />
+          {paymentOption === "creditCard" && (
+            <>
+              <div className="d-flex w-100 " style={{ gap: "30px" }}>
+                <div className="w-100">
+                  <label htmlFor="card_number">Card Number</label>
+                  <div className="card_input">
+                    <CardNumberElement
+                      options={CARD_OPTIONS}
+                      // options={{
+                      //   ...CARD_OPTIONS,
+                      //   placeholder: "Enter card number",
+                      // }}
+                    />
+                  </div>
+                </div>
+                <div className="w-100">
+                  <label className="mb-1">Full Name</label>
+                  <input
+                    name="fullName"
+                    type="text"
+                    // placeholder="Enter Card Holder Name"
+                    className="w-100"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="w-100">
-              <label className="mb-1">Full Name</label>
-              <input
-                name="fullName"
-                type="text"
-                // placeholder="Enter Card Holder Name"
-                className="w-100"
-              />
-            </div>
-          </div>
-          <div className="d-flex w-100  mt-4" style={{ gap: "30px" }}>
-            <div className="w-100">
-              <label htmlFor="card_number">Expiration Date (MMYY)</label>
-              <div className="card_input">
-                <CardExpiryElement options={CARD_OPTIONS} />
+              <div className="d-flex w-100  mt-4" style={{ gap: "30px" }}>
+                <div className="w-100">
+                  <label htmlFor="card_number">Expiration Date (MMYY)</label>
+                  <div className="card_input">
+                    <CardExpiryElement options={CARD_OPTIONS} />
+                  </div>
+                </div>
+                <div className="w-100">
+                  <label htmlFor="card_number">CVV/ CVC</label>
+                  {/* <input id="card_number" type="number" placeholder="123" /> */}
+                  <div className="card_input">
+                    <CardCvcElement options={CARD_OPTIONS} />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="w-100">
-              <label htmlFor="card_number">CVV/ CVC</label>
-              {/* <input id="card_number" type="number" placeholder="123" /> */}
-              <div className="card_input">
-                <CardCvcElement options={CARD_OPTIONS} />
-              </div>
-            </div>
-          </div>
 
-          {/* <div className="card_info flex  items-center w-full mt-4">
+              {/* <div className="card_info flex  items-center w-full mt-4">
             <div className="flex gap-[15px] lg:gap-4 items-center w-full">
               <div className="w-full">
                 <label htmlFor="card_number">CVV/ CVC</label>
-                
+
                 <div className="card_input">
                   <CardCvcElement options={CARD_OPTIONS} />
                 </div>
@@ -326,25 +347,38 @@ function Payment({ codeApplied }) {
             </div>
           </div> */}
 
-          <div className="create_profile_button mt-4">
-            {isSubscribing ? (
-              <button
-                disabled
-                //   onClick={handleCompletePayment}
-                type="button"
-              >
-                Subscribing...
-              </button>
-            ) : (
-              <button
-                onClick={handlePayment}
-                //   onClick={handleCompletePayment}
-                type="button"
-              >
-                Complete Payment
-              </button>
-            )}
-          </div>
+              <div className="create_profile_button mt-4">
+                {isSubscribing ? (
+                  <button
+                    disabled
+                    //   onClick={handleCompletePayment}
+                    type="button"
+                  >
+                    Subscribing...
+                  </button>
+                ) : (
+                  <button
+                    onClick={handlePayment}
+                    //   onClick={handleCompletePayment}
+                    type="button"
+                  >
+                    Complete Payment
+                  </button>
+                )}
+              </div>
+              {/* <div className="create_profile_button mt-4">
+                <button
+                  onClick={handlePayment}
+                  //   onClick={handleCompletePayment}
+                  type="button"
+                >
+                  Complete Payment
+                </button>
+              </div> */}
+            </>
+          )}
+
+          {paymentOption === "paypal" && <Paypal />}
         </form>
       </div>
 
