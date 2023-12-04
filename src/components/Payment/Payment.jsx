@@ -21,19 +21,19 @@ import {
 import { updateSubscriptionInfo } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
+import { getCountryCode } from "../../utils/countryCodes";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
   style: {
     base: {
       borderStyle: "solid",
-      borderWidth: "1px",
-      background: "#121212",
+      borderWidth: "2px",
       color: "#000",
-      border: "1px solid red",
-      fontSize: "20px",
+      fontSize: "16px",
+      fontWeight: 400,
       "::placeholder": {
-        color: "white",
+        color: "#423C6A",
       },
       width: "100%",
     },
@@ -44,7 +44,7 @@ const CARD_OPTIONS = {
   },
 };
 
-function Payment() {
+function Payment({ codeApplied }) {
   const [modalShow, setModalShow] = useState(false);
   const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -85,7 +85,10 @@ function Payment() {
 
     // const clientSecret = "";
 
-    const clientSecret = await createPaymentIntent(2000, "usd");
+    const clientSecret = await createPaymentIntent(
+      codeApplied ? 0 : 2000,
+      "usd"
+    );
 
     const cardElement = elements.getElement(CardNumberElement);
 
@@ -105,12 +108,9 @@ function Payment() {
           type: "card",
           card: cardElement, // Replace with the actual CardElement
           billing_details: {
-            name: "firstName" + " " + "lastName",
+            name: `${user?.data?.fullName}`,
             address: {
-              line1: "addressLine",
-              city: "address",
-              postal_code: 1206,
-              country: "BD",
+              country: getCountryCode(user?.data?.country),
             },
           },
         },
@@ -201,12 +201,13 @@ function Payment() {
             </div>
           </div>
 
-          <div className="profileSetting3 mb_40">
+          {/* <div className="profileSetting3 mb_40">
             <div className="d-flex justify-content-start flex-wrap flex-md-nowrap gap_4 mb-5">
               <div className="inputContainer2">
                 <label>Full Name</label>
                 <input name="fullName" type="text" placeholder="John Duo" />
               </div>
+
               <div className="inputContainer2">
                 <label>Email Address</label>
                 <input
@@ -216,9 +217,9 @@ function Payment() {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <div className="d-flex gap_4 w-100">
               <div className="w-100">
                 <label>Expiry Date</label>
@@ -246,8 +247,8 @@ function Payment() {
                 />
               </div>
             </div>
-          </div>
-
+          </div> */}
+          {/* 
           <div className="purchase_sub mt_30cp mt-4">
             <label className="checkbox">
               <input
@@ -264,39 +265,60 @@ function Payment() {
             />
 
             <small> Purchase Subscription for Others!</small>
-          </div>
+          </div> */}
 
-          <div className="card_info flex flex-col lg:flex-row gap-4 items-center w-full">
-            <div className="w-full">
+          <div className="d-flex w-100 " style={{ gap: "30px" }}>
+            <div className="w-100">
               <label htmlFor="card_number">Card Number</label>
-              {/* <input
-                id="card_number"
-                type="number"
-                placeholder="1234 5678 9123 4567"
-              /> */}
               <div className="card_input">
-                <CardNumberElement options={CARD_OPTIONS} />
+                <CardNumberElement
+                  options={CARD_OPTIONS}
+                  // options={{
+                  //   ...CARD_OPTIONS,
+                  //   placeholder: "Enter card number",
+                  // }}
+                />
               </div>
             </div>
+            <div className="w-100">
+              <label className="mb-1">Full Name</label>
+              <input
+                name="fullName"
+                type="text"
+                // placeholder="Enter Card Holder Name"
+                className="w-100"
+              />
+            </div>
+          </div>
+          <div className="d-flex w-100  mt-4" style={{ gap: "30px" }}>
+            <div className="w-100">
+              <label htmlFor="card_number">Expiration Date (MMYY)</label>
+              <div className="card_input">
+                <CardExpiryElement options={CARD_OPTIONS} />
+              </div>
+            </div>
+            <div className="w-100">
+              <label htmlFor="card_number">CVV/ CVC</label>
+              {/* <input id="card_number" type="number" placeholder="123" /> */}
+              <div className="card_input">
+                <CardCvcElement options={CARD_OPTIONS} />
+              </div>
+            </div>
+          </div>
+
+          {/* <div className="card_info flex  items-center w-full mt-4">
             <div className="flex gap-[15px] lg:gap-4 items-center w-full">
               <div className="w-full">
-                <label htmlFor="card_number">Expiration Date (MMYY)</label>
-                {/* <input id="card_number" type="number" placeholder="1234" /> */}
-                <div className="card_input">
-                  <CardExpiryElement options={CARD_OPTIONS} />
-                </div>
-              </div>
-              <div className="w-full">
                 <label htmlFor="card_number">CVV/ CVC</label>
-                {/* <input id="card_number" type="number" placeholder="123" /> */}
+                
                 <div className="card_input">
                   <CardCvcElement options={CARD_OPTIONS} />
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="create_profile_button">
+          <div className="create_profile_button mt-4">
             <button
               onClick={handlePayment}
               //   onClick={handleCompletePayment}

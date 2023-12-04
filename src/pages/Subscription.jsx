@@ -7,34 +7,44 @@ import p2 from "../assets/images/p2.png";
 import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
 
-import Payment from "../components/Payment/Payment"
+import Payment from "../components/Payment/Payment";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-
 // import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
-
 
 const Subscription = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [codeApplied, setCodeApplied] = useState(false);
+  const [wrongCouponCode, setWrongCouponCode] = useState(false);
   const navigate = useNavigate();
-
 
   const stripePromise = loadStripe(
     "pk_test_51NOY81IxAutj9x1S3U3aEuf8BlAgkDGUmMOdl4L1RD8C7x2GV0y2apW6rCvQtG6eZUatdreJJUbelnf2fQfbnFyu00I54cGbH5"
   );
 
-
-
   const handleCompletePayment = () => {
-
-    alert("Data send")
+    alert("Data send");
     // setModalShow(true)
     // setTimeout(() => {
     //   navigate("/");
     //   window.location.reload();
     // }, 1000);
+  };
+
+  const handleCoupnChange = (e) => {
+    setCouponCode(e.target.value);
+  };
+
+  const handleApplyCouponCode = () => {
+    if (couponCode === "DAVID") {
+      setCodeApplied(true);
+      setWrongCouponCode(false);
+    } else {
+      setWrongCouponCode(true);
+    }
   };
 
   return (
@@ -57,21 +67,42 @@ const Subscription = () => {
           <input
             type="text"
             className="promocode_input"
-            placeholder="Enter email address"
+            placeholder="Enter coupon code"
+            onChange={handleCoupnChange}
           />
-          <button className="apply_btn">Apply</button>
+          <button
+            className="apply_btn apply_coupon_button"
+            disabled={!couponCode || codeApplied}
+            onClick={handleApplyCouponCode}
+            style={{
+              cursor: `${
+                !couponCode || codeApplied ? "not-allowed" : "pointer"
+              }`,
+            }}
+          >
+            Apply
+          </button>
         </div>
+        {codeApplied && (
+          <p className="text-success" style={{ fontSize: "12px" }}>
+            *Coupon Applied!
+          </p>
+        )}
+        {wrongCouponCode && (
+          <p className="text-danger" style={{ fontSize: "12px" }}>
+            *Invalid Coupon!
+          </p>
+        )}
       </div>
 
       <div className="subv_body">
         <p>Payment Information</p>
 
         <Elements stripe={stripePromise}>
-           <Payment/>
+          <Payment codeApplied={codeApplied} />
         </Elements>
 
         {/* <Payment/> */}
-       
       </div>
     </>
   );

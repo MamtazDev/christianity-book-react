@@ -554,16 +554,14 @@ h1 {
 }
 
 .card_input {
-  border: 1px solid rgb(242, 202, 202);
-  margin: 10px;
-  padding: 5px;
-  border-radius: 4px;
-  /* color: #f00101 !important; */
-  color: #000000 !important;
-  background-color: rgb(252, 252, 252);
+  border-bottom: 2px solid #c2c9d1;
+  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-.header_container a{
-  color: #000000!important;
+.header_container a {
+  color: #000000;
   font-weight: 700;
 }

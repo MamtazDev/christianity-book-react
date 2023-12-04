@@ -16,31 +16,31 @@ const ContactForm = () => {
 
   const { user, setContactMessage } = useContext(AuthContext);
 
+  console.log(user?.data, "uss");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const message = e.target.message.value;
-    const contactInfo={
-  name: e.target.fullName.value,
-  phoneNumber:e.target.phoneNumber.value,
-  country:e.target.country.value
-}
+    const contactInfo = {
+      name: e.target.fullName.value,
+      phoneNumber: e.target.phoneNumber.value,
+      country: e.target.country.value,
+    };
 
-const data = {
-  email: user?.data?.email,
-  message,
-  contactInfo
-}
+    const data = {
+      email: user?.data?.email,
+      message,
+      contactInfo,
+    };
 
-const response = await sendMailToAuthor(data)
+    const response = await sendMailToAuthor(data);
 
-if(response?.status ===200){
-  navigate("/")
-}
+    if (response?.status === 200) {
+      navigate("/");
+    }
 
-console.log(response,"ress")
-
-
+    console.log(response, "ress");
 
     // if (message) {
     //   setContactMessage(message);
@@ -90,6 +90,7 @@ console.log(response,"ress")
                 type="text"
                 placeholder="John Duo"
                 name="fullName"
+                value={user?.data?.fullName}
                 required
               />
             </div>
@@ -113,6 +114,7 @@ console.log(response,"ress")
                 type="text"
                 placeholder="United Kingdom"
                 name="country"
+                value={user?.data?.country}
                 required
               />
             </div>
@@ -123,6 +125,7 @@ console.log(response,"ress")
                 type="text"
                 placeholder="+1 123 456 789"
                 name="phoneNumber"
+                value={user?.data?.phoneNumber}
                 required
               />
             </div>
