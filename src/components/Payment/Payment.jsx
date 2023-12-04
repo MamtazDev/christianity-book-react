@@ -18,7 +18,10 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { updateSubscriptionInfo } from "../../api/auth";
+import {
+  sendSubscriptionMessage,
+  updateSubscriptionInfo,
+} from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
 import { getCountryCode } from "../../utils/countryCodes";
@@ -47,6 +50,7 @@ const CARD_OPTIONS = {
 function Payment({ codeApplied }) {
   const [modalShow, setModalShow] = useState(false);
   const { user, setUser } = useContext(AuthContext);
+  const [isSubscribing, setIsSubscribing] = useState(false);
   const navigate = useNavigate();
 
   const stripe = useStripe();
@@ -66,6 +70,7 @@ function Payment({ codeApplied }) {
   const handlePayment = async () => {
     // Get the PaymentIntent client secret from your server or set it on the client-side
     // const clientSecret = 'YOUR_CLIENT_SECRET';
+    setIsSubscribing(true);
     if (!stripe) {
       // Stripe.js has not loaded yet, so do nothing.
       return;
@@ -122,6 +127,7 @@ function Payment({ codeApplied }) {
     if (error) {
       //   setError(error?.message);
       console.error("error", error);
+      setIsSubscribing(false);
       //   setIsProcessing(false);
       // Handle error: Show error to the user
     } else if (paymentIntent.status === "succeeded") {
@@ -151,6 +157,8 @@ function Payment({ codeApplied }) {
         content: "subscription successfully",
         userId: user?.data?._id,
       });
+      const messRes = await sendSubscriptionMessage(user?.data?.email);
+      setIsSubscribing(false);
 
       navigate("/");
 
@@ -319,13 +327,23 @@ function Payment({ codeApplied }) {
           </div> */}
 
           <div className="create_profile_button mt-4">
-            <button
-              onClick={handlePayment}
-              //   onClick={handleCompletePayment}
-              type="button"
-            >
-              Complete Payment
-            </button>
+            {isSubscribing ? (
+              <button
+                disabled
+                //   onClick={handleCompletePayment}
+                type="button"
+              >
+                Subscribing...
+              </button>
+            ) : (
+              <button
+                onClick={handlePayment}
+                //   onClick={handleCompletePayment}
+                type="button"
+              >
+                Complete Payment
+              </button>
+            )}
           </div>
         </form>
       </div>

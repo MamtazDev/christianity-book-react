@@ -1,30 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import messaging from "../../assets/images/message_txt.png";
 import settings from "../../assets/images/message_settings.png";
 import edit from "../../assets/images/message_edit.png";
 import profile from "../../assets/images/chatProfile.png";
 import "./AuthorChat.css";
+import { AuthContext } from "../../contexts/AuthProvider";
 const ChatList = ({
   selectedUserInfo,
   setSelectedUserInfo,
   allAdminConversations,
   handleUserConversationInfo,
 }) => {
-  console.log(allAdminConversations, "aaa");
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="readerBox">
       <div className="msgSetting d-flex justify-content-between align-items-center mb-3">
         <div>
           <img src={messaging} alt="Message" />
         </div>
-        <div className="d-flex align-items-center gap-3">
+        {/* <div className="d-flex align-items-center gap-3">
           <button className="button_click">
             <img src={settings} alt="Settings" />
           </button>
           <button className="button_click">
             <img src={edit} alt="Edit" />
           </button>
-        </div>
+        </div> */}
       </div>
       {allAdminConversations &&
         allAdminConversations.length > 0 &&
@@ -56,6 +58,26 @@ const ChatList = ({
             </div>
           </div>
         ))}
+      {user?.data?.role === "user" && (
+        <div className="nameList d-flex align-items-center gap-2 mb-2 bg-light">
+          <div className="d-flex align-items-center profile_gap">
+            <img
+              src={profile}
+              style={{
+                height: "60px",
+                width: "60px",
+                borderRadius: "100%",
+                objectFit: "cover",
+              }}
+              alt=""
+            />
+            <div>
+              <a href="#">Author</a>
+              {/* <p>Hi,Mark Obama How Are You? </p> */}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
