@@ -27,7 +27,10 @@ export default function PdfViewerComponent(props) {
         });
 
         // Add event listener for annotations change
-        instanceRef.current.addEventListener("annotations.change", handleAnnotationsChange);
+        instanceRef.current.addEventListener(
+          "annotations.change",
+          handleAnnotationsChange
+        );
 
         console.log("PSPDFKit loaded", instanceRef.current);
       } catch (error) {
@@ -61,10 +64,17 @@ export default function PdfViewerComponent(props) {
       console.log("Blob Size: ", blobSize, "bytes");
 
 
-      props.setArrayBuffer(pdfData);
+      // props.setArrayBuffer(pdfData);
 
       // const blob = new Blob([pdfData]);
 
+      // const formData = new FormData();
+      // formData.append("file", blob);
+
+      // console.log(formData, "ffform");
+
+      // const uint8Array = new Uint8Array(pdfData);
+      // const base64Data = btoa(String.fromCharCode.apply(null, uint8Array));
 
       const formData = new FormData();
       formData.append("file", blob);
