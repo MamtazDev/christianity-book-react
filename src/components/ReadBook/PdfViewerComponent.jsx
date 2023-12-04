@@ -82,9 +82,9 @@ export default function PdfViewerComponent(props) {
       // Send PDF data to the server
       const response = await fetch(
         // `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
-        `${BASE_URL}/upload`,
+        `${BASE_URL}/upload/${user?.data?._id}`,
         {
-          method: "POST",
+          method: "PUT",
           // method: "PUT",
           // headers: {
           //   "Content-Type": "application/pdf",
