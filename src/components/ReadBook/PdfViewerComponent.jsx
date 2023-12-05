@@ -6,8 +6,18 @@ import { AuthContext } from "../../contexts/AuthProvider";
 export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
+  const { blobPdf } = props;
 
   const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("blobPdf", blobPdf);
+  }, []);
+
+
+  
+
+
 
   useEffect(() => {
     const container = containerRef.current;
@@ -55,42 +65,25 @@ export default function PdfViewerComponent(props) {
       const pdfData = await instanceRef.current.exportPDF();
       const blob = new Blob([pdfData], { type: "application/pdf" });
 
-      console.log("pdfData from pdfViewerComponent: ", pdfData);
-      console.log("pdfData from pdfViewerComponent Type: ", typeof pdfData);
-
       // Get the size of the Blob
       const blobSize = blob.size;
       console.log("Blob Size: ", blobSize, "bytes");
-
-      // props.setArrayBuffer(pdfData);
-
-      // const blob = new Blob([pdfData]);
-
-      // const formData = new FormData();
-      // formData.append("file", blob);
-
-      // console.log(formData, "ffform");
-
-      // const uint8Array = new Uint8Array(pdfData);
-      // const base64Data = btoa(String.fromCharCode.apply(null, uint8Array));
 
       const formData = new FormData();
       formData.append("file", blob);
 
       // Send PDF data to the server
       const response = await fetch(
-        `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
-        // `${BASE_URL}/upload/${user?.data?._id}`,
+        // `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
+        `${BASE_URL}/upload/${user?.data?._id}`,
         {
           method: "PUT",
-          // method: "PUT",
-          // headers: {
-          //   "Content-Type": "application/pdf",
-          // },
-          // body: pdfBuffer ? pdfBuffer: pdfData ,
+
           body: formData,
         }
       );
+
+      const resData = await response.json();
 
       if (response.ok) {
         console.log("PDF saved successfully.");

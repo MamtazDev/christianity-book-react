@@ -7,11 +7,14 @@ import { BASE_URL } from "../../config/confir";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 // const baseUrl = `${window.location.protocol}//${window.location.host}/node_modules/pspdfkit/dist/`;
-const baseUrl =  `${window.location.protocol}//${window.location.host}/`;
+const baseUrl = `${window.location.protocol}//${window.location.host}/`;
 
-export default function ReadBooks2({  setArrayBuffer }) {
-const {user}=useContext(AuthContext)
+export default function ReadBooks2({ setArrayBuffer }) {
+  const { user } = useContext(AuthContext);
 
+  // useEffect(() => {
+  //   console.log("user?.data?.pdfBuffer:: ", user?.data?.pdfBuffer);
+  // }, [user]);
 
   //TODO:
 
@@ -20,91 +23,91 @@ const {user}=useContext(AuthContext)
   const instanceRef = useRef(null);
 
   const handleAnnotationAdded = async (event) => {
-    console.log(event,'eeveent')
+    console.log(event, "eeveent");
     if (event && event.annotations) {
       const { annotations } = event;
 
-      console.log('e-anotation',annotations)
+      console.log("e-anotation", annotations);
       // Process each annotation
       annotations.forEach((annotation) => {
         if (annotation instanceof PSPDFKit.Annotations.TextAnnotation) {
           console.log("Note added:", annotation);
-        } else if (annotation instanceof PSPDFKit.Annotations.HighlightAnnotation) {
+        } else if (
+          annotation instanceof PSPDFKit.Annotations.HighlightAnnotation
+        ) {
           console.log("Highlight added:", annotation);
         }
-      }); }
-      else{
-        console.log("Annotation is not working fine.")
-      }
-
+      });
+    } else {
+      console.log("Annotation is not working fine.");
+    }
   };
 
-  useEffect(() => {
-   
-    console.log('sdfkit',PSPDFKit)
-    PSPDFKit.load({
-      baseUrl,
-      disableWebAssemblyStreaming: true,
-      container: "#pspdfkit1",
-      document: pdfBooks,
-      // pdfBuffer ? pdfBuffer: pdfData ,
-    })
-      .then((loadedInstance) => {
-        instanceRef.current = loadedInstance;
+  // useEffect(() => {
+  //   console.log("sdfkit", PSPDFKit);
+  //   PSPDFKit.load({
+  //     baseUrl,
+  //     disableWebAssemblyStreaming: true,
+  //     container: "#pspdfkit1",
+  //     document: user?.data?.pdfBuffer ? pdfBooks : pdfBooks,
+  //     // pdfBuffer ? pdfBuffer: pdfData ,
+  //   })
+  //     .then((loadedInstance) => {
+  //       instanceRef.current = loadedInstance;
 
-        // Add event listener for annotations change
-        instanceRef.current.addEventListener(
-          "annotations.change",
-          handleAnnotationsChange
-        );
+  //       // Add event listener for annotations change
+  //       instanceRef.current.addEventListener(
+  //         "annotations.change",
+  //         handleAnnotationsChange
+  //       );
 
+  //       loadedInstance.addEventListener("annotations.change", async () => {
+  //         console.log("Something in the annotations has changed.");
+  //         try {
+  //           let Notean = new PSPDFKit.Annotations.NoteAnnotation();
+  //           // console.log('an',an)
+  //           console.log("Notean", Notean);
+  //         } catch (error) {
+  //           console.error("Error retrieving annotations:", error);
+  //         }
+  //       });
 
-        loadedInstance.addEventListener("annotations.change", async () => {
-          console.log("Something in the annotations has changed.");
-          try {
-            let Notean = new PSPDFKit.Annotations.NoteAnnotation;
-            // console.log('an',an)
-            console.log('Notean',Notean)
-          } catch (error) {
-            console.error("Error retrieving annotations:", error);
-          }
-        });
+  //       loadedInstance.addEventListener(
+  //         "annotations.create",
+  //         async (createdAnnotations) => {
+  //           console.log("createdAnnotations", createdAnnotations);
+  //         }
+  //       );
 
-        loadedInstance.addEventListener("annotations.create", async createdAnnotations => {
-        console.log('createdAnnotations',createdAnnotations)
+  //       // Set initial view state (if needed)
+  //       instanceRef.current.setViewState((viewState) => {
+  //         return viewState.set("sidebarMode", PSPDFKit.SidebarMode.THUMBNAILS);
+  //       });
 
+  //       console.log("PSPDFKit loaded", loadedInstance);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error.message);
+  //     });
 
-        });
-  
-        // Set initial view state (if needed)
-        instanceRef.current.setViewState((viewState) => {
-          return viewState.set("sidebarMode", PSPDFKit.SidebarMode.THUMBNAILS);
-        });
-  
-        console.log("PSPDFKit loaded", loadedInstance);
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-
-    // Cleanupf
-    // Cleanupf
-    return () => {
-      // Remove the event listeners
-      if (instanceRef.current) {
-        instanceRef.current.removeEventListener(
-          "annotations.change",
-          handleAnnotationsChange
-        );
-        instanceRef.current.removeEventListener(
-          "annotations.change",
-          handleAnnotationAdded
-        );
-        PSPDFKit.unload("#pspdfkit1");
-        console.log("Cleanup function called");
-      }
-    };
-  }, []);
+  //   // Cleanupf
+  //   // Cleanupf
+  //   return () => {
+  //     // Remove the event listeners
+  //     if (instanceRef.current) {
+  //       instanceRef.current.removeEventListener(
+  //         "annotations.change",
+  //         handleAnnotationsChange
+  //       );
+  //       instanceRef.current.removeEventListener(
+  //         "annotations.change",
+  //         handleAnnotationAdded
+  //       );
+  //       PSPDFKit.unload("#pspdfkit1");
+  //       console.log("Cleanup function called");
+  //     }
+  //   };
+  // }, [user]);
 
   const savePdfToServer = async () => {
     try {
@@ -124,7 +127,7 @@ const {user}=useContext(AuthContext)
             "Content-Type": "application/pdf",
           },
           // body: pdfBuffer ? pdfBuffer: pdfData ,
-          body: pdfData ,
+          body: pdfData,
         }
       );
 
@@ -153,8 +156,13 @@ const {user}=useContext(AuthContext)
   };
 
   // return <div id="pspdfkit1" style={{ width: "100%", height: "100vh" }} />;
-  return <>
-    <PdfViewerComponent setArrayBuffer={setArrayBuffer} document= {pdfBooks}/>
-  </>
- 
+  return (
+    <>
+      <PdfViewerComponent
+        setArrayBuffer={setArrayBuffer}
+        blobPdf={user?.data?.pdfBuffer}
+        document={user?.data?.pdfBuffer ? pdfBooks : pdfBooks}
+      />
+    </>
+  );
 }
