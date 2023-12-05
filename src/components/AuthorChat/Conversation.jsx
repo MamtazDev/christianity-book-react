@@ -86,37 +86,60 @@ const Conversation = ({
       <div className="chatList">
         <div className="chatOwner d-flex justify-content-between align-items-center mb-5">
           <div className="d-flex align-items-center gap-2 profile_gap">
-            <img
-              className="img-fluid"
-              src={
-                selectedUserInfo?.userInfo?.image
-                  ? selectedUserInfo?.userInfo?.image
-                  : profile
-              }
-              alt=""
-              style={{
-                height: "60px",
-                width: "60px",
-                borderRadius: "100%",
-                objectFit: "cover",
-              }}
-            />
+            {selectedUserInfo?.userInfo?.image && (
+              <img
+                className="img-fluid"
+                src={
+                  selectedUserInfo?.userInfo?.image
+                    ? selectedUserInfo?.userInfo?.image
+                    : profile
+                }
+                alt=""
+                style={{
+                  height: "60px",
+                  width: "60px",
+                  borderRadius: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            )}
+
+            {
+              <img
+                className="img-fluid"
+                src={
+                  selectedUserInfo?.userInfo?.image
+                    ? selectedUserInfo?.userInfo?.image
+                    : profile
+                }
+                alt=""
+                style={{
+                  height: "60px",
+                  width: "60px",
+                  borderRadius: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            }
             <div>
-              <a href="#">{selectedUserInfo?.userInfo?.userName}</a>
+              <a href="#">
+                {selectedUserInfo?.userInfo?.userName
+                  ? selectedUserInfo?.userInfo?.userName
+                  : "Author"}
+              </a>
               {/* <span className="d-block">Active Now</span> */}
             </div>
           </div>
-          <ProfileSetting />
+          {/* <ProfileSetting /> */}
         </div>
         {/* chat data */}
         <div className="chat_scrolled">
-          {allMessages &&
-            allMessages.length > 0 &&
+          {allMessages && allMessages.length > 0 ? (
             allMessages?.map((data, index) =>
               data?.sender !== user?._id ? (
                 <div className="grayBox mb-3" key={index}>
                   <div className="whiteBox mb-3">
-                    <span className="d-block text-dark">you</span>
+                    {/* <span className="d-block text-dark">you</span> */}
                     <p>{data.text}</p>
                   </div>
                   <span className="d-block">
@@ -142,12 +165,21 @@ const Conversation = ({
                   </span>
                 </div>
               )
-            )}
+            )
+          ) : (
+            <div className="grayBox mb-3">
+              <div className="whiteBox mb-3">
+                {/* <span className="d-block text-dark">you</span> */}
+                <p>Hi There</p>
+              </div>
+              <span className="d-block">{convertTime(new Date())}</span>
+            </div>
+          )}
         </div>
-        <ChatDate />
+        {/* <ChatDate /> */}
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="sendForm d-flex align-items-center gap-4">
-            <div className="file-upload">
+            {/* <div className="file-upload">
               <label htmlFor="file-input">
                 <button
                   type="button"
@@ -163,7 +195,7 @@ const Conversation = ({
                 onChange={handleFileInputChange}
                 ref={fileUploader}
               />
-            </div>
+            </div> */}
             <input
               className="textField"
               type="text"

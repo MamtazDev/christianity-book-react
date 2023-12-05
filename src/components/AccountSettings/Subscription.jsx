@@ -30,7 +30,7 @@ const Subscription = () => {
           <div className="graySubLine  mt-3 mb-3"></div>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center gap-3">
-              <img src={subscription} alt="" />
+              <img src={subscription} alt="" />npm 
               <p style={{ fontWeight: "600" }}>John Duo</p>
             </div>
             <div>

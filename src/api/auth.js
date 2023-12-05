@@ -79,3 +79,14 @@ export const updateSubscriptionInfo = async (userId) => {
 
   return res.json();
 };
+
+export const sendSubscriptionMessage = async (email) => {
+  const res = await fetch(`${BASE_URL}/api/users/sendSubscriptionMessage`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ email: email }),
+  });
+  return res.json();
+};

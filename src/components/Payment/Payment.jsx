@@ -18,7 +18,10 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { updateSubscriptionInfo } from "../../api/auth";
+import {
+  sendSubscriptionMessage,
+  updateSubscriptionInfo,
+} from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
 import { getCountryCode } from "../../utils/countryCodes";
@@ -48,6 +51,7 @@ const CARD_OPTIONS = {
 function Payment({ codeApplied }) {
   const [modalShow, setModalShow] = useState(false);
   const { user, setUser } = useContext(AuthContext);
+  const [isSubscribing, setIsSubscribing] = useState(false);
   const navigate = useNavigate();
 
   const stripe = useStripe();
@@ -67,6 +71,7 @@ function Payment({ codeApplied }) {
   const handlePayment = async () => {
     // Get the PaymentIntent client secret from your server or set it on the client-side
     // const clientSecret = 'YOUR_CLIENT_SECRET';
+    setIsSubscribing(true);
     if (!stripe) {
       // Stripe.js has not loaded yet, so do nothing.
       return;
@@ -123,6 +128,7 @@ function Payment({ codeApplied }) {
     if (error) {
       //   setError(error?.message);
       console.error("error", error);
+      setIsSubscribing(false);
       //   setIsProcessing(false);
       // Handle error: Show error to the user
     } else if (paymentIntent.status === "succeeded") {
@@ -152,6 +158,8 @@ function Payment({ codeApplied }) {
         content: "subscription successfully",
         userId: user?.data?._id,
       });
+      const messRes = await sendSubscriptionMessage(user?.data?.email);
+      setIsSubscribing(false);
 
       navigate("/");
 
@@ -161,18 +169,20 @@ function Payment({ codeApplied }) {
     }
   };
 
-  const [paymentOption, setPaymentOption] = useState('creditCard');
+  const [paymentOption, setPaymentOption] = useState("creditCard");
   const handlePaymentOption = (option) => {
-    console.log(option)
+    console.log(option);
     setPaymentOption(option);
-  }
+  };
 
   return (
     <>
       <div>
         <form action="" className="subscription  mt_30cp">
-          <div action="" className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5">
-
+          <div
+            action=""
+            className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5"
+          >
             <div className="payment_parent">
               <label htmlFor="creditCard" className="d-flex align-items-center">
                 <input
@@ -180,8 +190,8 @@ function Payment({ codeApplied }) {
                   id="creditCard"
                   name="flexRadioDefault"
                   className=" payment_method_radio "
-                  checked={paymentOption === 'creditCard'}
-                  onChange={() => handlePaymentOption('creditCard')}
+                  checked={paymentOption === "creditCard"}
+                  onChange={() => handlePaymentOption("creditCard")}
                 />
                 <div className="payment_div">
                   <h4>Credit Card</h4>
@@ -203,8 +213,8 @@ function Payment({ codeApplied }) {
                   id="paypal"
                   name="flexRadioDefault"
                   className=" payment_method_radio"
-                  checked={paymentOption === 'paypal'}
-                  onChange={() => handlePaymentOption('paypal')}
+                  checked={paymentOption === "paypal"}
+                  onChange={() => handlePaymentOption("paypal")}
                 />
                 <div className="payment_div">
                   <h4>Paypal</h4>
@@ -215,9 +225,7 @@ function Payment({ codeApplied }) {
                 </div>
               </label>
             </div>
-
           </div>
-
 
           {/* <div className="profileSetting3 mb_40">
             <div className="d-flex justify-content-start flex-wrap flex-md-nowrap gap_4 mb-5">
@@ -286,18 +294,18 @@ function Payment({ codeApplied }) {
 
           </div> */}
 
-          {
-            paymentOption === 'creditCard' && <>
+          {paymentOption === "creditCard" && (
+            <>
               <div className="d-flex w-100 " style={{ gap: "30px" }}>
                 <div className="w-100">
                   <label htmlFor="card_number">Card Number</label>
                   <div className="card_input">
                     <CardNumberElement
                       options={CARD_OPTIONS}
-                    // options={{
-                    //   ...CARD_OPTIONS,
-                    //   placeholder: "Enter card number",
-                    // }}
+                      // options={{
+                      //   ...CARD_OPTIONS,
+                      //   placeholder: "Enter card number",
+                      // }}
                     />
                   </div>
                 </div>
@@ -340,6 +348,25 @@ function Payment({ codeApplied }) {
           </div> */}
 
               <div className="create_profile_button mt-4">
+                {isSubscribing ? (
+                  <button
+                    disabled
+                    //   onClick={handleCompletePayment}
+                    type="button"
+                  >
+                    Subscribing...
+                  </button>
+                ) : (
+                  <button
+                    onClick={handlePayment}
+                    //   onClick={handleCompletePayment}
+                    type="button"
+                  >
+                    Complete Payment
+                  </button>
+                )}
+              </div>
+              {/* <div className="create_profile_button mt-4">
                 <button
                   onClick={handlePayment}
                   //   onClick={handleCompletePayment}
@@ -347,16 +374,11 @@ function Payment({ codeApplied }) {
                 >
                   Complete Payment
                 </button>
-              </div>
+              </div> */}
             </>
-          }
+          )}
 
-
-          {
-            paymentOption === 'paypal' && <Paypal />
-          }
-
-
+          {paymentOption === "paypal" && <Paypal />}
         </form>
       </div>
 
