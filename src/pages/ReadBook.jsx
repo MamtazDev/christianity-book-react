@@ -26,9 +26,7 @@ const ReadBook = () => {
   const [arrayBuffer, setArrayBuffer] = useState(null);
 
   useEffect(() => {
-
-    console.log("ArrayBuffer:", arrayBuffer)
-
+    console.log("ArrayBuffer:", arrayBuffer);
 
     if (user?.data?.isSubscribed === true) {
       setSubscribed(true);
@@ -51,9 +49,7 @@ const ReadBook = () => {
           </h3>
           {/* <ReadBooks /> */}
 
-          <ReadBooks2
-            setArrayBuffer={setArrayBuffer}
-          />
+          <ReadBooks2 setArrayBuffer={setArrayBuffer} />
 
           {/* <ReadBooks3 arrayBuffer={arrayBuffer} /> */}
         </div>

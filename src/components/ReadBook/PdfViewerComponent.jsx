@@ -7,7 +7,7 @@ export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -53,8 +53,7 @@ export default function PdfViewerComponent(props) {
     try {
       // Capture PDF data from the PSPDFKit instance
       const pdfData = await instanceRef.current.exportPDF();
-      const blob = new Blob([pdfData], { type: 'application/pdf' });
-
+      const blob = new Blob([pdfData], { type: "application/pdf" });
 
       console.log("pdfData from pdfViewerComponent: ", pdfData);
       console.log("pdfData from pdfViewerComponent Type: ", typeof pdfData);
@@ -62,7 +61,6 @@ export default function PdfViewerComponent(props) {
       // Get the size of the Blob
       const blobSize = blob.size;
       console.log("Blob Size: ", blobSize, "bytes");
-
 
       // props.setArrayBuffer(pdfData);
 
@@ -81,8 +79,8 @@ export default function PdfViewerComponent(props) {
 
       // Send PDF data to the server
       const response = await fetch(
-        // `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
-        `${BASE_URL}/upload/${user?.data?._id}`,
+        `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
+        // `${BASE_URL}/upload/${user?.data?._id}`,
         {
           method: "PUT",
           // method: "PUT",

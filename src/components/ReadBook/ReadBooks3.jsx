@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import pdfBooks from "../../assets/book/book.pdf";
+import PdfViewerComponent from "./PdfViewerComponent";
 
 const baseUrl = `${window.location.protocol}//${window.location.host}/node_modules/pspdfkit/dist/`;
 
@@ -8,9 +9,7 @@ export default function ReadBooks3({ arrayBuffer }) {
   const instanceRef = useRef(null);
   const containerRef = useRef(null);
   useEffect(() => {
-
-    console.log("arrayBuffer", arrayBuffer)
-
+    console.log("arrayBuffer", arrayBuffer);
 
     const container = containerRef.current;
     if (instanceRef.current) {
@@ -18,15 +17,11 @@ export default function ReadBooks3({ arrayBuffer }) {
     }
 
     // Load PSPDFKit instance
-    instanceRef.current =  PSPDFKit.load({
+    instanceRef.current = PSPDFKit.load({
       container,
       document: arrayBuffer,
       baseUrl: `${window.location.protocol}//${window.location.host}/public/`,
     });
-
-
-
-
 
     // PSPDFKit.load({
     //   baseUrl,
@@ -62,16 +57,19 @@ export default function ReadBooks3({ arrayBuffer }) {
       // Capture PDF data from the PSPDFKit instance
       const pdfData = await instanceRef.current.exportPDF();
 
-      console.log("pdfData", pdfData)
+      console.log("pdfData", pdfData);
 
       // Send PDF data to the server
-      const response = await fetch("https://your-server-endpoint.com/save-pdf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/pdf",
-        },
-        body: pdfData,
-      });
+      const response = await fetch(
+        "https://your-server-endpoint.com/save-pdf",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/pdf",
+          },
+          body: pdfData,
+        }
+      );
 
       if (response.ok) {
         console.log("PDF saved successfully.");
@@ -101,12 +99,9 @@ export default function ReadBooks3({ arrayBuffer }) {
     }
   };
 
-  return <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />;
+  return <PdfViewerComponent document={arrayBuffer} />;
   // return <div id="pspdfkit" style={{ width: "100%", height: "100vh" }} />;
 }
-
-
-
 
 // import React, { useEffect, useRef } from "react";
 // import PSPDFKit from "pspdfkit";
@@ -141,7 +136,7 @@ export default function ReadBooks3({ arrayBuffer }) {
 //   };
 
 //   useEffect(() => {
-   
+
 //     console.log('sdfkit',PSPDFKit)
 //     PSPDFKit.load({
 //       baseUrl,
@@ -158,7 +153,6 @@ export default function ReadBooks3({ arrayBuffer }) {
 //           handleAnnotationsChange
 //         );
 
-
 //         loadedInstance.addEventListener("annotations.change", async () => {
 //           console.log("Something in the annotations has changed.");
 //           try {
@@ -173,14 +167,13 @@ export default function ReadBooks3({ arrayBuffer }) {
 //         loadedInstance.addEventListener("annotations.create", async createdAnnotations => {
 //         console.log('createdAnnotations',createdAnnotations)
 
-
 //         });
-  
+
 //         // Set initial view state (if needed)
 //         instanceRef.current.setViewState((viewState) => {
 //           return viewState.set("sidebarMode", PSPDFKit.SidebarMode.THUMBNAILS);
 //         });
-  
+
 //         console.log("PSPDFKit loaded", loadedInstance);
 //       })
 //       .catch((error) => {
@@ -254,5 +247,5 @@ export default function ReadBooks3({ arrayBuffer }) {
 //   // return <>
 //   //   <PdfViewerComponent document= {arrayBuffer}/>
 //   // </>
- 
+
 // }

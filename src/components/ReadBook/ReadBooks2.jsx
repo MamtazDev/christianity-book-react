@@ -12,6 +12,11 @@ const baseUrl =  `${window.location.protocol}//${window.location.host}/`;
 export default function ReadBooks2({  setArrayBuffer }) {
 const {user}=useContext(AuthContext)
 
+
+  //TODO:
+
+  // user === pdfbuffer ? pdfBUffer ? pdfbooks
+
   const instanceRef = useRef(null);
 
   const handleAnnotationAdded = async (event) => {
