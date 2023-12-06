@@ -11,6 +11,7 @@ import Payment from "../components/Payment/Payment";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { STRIPE_PK } from "../config/confir";
 
 // import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 
@@ -21,9 +22,7 @@ const Subscription = () => {
   const [wrongCouponCode, setWrongCouponCode] = useState(false);
   const navigate = useNavigate();
 
-  const stripePromise = loadStripe(
-    "pk_test_51NOY81IxAutj9x1S3U3aEuf8BlAgkDGUmMOdl4L1RD8C7x2GV0y2apW6rCvQtG6eZUatdreJJUbelnf2fQfbnFyu00I54cGbH5"
-  );
+  const stripePromise = loadStripe(STRIPE_PK);
 
   const handleCompletePayment = () => {
     alert("Data send");

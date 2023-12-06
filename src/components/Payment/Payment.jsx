@@ -26,6 +26,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
 import { getCountryCode } from "../../utils/countryCodes";
 import Paypal from "./Paypal";
+import PaypalButton from "./PaypalButton";
+import { STRIPE_SK } from "../../config/confir";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -174,6 +176,8 @@ function Payment({ codeApplied }) {
     console.log(option);
     setPaymentOption(option);
   };
+
+  console.log(import.meta.env.VITE_PAYPAL_CLIENT_ID, "jkkj");
 
   return (
     <>
@@ -378,7 +382,7 @@ function Payment({ codeApplied }) {
             </>
           )}
 
-          {paymentOption === "paypal" && <Paypal />}
+          {paymentOption === "paypal" && <PaypalButton />}
         </form>
       </div>
 
@@ -403,9 +407,7 @@ export default Payment;
 //  const stripe = require("stripe")("sk_test_pggpOl1FECwCoLsgXDTQjtjF00An8mKwrj");
 
 const createPaymentIntent = async (amountInCents, currency) => {
-  const stripe = Stripe(
-    "sk_test_51NOY81IxAutj9x1S8jD9AfAgqJYIctPkILZ3iggy1atSBdOSL3lhh2l693sPHcAoMkRJ9ivTW55zNape1xe8C4f9005uYWjXIx"
-  );
+  const stripe = Stripe(STRIPE_SK);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
