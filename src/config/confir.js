@@ -5,7 +5,7 @@ export const PAYPAL_CLIENT_ID =
   "AU5MU_zv99-9lisi6REmdZR8BY-AD2Oz9qOkfR_3c5vmpNealS-bIEBRl1kUO3cTdelJf1uqLOVg1jQ1";
 
 export const STRIPE_SK =
-  "sk_test_51NOY81IxAutj9x1S8jD9AfAgqJYIctPkILZ3iggy1atSBdOSL3lhh2l693sPHcAoMkRJ9ivTW55zNape1xe8C4f9005uYWjXIx";
+  "sk_test_51NFZaOLLDUmTZxUmmoNiB3NuGqC7qEXJXjHuwTAeboCeaYihKfwQXZQfJUMFHjDigF9pbV4dL05r4PoobuW6ATJR00GmJMXrQ8";
 
 export const STRIPE_PK =
-  "pk_test_51NOY81IxAutj9x1S3U3aEuf8BlAgkDGUmMOdl4L1RD8C7x2GV0y2apW6rCvQtG6eZUatdreJJUbelnf2fQfbnFyu00I54cGbH5";
+  "pk_test_51NFZaOLLDUmTZxUmkDuDcasoN5JOWe1Q4aPJXUqqURoA9fd2cS4Vcx7rooYsmfivbLhojg1vM1uzegRpZ7MNl52700t9DowwUF";
