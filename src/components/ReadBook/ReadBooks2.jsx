@@ -13,7 +13,7 @@ export default function ReadBooks2({ setArrayBuffer }) {
   const { user } = useContext(AuthContext);
 
   // useEffect(() => {
-  //   console.log("user?.data?.pdfBuffer:: ", user?.data?.pdfBuffer);
+  //   console.log("user?.data?.pdfBuffer:: ", user);
   // }, [user]);
 
   //TODO:

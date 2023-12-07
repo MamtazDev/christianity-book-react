@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import { BASE_URL } from "../../config/confir";
 import { AuthContext } from "../../contexts/AuthProvider";
+import {createNewPdfFromBuffer} from "./BufferToPdf";
+import { PDFDocument } from 'pdf-lib'
+import { useState } from "react";
+// import { convertToPDF } from "./createpdf";
 
 export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
@@ -9,31 +13,39 @@ export default function PdfViewerComponent(props) {
   const { blobPdf } = props;
 
   const { user } = useContext(AuthContext);
+  // console.log('user: ', user.data.pdfBuffer.toString('base64'))
+const [buff, setBuff]= useState([])
 
+  const Mypdf = async (blobPdfs)=>{
+    const blob = new Blob([blobPdfs]);
+    const buf =  await blob.arrayBuffer();
+    setBuff(buf)
+  }
   useEffect(() => {
-    console.log("blobPdf", blobPdf);
+    // convertToPDF();
+    Mypdf(user.data.pdfBuffer.toString('base64'))
   }, []);
 
 
   
-
-
-
   useEffect(() => {
+   
+
     const container = containerRef.current;
 
-    async function loadPSPDFKit() {
+    async function loadPSPDFKit(buff) {
       try {
         // Ensure that there's only one PSPDFKit instance.
-        if (instanceRef.current) {
+        if (instanceRef.current ||  buff) {
           PSPDFKit.unload(container);
         }
+
 
         // Load PSPDFKit instance
         instanceRef.current = await PSPDFKit.load({
           container,
-          document: props.document,
-          baseUrl: `${window.location.protocol}//${window.location.host}/public/`,
+          document: buff,
+          baseUrl: `${window.location.protocol}//${window.location.host}/`,
         });
 
         // Add event listener for annotations change
@@ -41,14 +53,14 @@ export default function PdfViewerComponent(props) {
           "annotations.change",
           handleAnnotationsChange
         );
-
         console.log("PSPDFKit loaded", instanceRef.current);
+
       } catch (error) {
         console.error("Error loading PSPDFKit:", error);
       }
     }
 
-    loadPSPDFKit();
+    buff && loadPSPDFKit(buff) 
 
     // Cleanup
     return () => {
@@ -57,7 +69,7 @@ export default function PdfViewerComponent(props) {
         instanceRef.current = null;
       }
     };
-  }, [props.document]);
+  }, [props.document,buff]);
 
   const savePdfToServer = async () => {
     try {
