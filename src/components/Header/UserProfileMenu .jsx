@@ -218,13 +218,19 @@ import {
   makeNotificationSeen,
 } from "../../api/notifications";
 
-const UserProfileMenu = ({ user, allNotifications, setAllNotifications }) => {
+const UserProfileMenu = ({
+  user,
+  allNotifications,
+  setAllNotifications,
+  setUser,
+}) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
+    setUser(null);
     navigate("/login");
   };
   const handleOpen = () => {

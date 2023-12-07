@@ -4,7 +4,7 @@ import UserProfileMenu from "./UserProfileMenu ";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
-  const { user, allNotifications, setAllNotifications } =
+  const { user, allNotifications, setAllNotifications, setUser } =
     useContext(AuthContext);
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -96,6 +96,7 @@ const Header = () => {
               {user ? (
                 <UserProfileMenu
                   user={user}
+                  setUser={setUser}
                   allNotifications={allNotifications}
                   setAllNotifications={setAllNotifications}
                 />
