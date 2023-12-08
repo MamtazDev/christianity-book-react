@@ -7,6 +7,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const ChangePasswordForm = () => {
   const { resetPasswordInfo } = useContext(AuthContext);
   const [focusInput, setFocusInput] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const handleFoucsInput = (value, action) => {
     if (action === "focus") {
@@ -16,24 +18,49 @@ const ChangePasswordForm = () => {
     }
   };
 
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
+    setIsLoading(true);
+    setErrorMessage("");
 
     const newPassword = form.password.value;
     const password = form.confirm.value;
 
     if (newPassword === password) {
-      const response = await changePassword({
-        userEmail: resetPasswordInfo?.email,
-        data: { password: password },
-      });
+      if (!passwordRegex.test(password)) {
+        setErrorMessage(
+          "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long."
+        );
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const response = await changePassword({
+          userEmail: resetPasswordInfo?.email,
+          data: { password: password },
+        });
 
-      if (response?.status === 200) {
-        localStorage.removeItem("loggedInUser");
-        navigate("/login");
+        if (response?.status === 200) {
+          localStorage.removeItem("loggedInUser");
+          setIsLoading(false);
+          navigate("/login");
+        } else if (response?.message === "User not exist!") {
+          setIsLoading(false);
+          setErrorMessage(response?.message);
+        } else {
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+        setErrorMessage(error);
       }
     } else {
+      setIsLoading(false);
       Swal.fire({
         position: "center",
         icon: "error",
@@ -94,11 +121,17 @@ const ChangePasswordForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit" className="sign-in-button">
-                  Change Password
+                <button
+                  type="submit"
+                  className="sign-in-button"
+                  disabled={isLoading}
+                  style={{ cursor: `${isLoading ? "not-allowed" : "pointer"}` }}
+                >
+                  {isLoading ? "Changing Password..." : "Change Password"}
                 </button>
               </div>
             </form>
+            <p className="text-danger mt-2">{errorMessage}</p>
           </div>
         </div>
       </div>

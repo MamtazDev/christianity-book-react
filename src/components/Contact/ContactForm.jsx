@@ -16,10 +16,13 @@ const ContactForm = () => {
 
   const { user, setContactMessage } = useContext(AuthContext);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   console.log(user?.data, "uss");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const message = e.target.message.value;
     const contactInfo = {
@@ -37,7 +40,17 @@ const ContactForm = () => {
     const response = await sendMailToAuthor(data);
 
     if (response?.status === 200) {
+      setIsLoading(true);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Message sent successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       navigate("/");
+    } else {
+      setIsLoading(false);
     }
 
     console.log(response, "ress");
@@ -142,8 +155,14 @@ const ContactForm = () => {
               required
             ></textarea>
           </div>
-          <button type="submit">
-            Send Message <img src={rightArrow} alt="" />
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? (
+              "Sending Message..."
+            ) : (
+              <>
+                Send Message <img src={rightArrow} alt="" />
+              </>
+            )}
           </button>
         </form>
       </div>

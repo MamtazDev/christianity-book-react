@@ -16,6 +16,8 @@ const CompleteProfileForm = () => {
 
   const [updateUserData, setUpdateUserData] = useState({});
 
+  const [isLoading, setIsloading] = useState(false);
+
   const handleInputValueChange = (e) => {
     if (e.target?.files) {
       setUpdateUserData({ ...updateUserData, image: e.target.files[0] });
@@ -25,6 +27,7 @@ const CompleteProfileForm = () => {
   };
 
   const handleCreateProfile = async () => {
+    setIsloading(true);
     const userData = {
       fullName: updateUserData?.fullName,
       phoneNumber: updateUserData?.phoneNumber,
@@ -52,6 +55,7 @@ const CompleteProfileForm = () => {
         };
         localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
         setUser(newLocalUserData);
+        setIsloading(false);
         navigate("/subscription");
       }
     }
@@ -171,8 +175,19 @@ const CompleteProfileForm = () => {
                 !updateUserData?.country ||
                 !updateUserData?.image
               }
+              style={{
+                cursor: `${
+                  !updateUserData?.fullName ||
+                  !updateUserData?.phoneNumber ||
+                  !updateUserData?.country ||
+                  !updateUserData?.image ||
+                  isLoading
+                    ? "not-allowed"
+                    : "pointer"
+                }`,
+              }}
             >
-              Create Profile
+              {isLoading ? "Creating Profile..." : "Create Profile"}
             </button>
           </div>
         </div>

@@ -103,7 +103,7 @@ const Header = () => {
               ) : (
                 // <p>No User data</p>
                 <div className="d-flex gap-3 header_1">
-                  <Link className="dark_btn" to="/signup">
+                  <Link className="dark_btn text-white" to="/signup">
                     Sign Up
                   </Link>
                   <Link className="light_btn" to="/login">

@@ -7,6 +7,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const ResetPasswordForm = () => {
   const [focusInput, setFocusInput] = useState(null);
   const { resetPasswordInfo, setResetPasswordInfo } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleFoucsInput = (value, action) => {
@@ -19,14 +21,23 @@ const ResetPasswordForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
+    setLoading(true);
 
     const email = e.target.email.value;
 
     const response = await sendOtpToEmail(email);
     if (response?.OTP) {
       setResetPasswordInfo({ email, OTP: response?.OTP });
+      setLoading(false);
       navigate("/reset-verification");
     }
+    if (response?.message === "User not exist!") {
+      setErrorMessage(response?.message);
+      setLoading(false);
+    }
+
+    console.log(response, "ggg");
 
     // navigate("/reset-verification");
   };
@@ -66,11 +77,17 @@ const ResetPasswordForm = () => {
               </div>
 
               <div className="logInActionContainer">
-                <button type="submit" className="sign-in-button">
-                  Send OTP
+                <button
+                  type="submit"
+                  className="sign-in-button"
+                  disabled={loading}
+                  style={{ cursor: `${loading ? "not-allowed" : "pointer"}` }}
+                >
+                  {loading ? "Sending OTP..." : "Send OTP"}
                 </button>
               </div>
             </form>
+            <p className="text-danger mt-2">{errorMessage}</p>
           </div>
         </div>
       </div>
