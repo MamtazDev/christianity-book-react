@@ -214,7 +214,7 @@ const LoginForm = () => {
               {isLoading ? "Signing in..." : "Sign In"}
             </button>
 
-            <p>or continue with</p>
+            {/* <p>or continue with</p>
 
             <div>
               <button type="button" className="social_button">
@@ -226,7 +226,7 @@ const LoginForm = () => {
               <button type="button" className="social_button">
                 <img src={google} alt="" />
               </button>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>

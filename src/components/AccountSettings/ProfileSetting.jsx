@@ -10,6 +10,10 @@ const ProfileSetting = () => {
 
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
+  // const []
+
   const [profileSettingsData, setProfileSettingsData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -24,6 +28,7 @@ const ProfileSetting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     const responseData = await updateUserInfo({
       userId: user?.data?._id,
       data: profileSettingsData,
@@ -44,9 +49,14 @@ const ProfileSetting = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      setLoading(false);
       navigate("/account-settings");
+    } else {
+      setLoading(false);
     }
   };
+
+  // console.log(profileSettingsData, "g");
 
   useEffect(() => {
     if (user) {
@@ -108,7 +118,9 @@ const ProfileSetting = () => {
               onChange={handleInputChange}
               value={profileSettingsData?.country}
             >
-              <option disabled>Select country</option>
+              <option disabled selected>
+                Select country
+              </option>
               <option
                 value="Bangladesh"
                 selected={profileSettingsData?.country === "Bangladesh"}
@@ -136,16 +148,21 @@ const ProfileSetting = () => {
             </select>
           </div>
         </div>
-        <button
-          type="submit"
-          disabled={
-            !profileSettingsData?.phoneNumber ||
-            !profileSettingsData?.country ||
-            !profileSettingsData?.fullName
-          }
-        >
-          Save Changes
-        </button>
+        {loading ? (
+          <button type="button">Saving Changes...</button>
+        ) : (
+          <button
+            type="submit"
+            disabled={
+              !profileSettingsData?.phoneNumber ||
+              !profileSettingsData?.country ||
+              !profileSettingsData?.fullName ||
+              loading
+            }
+          >
+            Save Changes
+          </button>
+        )}
       </form>
     </div>
   );
