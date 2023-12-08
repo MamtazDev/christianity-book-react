@@ -159,6 +159,16 @@ const ProfileSetting = () => {
               !profileSettingsData?.fullName ||
               loading
             }
+            style={{
+              cursor: `${
+                !profileSettingsData?.phoneNumber ||
+                !profileSettingsData?.country ||
+                !profileSettingsData?.fullName ||
+                loading
+                  ? "not-allowed"
+                  : "pointer"
+              }`,
+            }}
           >
             Save Changes
           </button>

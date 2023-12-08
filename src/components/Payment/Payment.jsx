@@ -196,8 +196,12 @@ function Payment({ codeApplied }) {
             action=""
             className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5"
           >
-            <div className="payment_parent">
-              <label htmlFor="creditCard" className="d-flex align-items-center">
+            <div className="payment_parent" style={{ cursor: "pointer" }}>
+              <label
+                htmlFor="creditCard"
+                className="d-flex align-items-center"
+                style={{ cursor: "pointer" }}
+              >
                 <input
                   type="radio"
                   id="creditCard"
@@ -205,6 +209,7 @@ function Payment({ codeApplied }) {
                   className=" payment_method_radio "
                   checked={paymentOption === "creditCard"}
                   onChange={() => handlePaymentOption("creditCard")}
+                  style={{ cursor: "pointer" }}
                 />
                 <div className="payment_div">
                   <h4>Credit Card</h4>
@@ -220,7 +225,11 @@ function Payment({ codeApplied }) {
             </div>
 
             <div className="payment_parent">
-              <label htmlFor="paypal" className="d-flex align-items-center">
+              <label
+                htmlFor="paypal"
+                className="d-flex align-items-center"
+                style={{ cursor: "pointer" }}
+              >
                 <input
                   type="radio"
                   id="paypal"
@@ -228,6 +237,7 @@ function Payment({ codeApplied }) {
                   className=" payment_method_radio"
                   checked={paymentOption === "paypal"}
                   onChange={() => handlePaymentOption("paypal")}
+                  style={{ cursor: "pointer" }}
                 />
                 <div className="payment_div">
                   <h4>Paypal</h4>
