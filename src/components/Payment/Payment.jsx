@@ -202,6 +202,7 @@ function Payment({ codeApplied }) {
                 className="d-flex align-items-center"
                 style={{ cursor: "pointer" }}
               >
+                {/*  */}
                 <input
                   type="radio"
                   id="creditCard"
