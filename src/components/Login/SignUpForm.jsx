@@ -83,7 +83,7 @@ const SignUpForm = () => {
       } catch (error) {
         setErrorMessage(error.message);
         setIsLoading(false);
-        onsole.error("Error:", error.message);
+        console.error("Error:", error.message);
       }
     }
   };

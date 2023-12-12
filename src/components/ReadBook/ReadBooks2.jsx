@@ -118,6 +118,7 @@ export default function ReadBooks2({ setArrayBuffer }) {
 
       setArrayBuffer(pdfData);
 
+  
       // Send PDF data to the server
       const response = await fetch(
         `${BASE_URL}/api/users/updateBuffer/${user?.data?._id}`,
@@ -125,6 +126,7 @@ export default function ReadBooks2({ setArrayBuffer }) {
           method: "PUT",
           headers: {
             "Content-Type": "application/pdf",
+            
           },
           // body: pdfBuffer ? pdfBuffer: pdfData ,
           body: pdfData,
@@ -158,6 +160,7 @@ export default function ReadBooks2({ setArrayBuffer }) {
   // return <div id="pspdfkit1" style={{ width: "100%", height: "100vh" }} />;
   return (
     <>
+      
       <PdfViewerComponent
         setArrayBuffer={setArrayBuffer}
         blobPdf={user?.data?.pdfBuffer}
