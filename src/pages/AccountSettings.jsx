@@ -6,6 +6,7 @@ import Notification from "../components/AccountSettings/Notification";
 import ActivityGraph from "../components/AccountSettings/ActivityGraph";
 import PageHeading from "../components/Utils/PageHeading";
 import { AuthContext } from "../contexts/AuthProvider";
+import Coupon from "../components/Coupon/Coupon";
 
 const AccountSettings = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -17,6 +18,7 @@ const AccountSettings = () => {
         <div className="account">
           <AccountSetting user={user?.data} setUser={setUser} />
           <ProfileSetting />
+          <Coupon />
           {/* <Subscription /> */}
           {/* <Notification /> */}
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Subscription.css";
 import CompletePayment from "../components/Modals/CompletePayment";
@@ -18,8 +18,9 @@ import { STRIPE_PK } from "../config/confir";
 const Subscription = () => {
   const [modalShow, setModalShow] = useState(false);
   const [couponCode, setCouponCode] = useState("");
-  const [codeApplied, setCodeApplied] = useState(false);
+  const [codeApplied, setCodeApplied] = useState(null);
   const [wrongCouponCode, setWrongCouponCode] = useState(false);
+  const [couponInfo, setCouponInfo] = useState({});
   const navigate = useNavigate();
 
   const stripePromise = loadStripe(STRIPE_PK);
@@ -38,13 +39,25 @@ const Subscription = () => {
   };
 
   const handleApplyCouponCode = () => {
-    if (couponCode === "DAVID") {
-      setCodeApplied(true);
+    if (couponCode === couponInfo?.code) {
+      setCodeApplied(couponInfo?.discount);
       setWrongCouponCode(false);
     } else {
       setWrongCouponCode(true);
     }
   };
+
+  const getCouponCode = async () => {
+    const response = await getCoupon();
+
+    if (response.success) {
+      setCouponInfo(response?.coupon[0]);
+    }
+  };
+
+  useEffect(() => {
+    getCouponCode();
+  }, []);
 
   return (
     <>

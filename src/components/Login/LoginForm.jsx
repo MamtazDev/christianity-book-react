@@ -60,11 +60,11 @@ const LoginForm = () => {
     try {
       const response = await userLogin(data);
       if (response?.status === 200) {
-        await addNotifications({
-          title: "User LoggedIn",
-          content: "User Logged in successfully",
-          userId: response?.user?._id,
-        });
+        // await addNotifications({
+        //   title: "User LoggedIn",
+        //   content: "User Logged in successfully",
+        //   userId: response?.user?._id,
+        // });
         const loggedInUser = {
           data: response?.user,
           token: response?.accessTOken,
