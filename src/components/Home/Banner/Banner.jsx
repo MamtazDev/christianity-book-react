@@ -26,12 +26,15 @@ const Banner = () => {
               <h1>
                 Christianity is My Mental Disorder: A Client Guide to Recovery.
               </h1>
-              {couponInfo?.status && (
+              {couponInfo?.status ? (
                 <p>
                   "Obtain a Complimentary Copy Using a Free Promo Code:{" "}
                   {couponInfo?.code}”
                 </p>
+              ) : (
+                <p className="mt-5"></p>
               )}
+
               <Link to="/read-book">
                 Read Now <img src={rightArrow} alt="" />
               </Link>

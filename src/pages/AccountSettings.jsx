@@ -18,7 +18,7 @@ const AccountSettings = () => {
         <div className="account">
           <AccountSetting user={user?.data} setUser={setUser} />
           <ProfileSetting />
-          <Coupon />
+          {user?.data?.role === "admin" && <Coupon />}
           {/* <Subscription /> */}
           {/* <Notification /> */}
         </div>

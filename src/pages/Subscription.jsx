@@ -12,6 +12,7 @@ import Payment from "../components/Payment/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { STRIPE_PK } from "../config/confir";
+import { getCoupon } from "../api/coupon";
 
 // import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 
@@ -37,6 +38,8 @@ const Subscription = () => {
   const handleCoupnChange = (e) => {
     setCouponCode(e.target.value);
   };
+
+  console.log(couponInfo, "dfjk");
 
   const handleApplyCouponCode = () => {
     if (couponCode === couponInfo?.code) {
