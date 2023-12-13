@@ -8,13 +8,19 @@ const Coupon = () => {
   const [loading, setLoading] = useState(false);
 
   const [couponInfo, setCouponInfo] = useState({});
+
+  console.log(couponInfo, "gg");
   const [isActive, setIsactive] = useState(false);
 
   const getCouponCode = async () => {
     const response = await getCoupon();
 
     if (response.success) {
-      setCouponInfo(response?.coupon[0]);
+      const newData = {
+        ...response?.coupon[0],
+        discount: response?.coupon[0]?.discount * 100,
+      };
+      setCouponInfo(newData);
       setIsactive(response?.coupon[0]?.status);
     }
   };
@@ -108,7 +114,7 @@ const Coupon = () => {
               max="90"
               onChange={handleInputChange}
               placeholder="Enter discount percentage"
-              value={couponInfo?.discount * 100}
+              value={couponInfo?.discount}
               required
             />
           </div>

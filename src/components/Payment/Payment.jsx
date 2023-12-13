@@ -402,7 +402,9 @@ function Payment({ codeApplied }) {
             </>
           )}
 
-          {paymentOption === "paypal" && <PaypalButton />}
+          {paymentOption === "paypal" && (
+            <PaypalButton codeApplied={codeApplied} />
+          )}
         </form>
       </div>
 

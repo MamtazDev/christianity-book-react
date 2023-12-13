@@ -39,7 +39,7 @@ const Subscription = () => {
     setCouponCode(e.target.value);
   };
 
-  console.log(couponInfo, "dfjk");
+  // console.log(couponInfo, "dfjk");
 
   const handleApplyCouponCode = () => {
     if (couponCode === couponInfo?.code) {

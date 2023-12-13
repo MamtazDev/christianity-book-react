@@ -9,8 +9,12 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { PAYPAL_CLIENT_ID } from "../../config/confir";
 
-const PaypalButton = () => {
+const PaypalButton = ({ codeApplied }) => {
   const { user, setUser } = useContext(AuthContext);
+
+  const amount = codeApplied
+    ? `${(20 - 20 * codeApplied).toFixed(2)}`
+    : "20.00";
 
   const navigate = useNavigate();
 
@@ -51,7 +55,7 @@ const PaypalButton = () => {
             purchase_units: [
               {
                 amount: {
-                  value: "20.00",
+                  value: amount,
                 },
               },
             ],
