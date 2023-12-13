@@ -95,7 +95,7 @@ function Payment({ codeApplied }) {
     // const clientSecret = "";
 
     const clientSecret = await createPaymentIntent(
-      codeApplied ? 2000 - 2000 * 0.1 : 2000,
+      codeApplied ? 2000 - 2000 * codeApplied : 2000,
       "usd"
     );
 
@@ -402,7 +402,9 @@ function Payment({ codeApplied }) {
             </>
           )}
 
-          {paymentOption === "paypal" && <PaypalButton />}
+          {paymentOption === "paypal" && (
+            <PaypalButton codeApplied={codeApplied} />
+          )}
         </form>
       </div>
 

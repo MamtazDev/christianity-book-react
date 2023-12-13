@@ -100,8 +100,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element:    <PrivateRoute> <Contact /></PrivateRoute>
-},
+        // element:    <PrivateRoute> <Contact /></PrivateRoute>
+        element: (
+          // <PrivateRoute>
+          //   {" "}
+          <Contact />
+          // </PrivateRoute>
+        ),
+      },
       // {
       //   path: "/contact",
       //   element: (

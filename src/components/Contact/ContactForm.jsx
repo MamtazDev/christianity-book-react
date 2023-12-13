@@ -101,9 +101,9 @@ const ContactForm = () => {
               <input
                 className="w-100"
                 type="text"
-                placeholder="John Duo"
+                placeholder="Enter your name"
                 name="fullName"
-                value={user?.data?.fullName}
+                // value={user?.data?.fullName}
                 required
               />
             </div>
@@ -112,10 +112,10 @@ const ContactForm = () => {
               <input
                 className="w-100"
                 type="email"
-                placeholder="johnduo@gmail.com"
+                placeholder="Enter your email"
                 name="emailAddress"
-                value={user?.data?.email}
-                readOnly
+                // value={user?.data?.email}
+                required
               />
             </div>
           </div>
@@ -125,21 +125,21 @@ const ContactForm = () => {
               <input
                 className="w-100"
                 type="text"
-                placeholder="United Kingdom"
+                placeholder="Enter your country name"
                 name="country"
-                value={user?.data?.country}
+                // value={user?.data?.country}
                 required
               />
             </div>
             <div className="w-100">
               <label>Phone Number</label>
               <input
+                min="1"
                 className="w-100"
-                type="text"
-                placeholder="+1 123 456 789"
+                type="number"
+                placeholder="Enter your phone number"
                 name="phoneNumber"
-                value={user?.data?.phoneNumber}
-                required
+                // value={user?.data?.phoneNumber}
               />
             </div>
           </div>
@@ -148,10 +148,11 @@ const ContactForm = () => {
               Your message <span>*</span>
             </label>
             <textarea
-              className="w-100"
+              className="w-100 p-3"
               cols="30"
               rows="6"
               name="message"
+              placeholder="Enter your message"
               required
             ></textarea>
           </div>

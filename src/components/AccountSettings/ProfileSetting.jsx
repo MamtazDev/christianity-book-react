@@ -70,13 +70,13 @@ const ProfileSetting = () => {
   }, [user]);
   return (
     <div>
-      <div className="mb_40">
-        <h3>Profile Settings</h3>
-        <p>
-          Here you can change your profile data you use on
-          <span> Christianity Book</span>.
-        </p>
-      </div>
+        <div className="mb_40">
+          <h3>Profile Settings</h3>
+          <p>
+            Here you can change your profile data you use on
+            <span> Christianity Book</span>.
+          </p>
+        </div>
       <form onSubmit={handleSubmit} className="profileSetting mb_40">
         <div className="d-flex justify-content-start flex-wrap align-items-end acount_gap mb-5">
           <div className="inputContainer1">
