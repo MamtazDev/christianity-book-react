@@ -11,26 +11,32 @@ export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
 
+  console.log('props',props)
 
   const [audioSrc, setAudioSrc] = useState('');
-  const [audios,setAudios] = useState([]);
+
 
   const { user } = useContext(AuthContext);
 
   const AudioFetch = async (filename)=>{
       setAudioSrc(`${BASE_URL}/api/audio?filename=${filename}`)
   }
-  const getAllAudios = async ()=>{
-      fetch(`${BASE_URL}/api/get-file-path`)
-        .then(res=>res.json())
-          .then(data=>setAudios(data))
-  }
+
+  const [pageIndex,setPageIndex] = useState()
+
+  useEffect(()=>{
+    // console.log('asd',props.audios.includes(`${pageIndex}`))
+    if(props.audios.includes(`${pageIndex}`)){
+      AudioFetch(pageIndex)
+    }
+  },[pageIndex])
+
 
   useEffect(() => {
     AudioFetch(0)
-    getAllAudios()
   }, []);
 
+  
 
 
   useEffect(() => {
@@ -38,6 +44,7 @@ export default function PdfViewerComponent(props) {
     const container = containerRef.current;
     
     async function loadPSPDFKit() {
+
       try {
         // Ensure that there's only one PSPDFKit instance.
         if (instanceRef.current) {
@@ -330,22 +337,20 @@ export default function PdfViewerComponent(props) {
 
         instanceRef.current.setDocumentOutline(outline);
 
+       
+
         instanceRef.current.addEventListener("viewState.change", (viewState) => {
-            if(audios.includes(`${viewState.toJS().currentPageIndex}`)){
-              AudioFetch(viewState.toJS().currentPageIndex)
-            }
-          // console.log(viewState.toJS().currentPageIndex);
+           
+            setPageIndex(viewState.toJS().currentPageIndex)
+          console.log(viewState.toJS().currentPageIndex);
         });
-
-        // console.log(audios);
-
 
       } catch (error) {
         console.error("Error loading PSPDFKit:", error);
       }
     }
 
-     loadPSPDFKit() 
+  loadPSPDFKit() 
 
     // Cleanup
     return () => {

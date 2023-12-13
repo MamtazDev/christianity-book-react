@@ -1,17 +1,3 @@
-// import React from 'react';
-
-// const AudioPlayer = ({ src }) => {
-//     return (
-//         <div>
-//             <audio controls>
-//                 <source src={src} type="audio/mp3" />
-//                 Your browser does not support the audio element.
-//             </audio>
-//         </div>
-//     );
-// };
-
-// export default AudioPlayer;
 
 import React, { useEffect, useState } from 'react';
 
@@ -23,7 +9,6 @@ const AudioPlayer = ({ src }) => {
         audio.src = src;
         audio.addEventListener('loadeddata', () => {
             setIsPlaying(false);
-            // Audio is loaded and can be played
         });
 
         return () => {
@@ -41,9 +26,12 @@ const AudioPlayer = ({ src }) => {
     };
 
     return (
-        <div>
-            <button onClick={togglePlay}>{isPlaying ? 'Pause' : 'Play'}</button>
-        </div>
+        <div id="player-container" className='text-end mb-3'>
+            <button className="btn btn-outline" onClick={togglePlay}>
+
+        <div id="play-pause"  class={isPlaying ? 'pause' : 'play'}></div>
+            </button>
+    </div>
     );
 };
 

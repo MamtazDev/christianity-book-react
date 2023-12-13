@@ -7,12 +7,13 @@ import PdfViewerComponent from "./PdfViewerComponent";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 
-export default function ReadBooks2() {
+export default function ReadBooks2({audios}) {
   const { user } = useContext(AuthContext);
   return (
     <>
       <PdfViewerComponent
         document={pdfBooks}
+        audios={audios}
       />
     </>
   );
