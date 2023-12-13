@@ -68,7 +68,7 @@ const ResetVerificationForm = () => {
                 className="text_clr_primary"
                 style={{ fontSize: "18px", fontWeight: 700 }}
               >
-                johnduo@gmail.com
+                {resetPasswordInfo?.email}
               </p>
             </div>
 

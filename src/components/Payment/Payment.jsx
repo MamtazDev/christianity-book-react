@@ -28,6 +28,7 @@ import { getCountryCode } from "../../utils/countryCodes";
 import Paypal from "./Paypal";
 import PaypalButton from "./PaypalButton";
 import { STRIPE_SK } from "../../config/confir";
+import Swal from "sweetalert2";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -85,7 +86,7 @@ function Payment({ codeApplied }) {
       subscriptionName: "Monthly",
     };
 
-    console.log(userData, "usss");
+    // console.log(userData, "usss");
 
     // const SubscriptionRes = await createSubscrption(userData);
 
@@ -94,7 +95,7 @@ function Payment({ codeApplied }) {
     // const clientSecret = "";
 
     const clientSecret = await createPaymentIntent(
-      codeApplied ? 2000-2000*0.1 : 2000,
+      codeApplied ? 2000 - 2000 * 0.1 : 2000,
       "usd"
     );
 
@@ -125,11 +126,19 @@ function Payment({ codeApplied }) {
       }
     );
 
-    console.log(paymentIntent, "pppp");
+    // console.log(paymentIntent, "pppp");
 
     if (error) {
       //   setError(error?.message);
       console.error("error", error);
+
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `${error?.message}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       setIsSubscribing(false);
       //   setIsProcessing(false);
       // Handle error: Show error to the user
@@ -177,7 +186,7 @@ function Payment({ codeApplied }) {
     setPaymentOption(option);
   };
 
-  console.log(import.meta.env.VITE_PAYPAL_CLIENT_ID, "jkkj");
+  // console.log(import.meta.env.VITE_PAYPAL_CLIENT_ID, "jkkj");
 
   return (
     <>
@@ -187,8 +196,13 @@ function Payment({ codeApplied }) {
             action=""
             className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5"
           >
-            <div className="payment_parent">
-              <label htmlFor="creditCard" className="d-flex align-items-center">
+            <div className="payment_parent" style={{ cursor: "pointer" }}>
+              <label
+                htmlFor="creditCard"
+                className="d-flex align-items-center"
+                style={{ cursor: "pointer" }}
+              >
+                {/*  */}
                 <input
                   type="radio"
                   id="creditCard"
@@ -196,6 +210,7 @@ function Payment({ codeApplied }) {
                   className=" payment_method_radio "
                   checked={paymentOption === "creditCard"}
                   onChange={() => handlePaymentOption("creditCard")}
+                  style={{ cursor: "pointer" }}
                 />
                 <div className="payment_div">
                   <h4>Credit Card</h4>
@@ -211,7 +226,11 @@ function Payment({ codeApplied }) {
             </div>
 
             <div className="payment_parent">
-              <label htmlFor="paypal" className="d-flex align-items-center">
+              <label
+                htmlFor="paypal"
+                className="d-flex align-items-center"
+                style={{ cursor: "pointer" }}
+              >
                 <input
                   type="radio"
                   id="paypal"
@@ -219,6 +238,7 @@ function Payment({ codeApplied }) {
                   className=" payment_method_radio"
                   checked={paymentOption === "paypal"}
                   onChange={() => handlePaymentOption("paypal")}
+                  style={{ cursor: "pointer" }}
                 />
                 <div className="payment_div">
                   <h4>Paypal</h4>

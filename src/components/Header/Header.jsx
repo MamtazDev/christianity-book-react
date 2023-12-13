@@ -4,7 +4,7 @@ import UserProfileMenu from "./UserProfileMenu ";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
-  const { user, allNotifications, setAllNotifications } =
+  const { user, allNotifications, setAllNotifications, setUser } =
     useContext(AuthContext);
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -96,13 +96,14 @@ const Header = () => {
               {user ? (
                 <UserProfileMenu
                   user={user}
+                  setUser={setUser}
                   allNotifications={allNotifications}
                   setAllNotifications={setAllNotifications}
                 />
               ) : (
                 // <p>No User data</p>
                 <div className="d-flex gap-3 header_1">
-                  <Link className="dark_btn" to="/signup">
+                  <Link className="dark_btn text-white" to="/signup">
                     Sign Up
                   </Link>
                   <Link className="light_btn" to="/login">
