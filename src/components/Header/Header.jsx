@@ -78,18 +78,20 @@ const Header = () => {
                   className={({ isActive }) =>
                     isActive ? " nav-link menu active__hov" : "nav-link"
                   }
+                  to="/investors"
+                >
+                  Investors
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
                   to="/contact"
                 >
                   Contact Me
                 </Link>
-                {/* <a
-                  className={({ isActive }) =>
-                    isActive ? " nav-link menu active__hov" : "nav-link"
-                  }
-                  href="/contact"
-                >
-                  Contact Me
-                </a> */}
               </li>
             </ul>
             <div className="ms-auto">

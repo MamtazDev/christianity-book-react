@@ -22,6 +22,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import LoginRoute from "./LoginRoute";
 import EditProfile from "../pages/EditProfile";
 import SubscriptionRoute from "./SubscriptionRoute";
+import Investors from "../pages/Investors";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
       {
         path: "/faq",
         element: <Faq />,
+      },
+      {
+        path: "/investors",
+        element: <Investors />,
       },
       {
         path: "/contact",
