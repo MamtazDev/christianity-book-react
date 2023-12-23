@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Subscription.css";
 import CompletePayment from "../components/Modals/CompletePayment";
-import p1 from "../assets/images/p1.png";
-import p2 from "../assets/images/p2.png";
-import p3 from "../assets/images/p3.png";
-import p4 from "../assets/images/p4.png";
+
+import { AuthContext } from "../contexts/AuthProvider";
 
 import Payment from "../components/Payment/Payment";
 
@@ -26,14 +24,7 @@ const Subscription = () => {
 
   const stripePromise = loadStripe(STRIPE_PK);
 
-  const handleCompletePayment = () => {
-    alert("Data send");
-    // setModalShow(true)
-    // setTimeout(() => {
-    //   navigate("/");
-    //   window.location.reload();
-    // }, 1000);
-  };
+  const { user, setUser, bookId, book } = useContext(AuthContext);
 
   const handleCoupnChange = (e) => {
     setCouponCode(e.target.value);
@@ -71,7 +62,7 @@ const Subscription = () => {
         <h3>Subscription!</h3>
         <p>
           Please consider subscribing to gain access to the online book reading
-          and Q&A forum for just $9.99.
+          and Q&A forum for just ${book?.price}.
         </p>
         <small>Note: All subscriptions and fees are nonrefundable</small>
         <h4>

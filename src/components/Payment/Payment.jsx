@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Stripe from "stripe";
@@ -29,6 +29,7 @@ import Paypal from "./Paypal";
 import PaypalButton from "./PaypalButton";
 import { STRIPE_SK } from "../../config/confir";
 import Swal from "sweetalert2";
+import { purchaseBook } from "../../api/books";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -53,7 +54,7 @@ const CARD_OPTIONS = {
 
 function Payment({ codeApplied }) {
   const [modalShow, setModalShow] = useState(false);
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, bookId, book } = useContext(AuthContext);
   const [isSubscribing, setIsSubscribing] = useState(false);
   const navigate = useNavigate();
 
@@ -95,8 +96,8 @@ function Payment({ codeApplied }) {
     // const clientSecret = "";
 
     const clientSecret = await createPaymentIntent(
-      codeApplied ? 2000 - 2000 * codeApplied : 2000,
-      "usd"
+      codeApplied ? book?.price - book?.price * codeApplied : 9.99,
+      "usd",
     );
 
     const cardElement = elements.getElement(CardNumberElement);
@@ -123,7 +124,7 @@ function Payment({ codeApplied }) {
             },
           },
         },
-      }
+      },
     );
 
     // console.log(paymentIntent, "pppp");
@@ -155,9 +156,21 @@ function Payment({ codeApplied }) {
       //   creditButtonRef.current.click();
 
       //   setError("");
+
+      const purchaseRes = await purchaseBook({
+        user_id: user?.data?._id,
+        book_id: bookId,
+      });
+
+      // console.log(purchaseRes, "purchaseRes");
+
       const response = await updateSubscriptionInfo(user?.data?._id);
       const localUserData = JSON.parse(localStorage.getItem("loggedInUser"));
-      const newData = { ...localUserData?.data, isSubscribed: true };
+      const newData = {
+        ...localUserData?.data,
+        isSubscribed: true,
+        purchased_books: purchaseRes?.data?.purchased_books,
+      };
       const newLocalUserData = {
         ...localUserData,
         data: newData,
@@ -187,6 +200,13 @@ function Payment({ codeApplied }) {
   };
 
   // console.log(import.meta.env.VITE_PAYPAL_CLIENT_ID, "jkkj");
+  console.log(bookId, "bbbokid");
+
+  useEffect(() => {
+    if (!bookId) {
+      navigate("/");
+    }
+  }, [bookId]);
 
   return (
     <>

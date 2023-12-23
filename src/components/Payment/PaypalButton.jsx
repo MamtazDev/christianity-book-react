@@ -8,20 +8,32 @@ import { addNotifications } from "../../api/notifications";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { PAYPAL_CLIENT_ID } from "../../config/confir";
+import { purchaseBook } from "../../api/books";
 
 const PaypalButton = ({ codeApplied }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, bookId, book } = useContext(AuthContext);
 
   const amount = codeApplied
-    ? `${(20 - 20 * codeApplied).toFixed(2)}`
-    : "20.00";
+    ? `${(book?.price - book?.price * codeApplied).toFixed(2)}`
+    : 9.99;
 
   const navigate = useNavigate();
 
   const handleCompletePayment = async () => {
+    const purchaseRes = await purchaseBook({
+      user_id: user?.data?._id,
+      book_id: bookId,
+    });
+
+    // console.log(purchaseRes, "purchaseRes");
+
     const response = await updateSubscriptionInfo(user?.data?._id);
     const localUserData = JSON.parse(localStorage.getItem("loggedInUser"));
-    const newData = { ...localUserData?.data, isSubscribed: true };
+    const newData = {
+      ...localUserData?.data,
+      isSubscribed: true,
+      purchased_books: purchaseRes?.data?.purchased_books,
+    };
     const newLocalUserData = {
       ...localUserData,
       data: newData,

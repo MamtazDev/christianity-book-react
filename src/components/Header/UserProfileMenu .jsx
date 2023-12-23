@@ -404,6 +404,12 @@ const UserProfileMenu = ({
                   <img src={notes} alt="Notes" />
                   <Link to="/my-notes">My Notes</Link>
                 </div> */}
+                {user?.data?.role === "admin" && (
+                  <div className="accSettings d-flex align-items-center gap-3">
+                    <img src={faq} alt="Admin" />
+                    <Link to="/admins/upload-books">Admins</Link>
+                  </div>
+                )}
                 <div className="accSettings d-flex align-items-center gap-3">
                   <img src={faq} alt="FAQ" />
                   <Link to="/faq">FAQ’s</Link>

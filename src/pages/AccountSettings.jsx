@@ -7,6 +7,7 @@ import ActivityGraph from "../components/AccountSettings/ActivityGraph";
 import PageHeading from "../components/Utils/PageHeading";
 import { AuthContext } from "../contexts/AuthProvider";
 import Coupon from "../components/Coupon/Coupon";
+import AsksHardCopy from "../components/AsksHardCopy/AsksHardCopy";
 
 const AccountSettings = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -19,6 +20,7 @@ const AccountSettings = () => {
           <AccountSetting user={user?.data} setUser={setUser} />
           <ProfileSetting />
           {user?.data?.role === "admin" && <Coupon />}
+          <AsksHardCopy />
           {/* <Subscription /> */}
           {/* <Notification /> */}
         </div>

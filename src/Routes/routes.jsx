@@ -23,7 +23,10 @@ import LoginRoute from "./LoginRoute";
 import EditProfile from "../pages/EditProfile";
 import SubscriptionRoute from "./SubscriptionRoute";
 import Investors from "../pages/Investors";
-
+import SidebarLayout from "../Layout/SidebarLayout";
+import UploadBooks from "../pages/UploadBooks";
+import AudioUpload from "../pages/AudioUpload";
+import Books from "../pages/Books";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -91,13 +94,32 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
   },
+
   {
     path: "/",
     element: <Layout />,
     children: [
       {
+        path: "/admins",
+        element: <SidebarLayout />,
+        children: [
+          {
+            path: "/admins/upload-books",
+            element: <UploadBooks />,
+          },
+          {
+            path: "/admins/audios",
+            element: <AudioUpload />,
+          },
+        ],
+      },
+      {
         path: "/faq",
         element: <Faq />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
       },
       {
         path: "/investors",
@@ -149,7 +171,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/read-book",
+        path: "/read-book/:id",
         element: (
           // <SubscriptionRoute>
           <ReadBook />

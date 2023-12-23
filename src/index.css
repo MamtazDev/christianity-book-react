@@ -40,6 +40,7 @@ a {
   --e0: #436dd036;
   /* --e0: #436dd0; */
 }
+
 /* :root {
   --primary: #423C6A;
   --black: #313131;
@@ -307,12 +308,10 @@ footer p {
 
 .lineBox {
   height: 2px;
-  background: linear-gradient(
-    270deg,
-    rgba(66, 60, 106, 0) 12.69%,
-    #423c6a 50.52%,
-    rgba(66, 60, 106, 0) 86.34%
-  );
+  background: linear-gradient(270deg,
+      rgba(66, 60, 106, 0) 12.69%,
+      #423c6a 50.52%,
+      rgba(66, 60, 106, 0) 86.34%);
   width: 100%;
 }
 
@@ -479,14 +478,11 @@ h1 {
 
 /* Contact Page End */
 
-@media only screen and (min-width: 1440px) {
-}
+@media only screen and (min-width: 1440px) {}
 
-@media only screen and (max-width: 1024px) {
-}
+@media only screen and (max-width: 1024px) {}
 
-@media only screen and (max-width: 992px) {
-}
+@media only screen and (max-width: 992px) {}
 
 @media only screen and (max-width: 768px) {
   .sub_header {
@@ -547,11 +543,9 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 425px) {
-}
+@media only screen and (max-width: 425px) {}
 
-@media only screen and (max-width: 320px) {
-}
+@media only screen and (max-width: 320px) {}
 
 .card_input {
   border-bottom: 2px solid #c2c9d1;
@@ -564,4 +558,10 @@ h1 {
 .header_container a {
   color: #000000;
   font-weight: 700;
+}
+
+.pdf-div {
+  overflow-y: scroll;
+  max-height: 500px;
+  
 }

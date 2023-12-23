@@ -35,7 +35,7 @@ const Banner = () => {
                 <p className="mt-5"></p>
               )}
 
-              <Link to="/read-book">
+              <Link to="/books">
                 Read Now <img src={rightArrow} alt="" />
               </Link>
             </div>

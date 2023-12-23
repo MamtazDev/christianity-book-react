@@ -8,50 +8,43 @@ import { AuthContext } from "../contexts/AuthProvider";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../config/confir";
 
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 const ReadBook = () => {
   const [document, setDocument] = useState("document.pdf");
+  const { id } = useParams();
 
-  const { user } = useContext(AuthContext);
+  const { user, bookId, setBookId } = useContext(AuthContext);
   const [authChecked, setAuthChecked] = useState();
   const [subsCribed, setSubscribed] = useState(false);
+  const [allFiles, setAllFiles] = useState(null);
 
   const navigate = useNavigate();
 
-const [audios, setAudios]= useState([]);
 
-  const getAllAudios = async ()=>{
-    fetch(`${BASE_URL}/api/get-file-path`)
-      .then(res=>res.json())
-        .then(data=>setAudios(data))
-}
-
-useEffect(()=>{
-  getAllAudios()
-},[])
-
-
-
-  const handleOpen = () => setDocument("another-example.pdf");
-  // const handleOpenAnother = () => setDocument("document.pdf");
-
-  const handleFileChange = (event) => {
-    setDocument(URL.createObjectURL(event.target.files[0]));
+  const filterBookHandler = async (id) => {
+    const result = await axios.get(`${BASE_URL}/api/books/getFilesById/${id}`);
+    setAllFiles(result.data.data);
   };
+
+  useEffect(() => {
+    filterBookHandler(id);
+  }, [id]);
+
 
   const [arrayBuffer, setArrayBuffer] = useState(null);
 
   useEffect(() => {
-    console.log("ArrayBuffer:", arrayBuffer);
+    let isPurchased = user?.data?.purchased_books.find((obj) => obj._id === id);
 
-    if (user?.data?.isSubscribed === true) {
-      setSubscribed(true);
-    } else {
+    if (!isPurchased) {
+      setBookId(id);
       navigate("/subscription");
     }
 
     setAuthChecked(true);
   }, [user, arrayBuffer]);
-  
 
   return authChecked ? (
     <>
@@ -63,13 +56,12 @@ useEffect(()=>{
             <br className="d-none d-lg-block" />
             Guide to Recovery.
           </h3>
-          {/* <ReadBooks /> */}
 
-          <ReadBooks2 setArrayBuffer={setArrayBuffer} audios={audios}/>
-
-          {/* <ReadBooks3 arrayBuffer={arrayBuffer} /> */}
+          <ReadBooks2
+            audios={audios}
+            allFiles={allFiles}
+          />
         </div>
-        {/* <Pagination /> */}
       </div>
     </>
   ) : (

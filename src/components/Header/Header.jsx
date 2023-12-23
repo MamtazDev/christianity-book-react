@@ -63,15 +63,6 @@ const Header = () => {
                 >
                   Home
                 </Link>
-                {/* <a
-                  className={({ isActive }) =>
-                    isActive ? " nav-link menu active__hov" : "nav-link"
-                  }
-                  aria-current="page"
-                  href="/"
-                >
-                  Home
-                </a> */}
               </li>
               <li className="nav-item">
                 <Link
@@ -81,6 +72,16 @@ const Header = () => {
                   to="/investors"
                 >
                   Investors
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
+                  to="/books"
+                >
+                  Books
                 </Link>
               </li>
               <li className="nav-item">
