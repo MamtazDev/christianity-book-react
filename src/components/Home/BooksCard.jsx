@@ -24,8 +24,8 @@ const BooksCard = ({ title, price, coverPic, id, item }) => {
             src={`${BASE_URL}/files/${coverPic}`}
             alt={`${title}`}
           />
-          <span>{title}</span>
-          <p>Price: {price ?? 9.99}</p>
+          <span style={{ fontSize: 14 }}>{title}</span>
+          <p style={{ fontSize: 13 }}>Price: {price ?? 9.99}</p>
         </div>
       </button>
     </div>

@@ -22,6 +22,13 @@ const ReadBook = () => {
 
   const navigate = useNavigate();
 
+  const [audios, setAudios] = useState([]);
+
+  const getAllAudios = async () => {
+    fetch(`${BASE_URL}/api/get-file-path`)
+      .then((res) => res.json())
+      .then((data) => setAudios(data));
+  };
 
   const filterBookHandler = async (id) => {
     const result = await axios.get(`${BASE_URL}/api/books/getFilesById/${id}`);
@@ -29,15 +36,24 @@ const ReadBook = () => {
   };
 
   useEffect(() => {
+    getAllAudios();
     filterBookHandler(id);
   }, [id]);
 
+  // console.log("all allFiles", allFiles);
+
+  const handleOpen = () => setDocument("another-example.pdf");
+  // const handleOpenAnother = () => setDocument("document.pdf");
+
+  const handleFileChange = (event) => {
+    setDocument(URL.createObjectURL(event.target.files[0]));
+  };
 
   const [arrayBuffer, setArrayBuffer] = useState(null);
 
   useEffect(() => {
+    console.log("ArrayBuffer:", arrayBuffer);
     let isPurchased = user?.data?.purchased_books.find((obj) => obj._id === id);
-
     if (!isPurchased) {
       setBookId(id);
       navigate("/subscription");
@@ -58,6 +74,7 @@ const ReadBook = () => {
           </h3>
 
           <ReadBooks2
+            setArrayBuffer={setArrayBuffer}
             audios={audios}
             allFiles={allFiles}
           />
