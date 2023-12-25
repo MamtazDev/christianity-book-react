@@ -142,9 +142,9 @@ h2 span {
   font-weight: 700 !important;
 }
 
-footer {
+/* footer {
   background: var(--e0);
-}
+} */
 
 :focus-visible {
   outline: none;
@@ -328,13 +328,13 @@ footer article p {
 
 /* Banner Section Start */
 .banner {
-  background-image: url("../src/assets/images/banner_bg.png");
+  /* background-image: url("../src/assets/images/banner_bg.png"); */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 120px 0;
+  padding: 50px 0;
   position: relative;
-  background: var(--e0);
+  /* background: var(--e0); */
 }
 
 .banner span {

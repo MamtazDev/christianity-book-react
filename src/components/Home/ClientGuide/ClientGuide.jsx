@@ -10,8 +10,8 @@ const ClientGuide = () => {
           <div className="container">
             <div className="clientGuideInner d-flex justify-content-between align-items-center">
               <div>
-                <h3>Christianity is My Mental Disorder:</h3>
-                <h3> A Client Guide to Recovery.</h3>
+                <h3>Checkout Our Bookstore:</h3>
+                {/* <h3> A Client Guide to Recovery.</h3> */}
               </div>
               <Link to="/books" className="d-flex align-items-center gap-1">
                 Read Now <img src={rightArrow} alt="Arrow" />

@@ -19,6 +19,7 @@ p {
 
 body {
     font-family: 'Raleway', sans-serif;
+    background: #B7C8ED;
 }
 
 ul {
@@ -196,9 +197,9 @@ h2 .txt_curve1 {
     color: var(--primary)
 }
 
-footer {
+/* footer {
     background: var(--e0);
-}
+} */
 
 :focus-visible {
     outline: none;
