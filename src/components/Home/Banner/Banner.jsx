@@ -29,7 +29,8 @@ const Banner = ({ book }) => {
                 className="mb-5"
                 style={{ maxHeight: 500, overflowY: "scroll" }}
               >
-                Mencius said, “Truth uttered before its time is always
+                {book?.description }
+                {/* Mencius said, “Truth uttered before its time is always
                 dangerous.” It is time for us to have a safe and truthful
                 conversation about the religious trauma and mental chaos caused
                 by Christianity. Does Christianity cause mental disorder? Is
@@ -70,7 +71,7 @@ const Banner = ({ book }) => {
                 consult your therapist regarding use of the practices in this
                 book. Your shrink may love this book, hate it, or be
                 indifferent. Always do what is best for you, your family, and
-                your world.
+                your world. */}
               </p>
               {/* {couponInfo?.status ? (
                 <p>
