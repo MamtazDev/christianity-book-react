@@ -53,16 +53,19 @@ export default function Books() {
             </select>
           </div>
           <div className="row p-0 ">
-            {allBooks?.map((item) => (
-              <BooksCard
-                key={item._id}
-                title={item.title}
-                coverPic={item.coverPic}
-                price={item.price}
-                id={item._id}
-                item={item}
-              />
-            ))}
+            {allBooks?.map(
+              (item) =>
+                item.price != 0 && (
+                  <BooksCard
+                    key={item._id}
+                    title={item.title}
+                    coverPic={item.coverPic}
+                    price={item.price}
+                    id={item._id}
+                    item={item}
+                  />
+                ),
+            )}
           </div>
         </div>
       </div>

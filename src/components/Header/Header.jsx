@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserProfileMenu from "./UserProfileMenu ";
 import { AuthContext } from "../../contexts/AuthProvider";
+import logo from "../../assets/images/logo.jpeg";
 
 const Header = () => {
   const { user, allNotifications, setAllNotifications, setUser } =
@@ -36,7 +37,7 @@ const Header = () => {
             Your Logo
           </a> */}
           <Link className="navbar-brand" to="/">
-            Your Logo
+            <img style={{ maxHeight: 50 }} src={logo} alt="" />
           </Link>
           <button
             className="navbar-toggler"
@@ -64,16 +65,7 @@ const Header = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className={({ isActive }) =>
-                    isActive ? " nav-link menu active__hov" : "nav-link"
-                  }
-                  to="/investors"
-                >
-                  Investors
-                </Link>
-              </li>
+
               <li className="nav-item">
                 <Link
                   className={({ isActive }) =>
@@ -91,7 +83,17 @@ const Header = () => {
                   }
                   to="/contact"
                 >
-                  Contact Me
+                  Contact
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={({ isActive }) =>
+                    isActive ? " nav-link menu active__hov" : "nav-link"
+                  }
+                  to="/investors"
+                >
+                  Investors
                 </Link>
               </li>
             </ul>

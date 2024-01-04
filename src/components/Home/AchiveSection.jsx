@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import mentalStability from "../../assets/images/mental_stability.png";
 import experience from "../../assets/images/experience.png";
 import motivation from "../../assets/images/motivation.png";
 import AchiveCard from "./AchiveCard";
+import { BASE_URL } from "../../config/confir";
+import axios from "axios";
 
 const AchiveSection = () => {
   const datas = [
@@ -28,6 +30,18 @@ const AchiveSection = () => {
       image: motivation,
     },
   ];
+
+  const [allBooks, setAllBooks] = useState(null);
+
+  const getPdf = async () => {
+    const result = await axios.get(`${BASE_URL}/api/books/get-files`);
+    setAllBooks(result.data.data);
+  };
+
+  useEffect(() => {
+    getPdf();
+  }, []);
+
   return (
     <section className="achive mb_all">
       <div className="container">
@@ -38,17 +52,17 @@ const AchiveSection = () => {
           <h2>this Book?</h2>
         </div>
         <p className="mb_30 sub_header">
-          Lorem Ipsum is simply dummy text of the printing and <br /> typesetting
-          industry.
+          Lorem Ipsum is simply dummy text of the printing and <br />{" "}
+          typesetting industry.
         </p>
         <div>
           <div className="row p-0 ">
-            {datas.map((item) => (
+            {allBooks?.map((item) => (
               <AchiveCard
                 key={item.id}
                 title={item.title}
-                description={item.description}
-                image={item.image}
+                description={item.price}
+                image={item.coverPic}
               />
             ))}
           </div>
