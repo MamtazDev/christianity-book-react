@@ -168,7 +168,7 @@ function UploadBooks() {
           type="file"
           class="form-control"
           accept="image/png, image/gif, image/jpeg"
-          required
+      
           onChange={(e) => setEditInfo({...editInfo, coverPic:e.target.files[0]})}
         />
         <br />
@@ -210,7 +210,7 @@ function UploadBooks() {
           type="file"
           class="form-control"
           accept="application/pdf"
-          required
+
           onChange={(e) => setEditInfo({...editInfo, file:e.target.files[0]})}
           
         />
