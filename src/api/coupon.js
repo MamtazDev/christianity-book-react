@@ -11,7 +11,7 @@ export const createCoupon = async (data) => {
   return res.json();
 };
 
-export const getCoupon = async () => {
+export const getCoupons = async () => {
   const res = await fetch(`${BASE_URL}/api/coupon/`);
   return res.json();
 };
@@ -26,3 +26,15 @@ export const editCoupon = async (data) => {
   });
   return res.json();
 };
+
+export const deleteCoupon = async(id)=>{
+  const res = await fetch(`${BASE_URL}/api/coupon/delete/${id}`,{
+    method:"DELETE"
+  })
+  return res.json();
+}
+
+export const getBookCouponInfo = async(id)=>{
+  const res = await fetch(`${BASE_URL}/api/coupon/bookInfo/${id}`);
+  return res.json();
+}

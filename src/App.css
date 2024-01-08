@@ -869,6 +869,22 @@ h2 .txt_curve1 {
     display: block;
 }
 
+.modalInputContainer{
+    width: 100%;
+    /* display: block; */
+}
+.modalInputContainer label{
+   font-size: 18px;
+   font-weight: 500;
+}
+
+.modalInputContainer input{
+    width: 100%;
+    border: 1px solid rgb(156, 154, 154);
+    padding: 10px;
+    border-radius: 8px;
+}
+
 .changeEmail input,
 .changePassword input,
 .profileSetting input,

@@ -3,20 +3,22 @@ import banner from "../../../assets/images/banner.png";
 import rightArrow from "../../../assets/images/right_arrow.png";
 import { Link } from "react-router-dom";
 import "./Banner.css";
-import { getCoupon } from "../../../api/coupon";
-import { BASE_URL } from "../../../config/confir";
-const Banner = ({ book }) => {
-  const [couponInfo, setCouponInfo] = useState(null);
 
-  const getCouponCode = async () => {
-    const response = await getCoupon();
-    if (response.success) {
-      setCouponInfo(response?.coupon[0]);
-    }
-  };
-  useEffect(() => {
-    getCouponCode();
-  }, []);
+import { BASE_URL } from "../../../config/confir";
+import { getBookCouponInfo } from "../../../api/coupon";
+const Banner = ({ book }) => {
+
+  const [couponCode,setCouponCode]=useState(null)
+
+  const getBookCoupon = async()=>{
+    const res = await getBookCouponInfo(book?._id)
+    setCouponCode(res)
+  }
+
+  useEffect(()=>{
+    getBookCoupon()
+  },[book])
+
   return (
     <section>
       <div className="banner mb_all">
@@ -24,6 +26,7 @@ const Banner = ({ book }) => {
           <div className="row">
             <div className="col-12 col-lg-6 ">
               {/* <span>Let’s make the best Investment!</span> */}
+              {couponCode&& <span class="badge text-bg-info">{couponCode[0]?.status && couponCode[0]?.code}</span>}
               <h1>{book?.title}</h1>
               <p
                 className="mb-5"

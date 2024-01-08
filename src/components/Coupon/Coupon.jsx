@@ -1,27 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { createCoupon, editCoupon, getCoupon } from "../../api/coupon";
+import { createCoupon, deleteCoupon, editCoupon, getCoupons } from "../../api/coupon";
 import Swal from "sweetalert2";
+import AddCopunModal from "../Modals/AddCopunModal";
+import axios from "axios";
+import { BASE_URL } from "../../config/confir";
 
 const Coupon = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
   const [couponInfo, setCouponInfo] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  const [allBooks,setAllBooks]=useState([])
+  const [allCoupons,setAllCoupons]=useState([])
 
-  console.log(couponInfo, "gg");
+
+
   const [isActive, setIsactive] = useState(false);
 
-  const getCouponCode = async () => {
-    const response = await getCoupon();
-
-    if (response.success) {
-      const newData = {
-        ...response?.coupon[0],
-        discount: response?.coupon[0]?.discount * 100,
-      };
-      setCouponInfo(newData);
-      setIsactive(response?.coupon[0]?.status);
+  const getAllCoupons = async () => {
+    const response = await getCoupons();
+    if (response?.success) {
+      setAllCoupons(response?.coupon);
     }
   };
 
@@ -45,7 +46,7 @@ const Coupon = () => {
       if (couponInfo._id) {
         const response = await editCoupon({ code, discount, status, couponId });
         if (response) {
-          getCouponCode();
+          getAllCoupon();
           setLoading(false);
           Swal.fire({
             position: "center",
@@ -58,7 +59,7 @@ const Coupon = () => {
       } else {
         const response = await createCoupon({ code, discount, status });
         if (response) {
-          getCouponCode();
+          getAllCoupon();
           setLoading(false);
           Swal.fire({
             position: "center",
@@ -81,8 +82,55 @@ const Coupon = () => {
     }
   };
 
+  const getPdf = async () => {
+    const result = await axios.get(`${BASE_URL}/api/books/get-files`);
+    setAllBooks(result.data.data);
+  };
+
+  const handleDelete = async (id) => {
+    // console.log(id, "idd");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCoupon(id).then((res) => {
+          // console.log(res, "ress");
+          if (res?.status === 200) {
+            getAllCoupons()
+            Swal.fire({
+              title: "Deleted!",
+              text: "Coupon has been deleted.",
+              icon: "success",
+            });
+          
+          }
+        });
+      }
+    });
+
+    // if (window.confirm("Are you really want to delete?")) {
+    //   const response = await deleteBlog(id);
+    //   if (response?.data?.success) {
+    //     alert("Blog deleted successfully!");
+    //   }
+    // }
+  };
+
+  console.log(allCoupons,"allcoupons")
+
+  useEffect(()=>{
+    getPdf()
+  },[])
+
   useEffect(() => {
-    getCouponCode();
+    // getCouponCode();
+    getAllCoupons()
   }, []);
 
   return (
@@ -92,7 +140,53 @@ const Coupon = () => {
         <p>Here you can customize coupon code.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="profileSetting ">
+      <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Book</th>
+      <th scope="col">Coupon</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {allCoupons && allCoupons?.length>0 && allCoupons?.map((item,idx)=><tr key={idx}>
+      <th scope="row">{idx+1}</th>
+      <td>{item?.book?.title}</td>
+      <td>{item?.code}</td>
+      <td>{(item?.discount*100).toFixed(2)}%</td>
+      <td>{item?.status ?"Active":"Disabled"}</td>
+      <td>
+        <div style={{display:"flex", gap:"10px"}}>
+          <button className="btn btn-primary  btn-sm">Edit</button>
+          <button className="btn btn-danger  btn-sm" onClick={()=>handleDelete(item?._id)}>Delete</button>
+        </div>
+      </td>
+    </tr>) }
+    
+   
+  </tbody>
+</table>
+      <div className="profileSetting ">
+        <button type="button" className="mt-5" onClick={() => setModalShow(true)}>
+           Add Coupon
+          </button>
+          
+          </div>
+
+
+
+          <AddCopunModal show={modalShow}
+          setModalShow={setModalShow}
+          getAllCoupons={getAllCoupons}
+        onHide={() => setModalShow(false)} allBooks={allBooks}/>
+
+
+      
+
+      {/* <form onSubmit={handleSubmit} className="profileSetting ">
         <div className="d-flex justify-content-start flex-wrap align-items-end acount_gap mb-5">
           <div className="inputContainer1">
             <label>Code</label>
@@ -149,7 +243,7 @@ const Coupon = () => {
             {couponInfo?._id ? "Save Changes" : "Create Coupon"}
           </button>
         )}
-      </form>
+      </form> */}
     </div>
   );
 };

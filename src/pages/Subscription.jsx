@@ -10,7 +10,7 @@ import Payment from "../components/Payment/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { STRIPE_PK } from "../config/confir";
-import { getCoupon } from "../api/coupon";
+import { getCoupons } from "../api/coupon";
 
 // import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 
@@ -42,7 +42,7 @@ const Subscription = () => {
   };
 
   const getCouponCode = async () => {
-    const response = await getCoupon();
+    const response = await getCoupons();
 
     if (response.success) {
       setCouponInfo(response?.coupon[0]);

@@ -53,7 +53,7 @@ const ReadBook = () => {
 
   useEffect(() => {
     console.log("ArrayBuffer:", arrayBuffer);
-    let isPurchased = user?.data?.purchased_books.find((obj) => obj._id === id);
+    let isPurchased = user?.data?.purchased_books?.find((obj) => obj._id === id);
     if (!isPurchased) {
       setBookId(id);
       navigate("/subscription");

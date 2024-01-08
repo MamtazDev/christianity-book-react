@@ -3,6 +3,7 @@ import axios from "axios";
 import { pdfjs } from "react-pdf";
 import PdfComp from "../components/pdfComponents/pdfComp";
 import { BASE_URL } from "../config/confir";
+import EditPdfForm from "../components/pdfComponents/EditPdfForm";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url,
@@ -17,7 +18,10 @@ function UploadBooks() {
   const [allImage, setAllImage] = useState(null);
   const [pdfFile, setPdfFile] = useState(null);
 
-  const [isEditing,setIsEditing]=useState(false)
+  const [editing,setEditing]=useState(false)
+  const[uploading,setUploading]=useState(false)
+
+
   const [selectedBooks,setSelectedBook]=useState(null)
   const [editInfo ,setEditInfo]=useState({})
 
@@ -31,6 +35,8 @@ function UploadBooks() {
 
   const submitImage = async (e) => {
     e.preventDefault();
+
+    setUploading(true)
 
     const formData = new FormData();
     formData.append("title", title);
@@ -55,7 +61,11 @@ function UploadBooks() {
     setFile("");
     setCoverPic("");
     setDescription("");
+    setUploading(false)
     e.target.reset()
+    }
+    else{
+      setUploading(false) 
     }
   };
   const [show, setShow] = useState(false);
@@ -81,18 +91,14 @@ function UploadBooks() {
   const handleEditPdf = async(data)=>{
     // const response = await axios.patch(`${BASE_URL}/editBook/${data?._id}`)
 
-    setIsEditing(!isEditing)
-    if(selectedBooks){
-      setSelectedBook(null)
-    }
-    else{
       setSelectedBook(data)
-    }
+    
     // setEditInfo({...editInfo, coverPic:e.target.files[0]})
   }
 
   const handeSubmitEditPdf = async(e)=>{
     e.preventDefault();
+    setEditing(true)
     const formData = new FormData();
     Object.entries(editInfo).forEach(([key, value]) => {
       formData.append(key, value);
@@ -108,15 +114,21 @@ function UploadBooks() {
     if (result.data.status == "ok") {
       alert("Update Successfully!!!");
       getPdf();
-      setIsEditing(false)
+      setSelectedBook(null)
+      setShow(false)
+      setPdfFile(null)
+      setEditing(false)
+    }
+    else{
+      setEditing(false)
     }
 
   }
 
   return (
     <div className="App">
-     {!isEditing? <form className="formStyle" onSubmit={submitImage}>
-        <h4>Upload Pdf in React</h4>
+     {selectedBooks && pdfFile ?<EditPdfForm handeSubmitEditPdf={handeSubmitEditPdf} setEditInfo={setEditInfo} editInfo={editInfo} setSelectedBook={setSelectedBook} selectedBooks={selectedBooks} editing={editing}/>: <form className="formStyle" onSubmit={submitImage}>
+        <h4>Upload Pdf </h4>
         <br />
         <label htmlFor="CoverPic">Cover Image</label>
         <input
@@ -138,7 +150,7 @@ function UploadBooks() {
         />
         <br />
         <input
-          type="text"
+          type="text" 
           className="form-control"
           placeholder="Title"
           required
@@ -156,67 +168,8 @@ function UploadBooks() {
           onChange={(e) => setFile(e.target.files[0])}
         />
         <br />
-        <button class="btn btn-primary" type="submit">
-          Submit
-        </button>
-      </form>:<form className="formStyle" onSubmit={handeSubmitEditPdf}>
-        <h4>Edit Pdf </h4>
-        <br />
-        <label htmlFor="CoverPic">Cover Image</label>
-        <input
-          id="CoverPic"
-          type="file"
-          class="form-control"
-          accept="image/png, image/gif, image/jpeg"
-      
-          onChange={(e) => setEditInfo({...editInfo, coverPic:e.target.files[0]})}
-        />
-        <br />
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Price"
-          step="0.01"
-          required
-          value={isEditing&&selectedBooks?.price}
-          onChange={(e) => {
-            setSelectedBook({...selectedBooks,price:e.target.value})
-            setEditInfo({...editInfo, price:e.target.value})}}
-
-        />
-        <br />
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Title"
-          required
-          value={isEditing&&selectedBooks?.title}
-          onChange={(e) => {
-            setSelectedBook({...selectedBooks,title:e.target.value})
-            setEditInfo({...editInfo, title:e.target.value})}}
-        />
-        <textarea
-          value={isEditing&&selectedBooks?.description}
-           className="form-control mt-3" 
-            placeholder="Description"
-            onChange={(e) => {
-              setSelectedBook({...selectedBooks,description:e.target.value})
-              setEditInfo({...editInfo, description:e.target.value})}}
-             required></textarea>
-        <br />
-        <label htmlFor="uploadPDF">Upload PDF</label>
-        <input
-         
-          type="file"
-          class="form-control"
-          accept="application/pdf"
-
-          onChange={(e) => setEditInfo({...editInfo, file:e.target.files[0]})}
-          
-        />
-        <br />
-        <button class="btn btn-primary" type="submit">
-          Submit
+        <button class="btn btn-primary" type="submit" disabled={uploading}>
+         { uploading?"Uploading...":"Upload"}
         </button>
       </form>}
       <div className="uploaded mt-4 mb-2">
@@ -244,7 +197,7 @@ function UploadBooks() {
                           showPdf(data.pdf);
                           setShow(!show);
                           handleEditPdf(data)
-                          console.log(data,"pdfs")
+                         
                         }}
                         className="btn btn-outline-primary d-flex align-items-center flex-column"
                       >
