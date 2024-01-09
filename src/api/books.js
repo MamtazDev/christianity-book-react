@@ -20,3 +20,13 @@ export const asksHardCopy = async (data) => {
   });
   return res.json();
 };
+
+export const getBookInfo = async(bookId)=>{
+  const res = await fetch(`${BASE_URL}/api/books/getBookInfo/${bookId}`);
+  return res.json();
+}
+
+export const getUserRequests = async(userId)=>{
+  const res = await fetch(`${BASE_URL}/api/books/getUserRequest/${userId}`);
+  return res.json()
+}

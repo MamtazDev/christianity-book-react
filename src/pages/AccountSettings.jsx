@@ -20,7 +20,7 @@ const AccountSettings = () => {
           <AccountSetting user={user?.data} setUser={setUser} />
           <ProfileSetting />
           {user?.data?.role === "admin" && <Coupon />}
-          <AsksHardCopy />
+         { user?.data?.role !=="admin"&&<AsksHardCopy />}
           {/* <Subscription /> */}
           {/* <Notification /> */}
         </div>

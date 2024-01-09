@@ -52,7 +52,7 @@ const CARD_OPTIONS = {
   },
 };
 
-function Payment({ codeApplied }) {
+function Payment({ codeApplied,bookInfo }) {
   const [modalShow, setModalShow] = useState(false);
   const { user, setUser, bookId, book } = useContext(AuthContext);
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -96,7 +96,7 @@ function Payment({ codeApplied }) {
     // const clientSecret = "";
 
     const clientSecret = await createPaymentIntent(
-      codeApplied ? book?.price - book?.price * codeApplied : 9.99,
+      codeApplied ? bookInfo?.price - bookInfo?.price * codeApplied : bookInfo?.price,
       "usd",
     );
 

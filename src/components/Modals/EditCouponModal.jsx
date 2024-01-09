@@ -1,32 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { createCoupon } from '../../api/coupon';
+import { createCoupon, editCoupon } from '../../api/coupon';
 import Swal from 'sweetalert2';
 
-const AddCopunModal = ({getAllCoupons,allBooks,setModalShow,...props}) => {
+const EditCouponModal = ({getAllCoupons,allBooks,setModalShow,selectedCoupon,...props}) => {
 
-    const [isActive,setIsactive]=useState(false)
     const [loading,setLoading]=useState(false)
+    const [couponInfo,setCouponInfo]=useState({})
+    const [editInfo,setEditInfo]=useState({})
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
         setLoading(true);
-        const form = e.target;
-
-        const book = form.book.value;
-        const  code = form.code.value;
-        const discount = Number((form.discount.value / 100).toFixed(2));
-        const status = isActive;
-
+        
         const data = {
-            book,
-            code,
-            discount,
-            status
+            couponId:selectedCoupon?._id,
+            ...editInfo
         }
+     
 try {
     
-const response = await createCoupon(data)
+const response = await editCoupon(data)
 if (response) {
     getAllCoupons()
     setLoading(false);
@@ -34,7 +28,7 @@ if (response) {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Coupon created successful!",
+      title: "Coupon Updated successful!",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -54,6 +48,19 @@ finally{
 }
 
     }
+
+    
+
+
+    useEffect(()=>{
+const info = {
+book:selectedCoupon?.book?._id,
+code:selectedCoupon?.code,
+discount:selectedCoupon?.discount*100,
+status: selectedCoupon?.status,
+}
+setCouponInfo(info)
+    },[selectedCoupon])
     return (
         <Modal
       {...props}
@@ -68,16 +75,19 @@ finally{
       </Modal.Header> */}
       <Modal.Body>
        <form className='p-3 ' onSubmit={handleSubmit}>
-       <h4 className='mb-3 text-center '>Add Coupon</h4>
+       <h4 className='mb-3 text-center '>Edit Coupon</h4>
        <div className="d-flex flex-column gap-3  mb-5">
        <div className="modalInputContainer ">
             <label>Book</label>
-            <select name="book" className="form-control" >
-              <option  disabled selected>
+            <select name="book" className="form-control" onChange={(e)=>{
+                setCouponInfo({...couponInfo, book: e.target.value})
+                setEditInfo({...editInfo, book: e.target.value})               
+                }}>
+              {/* <option  disabled selected>
                 Select Book
-              </option>
+              </option> */}
               {allBooks?.map((item, idx) => (
-                <option value={item._id} key={idx}>{item.title}</option>
+                <option value={item._id} key={idx} selected={item?._id===couponInfo?.book}>{item.title}</option>
               ))}
             </select>
           </div>
@@ -87,7 +97,11 @@ finally{
               name="code"
               type="text"
               placeholder="Enter coupon code"
-              
+              value={couponInfo?.code}
+              onChange={(e)=>{
+                setCouponInfo({...couponInfo, code: e.target.value})
+              setEditInfo({...editInfo, code: e.target.value})
+            }}
               required
             />
           </div>
@@ -98,19 +112,25 @@ finally{
               type="number"
               min="1"
               max="90"
-            
+            value={couponInfo?.discount}
               placeholder="Enter discount percentage"
-              
+              onChange={(e)=>{
+                setCouponInfo({...couponInfo, discount: e.target.value})
+              setEditInfo({...editInfo, discount: Number(e.target.value/100)})
+            }}
               required
             />
           </div>
           <div className="d-flex align-items-center ">
           <input
             type="checkbox"
-            checked={isActive}
+            checked={couponInfo?.status}
             id="active_coupon"
             style={{ cursor: "pointer", height: "20px", width: "20px" }}
-            onClick={() => setIsactive(!isActive)}
+            onClick={() => {
+                setCouponInfo({...couponInfo, status: !couponInfo?.status})
+              setEditInfo({...editInfo, status: !couponInfo?.status})
+            }}
           />
           <label
             htmlFor="active_coupon"
@@ -127,7 +147,7 @@ finally{
         </div>
         </div>
         <div className='w-100 d-flex justify-content-center'>
-        <button disabled={loading} style={{fontSize:"18px", backgroundColor:"#423c6a", color:"white", fontWeight:"700", borderRadius:"32px"}} className='px-5 py-2' >{loading?"Adding..":"Add"}</button>
+        <button disabled={loading} style={{fontSize:"18px", backgroundColor:"#423c6a", color:"white", fontWeight:"700", borderRadius:"32px"}} className='px-5 py-2' >{loading?"Updating..":"Update"}</button>
         </div>
        </form>
       </Modal.Body>
@@ -138,4 +158,4 @@ finally{
     );
 };
 
-export default AddCopunModal;
+export default EditCouponModal;

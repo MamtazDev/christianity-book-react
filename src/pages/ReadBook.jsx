@@ -56,7 +56,7 @@ const ReadBook = () => {
     let isPurchased = user?.data?.purchased_books?.find((obj) => obj._id === id);
     if (!isPurchased) {
       setBookId(id);
-      navigate("/subscription");
+      navigate(`/subscription/${id}`);
     }
 
     setAuthChecked(true);

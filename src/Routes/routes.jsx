@@ -87,7 +87,15 @@ export const router = createBrowserRouter([
     element: <EditProfile />,
   },
   {
-    path: "/subscription",
+    path: "/subscription/:id",
+    element: (
+      <PrivateRoute>
+        <Subscription />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/ask-hard-copy",
     element: (
       <PrivateRoute>
         <Subscription />

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import AddCopunModal from "../Modals/AddCopunModal";
 import axios from "axios";
 import { BASE_URL } from "../../config/confir";
+import EditCouponModal from "../Modals/EditCouponModal";
 
 const Coupon = () => {
   const { user } = useContext(AuthContext);
@@ -14,6 +15,8 @@ const Coupon = () => {
   const [modalShow, setModalShow] = useState(false);
   const [allBooks,setAllBooks]=useState([])
   const [allCoupons,setAllCoupons]=useState([])
+  const [editModalShow,setEditModalShow]=useState(false)
+  const [selectedCoupon,setSelectedCoupon]=useState(null)
 
 
 
@@ -87,6 +90,11 @@ const Coupon = () => {
     setAllBooks(result.data.data);
   };
 
+  const handleEdit = (value)=>{
+setEditModalShow(true)
+setSelectedCoupon(value)
+  }
+
   const handleDelete = async (id) => {
     // console.log(id, "idd");
     Swal.fire({
@@ -140,7 +148,7 @@ const Coupon = () => {
         <p>Here you can customize coupon code.</p>
       </div>
 
-      <table class="table table-hover">
+      <table class="table table-hover" style={{maxHeight:"500px", overflowY:"scroll"}}>
   <thead>
     <tr>
       <th scope="col"></th>
@@ -157,10 +165,10 @@ const Coupon = () => {
       <td>{item?.book?.title}</td>
       <td>{item?.code}</td>
       <td>{(item?.discount*100).toFixed(2)}%</td>
-      <td>{item?.status ?"Active":"Disabled"}</td>
+      <td>{item?.status ?"Show":"Hide"}</td>
       <td>
         <div style={{display:"flex", gap:"10px"}}>
-          <button className="btn btn-primary  btn-sm">Edit</button>
+          <button className="btn btn-primary  btn-sm" onClick={()=>handleEdit(item)}>Edit</button>
           <button className="btn btn-danger  btn-sm" onClick={()=>handleDelete(item?._id)}>Delete</button>
         </div>
       </td>
@@ -180,8 +188,15 @@ const Coupon = () => {
 
           <AddCopunModal show={modalShow}
           setModalShow={setModalShow}
+
           getAllCoupons={getAllCoupons}
+         
         onHide={() => setModalShow(false)} allBooks={allBooks}/>
+
+        <EditCouponModal show={editModalShow}
+          setModalShow={setEditModalShow}
+          getAllCoupons={getAllCoupons}
+        onHide={() => setEditModalShow(false)} allBooks={allBooks} selectedCoupon={selectedCoupon}/>
 
 
       

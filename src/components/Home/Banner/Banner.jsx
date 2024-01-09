@@ -26,7 +26,7 @@ const Banner = ({ book }) => {
           <div className="row">
             <div className="col-12 col-lg-6 ">
               {/* <span>Let’s make the best Investment!</span> */}
-              {couponCode&& <span class="badge text-bg-info">{couponCode[0]?.status && couponCode[0]?.code}</span>}
+              {couponCode&& <span className="bg-info badge ">{couponCode?.status && couponCode?.code}</span>}
               <h1>{book?.title}</h1>
               <p
                 className="mb-5"
