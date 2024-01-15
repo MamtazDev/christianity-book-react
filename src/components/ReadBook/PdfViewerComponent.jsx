@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import { BASE_URL } from "../../config/confir";
 
 import { useState } from "react";
 
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
+import AudioPlayerAll from "../AudioPlayer/AudioPlayerAll";
 
 export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
@@ -17,8 +18,20 @@ export default function PdfViewerComponent(props) {
     return matchedObject ? matchedObject.audioFileName : null;
   };
   const [audioFileName, setAudioFileName] = useState("");
+  const [allAudios, setAllAudios] = useState([]);
+
+  const increment = useCallback(() => {
+    let newArray = props.allFiles?.audios?.map((item) => {
+      return {
+        audioFileName: `${BASE_URL}/files/audios/${item.audioFileName}`,
+      };
+    });
+
+    setAllAudios(newArray);
+  }, [props.allFiles]);
 
   useEffect(() => {
+    increment();
     const foundAudioFileName = findAudioFileName(
       props.allFiles?.audios,
       pageIndex,
@@ -86,7 +99,11 @@ export default function PdfViewerComponent(props) {
 
   return (
     <>
-      <AudioPlayer src={audioFileName} />
+      <div className="d-flex justify-content-between align-items-center flex-wrap">
+        {allAudios && <AudioPlayerAll audioFiles={allAudios} />}
+
+        <AudioPlayer src={audioFileName} />
+      </div>
       <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />
     </>
   );

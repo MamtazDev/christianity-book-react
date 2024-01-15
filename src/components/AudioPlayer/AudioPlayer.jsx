@@ -4,7 +4,7 @@ const AudioPlayer = ({ src }) => {
   const [audio] = useState(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
 
-  console.log("src", src);
+  // console.log("src", src);
   useEffect(() => {
     audio.src = src;
     audio.addEventListener("loadeddata", () => {
