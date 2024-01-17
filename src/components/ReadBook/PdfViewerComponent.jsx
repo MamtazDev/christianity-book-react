@@ -6,12 +6,40 @@ import { useState } from "react";
 
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import AudioPlayerAll from "../AudioPlayer/AudioPlayerAll";
+import { useParams } from "react-router-dom";
 
 export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
+  const param = useParams();
 
   const [pageIndex, setPageIndex] = useState();
+  const [lastIndex, setLastIndex] = useState(0);
+
+  const getPrevData = useCallback(() => {
+    let previousReadingRecords = localStorage.getItem(
+      `previousReadingRecord-${param.id}`,
+    );
+    let lastIndexFile = JSON.parse(previousReadingRecords);
+
+    if (param.id === lastIndexFile?.pageID && lastIndexFile.pageIndex > 0) {
+      setLastIndex(lastIndexFile.pageIndex);
+    }
+  }, [param.id]);
+
+  useEffect(() => {
+    getPrevData();
+    if (pageIndex !== null && pageIndex > 0) {
+      let obj = {
+        pageID: param.id,
+        pageIndex: pageIndex ?? lastIndex,
+      };
+      localStorage.setItem(
+        `previousReadingRecord-${param.id}`,
+        JSON.stringify(obj),
+      );
+    }
+  }, [param.id, pageIndex]);
 
   const findAudioFileName = (array, pageIndex) => {
     const matchedObject = array?.find((obj) => obj?.pageIndex === pageIndex);
@@ -19,6 +47,8 @@ export default function PdfViewerComponent(props) {
   };
   const [audioFileName, setAudioFileName] = useState("");
   const [allAudios, setAllAudios] = useState([]);
+
+  console.log("audioFileName", audioFileName);
 
   const increment = useCallback(() => {
     let newArray = props.allFiles?.audios?.map((item) => {
@@ -32,16 +62,17 @@ export default function PdfViewerComponent(props) {
 
   useEffect(() => {
     increment();
+    console.log("pageIndex", lastIndex);
     const foundAudioFileName = findAudioFileName(
       props.allFiles?.audios,
-      pageIndex,
+      pageIndex ?? lastIndex,
     );
     if (foundAudioFileName) {
       setAudioFileName(`${BASE_URL}/files/audios/${foundAudioFileName}`);
     }
   }, [pageIndex, props.allFiles]);
 
-  async function loadPSPDFKit(container, outlineElements) {
+  async function loadPSPDFKit(container, outlineElements, lastIndex) {
     try {
       // Ensure that there's only one PSPDFKit instance.
       if (instanceRef.current) {
@@ -53,6 +84,13 @@ export default function PdfViewerComponent(props) {
         document: `${BASE_URL}/files/${props.allFiles.pdf}`,
         baseUrl: `${window.location.protocol}//${window.location.host}/`,
       });
+
+      if (lastIndex) {
+        instanceRef.current.setViewState((viewState) =>
+          viewState.set("currentPageIndex", lastIndex),
+        );
+      }
+
       instanceRef.current.setViewState((viewState) => {
         return viewState.set(
           "sidebarMode",
@@ -85,7 +123,8 @@ export default function PdfViewerComponent(props) {
           title: item.bookOutlineName,
         });
       });
-      props.allFiles !== null && loadPSPDFKit(container, outlineElement);
+      props.allFiles !== null &&
+        loadPSPDFKit(container, outlineElement, lastIndex);
     }
 
     // Cleanup
