@@ -124,7 +124,7 @@ useEffect(()=>{
        
       </div>
 
-      <table class="table table-hover mt-5" style={{maxHeight:"500px", overflowY:"scroll"}}>
+      <table className="table table-hover mt-5" style={{maxHeight:"500px", overflowY:"scroll"}}>
   <thead>
     <tr>
       <th scope="col"></th>

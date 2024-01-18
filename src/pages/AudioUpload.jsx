@@ -117,13 +117,13 @@ function AudioUpload() {
         <br />
         <input
           type="file"
-          class="form-control"
+          className="form-control"
           accept="audio/mpeg, audio/wav, audio/ogg"
           required
           onChange={(e) => setFile(e.target.files[0])}
         />
         <br />
-        <button class="btn btn-primary" type="submit">
+        <button className="btn btn-primary" type="submit">
           Submit
         </button>
       </form>
@@ -161,7 +161,7 @@ function AudioUpload() {
                       onClick={() => deleteFileHandler(data._id)}
                     >
                       <span
-                        class="badge bg-danger text-white"
+                        className="badge bg-danger text-white"
                         style={{ cursor: "pointer" }}
                       >
                         Delete

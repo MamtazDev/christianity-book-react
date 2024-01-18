@@ -148,7 +148,7 @@ setSelectedCoupon(value)
         <p>Here you can customize coupon code.</p>
       </div>
 
-      <table class="table table-hover" style={{maxHeight:"500px", overflowY:"scroll"}}>
+      <table className="table table-hover" style={{maxHeight:"500px", overflowY:"scroll"}}>
   <thead>
     <tr>
       <th scope="col"></th>

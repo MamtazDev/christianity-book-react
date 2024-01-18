@@ -65,7 +65,7 @@ const AudioPlayerAll = ({ audioFiles }) => {
       >
         {!hasLastPlayer && (
           <button className="btn btn-info " style={{ marginRight: "10px" }}>
-            Play All <i class="fa-solid fa-arrow-right"></i>
+            Play All <i className="fa-solid fa-arrow-right"></i>
           </button>
         )}
         <audio ref={audioRef} onEnded={handleAudioEnd} controls>

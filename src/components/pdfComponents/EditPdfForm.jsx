@@ -9,7 +9,7 @@ const EditPdfForm = ({handeSubmitEditPdf,selectedBooks,setSelectedBook,editInfo,
         <input
           id="CoverPicedit"
           type="file"
-          class="form-control"
+          className="form-control"
           accept="image/png, image/gif, image/jpeg"
       
           onChange={(e) => setEditInfo({...editInfo, coverPic:e.target.files[0]})}
@@ -51,14 +51,14 @@ const EditPdfForm = ({handeSubmitEditPdf,selectedBooks,setSelectedBook,editInfo,
         <input
          
           type="file"
-          class="form-control"
+          className="form-control"
           accept="application/pdf"
 
           onChange={(e) => setEditInfo({...editInfo, file:e.target.files[0]})}
           
         />
         <br />
-        <button class="btn btn-primary" type="submit" disabled={editing}>
+        <button className="btn btn-primary" type="submit" disabled={editing}>
          { editing?"Updating..":"Update"}
         </button>
       </form>

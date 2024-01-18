@@ -28,7 +28,7 @@ const AudioPlayer = ({ src }) => {
   return (
     <div id="player-container" className="text-end mb-3">
       <button className="btn btn-outline" onClick={togglePlay}>
-        <div id="play-pause" class={isPlaying ? "pause" : "play"}></div>
+        <div id="play-pause" className={isPlaying ? "pause" : "play"}></div>
       </button>
     </div>
   );

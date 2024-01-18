@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
 import { BASE_URL } from "../../config/confir";
 
 import { useState } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import AudioPlayerAll from "../AudioPlayer/AudioPlayerAll";
@@ -12,9 +13,10 @@ export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   const param = useParams();
-
+  const { user, bookId, setBookId } = useContext(AuthContext);
   const [pageIndex, setPageIndex] = useState();
   const [lastIndex, setLastIndex] = useState(0);
+  console.log("propos", user);
 
   const getPrevData = useCallback(() => {
     let previousReadingRecords = localStorage.getItem(
@@ -100,6 +102,10 @@ export default function PdfViewerComponent(props) {
 
       const outline = PSPDFKit.Immutable.List([...outlineElements]);
       instanceRef.current.setDocumentOutline(outline);
+      instanceRef.current.addEventListener(
+        "annotations.change",
+        handleAnnotationsChange,
+      );
 
       instanceRef.current.addEventListener("viewState.change", (viewState) => {
         setPageIndex(viewState.toJS().currentPageIndex);
@@ -109,6 +115,24 @@ export default function PdfViewerComponent(props) {
       console.error("Error loading PSPDFKit:", error);
     }
   }
+
+  const handleAnnotationsChange = async () => {
+    try {
+      // Specify the page index (e.g., 0 for the first page)
+      const arrayBuffer = await instanceRef.current.exportPDF();
+      const blob = new Blob([arrayBuffer], { type: "application/pdf" });
+      const formData = new FormData();
+      formData.append("file", user?.data?._id);
+      console.log("blob saved");
+      let x = await fetch(`${BASE_URL}/upload/${user?.data?._id}`, {
+        method: "PUT",
+        body: formData,
+      });
+      console.log("response", x);
+    } catch (error) {
+      console.error("Error fetching annotations:", error);
+    }
+  };
 
   useEffect(() => {
     const container = containerRef.current;

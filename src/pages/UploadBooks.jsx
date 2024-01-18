@@ -134,7 +134,7 @@ function UploadBooks() {
         <input
           id="CoverPic"
           type="file"
-          class="form-control"
+          className="form-control"
           accept="image/png, image/gif, image/jpeg"
           required
           onChange={(e) => setCoverPic(e.target.files[0])}
@@ -162,13 +162,13 @@ function UploadBooks() {
         <input
           id="uploadPDF"
           type="file"
-          class="form-control"
+          className="form-control"
           accept="application/pdf"
           required
           onChange={(e) => setFile(e.target.files[0])}
         />
         <br />
-        <button class="btn btn-primary" type="submit" disabled={uploading}>
+        <button className="btn btn-primary" type="submit" disabled={uploading}>
          { uploading?"Uploading...":"Upload"}
         </button>
       </form>}
@@ -185,7 +185,7 @@ function UploadBooks() {
                       onClick={() => deleteFileHandler(data._id)}
                     >
                       <span
-                        class="badge bg-danger text-white"
+                        className="badge bg-danger text-white"
                         style={{ cursor: "pointer" }}
                       >
                         Delete
