@@ -8,15 +8,18 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import AudioPlayerAll from "../AudioPlayer/AudioPlayerAll";
 import { useParams } from "react-router-dom";
+import { getBookBuffer } from "../../api/books";
 
 export default function PdfViewerComponent(props) {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   const param = useParams();
-  const { user, bookId, setBookId } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [pageIndex, setPageIndex] = useState();
   const [lastIndex, setLastIndex] = useState(0);
-  console.log("propos", user);
+  // const [BookBuffer, setBookBuffer] = useState(null);
+
+  // console.log("BookBuffer", BookBuffer);
 
   const getPrevData = useCallback(() => {
     let previousReadingRecords = localStorage.getItem(
@@ -64,7 +67,7 @@ export default function PdfViewerComponent(props) {
 
   useEffect(() => {
     increment();
-    console.log("pageIndex", lastIndex);
+
     const foundAudioFileName = findAudioFileName(
       props.allFiles?.audios,
       pageIndex ?? lastIndex,
@@ -74,16 +77,25 @@ export default function PdfViewerComponent(props) {
     }
   }, [pageIndex, props.allFiles]);
 
-  async function loadPSPDFKit(container, outlineElements, lastIndex) {
+  const [isLoading, setLoading] = useState(true);
+
+  async function loadPSPDFKit(
+    container,
+    outlineElements,
+    lastIndex,
+    documentBlobObjectUrl,
+  ) {
     try {
       // Ensure that there's only one PSPDFKit instance.
       if (instanceRef.current) {
         PSPDFKit.unload(container);
       }
 
+      // // Fetch the PDF and read the response as an `ArrayBuffer`.
       instanceRef.current = await PSPDFKit.load({
         container,
-        document: `${BASE_URL}/files/${props.allFiles.pdf}`,
+        document:
+          documentBlobObjectUrl ?? `${BASE_URL}/files/${props.allFiles.pdf}`,
         baseUrl: `${window.location.protocol}//${window.location.host}/`,
       });
 
@@ -102,10 +114,25 @@ export default function PdfViewerComponent(props) {
 
       const outline = PSPDFKit.Immutable.List([...outlineElements]);
       instanceRef.current.setDocumentOutline(outline);
+
+      // Event Listener edit ,update, delete
       instanceRef.current.addEventListener(
-        "annotations.change",
+        "annotations.willChange",
         handleAnnotationsChange,
       );
+      instanceRef.current.addEventListener(
+        "annotations.create",
+        handleAnnotationsChange,
+      );
+      instanceRef.current.addEventListener(
+        "annotations.update",
+        handleAnnotationsChange,
+      );
+      instanceRef.current.addEventListener(
+        "annotations.delete",
+        handleAnnotationsChange,
+      );
+      // Event Listener edit ,update, delete
 
       instanceRef.current.addEventListener("viewState.change", (viewState) => {
         setPageIndex(viewState.toJS().currentPageIndex);
@@ -113,31 +140,31 @@ export default function PdfViewerComponent(props) {
       });
     } catch (error) {
       console.error("Error loading PSPDFKit:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
   const handleAnnotationsChange = async () => {
+    console.log("change");
     try {
       // Specify the page index (e.g., 0 for the first page)
       const arrayBuffer = await instanceRef.current.exportPDF();
       const blob = new Blob([arrayBuffer], { type: "application/pdf" });
       const formData = new FormData();
-      formData.append("file", user?.data?._id);
-      console.log("blob saved");
-      let x = await fetch(`${BASE_URL}/upload/${user?.data?._id}`, {
+      formData.append("file", blob);
+      await fetch(`${BASE_URL}/upload/${user?.data?._id}?bookId=${param.id}`, {
         method: "PUT",
         body: formData,
       });
-      console.log("response", x);
+      console.log("blob saved");
     } catch (error) {
       console.error("Error fetching annotations:", error);
     }
   };
 
-  useEffect(() => {
-    const container = containerRef.current;
-
-    if (props.allFiles) {
+  const loadPDF = useCallback(
+    async (container) => {
       const outlineElement = props.allFiles?.audios?.map((item) => {
         return new PSPDFKit.OutlineElement({
           action: new PSPDFKit.Actions.GoToAction({
@@ -147,9 +174,35 @@ export default function PdfViewerComponent(props) {
           title: item.bookOutlineName,
         });
       });
-      props.allFiles !== null &&
-        loadPSPDFKit(container, outlineElement, lastIndex);
-    }
+
+      let getBookk = await getBookBuffer(user.data._id, param.id);
+
+      let documentBlobObjectUrl;
+      if (getBookk.data) {
+        let binary = atob(getBookk.data?.pdfBuffer); // Decode Base64 to binary
+        let array = [];
+        for (let i = 0; i < binary.length; i++) {
+          array.push(binary.charCodeAt(i));
+        }
+        let blob = new Blob([new Uint8Array(array)], {
+          type: "application/pdf",
+        });
+        documentBlobObjectUrl = URL.createObjectURL(blob);
+      }
+      await loadPSPDFKit(
+        container,
+        outlineElement,
+        lastIndex,
+        documentBlobObjectUrl,
+      );
+    },
+    [props.allFiles],
+  );
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    loadPDF(container);
 
     // Cleanup
     return () => {
@@ -167,6 +220,7 @@ export default function PdfViewerComponent(props) {
 
         <AudioPlayer src={audioFileName} />
       </div>
+      {isLoading && <div>Loading....</div>}
       <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />
     </>
   );
