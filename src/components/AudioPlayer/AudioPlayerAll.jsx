@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BASE_URL } from "../../config/confir";
+import {  AWS_BUCKET_PATH } from "../../config/confir";
 
 const AudioPlayerAll = ({ audioFiles }) => {
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);

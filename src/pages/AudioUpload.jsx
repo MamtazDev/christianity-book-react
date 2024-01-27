@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AudioPlayer from "../components/AudioPlayer/AudioPlayer";
-import { BASE_URL } from "../config/confir";
+import { BASE_URL, AWS_BUCKET_PATH } from "../config/confir";
 
 function AudioUpload() {
   const [title, setTitle] = useState("");
@@ -10,7 +10,7 @@ function AudioUpload() {
   const [file, setFile] = useState("");
   const [allImage, setAllImage] = useState(null);
   const [allAudios, setAllAudios] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const [audioFile, setAudioFile] = useState(null);
 
   useEffect(() => {
@@ -40,7 +40,8 @@ function AudioUpload() {
     formData.append("audioFileName", file);
     formData.append("pageIndex", pageIndex);
     formData.append("book_id", bookID);
-    console.log(formData);
+    // console.log(formData);
+    setLoading(true);
 
     const result = await axios.post(
       `${BASE_URL}/api/audios/upload-files`,
@@ -53,16 +54,17 @@ function AudioUpload() {
     if (result.data.status == "ok") {
       alert("Uploaded Successfully!!!");
       getAudios();
+      setLoading(false);
     }
   };
 
   const listenAudio = (audio) => {
-    if (audioFile === `${BASE_URL}/files/audios/${audio}`) {
+    if (audioFile === `${AWS_BUCKET_PATH}/${audio}`) {
       // If the clicked audio is already active, deactivate it
       setAudioFile(null);
     } else {
       // Activate the clicked audio
-      setAudioFile(`${BASE_URL}/files/audios/${audio}`);
+      setAudioFile(`${AWS_BUCKET_PATH}/${audio}`);
     }
   };
 
@@ -123,8 +125,8 @@ function AudioUpload() {
           onChange={(e) => setFile(e.target.files[0])}
         />
         <br />
-        <button className="btn btn-primary" type="submit">
-          Submit
+        <button className="btn btn-primary" disabled={loading} type="submit">
+          {loading ? "Submitting.." : "Submit"}
         </button>
       </form>
       <div className="uploaded mt-4 mb-2">
@@ -173,8 +175,7 @@ function AudioUpload() {
                       }}
                       className="btn btn-outline-primary"
                     >
-                      {`${BASE_URL}/files/audios/${data.audioFileName}` ===
-                      audioFile
+                      {`${AWS_BUCKET_PATH}/${data.audioFileName}` === audioFile
                         ? "active"
                         : "Inactive"}
                     </button>

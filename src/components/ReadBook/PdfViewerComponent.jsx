@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useRef } from "react";
 import PSPDFKit from "pspdfkit";
-import { BASE_URL } from "../../config/confir";
+import { BASE_URL, AWS_BUCKET_PATH } from "../../config/confir";
 
 import { useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -17,9 +17,6 @@ export default function PdfViewerComponent(props) {
   const { user } = useContext(AuthContext);
   const [pageIndex, setPageIndex] = useState();
   const [lastIndex, setLastIndex] = useState(0);
-  // const [BookBuffer, setBookBuffer] = useState(null);
-
-  // console.log("BookBuffer", BookBuffer);
 
   const getPrevData = useCallback(() => {
     let previousReadingRecords = localStorage.getItem(
@@ -53,12 +50,10 @@ export default function PdfViewerComponent(props) {
   const [audioFileName, setAudioFileName] = useState("");
   const [allAudios, setAllAudios] = useState([]);
 
-  console.log("audioFileName", audioFileName);
-
-  const increment = useCallback(() => {
+  const audioLoad = useCallback(() => {
     let newArray = props.allFiles?.audios?.map((item) => {
       return {
-        audioFileName: `${BASE_URL}/files/audios/${item.audioFileName}`,
+        audioFileName: `${AWS_BUCKET_PATH}/${item.audioFileName}`,
       };
     });
 
@@ -66,14 +61,14 @@ export default function PdfViewerComponent(props) {
   }, [props.allFiles]);
 
   useEffect(() => {
-    increment();
+    audioLoad();
 
     const foundAudioFileName = findAudioFileName(
       props.allFiles?.audios,
       pageIndex ?? lastIndex,
     );
     if (foundAudioFileName) {
-      setAudioFileName(`${BASE_URL}/files/audios/${foundAudioFileName}`);
+      setAudioFileName(`${AWS_BUCKET_PATH}/${foundAudioFileName}`);
     }
   }, [pageIndex, props.allFiles]);
 
@@ -95,7 +90,7 @@ export default function PdfViewerComponent(props) {
       instanceRef.current = await PSPDFKit.load({
         container,
         document:
-          documentBlobObjectUrl ?? `${BASE_URL}/files/${props.allFiles.pdf}`,
+          documentBlobObjectUrl ?? `${AWS_BUCKET_PATH}/${props.allFiles.pdf}`,
         baseUrl: `${window.location.protocol}//${window.location.host}/`,
       });
 
@@ -133,7 +128,6 @@ export default function PdfViewerComponent(props) {
         handleAnnotationsChange,
       );
       // Event Listener edit ,update, delete
-
       instanceRef.current.addEventListener("viewState.change", (viewState) => {
         setPageIndex(viewState.toJS().currentPageIndex);
         console.log(viewState.toJS().currentPageIndex);
@@ -146,7 +140,6 @@ export default function PdfViewerComponent(props) {
   }
 
   const handleAnnotationsChange = async () => {
-    console.log("change");
     try {
       // Specify the page index (e.g., 0 for the first page)
       const arrayBuffer = await instanceRef.current.exportPDF();
@@ -176,7 +169,6 @@ export default function PdfViewerComponent(props) {
       });
 
       let getBookk = await getBookBuffer(user.data._id, param.id);
-
       let documentBlobObjectUrl;
       if (getBookk.data) {
         let binary = atob(getBookk.data?.pdfBuffer); // Decode Base64 to binary
@@ -201,7 +193,6 @@ export default function PdfViewerComponent(props) {
 
   useEffect(() => {
     const container = containerRef.current;
-
     loadPDF(container);
 
     // Cleanup
@@ -217,7 +208,6 @@ export default function PdfViewerComponent(props) {
     <>
       <div className="d-flex justify-content-between align-items-center flex-wrap">
         {allAudios && <AudioPlayerAll audioFiles={allAudios} />}
-
         <AudioPlayer src={audioFileName} />
       </div>
       {isLoading && <div>Loading....</div>}

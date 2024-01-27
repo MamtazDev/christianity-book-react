@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { BASE_URL } from "../../config/confir";
+import { BASE_URL, AWS_BUCKET_PATH } from "../../config/confir";
 
 const BooksCard = ({ title, price, coverPic, id, item }) => {
   console.log("item", item);
@@ -21,7 +21,7 @@ const BooksCard = ({ title, price, coverPic, id, item }) => {
         <div className="achiveBox">
           <img
             className="w-100"
-            src={`${BASE_URL}/files/${coverPic}`}
+            src={`${AWS_BUCKET_PATH}/${coverPic}`}
             alt={`${title}`}
           />
           <span style={{ fontSize: 14 }}>{title}</span>

@@ -9,3 +9,5 @@ export const STRIPE_SK =
 
 export const STRIPE_PK =
   "pk_test_51NFZaOLLDUmTZxUmkDuDcasoN5JOWe1Q4aPJXUqqURoA9fd2cS4Vcx7rooYsmfivbLhojg1vM1uzegRpZ7MNl52700t9DowwUF";
+
+export const AWS_BUCKET_PATH = "https://booksfiles.s3.eu-north-1.amazonaws.com";
