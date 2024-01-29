@@ -169,7 +169,11 @@ export default function PdfViewerComponent(props) {
       });
 
       let getBookk = await getBookBuffer(user.data._id, param.id);
+
+      console.log("getBookk", getBookk);
+
       let documentBlobObjectUrl;
+
       if (getBookk.data) {
         let binary = atob(getBookk.data?.pdfBuffer); // Decode Base64 to binary
         let array = [];
@@ -181,6 +185,7 @@ export default function PdfViewerComponent(props) {
         });
         documentBlobObjectUrl = URL.createObjectURL(blob);
       }
+
       await loadPSPDFKit(
         container,
         outlineElement,
@@ -193,7 +198,7 @@ export default function PdfViewerComponent(props) {
 
   useEffect(() => {
     const container = containerRef.current;
-    loadPDF(container);
+    props.allFiles != null && loadPDF(container);
 
     // Cleanup
     return () => {
@@ -210,7 +215,14 @@ export default function PdfViewerComponent(props) {
         {allAudios && <AudioPlayerAll audioFiles={allAudios} />}
         <AudioPlayer src={audioFileName} />
       </div>
-      {isLoading && <div>Loading....</div>}
+      {isLoading && (
+        <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Loading...
+      </button>
+
+       
+      )}
       <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />
     </>
   );
