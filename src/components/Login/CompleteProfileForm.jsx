@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import profile from "../../assets/images/profile_pic.png";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -6,11 +6,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import cameraIcon from "../../assets/images/camera-icon.png";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { updateUserInfo, uploadImageToImgBB } from "../../api/auth";
+import axios from "axios";
 
 const CompleteProfileForm = () => {
   const navigate = useNavigate();
 
   const { user, setUser } = useContext(AuthContext);
+  const [countryNames, setCountryNames] = useState([]);
 
   const imageInput = useRef(null);
 
@@ -56,10 +58,23 @@ const CompleteProfileForm = () => {
         localStorage.setItem("loggedInUser", JSON.stringify(newLocalUserData));
         setUser(newLocalUserData);
         setIsloading(false);
-        navigate("/subscription");
+        navigate("/account-settings");
       }
     }
   };
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/f77e7598a8503f1f70528ae1cbf9f66755698a16/CountryCodes.json",
+      )
+      .then(function (response) {
+        setCountryNames(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   return (
     <>
       <div className="profile_parent_container">
@@ -158,10 +173,10 @@ const CompleteProfileForm = () => {
               <label>Country</label>
               <select name="country" onChange={handleInputValueChange}>
                 <option disabled>Select country</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Nepal">Nepal</option>
-                <option value="India">India</option>
-                <option value="Canada">Canada</option>
+                {countryNames?.length > 0 &&
+                  countryNames.map((i, idx) => (
+                    <option value={i?.name}>{i?.name}</option>
+                  ))}
               </select>
             </div>
           </div>

@@ -18,8 +18,6 @@ const Banner = ({ book }) => {
     getBookCoupon();
   }, [book]);
 
-
-
   return (
     <section>
       <div className="banner mb_all">
@@ -28,7 +26,8 @@ const Banner = ({ book }) => {
             <div className="col-12 col-lg-6 ">
               {/* <span>Let’s make the best Investment!</span> */}
               {couponCode && (
-                <span className="bg-info badge ">
+                <span className="bg-info badge " style={{ fontSize: "16px" }}>
+                  Use this coupon at checkout:{" "}
                   {couponCode?.status && couponCode?.code}
                 </span>
               )}

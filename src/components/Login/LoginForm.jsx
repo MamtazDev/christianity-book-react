@@ -12,6 +12,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { addNotifications } from "../../api/notifications";
 import { BASE_URL } from "../../config/confir";
 import { userLogin } from "../../api/auth";
+import logo from "../../assets/images/logo.jpeg";
 
 const LoginForm = () => {
   const { setUser } = useContext(AuthContext);
@@ -130,7 +131,10 @@ const LoginForm = () => {
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox">
         <h5>
-          <Link to="/">Your Logo</Link>
+          <Link to="/">
+            {" "}
+            <img style={{ maxHeight: 50 }} src={logo} alt="" />
+          </Link>
         </h5>
 
         <h2>Sign in</h2>

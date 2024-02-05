@@ -52,7 +52,7 @@ const CARD_OPTIONS = {
   },
 };
 
-function Payment({ codeApplied,bookInfo }) {
+function Payment({ codeApplied, bookInfo }) {
   const [modalShow, setModalShow] = useState(false);
   const { user, setUser, bookId, book } = useContext(AuthContext);
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -96,7 +96,9 @@ function Payment({ codeApplied,bookInfo }) {
     // const clientSecret = "";
 
     const clientSecret = await createPaymentIntent(
-      codeApplied ? bookInfo?.price - bookInfo?.price * codeApplied : bookInfo?.price,
+      (codeApplied
+        ? bookInfo?.price - bookInfo?.price * codeApplied
+        : bookInfo?.price) * 100,
       "usd",
     );
 
@@ -452,7 +454,7 @@ const createPaymentIntent = async (amountInCents, currency) => {
   const stripe = Stripe(STRIPE_SK);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amountInCents,
+      amount: Number(amountInCents),
       currency: currency,
     });
 

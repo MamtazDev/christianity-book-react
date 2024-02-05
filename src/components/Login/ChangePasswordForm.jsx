@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { changePassword } from "../../api/auth";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../contexts/AuthProvider";
+import logo from "../../assets/images/logo.jpeg";
 
 const ChangePasswordForm = () => {
   const { resetPasswordInfo } = useContext(AuthContext);
@@ -33,7 +34,7 @@ const ChangePasswordForm = () => {
     if (newPassword === password) {
       if (!passwordRegex.test(password)) {
         setErrorMessage(
-          "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long."
+          "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long.",
         );
         setIsLoading(false);
         return;
@@ -74,7 +75,9 @@ const ChangePasswordForm = () => {
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox" style={{ height: "80%" }}>
         <h5>
-          <Link to="/">Your Logo</Link>
+          <Link to="/">
+            <img style={{ maxHeight: 50 }} src={logo} alt="" />
+          </Link>
         </h5>
 
         <div className="h-100 w-100 d-flex  ">

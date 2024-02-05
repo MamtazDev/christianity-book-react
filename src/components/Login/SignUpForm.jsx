@@ -7,6 +7,7 @@ import user from "../../assets/icons/user.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { userSignup } from "../../api/auth";
+import logo from "../../assets/images/logo.jpeg";
 
 const SignUpForm = () => {
   const { setUser } = useContext(AuthContext);
@@ -52,7 +53,7 @@ const SignUpForm = () => {
 
     if (!passwordRegex.test(password)) {
       setErrorMessage(
-        "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long."
+        "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long.",
       );
       setIsLoading(false);
       return;
@@ -92,7 +93,9 @@ const SignUpForm = () => {
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox">
         <h5>
-          <Link to="/">Your Logo</Link>
+          <Link to="/">
+            <img style={{ maxHeight: 50 }} src={logo} alt="" />
+          </Link>
         </h5>
 
         <h2>Sign up</h2>

@@ -4,11 +4,13 @@ import cameraIcon from "../../assets/images/camera-icon.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { updateUserInfo, uploadImageToImgBB } from "../../api/auth";
+import axios from "axios";
 
 const EditProfileForm = () => {
   const navigate = useNavigate();
 
   const { user, setUser } = useContext(AuthContext);
+  const [countryNames, setCountryNames] = useState([]);
 
   const imageInput = useRef(null);
 
@@ -45,7 +47,7 @@ const EditProfileForm = () => {
 
         if (responseData?.status === 200) {
           const localUserData = JSON.parse(
-            localStorage.getItem("loggedInUser")
+            localStorage.getItem("loggedInUser"),
           );
           const newLocalUserData = {
             ...localUserData,
@@ -53,7 +55,7 @@ const EditProfileForm = () => {
           };
           localStorage.setItem(
             "loggedInUser",
-            JSON.stringify(newLocalUserData)
+            JSON.stringify(newLocalUserData),
           );
           setUser(newLocalUserData);
           navigate("/account-settings");
@@ -89,6 +91,18 @@ const EditProfileForm = () => {
       });
     }
   }, [user]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/f77e7598a8503f1f70528ae1cbf9f66755698a16/CountryCodes.json",
+      )
+      .then(function (response) {
+        setCountryNames(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   return (
     <>
       <div className="profile_parent_container">
@@ -189,30 +203,15 @@ const EditProfileForm = () => {
               <label>Country</label>
               <select name="Select country" onChange={handleInputValueChange}>
                 <option disabled>Select country</option>
-                <option
-                  value="Bangladesh"
-                  selected={updateUserData?.country === "Bangladesh"}
-                >
-                  Bangladesh
-                </option>
-                <option
-                  value="Nepal"
-                  selected={updateUserData?.country === "Nepal"}
-                >
-                  Nepal
-                </option>
-                <option
-                  value="India"
-                  selected={updateUserData?.country === "India"}
-                >
-                  India
-                </option>
-                <option
-                  value="Canada"
-                  selected={updateUserData?.country === "Canada"}
-                >
-                  Canada
-                </option>
+                {countryNames?.length > 0 &&
+                  countryNames.map((i, idx) => (
+                    <option
+                      value={i?.name}
+                      selected={updateUserData?.country === i?.name}
+                    >
+                      {i?.name}
+                    </option>
+                  ))}
               </select>
             </div>
           </div>

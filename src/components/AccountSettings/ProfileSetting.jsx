@@ -4,9 +4,14 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { updateUserInfo } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ProfileSetting = () => {
   const { user, setUser } = useContext(AuthContext);
+
+  const [countryNames, setCountryNames] = useState([]);
+
+  console.log(countryNames, "ddd");
 
   const navigate = useNavigate();
 
@@ -68,15 +73,28 @@ const ProfileSetting = () => {
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/f77e7598a8503f1f70528ae1cbf9f66755698a16/CountryCodes.json",
+      )
+      .then(function (response) {
+        setCountryNames(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   return (
     <div>
-        <div className="mb_40">
-          <h3>Profile Settings</h3>
-          <p>
-            Here you can change your profile data you use on
-            <span> Christianity Book</span>.
-          </p>
-        </div>
+      <div className="mb_40">
+        <h3>Profile Settings</h3>
+        <p>
+          Here you can change your profile data you use on
+          <span> Christianity Book</span>.
+        </p>
+      </div>
       <form onSubmit={handleSubmit} className="profileSetting mb_40">
         <div className="d-flex justify-content-start flex-wrap align-items-end acount_gap mb-5">
           <div className="inputContainer1">
@@ -121,30 +139,15 @@ const ProfileSetting = () => {
               <option disabled selected>
                 Select country
               </option>
-              <option
-                value="Bangladesh"
-                selected={profileSettingsData?.country === "Bangladesh"}
-              >
-                Bangladesh
-              </option>
-              <option
-                value="Nepal"
-                selected={profileSettingsData?.country === "Nepal"}
-              >
-                Nepal
-              </option>
-              <option
-                value="India"
-                selected={profileSettingsData?.country === "India"}
-              >
-                India
-              </option>
-              <option
-                value="Canada"
-                selected={profileSettingsData?.country === "Canada"}
-              >
-                Canada
-              </option>
+              {countryNames?.length > 0 &&
+                countryNames.map((i, idx) => (
+                  <option
+                    value={i?.name}
+                    selected={profileSettingsData?.country === i?.name}
+                  >
+                    {i?.name}
+                  </option>
+                ))}
             </select>
           </div>
         </div>

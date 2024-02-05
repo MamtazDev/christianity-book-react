@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./ResetVerificationForm.css";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import logo from "../../assets/images/logo.jpeg";
 
 const ResetVerificationForm = () => {
   const { resetPasswordInfo, setResetPasswordInfo } = useContext(AuthContext);
@@ -56,7 +57,9 @@ const ResetVerificationForm = () => {
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox" style={{ height: "80%" }}>
         <h5>
-          <Link to="/">Your Logo</Link>
+          <Link to="/">
+            <img style={{ maxHeight: 50 }} src={logo} alt="" />
+          </Link>
         </h5>
 
         <div className="h-100 w-100 d-flex  ">

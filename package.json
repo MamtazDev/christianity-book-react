@@ -17,7 +17,7 @@
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.2.0",
     "@vidstack/react": "^1.5.1",
-    "axios": "^1.6.2",
+    "axios": "^1.6.7",
     "lightbox.js-react": "^0.9.6",
     "lightgallery": "^2.7.2",
     "pdf-lib": "^1.17.1",

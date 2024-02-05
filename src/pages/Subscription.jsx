@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { STRIPE_PK } from "../config/confir";
 import { getBookCouponInfo, getCoupons } from "../api/coupon";
 import { getBookInfo } from "../api/books";
+import logo from "../assets/images/logo.jpeg";
 
 // import SubscriptionForOthersModal from "./../components/Modals/SubscriptionForOthersModal";
 
@@ -27,8 +28,8 @@ const Subscription = () => {
 
   const { user, setUser, bookId, book } = useContext(AuthContext);
 
-  const [bookInfo,setBookInfo]=useState(null)
-  const [bookCouponInfo,setBookCouponInfo]=useState(null)
+  const [bookInfo, setBookInfo] = useState(null);
+  const [bookCouponInfo, setBookCouponInfo] = useState(null);
   const { id } = useParams();
 
   const handleCoupnChange = (e) => {
@@ -54,60 +55,68 @@ const Subscription = () => {
     }
   };
 
-  const getBook = async()=>{
+  const getBook = async () => {
     const response = await getBookInfo(id);
-    setBookInfo(response)
-  }
+    setBookInfo(response);
+  };
 
-  const getCouponInfo = async()=>{
-    const response = await getBookCouponInfo(id)
-    setBookCouponInfo(response)
-  }
+  const getCouponInfo = async () => {
+    const response = await getBookCouponInfo(id);
+    setBookCouponInfo(response);
+  };
 
-  console.log(codeApplied,"codeApplied")
+  console.log(codeApplied, "codeApplied");
 
   useEffect(() => {
     // getCouponCode();
-    getBook()
-    getCouponInfo()
+    getBook();
+    getCouponInfo();
   }, [id]);
 
   return (
     <>
       <div className="completeProfileContainer">
-        <Link to="/">You Logo</Link>
+        <Link to="/">
+          <img style={{ maxHeight: 50 }} src={logo} alt="" />
+        </Link>
       </div>
       <div className="sub_header1">
         <h3>Subscription!</h3>
         <p>
           Please consider subscribing to gain access to the online book reading
-          and Q&A forum for just ${codeApplied?bookInfo?.price- (bookInfo?.price*codeApplied):bookInfo?.price}.
+          and Q&A forum for just $
+          {codeApplied
+            ? bookInfo?.price - bookInfo?.price * codeApplied
+            : bookInfo?.price}
+          .
         </p>
         <small>Note: All subscriptions and fees are nonrefundable</small>
         <h4>
           <span>"Enter a Promo Code to get Free Access of </span> <br />
           reading online the book”
         </h4>
-        {bookCouponInfo &&<div>
-          <input
-            type="text"
-            className="promocode_input"
-            placeholder="Enter coupon code"
-            onChange={handleCoupnChange}
-          />
-          <button
-            className="apply_btn apply_coupon_button"
-            disabled={!couponCode || codeApplied}
-            onClick={handleApplyCouponCode}
-            style={{
-              cursor: `${
-                !couponCode || codeApplied ? "not-allowed" : "pointer"
-              }`,
-            }}
-          >
-            Apply
-          </button>
-        </div>}
+        {bookCouponInfo && (
+          <div>
+            <input
+              type="text"
+              className="promocode_input"
+              placeholder="Enter coupon code"
+              onChange={handleCoupnChange}
+            />
+            <button
+              className="apply_btn apply_coupon_button"
+              disabled={!couponCode || codeApplied}
+              onClick={handleApplyCouponCode}
+              style={{
+                cursor: `${
+                  !couponCode || codeApplied ? "not-allowed" : "pointer"
+                }`,
+              }}
+            >
+              Apply
+            </button>
+          </div>
+        )}
         {codeApplied && (
           <p className="text-success" style={{ fontSize: "12px" }}>
             *Coupon Applied!
@@ -124,7 +133,7 @@ const Subscription = () => {
         <p>Payment Information</p>
 
         <Elements stripe={stripePromise}>
-          <Payment codeApplied={codeApplied} bookInfo={bookInfo}/>
+          <Payment codeApplied={codeApplied} bookInfo={bookInfo} />
         </Elements>
 
         {/* <Payment/> */}

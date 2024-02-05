@@ -3,6 +3,7 @@ import message from "../../assets/icons/message.png";
 import { Link, useNavigate } from "react-router-dom";
 import { sendOtpToEmail } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider";
+import logo from "../../assets/images/logo.jpeg";
 
 const ResetPasswordForm = () => {
   const [focusInput, setFocusInput] = useState(null);
@@ -45,7 +46,9 @@ const ResetPasswordForm = () => {
     <div className="col-12 col-lg-6 logInContainer">
       <div className="logInBox" style={{ height: "80%" }}>
         <h5>
-          <Link to="/">Your Logo</Link>
+          <Link to="/">
+            <img style={{ maxHeight: 50 }} src={logo} alt="" />
+          </Link>
         </h5>
 
         <div className="h-100 w-100 d-flex  ">
