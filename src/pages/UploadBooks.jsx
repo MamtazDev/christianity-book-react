@@ -136,7 +136,7 @@ function UploadBooks() {
         />
       ) : (
         <form className="formStyle" onSubmit={submitImage}>
-          <h4>Upload Pdf </h4>
+          <h4>Upload Book </h4>
           <br />
           <label htmlFor="CoverPic">Cover Image</label>
           <input
