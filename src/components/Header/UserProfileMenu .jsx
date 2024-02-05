@@ -249,6 +249,7 @@ const UserProfileMenu = ({
       setAllNotifications(response);
     }
   };
+  // fsdf;
 
   const handleNotificationStatus = async () => {
     const response = await makeNotificationSeen({ userId: user?.data?._id });
