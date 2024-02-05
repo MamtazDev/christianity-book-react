@@ -216,7 +216,7 @@ function Payment({ codeApplied, bookInfo }) {
         <form action="" className="subscription  mt_30cp">
           <div
             action=""
-            className="d-flex justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5"
+            className="d-flex  justify-content-start align-items-end flex-wrap flex-md-nowrap gap_5 mb-5"
           >
             <div className="payment_parent" style={{ cursor: "pointer" }}>
               <label
@@ -342,7 +342,10 @@ function Payment({ codeApplied, bookInfo }) {
 
           {paymentOption === "creditCard" && (
             <>
-              <div className="d-flex w-100 " style={{ gap: "30px" }}>
+              <div
+                className="d-flex flex-column flex-md-row w-100 "
+                style={{ gap: "30px" }}
+              >
                 <div className="w-100">
                   <label htmlFor="card_number">Card Number</label>
                   <div className="card_input">
@@ -365,7 +368,10 @@ function Payment({ codeApplied, bookInfo }) {
                   />
                 </div>
               </div>
-              <div className="d-flex w-100  mt-4" style={{ gap: "30px" }}>
+              <div
+                className="d-flex flex-column flex-md-row w-100  mt-4"
+                style={{ gap: "30px" }}
+              >
                 <div className="w-100">
                   <label htmlFor="card_number">Expiration Date (MMYY)</label>
                   <div className="card_input">
@@ -393,12 +399,13 @@ function Payment({ codeApplied, bookInfo }) {
             </div>
           </div> */}
 
-              <div className="create_profile_button mt-4">
+              <div className="create_profile_button mt-4 ">
                 {isSubscribing ? (
                   <button
                     disabled
                     //   onClick={handleCompletePayment}
                     type="button"
+                    className="px-5 py-2"
                   >
                     Subscribing...
                   </button>
@@ -407,6 +414,8 @@ function Payment({ codeApplied, bookInfo }) {
                     onClick={handlePayment}
                     //   onClick={handleCompletePayment}
                     type="button"
+                    className="px-5 py-2"
+                    style={{ whiteSpace: "pre-wrap" }}
                   >
                     Complete Payment
                   </button>
