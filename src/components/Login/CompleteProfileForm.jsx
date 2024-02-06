@@ -186,14 +186,12 @@ const CompleteProfileForm = () => {
               type="button"
               disabled={
                 !updateUserData?.fullName ||
-                !updateUserData?.phoneNumber ||
                 !updateUserData?.country ||
                 !updateUserData?.image
               }
               style={{
                 cursor: `${
                   !updateUserData?.fullName ||
-                  !updateUserData?.phoneNumber ||
                   !updateUserData?.country ||
                   !updateUserData?.image ||
                   isLoading
